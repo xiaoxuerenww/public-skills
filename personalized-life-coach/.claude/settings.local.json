@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/xue -name \"SKILL.md\" -path \"*frontier-lab-jobs*\" 2>/dev/null)",
+      "WebFetch(domain:openai.com)",
+      "WebFetch(domain:job-boards.greenhouse.io)",
+      "WebSearch",
+      "WebFetch(domain:jobs.careers.microsoft.com)",
+      "Bash(mkdir -p \"/Users/xue/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/241cfa6c-07e4-4c53-b988-42c63ead927a/a735d7be-a137-40de-b168-8600b62c41d2/skills/frontier-lab-jobs\" && mkdir -p \"/Users/xue/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/8a998144-6638-4023-94b2-95be754bd38a/a735d7be-a137-40de-b168-8600b62c41d2/skills/frontier-lab-jobs\" && echo \"dirs created\")",
+      "Bash(python3 -m scripts.package_skill \"../frontier-lab-jobs\")",
+      "Bash(pip3 install *)",
+      "Bash(python3 -c \"import yaml\")",
+      "Bash(brew install *)",
+      "Bash(python3 -m venv /tmp/skill-venv)",
+      "Bash(/tmp/skill-venv/bin/pip install *)",
+      "Bash(/tmp/skill-venv/bin/python -m scripts.package_skill \"../frontier-lab-jobs\")",
+      "Bash(/tmp/skill-venv/bin/python -m scripts.package_skill '/Users/xue/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/8a998144-6638-4023-94b2-95be754bd38a/a735d7be-a137-40de-b168-8600b62c41d2/skills/frontier-lab-jobs')",
+      "Bash(claude skill *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({k:v for k,v in d.items\\(\\) if 'plugin' in k.lower\\(\\) or 'skill' in k.lower\\(\\)}, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(mkdir -p ~/.claude/local-plugins/frontier-lab-jobs/.claude-plugin)",
+      "Bash(mkdir -p ~/.claude/local-plugins/frontier-lab-jobs/skills/frontier-lab-jobs)",
+      "Bash(claude plugins *)",
+      "Bash(mkdir -p /Users/xue/Documents/skills && echo \"Target directory ready\")",
+      "Bash(cp -r '/Users/xue/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/241cfa6c-07e4-4c53-b988-42c63ead927a/a735d7be-a137-40de-b168-8600b62c41d2/skills/frontier-lab-jobs/*' /Users/xue/Documents/skills/frontier-lab-jobs/)",
+      "Bash([ -d \"$SKILL_SRC/frontier-lab-jobs\" ])",
+      "Bash(cp -r '__TRACKED_VAR__/frontier-lab-jobs/*' /Users/xue/Documents/skills/frontier-lab-jobs/)"
+    ]
+  }
+}
