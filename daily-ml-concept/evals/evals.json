@@ -1,0 +1,23 @@
+{
+  "skill_name": "daily-ml-concept",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run my daily ML concept learning session. I want to attempt the question myself.",
+      "expected_output": "Present a concept name and guiding question. Accept user's answer, then provide the explanation.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I don't know this concept yet. Show me today's concept and teach me.",
+      "expected_output": "Present concept and question, then when user says 'learn', provide the explanation without requiring an answer first.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Start my daily concept challenge.",
+      "expected_output": "Display concept name, guiding question, and prompt for user input.",
+      "files": []
+    }
+  ]
+}
