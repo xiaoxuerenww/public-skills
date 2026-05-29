@@ -6,6 +6,57 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-05-18 — Manager reframed; domain locked; timeline firmed: "He can't guide or give space, so I stop seeking approval"
+
+**What we discussed:**
+- Julie came back 5 days into her week off to reflect on a new thought: why she wants to leave her current team, and why she doesn't need to impress her current manager.
+- We traced what she *actually* wants in a leader: either (1) someone who can create vision she believes in, OR (2) someone who respects her technical strength and gives her space to drive the vision. Her current manager does neither.
+- Because he can't guide her and won't give her space, proving herself to him is a structural mismatch, not a personal failure. His opinion becomes irrelevant to her growth.
+- **The insight:** She stops seeking approval from someone she already knows can't deliver what she needs. The "proving myself" loop dissolves when she accepts this is not fixable.
+- **The fear underneath:** Bad performance review from current manager would hurt her if she returns to Google or transfers internally (because hire-back and internal transfers ask for reference from current manager). But here's the real constraint: moving targets. His expectations shift constantly, so earning a good review is impossible anyway.
+- **The reframe:** She doesn't need a "not bad" review from him. She needs to not be on his team when year-end review happens. That's solved via (1) frontier offer by mid-July, or (2) internal team transfer by early August.
+- **Domain decision:** She's locked that RecSys chapter is closed. She's worked on it for many years, less curious, less motivated by incremental improvement. AI/LLM is the domain that satisfies her curiosity now. Not running from RecSys; running toward the frontier.
+- **Timeline firmed:** She's applied to all relevant frontier labs (cold applications sent 1-2 weeks ago); one loop active; first responses expected in 1-2 weeks; multiple loops should be running by early June; decision point mid-July on whether she has offers. If no frontier offer by early August, move to internal team transfer.
+
+**Key insights:**
+- **Structural mismatch ≠ personal failure.** Her current manager can't guide her *and* won't give her space. Those are the two things she needs to grow. His shifting expectations prove she can't earn his approval no matter how hard she works. This is not a thing to fix by doing more.
+- **Stop seeking approval from someone who structurally can't give it.** The "proving myself" pattern dissolves when she accepts this truth. His opinion is irrelevant because he's not the person whose vision matters for her growth.
+- **The real constraint isn't the review—it's not being on his team when it happens.** Two paths solve this: frontier offer (primary) or team transfer (backup). The timeline allows for both.
+- **RecSys is mastered; AI/LLM is calling.** This isn't desperation or running from dysfunction. It's curiosity pulling her toward unsolved frontier problems. This is how she stays alive intellectually.
+- **The frontier timeline is real but tight.** One active loop + cold applications is thin. She needs to warm up connections this weekend to accelerate timeline and get multiple loops running in parallel by early June. (Action deferred — she chose to focus on domain decision first.)
+
+**Where things landed:**
+- **Manager relationship:** She shows up professionally, does solid work on her experimental IC stream, maintains high standards, but stops hoping for validation or approval. Her energy goes to frontier prep and execution, not to proving herself to someone structurally mismatched.
+- **Timeline locked:**
+  - Now through late May: Cold applications converting to first interviews (expect responses)
+  - Early June: Multiple frontier loops active
+  - Late June/early July: Offer signals coming in
+  - **Decision point (mid-July):** Have frontier offers or not?
+  - **If yes:** Accept offer, resign from Google
+  - **If no:** Initiate internal team transfer (goal: offer by August/September, away from current manager before year-end review)
+- **Domain focus:** AI/LLM is her north star for role selection and positioning. RecSys is the anchor for "here's what I can execute at scale," but the domain has matured and she's chasing frontier problems now.
+- **Minimum work at current job:** Experimental IC work, professional reliability, don't check out—goal is just to not be on this team when review happens.
+
+**Principles at play:**
+- **Principle 1 — Follow Curiosity, Even When It's Hard**: RecSys is mastered; AI/LLM is where curiosity lives. The shift is toward unsolved frontier problems, not away from dysfunction.
+- **Principle 3 — Be Brave — Act Before You Feel Ready**: Not waiting for perfect interview prep or certainty. Pushing frontier timeline with one active loop and cold applications.
+- **Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling**: The belief "I need to prove myself to my current manager" was limiting her energy. Recognizing the structural mismatch dissolves the belief.
+- **Principle 6 — Work at the Frontier — With the Best**: AI/LLM domain shift is about chasing frontier problems with brilliant people, not about status or title.
+- **Principle 8 — Built for Challenge**: She can handle the tight timeline, multiple loops, and uncertainty without being derailed. Difficulty = she's in the right place.
+
+**Action items:**
+- [Deferred] Warm up connections at frontier labs this weekend (she chose to defer this discussion, focus on domain decision first)
+- [ ] Maintain the daily routine (20 min exercise, focused interview prep, professional work engagement)
+- [ ] Push frontier timeline: expect first responses from applications in 1-2 weeks, first interviews mid-June
+- [ ] Track offers/signals: by mid-July, know if frontier path is working
+- [ ] If no frontier offers by early August: initiate internal team transfer search
+- [ ] Lock in AI/LLM domain focus when positioning in interviews and evaluating roles
+- [ ] Check in next session: how is frontier timeline progressing? How is the routine holding? Any new patterns showing up around the manager dynamic?
+
+**Session note for future:** This session deepened the clarity from May 13. The breakthrough last week was "difficulty excites me." This week's breakthrough was "I can stop seeking approval from someone who structurally can't give it." The "proving myself" pattern dissolves not through willpower or reframing, but through recognizing the mismatch is unfixable. She's not trying to be better for him; she's just moving on. This frees a lot of energy. The domain decision (RecSys → AI/LLM) is clean and driven by curiosity, not crisis. The timeline is tight but locked. The backup plan (internal transfer) is real and removes the pressure to get a frontier offer *right now*—gives her 2-3 months of real interviewing before she needs to pivot. She's in good shape.
+
+---
+
 ## 2026-05-13 — Anxiety + Meta freeze + Interview overwhelm: From "should I hedge?" to "difficulty excites me"
 
 **What we discussed:**
