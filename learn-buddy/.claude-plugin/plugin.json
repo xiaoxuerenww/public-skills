@@ -1,0 +1,8 @@
+{
+  "name": "learn-buddy",
+  "version": "1.0.0",
+  "description": "Teach or review a specific ML, systems, coding, math, research, or product concept as a concise one-pager for frontier AI lab interviews. Use when the user asks to learn, explain, drill, refresh, prepare, or deeply understand a concept for Staff or Senior Staff MLE/AI interviews, especially when they ask for concise but complete coverage without over-indexing.",
+  "skills": [
+    "learn-buddy"
+  ]
+}

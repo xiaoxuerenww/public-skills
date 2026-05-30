@@ -1,0 +1,8 @@
+{
+  "name": "system-design-interview-buddy",
+  "version": "1.0.0",
+  "description": "Prepare, solve, explain, and run mock ML system design interviews for Staff/Senior Staff MLE or Research Engineer loops. Use when the user asks for system design prep, wants to collect requirements for a new problem, wants a full L6+ answer, wants a walkthrough or explanation of a solution, wants learning notes, wants a mock interviewer, or is practicing ML/research infrastructure systems such as recommendation, ranking, experiment platforms, ML configuration systems, sweeps, training pipelines, evaluation, serving, monitoring, or debugging.",
+  "skills": [
+    "system-design-interview-buddy"
+  ]
+}
