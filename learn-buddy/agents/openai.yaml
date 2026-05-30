@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn Buddy"
+  short_description: "One-page frontier interview concept coaching."
+  default_prompt: "Teach me [concept] as a one-pager for a frontier AI lab interview."

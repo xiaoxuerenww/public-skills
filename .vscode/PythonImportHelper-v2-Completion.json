@@ -1,0 +1,72 @@
+[
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "py_compile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "py_compile",
+        "description": "py_compile",
+        "detail": "py_compile",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "interview-problem-solver.scripts.run_problem_tests",
+        "description": "interview-problem-solver.scripts.run_problem_tests",
+        "peekOfCode": "def main() -> int:\n    parser = argparse.ArgumentParser(\n        description=\"Run <problem-dir>/test.py with <problem-dir> on PYTHONPATH.\"\n    )\n    parser.add_argument(\"problem_dir\", help=\"Directory containing solution.py and test.py\")\n    parser.add_argument(\n        \"--pytest\",\n        action=\"store_true\",\n        help=\"Run with python -m pytest test.py instead of python test.py\",\n    )",
+        "detail": "interview-problem-solver.scripts.run_problem_tests",
+        "documentation": {}
+    }
+]

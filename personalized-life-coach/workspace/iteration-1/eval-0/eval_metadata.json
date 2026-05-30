@@ -1,0 +1,32 @@
+{
+  "eval_id": 0,
+  "eval_name": "timing-and-readiness-decision",
+  "prompt": "I got an interview request from Anthropic for a Research/ML Engineer role. It's sooner than I expected — they want to move fast. Part of me is excited, but another part keeps thinking 'I'm not ready yet. I haven't finished my theory prep, my articulation around LLMs still feels weak.' How do I know if I'm actually not ready, or if I'm just scared? And how do I decide whether to move forward with this timeline or ask for more time?",
+  "assertions": [
+    {
+      "text": "Distinguishes between fear-based concerns and evidence-based gaps",
+      "passed": null,
+      "evidence": "Coach separates 'what's real' from 'what's the voice' with specific examples"
+    },
+    {
+      "text": "Maps decision to core principles (esp. Be Brave vs. Think Carefully)",
+      "passed": null,
+      "evidence": "References specific principles and names the tension"
+    },
+    {
+      "text": "Names the pattern (Proving Myself Loop or Hedging) at play",
+      "passed": null,
+      "evidence": "Coach identifies which familiar pattern is active and explains why"
+    },
+    {
+      "text": "Lands on clear, testable action (not vague)",
+      "passed": null,
+      "evidence": "Action is specific: commit to timeline, targeted prep for 1 week, honest in interview"
+    },
+    {
+      "text": "Uses her personal context (Google tenure, interview stage, family situation)",
+      "passed": null,
+      "evidence": "References her actual situation to make coaching concrete"
+    }
+  ]
+}
