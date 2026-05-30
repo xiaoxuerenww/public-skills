@@ -1,4 +1,0 @@
-interface:
-  display_name: "Interview Problem Solver"
-  short_description: "Solve coding problem folders with tests"
-  default_prompt: "Use $interview-problem-solver to solve this problem folder end to end."
