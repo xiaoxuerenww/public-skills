@@ -1,18 +1,47 @@
 ---
 name: coding-interview-companion
-description: End-to-end coding interview prep with solve/learn/mock modes. Use when preparing for technical interviews: solve mode analyzes requirements and builds interview-ready solutions, learn mode companions your understanding with auto-notes, mock mode simulates interviews with step-by-step feedback. Works with input/0_requirements.md and outputs to output/ folder.
+description: End-to-end coding interview prep with solve/learn/mock modes. Use when preparing for technical interviews: solve mode analyzes requirements and builds interview-ready solutions, learn mode companions your understanding with auto-notes, mock mode simulates interviews with step-by-step feedback. Works with input/0_requirements.md and outputs to output/ folder (relative to current directory).
 ---
 
 # Interview Problem Companion
 
 **Purpose:** Complete lifecycle support for coding interview prep—from requirements analysis through mock interviews.
 
+**Important:** This skill works with files relative to your current directory. All paths (input/, output/) are relative to where you invoke the skill.
+
+## Quick Setup
+
+1. **Create a directory** for your interview prep:
+   ```bash
+   mkdir my-interview-prep
+   cd my-interview-prep
+   ```
+
+2. **Create input folder and requirements file:**
+   ```bash
+   mkdir input
+   echo "# Interview Round
+   - Type: Coding + System Design + Behavioral
+   - Date: June 2026
+   - Focus areas: algorithms, data structures
+   " > input/0_requirements.md
+   ```
+
+3. **Invoke the skill** from this directory:
+   ```
+   /coding-interview-companion
+   
+   "Solve mode: I have these coding problems to prepare..."
+   ```
+
 ## Directory Structure
 
+All paths are **relative to your current working directory**:
+
 ```
-<interview_round>/
+current-directory/
   input/
-    0_requirements.md          # Raw interview info, constraints, follow-ups
+    0_requirements.md          # Raw interview info (you create this)
     <problem_name>.md          # Problem statement (created by solve mode)
     <problem_name>.py          # Skeleton/interface (created by solve mode)
   output/
@@ -24,11 +53,18 @@ description: End-to-end coding interview prep with solve/learn/mock modes. Use w
     mock_feedback.md          # Mock interview feedback (created by mock mode)
 ```
 
+The skill will:
+- **Read from:** `./input/0_requirements.md` (relative to current directory)
+- **Write to:** `./input/` and `./output/` (relative to current directory)
+- **Create directories** if they don't exist
+
 ## Modes
 
-- **Solve mode:** Analyze `input/0_requirements.md`, create problem setup, solve in depth/breadth, generate `output/interview_solutions.md` + solution code + `output/deep_dive.md`.
-- **Learn mode:** Companion your learning journey, auto-take notes in `output/learn_notes.md`, proactively merge into `output/deep_dive.md`.
-- **Mock mode:** Interview as hiring engineer, review `output/my_solution.*`, give step-by-step feedback, take notes in `output/mock_feedback.md`.
+All paths are relative to your current directory:
+
+- **Solve mode:** Read `./input/0_requirements.md`, create problem setup files in `./input/`, solve in depth/breadth, generate `./output/interview_solutions.md` + solution code + `./output/deep_dive.md`.
+- **Learn mode:** Companion your learning journey, auto-take notes in `./output/learn_notes.md`, proactively merge into `./output/deep_dive.md`.
+- **Mock mode:** Interview as hiring engineer, review `./output/my_solution.*`, give step-by-step feedback, take notes in `./output/mock_feedback.md`.
 
 ---
 
@@ -38,19 +74,21 @@ Use this workflow to analyze an interview round and produce interview-ready solu
 
 ### Phase 1: Requirements Analysis
 
-1. Read `input/0_requirements.md`:
+All file operations are relative to your current directory.
+
+1. Read `./input/0_requirements.md` (relative to current directory):
    - Identify all interview problems, constraints, follow-ups, and context.
    - If the requirements reference multiple problems or parts, break them into discrete problems.
    - Surface any ambiguities early.
 
-2. Create problem setup files in `input/`:
-   - For each distinct problem, create `input/<problem_name>.md` with:
+2. Create problem setup files in `./input/`:
+   - For each distinct problem, create `./input/<problem_name>.md` with:
      - Problem statement (clean, formatted for reference)
      - Input/output contract
      - Constraints and edge cases
      - Example test cases
      - Follow-up questions or variations
-   - For coding problems, create `input/<problem_name>.py` with:
+   - For coding problems, create `./input/<problem_name>.py` with:
      - Public function/class signatures and type hints (from problem description)
      - Docstrings explaining the interface
      - Stub bodies with `raise NotImplementedError()`
