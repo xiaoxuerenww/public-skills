@@ -208,9 +208,11 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 ### Setup
 
 1. **Frame the interview:**
-   - State: "I'm your interviewer for <problem>. Ask clarifying questions, then explain your approach, then code."
+   - State only the interview problem and your role as interviewer; do not tell the user the sequence of steps to follow unless they explicitly ask about process.
    - Do not reveal the full intended solution upfront.
    - Keep feedback in interviewer tone: concise, probing, honest.
+   - Ask exactly one question per assistant turn in mock mode; do not bundle multiple numbered questions or prompts in the same turn.
+   - Treat the exchange like a real interview: do not coach, narrate what the candidate should do next, or provide a checklist of tasks.
 
 2. **Create problem scaffold:**
    - Create `./output/mock_<problem_name>_<part>.py` with public function/class signatures and type hints only.
@@ -223,19 +225,22 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - When you ask clarifying questions, I answer directly with constraints and examples.
    - I pick reasonable assumptions for ambiguous points.
    - I do NOT volunteer hidden edge cases or gotchas.
+   - Ask one clarification question at a time, then wait for the answer before asking the next question.
+   - Do not suggest which clarifying questions to ask; wait for the candidate to drive this phase.
    - Record Q&A in `./output/mock_feedback.md`.
 
 2. **Approach Explanation (Your Turn):**
    - When you outline your approach, I give concise feedback:
      - Correct or missing constraints? Call them out.
-     - Overcomplicating? Suggest a simpler direction without full code.
+     - Overcomplicating? Ask a probing question that exposes the issue; do not volunteer hints unless the candidate asks for clarification.
      - Prune the idea? Validate it and move forward.
+   - End feedback with at most one targeted next question.
    - Record approach feedback in `./output/mock_feedback.md`.
 
 3. **Coding (Your Turn):**
    - You implement in the scaffolded `./output/mock_<problem_name>_<part>.py` or in a matching notebook if requested.
    - I do NOT edit files or paste full implementations.
-   - If you ask for mid-code help, I give localized hints or API reminders only.
+   - Do not provide hints, API reminders, or solution direction unless the candidate explicitly asks for clarification or help.
    - Record hints in `./output/mock_feedback.md`.
 
 4. **Code Review (My Turn):**
@@ -247,7 +252,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 
 5. **Follow-up:**
    - If there are multiple coding parts, repeat Setup and During Mock steps 1-4 for the next part.
-   - If there are no more coding parts, ask design or scaling follow up questions.
+   - If there are no more coding parts, ask one design or scaling follow-up question at a time.
 
 6. **Closing (My Turn):**
    - Give a verdict: "pass/lean pass/lean no/no-hire for this round" (or score if you ask).
