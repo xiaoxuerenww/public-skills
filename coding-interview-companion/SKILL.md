@@ -1,13 +1,28 @@
 ---
 name: coding-interview-companion
-description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: solve mode analyzes input/0_requirements.md and creates interview-ready solutions, learn mode defaults to interactive Q&A with interview-relevant auto-notes, mock mode simulates an interviewer and reviews the user's attempt. Works with input/ and output/ folders relative to the current directory."
+description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: first locate the current problem directory, then use its input/ and output/ subdirectories. Solve mode analyzes input/0_requirements.md and creates interview-ready solutions, learn mode defaults to interactive Q&A with interview-relevant auto-notes, mock mode simulates an interviewer and reviews the user's attempt."
 ---
 
 # Coding Interview Companion
 
 **Purpose:** Complete lifecycle support for coding interview prep, from requirements analysis through solution writing, learning review, and mock interviews.
 
-**Important:** This skill works with files relative to your current directory. All paths (input/, output/) are relative to where you invoke the skill.
+**Important:** First identify the current problem directory. All `input/` and `output/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
+
+## Problem Directory Resolution
+
+Before reading or writing files, set `problem_dir`:
+
+1. If the user provides a problem directory or file path, use that directory. If they provide a file inside `input/` or `output/`, use its parent problem directory.
+2. Otherwise, if the current directory contains `input/` or `output/`, use the current directory.
+3. Otherwise, search nearby child directories for `input/0_requirements.md`, `input/*.md`, or `output/deep_dive.md` and choose the directory that matches the current problem context.
+4. If multiple directories match and the current problem is ambiguous, ask one concise clarification question.
+
+After resolving `problem_dir`, use:
+- `problem_input = <problem_dir>/input`
+- `problem_output = <problem_dir>/output`
+
+Create `problem_input` and `problem_output` if the selected mode needs them and they do not exist.
 
 ## Quick Setup
 
@@ -27,19 +42,19 @@ description: "End-to-end coding interview prep for algorithms, data structures, 
    " > input/0_requirements.md
    ```
 
-3. **Invoke the skill** from this directory:
+3. **Invoke the skill** from this directory or pass the problem directory explicitly:
    ```
    /coding-interview-companion
    
-   "Solve mode: I have these coding problems to prepare..."
+   "Solve mode for ./my-interview-prep"
    ```
 
 ## Directory Structure
 
-All paths are **relative to your current working directory**:
+All paths are **relative to the resolved problem directory**:
 
 ```
-current-directory/
+problem-directory/
   input/
     0_requirements.md          # Raw interview info (you create this)
     <problem_name>.md          # Problem statement (created by solve mode)
@@ -54,17 +69,18 @@ current-directory/
 ```
 
 The skill will:
-- **Read from:** `./input/0_requirements.md` (relative to current directory)
-- **Write to:** `./input/` and `./output/` (relative to current directory)
+- **Resolve:** `problem_dir` before any file operation
+- **Read from:** `<problem_dir>/input/0_requirements.md`
+- **Write to:** `<problem_dir>/input/` and `<problem_dir>/output/`
 - **Create directories** if they don't exist
 
 ## Modes
 
-All paths are relative to your current directory:
+All paths are relative to the resolved `problem_dir`:
 
-- **Solve mode:** Read `./input/0_requirements.md`, create frozen problem setup files in `./input/`, then generate `./output/interview_discussion.md`, `./output/<problem_name>_solution.py`, and `./output/deep_dive.md`.
-- **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, record only interview-relevant notes in `./output/learn_notes.md`, and merge durable takeaways into `./output/deep_dive.md`.
-- **Mock mode:** Interview as a hiring engineer, create/review `./output/mock_<problem_name>_<part>.py`, and record feedback in `./output/mock_feedback.md`.
+- **Solve mode:** Read `<problem_dir>/input/0_requirements.md`, create frozen problem setup files in `<problem_dir>/input/`, then generate `<problem_dir>/output/interview_discussion.md`, `<problem_dir>/output/<problem_name>_solution.py`, and `<problem_dir>/output/deep_dive.md`.
+- **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, record only interview-relevant notes in `<problem_dir>/output/learn_notes.md`, and merge durable takeaways into `<problem_dir>/output/deep_dive.md`.
+- **Mock mode:** Interview as a hiring engineer, create/review `<problem_dir>/output/mock_<problem_name>_<part>.py`, and record feedback in `<problem_dir>/output/mock_feedback.md`.
 
 ---
 
@@ -74,25 +90,25 @@ Use this workflow to analyze an interview round and produce interview-ready solu
 
 ### Phase 1: Requirements Analysis
 
-All file operations are relative to your current directory.
+All file operations are relative to the resolved `problem_dir`.
 
-1. Read `./input/0_requirements.md` (relative to current directory):
+1. Read `<problem_dir>/input/0_requirements.md`:
    - Identify all interview problems, constraints, follow-ups, and context.
    - If the requirements reference multiple problems or parts, break them into discrete problems.
    - Surface any ambiguities early.
 
-2. Create problem setup files in `./input/`:
-   - For each distinct problem, create `./input/<problem_name>.md` with:
+2. Create problem setup files in `<problem_dir>/input/`:
+   - For each distinct problem, create `<problem_dir>/input/<problem_name>.md` with:
      - Problem statement (clean, formatted for reference)
      - Input/output contract
      - Constraints and edge cases
      - Example test cases
      - Follow-up questions or variations
-   - For coding problems, create `./input/<problem_name>.py` with:
+   - For coding problems, create `<problem_dir>/input/<problem_name>.py` with:
      - Public function/class signatures and type hints (from problem description)
      - Docstrings explaining the interface
      - Stub bodies with `raise NotImplementedError()`
-     - Keep this file frozen for learn and mock modes; write reference solutions and attempts under `./output/`.
+     - Keep this file frozen for learn and mock modes; write reference solutions and attempts under `<problem_dir>/output/`.
 
 3. Brief summary:
    - Recap the problem landscape and what you'll solve in order.
@@ -108,14 +124,14 @@ For each problem in order:
    - Compare with alternative approaches if relevant.
 
 2. **Implementation (Coding Problems):**
-   - Implement in `./output/<problem_name>_solution.py` with:
+   - Implement in `<problem_dir>/output/<problem_name>_solution.py` with:
      - Docstrings and type hints
      - Concise comments on non-obvious logic (pointers, state, edge cases, base cases, DP transitions)
      - Interview-appropriate style: clear over clever
    - Add focused tests or a small `if __name__ == "__main__":` smoke-test block when useful.
    - Test thoroughly; include edge cases in reasoning and report the command you ran.
 
-3. **Write `./output/interview_discussion.md`:**
+3. **Write `<problem_dir>/output/interview_discussion.md`:**
    - Create one section per problem with:
      - **Problem Statement** (condensed from input)
      - **Key Insights** (2-3 bullet points: what makes this hard, what's the aha moment)
@@ -126,7 +142,7 @@ For each problem in order:
      - **Follow-Ups** (how to extend, optimize, or adapt)
    - Write as if explaining to an interviewer: conversational, confident, complete.
 
-4. **Create `./output/deep_dive.md`:**
+4. **Create `<problem_dir>/output/deep_dive.md`:**
    - One section per problem with:
      - **Context** (where this pattern appears, what makes it Interview-hard)
      - **Mental Model** (how to think about the problem without code)
@@ -145,13 +161,13 @@ For each problem in order:
 
 ## Learn Mode Workflow
 
-Use this workflow as an interactive Q&A companion with auto-notes. Do not edit frozen files in `./input/`.
+Use this workflow as an interactive Q&A companion with auto-notes. Do not edit frozen files in `<problem_dir>/input/`.
 
 ### Setup
 
 1. Confirm you're in learn mode and state which problem/concept you're exploring.
 2. Default to answering the user's next question directly; offer a short menu only if the user has not chosen a focus.
-3. Create `./output/learn_notes.md` if it does not exist.
+3. Create `<problem_dir>/output/learn_notes.md` if it does not exist.
 
 ### During Learning
 
@@ -165,7 +181,7 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
    - Use plain language first, then technical depth.
    - Keep answers concise; answer the immediate question, then add context.
    - Use one small concrete example per explanation; avoid stacking examples.
-   - Tie code to the problem statement and `./output/deep_dive.md` when available.
+   - Tie code to the problem statement and `<problem_dir>/output/deep_dive.md` when available.
    - Highlight what you should say in a real interview.
 
 3. **Answer Questions:**
@@ -174,7 +190,7 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
    - Point out common pitfalls and how tests or examples expose them.
 
 4. **Auto-Notes (Default):**
-   - For every interview-relevant question or insight, record it in `./output/learn_notes.md`:
+   - For every interview-relevant question or insight, record it in `<problem_dir>/output/learn_notes.md`:
      - **Q:** Your question (concise)
      - **A:** The answer (1-3 sentences)
      - **Why it matters:** One sentence on the mental model or edge case
@@ -183,12 +199,12 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
    - Keep notes chronological and slightly raw.
 
 5. **Merge into Deep Dive (Proactive):**
-   - As you finish learning a problem, merge insights from `./output/learn_notes.md` into `./output/deep_dive.md`:
+   - As you finish learning a problem, merge insights from `<problem_dir>/output/learn_notes.md` into `<problem_dir>/output/deep_dive.md`:
      - Add a "Learning Notes & Refinements" subsection.
      - Distill Q&A entries into 1-2 sentence takeaways.
      - Link each takeaway to the relevant solution section.
-     - Delete the merged entries from `./output/learn_notes.md` and update the date.
-   - Keep `./output/deep_dive.md` interview-ready; use it as the reference before a real interview.
+     - Delete the merged entries from `<problem_dir>/output/learn_notes.md` and update the date.
+   - Keep `<problem_dir>/output/deep_dive.md` interview-ready; use it as the reference before a real interview.
 
 6. **Interactive & Pause:**
    - After answering, keep the session open for the next question.
@@ -196,7 +212,7 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
 
 ### End of Learn Session
 
-- Confirm that `./output/learn_notes.md` is cleaned up and merged into `./output/deep_dive.md`.
+- Confirm that `<problem_dir>/output/learn_notes.md` is cleaned up and merged into `<problem_dir>/output/deep_dive.md`.
 - Summarize what you now understand differently compared to the start.
 
 ---
@@ -215,7 +231,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - Treat the exchange like a real interview: do not coach, narrate what the candidate should do next, or provide a checklist of tasks.
 
 2. **Create problem scaffold:**
-   - Create `./output/mock_<problem_name>_<part>.py` with public function/class signatures and type hints only.
+   - Create `<problem_dir>/output/mock_<problem_name>_<part>.py` with public function/class signatures and type hints only.
    - Stub bodies with `raise NotImplementedError()`.
    - Do NOT include algorithm hints, helper functions, test harnesses, or expected outputs.
 
@@ -227,7 +243,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - I do NOT volunteer hidden edge cases or gotchas.
    - Ask one clarification question at a time, then wait for the answer before asking the next question.
    - Do not suggest which clarifying questions to ask; wait for the candidate to drive this phase.
-   - Record Q&A in `./output/mock_feedback.md`.
+   - Record Q&A in `<problem_dir>/output/mock_feedback.md`.
 
 2. **Approach Explanation (Your Turn):**
    - When you outline your approach, I give concise feedback:
@@ -235,20 +251,20 @@ Use this workflow to simulate a real interview with step-by-step feedback.
      - Overcomplicating? Ask a probing question that exposes the issue; do not volunteer hints unless the candidate asks for clarification.
      - Prune the idea? Validate it and move forward.
    - End feedback with at most one targeted next question.
-   - Record approach feedback in `./output/mock_feedback.md`.
+   - Record approach feedback in `<problem_dir>/output/mock_feedback.md`.
 
 3. **Coding (Your Turn):**
-   - You implement in the scaffolded `./output/mock_<problem_name>_<part>.py` or in a matching notebook if requested.
+   - You implement in the scaffolded `<problem_dir>/output/mock_<problem_name>_<part>.py` or in a matching notebook if requested.
    - I do NOT edit files or paste full implementations.
    - Do not provide hints, API reminders, or solution direction unless the candidate explicitly asks for clarification or help.
-   - Record hints in `./output/mock_feedback.md`.
+   - Record hints in `<problem_dir>/output/mock_feedback.md`.
 
 4. **Code Review (My Turn):**
-   - When you say "done", I review `./output/mock_<problem_name>_<part>.*`:
+   - When you say "done", I review `<problem_dir>/output/mock_<problem_name>_<part>.*`:
      - List correctness bugs first, then edge cases, complexity, clarity, communication.
      - Provide smallest conceptual fix for each issue (no auto-patching).
      - Ask which tests you wrote; if none, note that test coverage was your responsibility.
-   - Record findings in `./output/mock_feedback.md`.
+   - Record findings in `<problem_dir>/output/mock_feedback.md`.
 
 5. **Follow-up:**
    - If there are multiple coding parts, repeat Setup and During Mock steps 1-4 for the next part.
@@ -258,11 +274,11 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - Give a verdict: "pass/lean pass/lean no/no-hire for this round" (or score if you ask).
    - Include 2-4 focused improvements for the next attempt.
    - Ask one follow-up question an interviewer might ask (optimization, concurrency, testing strategy, etc.).
-   - Record verdict, improvements, and follow-up in `./output/mock_feedback.md`.
+   - Record verdict, improvements, and follow-up in `<problem_dir>/output/mock_feedback.md`.
 
 ### Note-Taking (Proactive)
 
-- Record every interview-relevant turn in `./output/mock_feedback.md`:
+- Record every interview-relevant turn in `<problem_dir>/output/mock_feedback.md`:
   - Your clarification Qs and my answers
   - Your approach + my feedback
   - Hints given during coding
@@ -286,12 +302,12 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 
 | File | Purpose | Created by | Edited in Learn | Reviewed in Mock |
 |------|---------|-----------|-----------------|------------------|
-| `input/0_requirements.md` | Raw interview info | You | No | No |
-| `input/<problem>.md` | Problem statement | Solve | No | No |
-| `input/<problem>.py` | Public interface | Solve | No | No |
-| `output/interview_discussion.md` | Interview cheat sheet | Solve | Yes (optional) | Reference |
-| `output/<problem>_solution.py` | Full solution | Solve | No | No |
-| `output/deep_dive.md` | Concept deep dives | Solve + Learn | Yes (merge notes) | Reference |
-| `output/learn_notes.md` | Raw learning notes | Learn | Yes (merge into deep_dive) | No |
-| `output/mock_<problem_name>_<part>.py` | Your attempt | You | No | Yes |
-| `output/mock_feedback.md` | Interview feedback | Mock | No | Record |
+| `<problem_dir>/input/0_requirements.md` | Raw interview info | You | No | No |
+| `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
+| `<problem_dir>/input/<problem>.py` | Public interface | Solve | No | No |
+| `<problem_dir>/output/interview_discussion.md` | Interview cheat sheet | Solve | Yes (optional) | Reference |
+| `<problem_dir>/output/<problem>_solution.py` | Full solution | Solve | No | No |
+| `<problem_dir>/output/deep_dive.md` | Concept deep dives | Solve + Learn | Yes (merge notes) | Reference |
+| `<problem_dir>/output/learn_notes.md` | Raw learning notes | Learn | Yes (merge into deep_dive) | No |
+| `<problem_dir>/output/mock_<problem_name>_<part>.py` | Your attempt | You | No | Yes |
+| `<problem_dir>/output/mock_feedback.md` | Interview feedback | Mock | No | Record |

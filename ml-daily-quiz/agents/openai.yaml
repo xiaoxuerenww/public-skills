@@ -1,0 +1,4 @@
+interface:
+  display_name: "ML/LLM Daily Quiz"
+  short_description: "Tracked, learn, and mock Staff+ ML/LLM fundamentals drills"
+  default_prompt: "Use $ml-llm-daily-quiz to quiz me on today's ML/LLM fundamentals question."

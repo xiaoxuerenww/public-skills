@@ -1,0 +1,4 @@
+interface:
+  display_name: "System Design Interview Buddy"
+  short_description: "Solve and mock ML system design interviews"
+  default_prompt: "Use $system-design-interview-buddy to prepare and run an ML system design mock interview."
