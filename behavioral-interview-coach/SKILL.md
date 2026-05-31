@@ -1,6 +1,6 @@
 ---
 name: behavioral-interview-coach
-description: End-to-end behavioral interview prep with solve/learn/mock modes for Staff/Senior Staff MLE roles. Solve mode builds story library and strength examples, learn mode refines stories with auto-notes, mock mode simulates interviews with probing follow-ups and rubric feedback. Works with input/0_requirements.md and outputs to output/ folder.
+description: End-to-end behavioral interview prep with solve/learn/mock modes for Staff/Senior Staff Software Engineer roles. Solve mode builds story library and strength examples, learn mode refines stories with auto-notes, mock mode simulates interviews with probing follow-ups and rubric feedback. Works with input/0_requirements.md and outputs to output/ folder.
 ---
 
 # Behavioral Interview Coach
