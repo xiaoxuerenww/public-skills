@@ -1,6 +1,6 @@
 ---
 name: coding-interview-companion
-description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: solve mode analyzes input/0_requirements.md and creates interview-ready solutions, learn mode explains and records interview-relevant notes, mock mode simulates an interviewer and reviews the user's attempt. Works with input/ and output/ folders relative to the current directory."
+description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: solve mode analyzes input/0_requirements.md and creates interview-ready solutions, learn mode defaults to interactive Q&A with interview-relevant auto-notes, mock mode simulates an interviewer and reviews the user's attempt. Works with input/ and output/ folders relative to the current directory."
 ---
 
 # Coding Interview Companion
@@ -63,7 +63,7 @@ The skill will:
 All paths are relative to your current directory:
 
 - **Solve mode:** Read `./input/0_requirements.md`, create frozen problem setup files in `./input/`, then generate `./output/interview_discussion.md`, `./output/<problem_name>_solution.py`, and `./output/deep_dive.md`.
-- **Learn mode:** Explain concepts and solution details, record only interview-relevant notes in `./output/learn_notes.md`, and merge durable takeaways into `./output/deep_dive.md`.
+- **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, record only interview-relevant notes in `./output/learn_notes.md`, and merge durable takeaways into `./output/deep_dive.md`.
 - **Mock mode:** Interview as a hiring engineer, create/review `./output/mock_<problem_name>_<part>.py`, and record feedback in `./output/mock_feedback.md`.
 
 ---
@@ -145,29 +145,35 @@ For each problem in order:
 
 ## Learn Mode Workflow
 
-Use this workflow to companion learning and auto-document insights. Do not edit frozen files in `./input/`.
+Use this workflow as an interactive Q&A companion with auto-notes. Do not edit frozen files in `./input/`.
 
 ### Setup
 
 1. Confirm you're in learn mode and state which problem/concept you're exploring.
-2. Outline what you'll walk through (e.g., "solution code walkthrough", "complexity analysis", "follow-up adaptations").
+2. Default to answering the user's next question directly; offer a short menu only if the user has not chosen a focus.
+3. Create `./output/learn_notes.md` if it does not exist.
 
 ### During Learning
 
-1. **Explanations:**
+1. **Interactive Q&A Loop:**
+   - Treat the user's question as the driver of the session.
+   - Answer the immediate question first, then add only the context needed to make it interview-useful.
+   - Ask at most one targeted follow-up or check-for-understanding question before continuing.
+   - If the user says "next", continue to the next natural interview-relevant question or subtopic without extra framing.
+
+2. **Explanations:**
    - Use plain language first, then technical depth.
    - Keep answers concise; answer the immediate question, then add context.
    - Use one small concrete example per explanation; avoid stacking examples.
    - Tie code to the problem statement and `./output/deep_dive.md` when available.
    - Highlight what you should say in a real interview.
 
-2. **Answer Questions:**
+3. **Answer Questions:**
    - When you ask about solution details, approach trade-offs, complexity, or edge cases, answer fully.
    - If you notice confusion, clarify the mental model before going deeper.
    - Point out common pitfalls and how tests or examples expose them.
 
-3. **Take Notes (Proactive):**
-   - Create `./output/learn_notes.md` if it does not exist.
+4. **Auto-Notes (Default):**
    - For every interview-relevant question or insight, record it in `./output/learn_notes.md`:
      - **Q:** Your question (concise)
      - **A:** The answer (1-3 sentences)
@@ -176,7 +182,7 @@ Use this workflow to companion learning and auto-document insights. Do not edit 
    - Do NOT take notes for workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
    - Keep notes chronological and slightly raw.
 
-4. **Merge into Deep Dive (Proactive):**
+5. **Merge into Deep Dive (Proactive):**
    - As you finish learning a problem, merge insights from `./output/learn_notes.md` into `./output/deep_dive.md`:
      - Add a "Learning Notes & Refinements" subsection.
      - Distill Q&A entries into 1-2 sentence takeaways.
@@ -184,9 +190,9 @@ Use this workflow to companion learning and auto-document insights. Do not edit 
      - Delete the merged entries from `./output/learn_notes.md` and update the date.
    - Keep `./output/deep_dive.md` interview-ready; use it as the reference before a real interview.
 
-5. **Interactive & Pause:**
-   - After explaining a concept or showing code, ask one check-for-understanding question.
-   - Offer to dive deeper into any section.
+6. **Interactive & Pause:**
+   - After answering, keep the session open for the next question.
+   - Ask one check-for-understanding question only when it would expose a likely interview misconception.
 
 ### End of Learn Session
 
@@ -265,7 +271,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 ## Tips for Best Results
 
 - **Solve mode:** Create interview-ready `interview_discussion.md` first; it's your cheat sheet before a real interview.
-- **Learn mode:** Merge notes into `deep_dive.md` immediately; it keeps your reference doc sharp.
+- **Learn mode:** Default to Q&A with auto-notes; merge notes into `deep_dive.md` once a topic is stable.
 - **Mock mode:** Treat it like a real interview: no Googling, no pausing to think for too long, explain as you code.
 - **Between rounds:** Review `interview_discussion.md` to warm up, then run a mock to stress-test under time pressure.
 
