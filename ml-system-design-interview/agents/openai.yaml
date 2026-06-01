@@ -1,0 +1,4 @@
+interface:
+  display_name: "ML System Design Interview"
+  short_description: "Solve and mock ML system design interviews"
+  default_prompt: "Use $ml-system-design-interview to prepare and run an ML system design mock interview."

@@ -39,7 +39,7 @@ End-to-end coding interview prep with solve/learn/mock modes.
 
 ---
 
-### 2. **system-design-interview-buddy**
+### 2. **ml-system-design-interview**
 
 ML system design interview prep with L6+ (Staff) calibration.
 
@@ -148,7 +148,7 @@ echo "# Interview Round: Company X
 
 **For System Design:**
 ```
-/system-design-interview-buddy
+/ml-system-design-interview
 
 "Solve mode: Design a recommendation system..."
 ```
@@ -254,7 +254,7 @@ A: Notes are created in your `output/` folder on disk. You manage version contro
 ├── coding-interview-companion/
 │   ├── SKILL.md
 │   └── .claude-plugin/plugin.json
-├── system-design-interview-buddy/
+├── ml-system-design-interview/
 │   ├── SKILL.md
 │   └── .claude-plugin/plugin.json
 ├── behavioral-interview-coach/

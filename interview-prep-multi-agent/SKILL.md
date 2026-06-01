@@ -1,6 +1,6 @@
 ---
 name: interview-prep-multi-agent
-description: Coordinate Julie's interview-prep across coding, ML/LLM fundamentals, concept learning, ML system design, and behavioral prep. Routes to primary skills (coding-interview-companion, system-design-interview-buddy, behavioral-interview-coach) and supports multi-round mocks, study plans, readiness audits, and panel interviews.
+description: Coordinate Julie's interview-prep across coding, ML/LLM fundamentals, concept learning, ML system design, and behavioral prep. Routes to primary skills (coding-interview-companion, ml-system-design-interview, behavioral-interview-coach) and supports multi-round mocks, study plans, readiness audits, and panel interviews.
 ---
 
 # Interview Prep Multi-Agent Coordinator
@@ -14,7 +14,7 @@ This coordinator routes work to these 3 core skills:
 | Skill | Use For |
 |-------|---------|
 | **coding-interview-companion** | Coding problems, algorithms, data structures. Solve/learn/mock with `input/output` folder structure. |
-| **system-design-interview-buddy** | ML system design, recommendation/ranking, experiment platforms, ML infrastructure. Solve/learn/mock for L6+ answers. |
+| **ml-system-design-interview** | ML system design, recommendation/ranking, experiment platforms, ML infrastructure. Solve/learn/mock for L6+ answers. |
 | **behavioral-interview-coach** | Behavioral interviews, stories, leadership, influence. Story library + mock with Staff+ rubric feedback. |
 
 Supporting skills:
@@ -124,7 +124,7 @@ Assess readiness across all interview dimensions.
 | You Ask | Route To | Mode |
 |---------|----------|------|
 | "Solve this coding problem" | coding-interview-companion | Solve |
-| "Practice a system design" | system-design-interview-buddy | Solve or Mock |
+| "Practice a system design" | ml-system-design-interview | Solve or Mock |
 | "Mock behavioral interview" | behavioral-interview-coach | Mock |
 | "Learn about [concept]" | learn-buddy | Learn |
 | "Daily ML quiz" | ml-daily-quiz | Quiz |
