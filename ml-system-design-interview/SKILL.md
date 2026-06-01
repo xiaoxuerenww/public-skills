@@ -77,8 +77,8 @@ problem-directory/
     <problem_name>.md          # Problem statement (created by solve mode)
   output/
     interview_solutions.md     # Interview-ready answer (created by solve mode)
-    deep_dive.md               # L6+ concepts & design rationale (created/updated by solve & learn)
-    learn_notes.md             # Learning session notes (created by learn mode, merged into deep_dive)
+    deep_dive.md               # L6+ concepts & design rationale (created by solve, updated at learn wrap-up)
+    learn_notes.md             # Chronological learning notes (created/updated during learn mode)
     my_solution.md             # Your answer attempt (reviewed by mock mode)
     mock_feedback.md           # Mock interview feedback (created by mock mode)
 ```
@@ -94,7 +94,7 @@ The skill will:
 All paths are relative to the resolved `problem_dir`:
 
 - **Solve mode:** Discover source `*requirements.md` docs, normalize them into `<problem_dir>/input/0_requirements.md`, frame the problem as L6+ MLE, build `<problem_dir>/output/interview_solutions.md` and `<problem_dir>/output/deep_dive.md`, then check the answer against the feedback rubric.
-- **Learn mode:** Let the user read the material and ask questions; do not explain upfront. Answer only when asked, ground responses in local notes or provided/web search results, record only interview-relevant notes in `<problem_dir>/output/learn_notes.md`, and merge durable takeaways into `<problem_dir>/output/deep_dive.md`.
+- **Learn mode:** Let the user read the material and ask questions; do not explain upfront. Answer only when asked, ground responses in local notes or provided/web search results, record stabilized Q&A in `<problem_dir>/output/learn_notes.md`, and defer `<problem_dir>/output/deep_dive.md` updates until learn-mode wrap-up.
 - **Mock mode:** Interview as a realistic hiring engineer, review `<problem_dir>/output/my_solution.md`, ask one question per turn, and record interview-relevant feedback in `<problem_dir>/output/mock_feedback.md`.
 
 ---
@@ -315,22 +315,25 @@ Use this workflow as read-along Q&A support with auto-notes. The user is reading
    - Prefer examples that show tradeoff reasoning across latency, quality, cost, safety, maintainability, and infrastructure constraints.
 
 5. **Auto-Notes (Default):**
-   - For every interview-relevant question or insight, record it in `<problem_dir>/output/learn_notes.md`:
+   - After each question is stabilized, record it in `<problem_dir>/output/learn_notes.md`.
+   - A question is stabilized when the direct answer and any immediate follow-up clarification are complete.
+   - Include follow-up questions and refinements under the same note entry so the learning thread stays coherent.
+   - For every interview-relevant stabilized question or insight, record:
      - **Q:** Your question (concise)
      - **A:** The answer (1-3 sentences)
+     - **Follow-ups:** Immediate follow-up questions/answers or refinements, if any
      - **Mental model:** What to remember or misconception fixed
      - **Interview phrasing:** One sentence you can say aloud
      - **Grounding:** Local note, source file, or web/search-result source used
    - Do NOT take notes for workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
    - Keep notes chronological and slightly raw.
    - Organize Q&A by parent topic (e.g., "# Experiment Tracking", "## Config Validation") for easy review.
+   - Do not update `<problem_dir>/output/deep_dive.md` during active learn mode.
 
-6. **Merge into Deep Dive (Proactive):**
-   - As you finish learning a component, merge insights from `<problem_dir>/output/learn_notes.md` into `<problem_dir>/output/deep_dive.md`:
-     - Add a "Learning Notes & Refinements" subsection to the relevant component section.
-     - Distill Q&A entries into 1-2 sentence takeaways.
-     - Delete merged entries from `<problem_dir>/output/learn_notes.md` and update the date.
-   - Keep `<problem_dir>/output/deep_dive.md` interview-ready and polished.
+6. **Defer Deep-Dive Updates:**
+   - During active learn mode, write only to `<problem_dir>/output/learn_notes.md`.
+   - Do not merge, rewrite, or polish `<problem_dir>/output/deep_dive.md` until the user exits or wraps up learn mode.
+   - Treat `learn_notes.md` as the raw chronological buffer for the session.
 
 7. **Stop After Answering:**
    - After answering, stop cleanly so the user can keep reading.
@@ -338,8 +341,14 @@ Use this workflow as read-along Q&A support with auto-notes. The user is reading
 
 ### End of Learn Session
 
-- Confirm `<problem_dir>/output/learn_notes.md` is cleaned up and merged into `<problem_dir>/output/deep_dive.md`.
-- Summarize what you now understand differently about the system design.
+- When the user says they are done, exiting learn mode, wrapping up, or asks to consolidate notes:
+  - Analyze `<problem_dir>/output/learn_notes.md` across the whole session.
+  - Remove duplicate, low-signal, or non-interview-relevant entries unless explicitly requested.
+  - Regroup related Q&A threads by durable concepts, components, tradeoffs, and interview phrasing.
+  - Merge the cleaned takeaways into `<problem_dir>/output/deep_dive.md` under relevant sections or a "Learning Notes & Refinements" section.
+  - Preserve source grounding when useful.
+  - After merging, either clear merged entries from `learn_notes.md` or mark them as merged with date, depending on the existing file style.
+- Summarize what changed in `deep_dive.md` and what remains in `learn_notes.md`.
 
 ---
 
@@ -442,7 +451,7 @@ Evaluate answers against:
 ## Tips for Best Results
 
 - **Solve mode:** Create `<problem_dir>/output/interview_solutions.md` first; it's your cheat sheet before a real interview.
-- **Learn mode:** Default to read-along Q&A with auto-notes; wait for the user's questions and merge notes into `<problem_dir>/output/deep_dive.md` once a topic is stable.
+- **Learn mode:** Default to read-along Q&A with auto-notes; write stabilized Q&A to `learn_notes.md` during the session and consolidate into `deep_dive.md` only at wrap-up.
 - **Mock mode:** Treat it like a real interview: outline first, design second, don't over-optimize.
 - **Between rounds:** Review `<problem_dir>/output/interview_solutions.md` to warm up, then run a mock to stress-test under time pressure.
 
@@ -455,7 +464,7 @@ Evaluate answers against:
 | `<problem_dir>/input/0_requirements.md` | Normalized prep prompt from source requirements | Setup/Solve | No | No |
 | `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
 | `<problem_dir>/output/interview_solutions.md` | Interview cheat sheet | Solve | Yes (optional) | Reference |
-| `<problem_dir>/output/deep_dive.md` | Design rationale & L6+ concepts | Solve + Learn | Yes (merge notes) | Reference |
-| `<problem_dir>/output/learn_notes.md` | Raw learning notes | Learn | Yes (merge into deep_dive) | No |
+| `<problem_dir>/output/deep_dive.md` | Design rationale & L6+ concepts | Solve + Learn wrap-up | Yes (wrap-up only) | Reference |
+| `<problem_dir>/output/learn_notes.md` | Raw chronological learning notes | Learn | Yes (during session) | No |
 | `<problem_dir>/output/my_solution.md` | Your design attempt | You | No | Yes |
 | `<problem_dir>/output/mock_feedback.md` | Interview feedback | Mock | No | Record |
