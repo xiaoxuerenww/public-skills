@@ -1,0 +1,4 @@
+interface:
+  display_name: "ML Fundamentals Interview"
+  short_description: "Staff+ ML theory interview prep"
+  default_prompt: "Use $ml-fundamentals-interview to prepare and run a Staff+ ML theory mock interview."
