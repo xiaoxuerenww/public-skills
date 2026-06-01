@@ -1,6 +1,6 @@
 ---
 name: ml-system-design-interview
-description: "End-to-end ML system design interview prep with solve, learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, or research infrastructure: first locate the current problem directory, discover existing *requirements.md context under the problem tree, then use input/ and output/ subdirectories. Solve mode builds L6+ answers, learn mode defaults to interactive Q&A with interview-relevant auto-notes, mock mode simulates a realistic interviewer and reviews the user's design attempt."
+description: "End-to-end ML system design interview prep with solve, learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, or research infrastructure: first locate the current problem directory, discover existing *requirements.md context under the problem tree, then use input/ and output/ subdirectories. Solve mode builds L6+ answers, learn mode waits for the user's questions and answers grounded in notes or search results with interview-relevant auto-notes, mock mode simulates a realistic interviewer and reviews the user's design attempt."
 ---
 
 # ML System Design Interview
@@ -94,7 +94,7 @@ The skill will:
 All paths are relative to the resolved `problem_dir`:
 
 - **Solve mode:** Discover source `*requirements.md` docs, normalize them into `<problem_dir>/input/0_requirements.md`, frame the problem as L6+ MLE, build `<problem_dir>/output/interview_solutions.md` and `<problem_dir>/output/deep_dive.md`, then check the answer against the feedback rubric.
-- **Learn mode:** Default to direct teaching and Q&A without prompting the user for questions; record only interview-relevant notes in `<problem_dir>/output/learn_notes.md`, and merge durable takeaways into `<problem_dir>/output/deep_dive.md`.
+- **Learn mode:** Let the user read the material and ask questions; do not explain upfront. Answer only when asked, ground responses in local notes or provided/web search results, record only interview-relevant notes in `<problem_dir>/output/learn_notes.md`, and merge durable takeaways into `<problem_dir>/output/deep_dive.md`.
 - **Mock mode:** Interview as a realistic hiring engineer, review `<problem_dir>/output/my_solution.md`, ask one question per turn, and record interview-relevant feedback in `<problem_dir>/output/mock_feedback.md`.
 
 ---
@@ -275,23 +275,30 @@ For each problem (one at a time if multiple):
 
 ## Learn Mode Workflow
 
-Use this workflow as an interactive Q&A companion with auto-notes. Do not edit frozen files in `<problem_dir>/input/`.
+Use this workflow as read-along Q&A support with auto-notes. The user is reading the material independently; do not explain upfront or start teaching unless they ask. Do not edit frozen files in `<problem_dir>/input/`.
 
 ### Setup
 
 1. Confirm you're in learn mode and state which problem/component you're exploring.
-2. Default to teaching the current topic directly; do not prompt the user to choose questions or ask what they want next.
+2. Read the relevant local context silently: `<problem_dir>/input/0_requirements.md`, `<problem_dir>/input/<problem>.md`, `<problem_dir>/output/deep_dive.md`, and any provided notes or search-result packets.
 3. Create `<problem_dir>/output/learn_notes.md` if it does not exist.
+4. Do not summarize, explain, propose a menu, or ask what the user wants next. Be ready to answer when the user asks.
 
 ### During Learning
 
-1. **Interactive Q&A Loop:**
-   - If the user asks a question, answer it first, then continue the current learning thread.
-   - If the user has not asked a question, proceed with the next natural interview-relevant subtopic.
-   - Do not ask the user for questions, offer menus, or ask check-for-understanding questions in learn mode.
-   - If the user says "next", continue to the next natural interview-relevant subtopic without extra framing.
+1. **Read-Along Q&A Loop:**
+   - Wait for the user's question; do not proactively explain, continue, or advance topics.
+   - If the user asks a question, answer that question directly and stop.
+   - Do not ask the user for questions, offer menus, ask check-for-understanding questions, or end with prompts.
+   - If the user says "next", continue only if there is an established sequence from prior user questions or material; otherwise stay concise and do not invent a lecture.
 
-2. **Explanations:**
+2. **Grounding:**
+   - Ground answers in local notes first: `input/0_requirements.md`, problem statements, `output/deep_dive.md`, `output/learn_notes.md`, and bundled references.
+   - If the user provides web search results, use those results as grounding and distinguish what is sourced from them.
+   - If the user explicitly asks to search the web, search and cite sources before answering.
+   - If the local notes and provided results do not contain enough evidence, say what is inferred and what is missing.
+
+3. **Explanations:**
    - Use plain language first, then technical depth.
    - Keep answers concise; answer the immediate question, then add context.
    - Use one compact example per explanation; avoid stacking examples.
@@ -300,32 +307,33 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
    - Emphasize staff-level habits: identify the crux, cut unnecessary complexity, make decisions, and connect ML choices to production constraints.
    - When teaching patterns, explain the evolution path from simple baseline to production-grade system instead of presenting only the final architecture.
 
-3. **Answer Questions:**
+4. **Answer Questions:**
    - When you ask about architecture, trade-offs, L6+ judgment, failure modes, or delivery, answer fully.
    - If there's confusion, clarify the mental model before going deeper.
    - Distinguish "basic correct answer" from "L6+ answer" when relevant.
    - Point out common pitfalls in system design interviewing.
    - Prefer examples that show tradeoff reasoning across latency, quality, cost, safety, maintainability, and infrastructure constraints.
 
-4. **Auto-Notes (Default):**
+5. **Auto-Notes (Default):**
    - For every interview-relevant question or insight, record it in `<problem_dir>/output/learn_notes.md`:
      - **Q:** Your question (concise)
      - **A:** The answer (1-3 sentences)
      - **Mental model:** What to remember or misconception fixed
      - **Interview phrasing:** One sentence you can say aloud
+     - **Grounding:** Local note, source file, or web/search-result source used
    - Do NOT take notes for workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
    - Keep notes chronological and slightly raw.
    - Organize Q&A by parent topic (e.g., "# Experiment Tracking", "## Config Validation") for easy review.
 
-5. **Merge into Deep Dive (Proactive):**
+6. **Merge into Deep Dive (Proactive):**
    - As you finish learning a component, merge insights from `<problem_dir>/output/learn_notes.md` into `<problem_dir>/output/deep_dive.md`:
      - Add a "Learning Notes & Refinements" subsection to the relevant component section.
      - Distill Q&A entries into 1-2 sentence takeaways.
      - Delete merged entries from `<problem_dir>/output/learn_notes.md` and update the date.
    - Keep `<problem_dir>/output/deep_dive.md` interview-ready and polished.
 
-6. **Continuation:**
-   - After answering, continue to the next useful explanation or stop cleanly if the requested topic is complete.
+7. **Stop After Answering:**
+   - After answering, stop cleanly so the user can keep reading.
    - Do not end with prompts such as "Any questions?", "Want to go deeper?", or check-for-understanding questions.
 
 ### End of Learn Session
@@ -434,7 +442,7 @@ Evaluate answers against:
 ## Tips for Best Results
 
 - **Solve mode:** Create `<problem_dir>/output/interview_solutions.md` first; it's your cheat sheet before a real interview.
-- **Learn mode:** Default to Q&A with auto-notes; merge notes into `<problem_dir>/output/deep_dive.md` once a topic is stable.
+- **Learn mode:** Default to read-along Q&A with auto-notes; wait for the user's questions and merge notes into `<problem_dir>/output/deep_dive.md` once a topic is stable.
 - **Mock mode:** Treat it like a real interview: outline first, design second, don't over-optimize.
 - **Between rounds:** Review `<problem_dir>/output/interview_solutions.md` to warm up, then run a mock to stress-test under time pressure.
 
