@@ -264,9 +264,13 @@ Use this workflow to simulate a real interview with step-by-step feedback.
      - List correctness bugs first, then edge cases, complexity, clarity, communication.
      - Provide smallest conceptual fix for each issue (no auto-patching).
      - Ask which tests you wrote; if none, note that test coverage was your responsibility.
+   - When you ask me to "review my change", "check my code", or show a new test/fix, I review the current attempt before asking any new follow-up question.
+   - Stay on the current coding round until the implementation and tests pass the current round's stated requirements, or until you explicitly ask to move on.
+   - If the code still fails, give only the next blocking finding and the smallest conceptual fix; do not advance to optimization, scaling, or a new follow-up yet.
    - Record findings in `<problem_dir>/output/mock_feedback.md`.
 
 5. **Follow-up:**
+   - Ask follow-up questions only after the current coding round has passed code review and relevant tests, unless the follow-up directly targets the blocking bug.
    - If there are multiple coding parts, repeat Setup and During Mock steps 1-4 for the next part.
    - If there are no more coding parts, ask one design or scaling follow-up question at a time.
 
