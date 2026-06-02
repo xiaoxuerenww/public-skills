@@ -68,7 +68,7 @@ Path resolution priority:
 - **Mock mode:** Run a realistic interview, ask probing follow-ups, take notes, and share calibrated feedback.
 
 Compatibility aliases:
-- Old **solve mode** maps to Brainstorm + Script.
+- Old **solve mode** maps to Decode -> Select -> Deliver.
 - Old **learn mode** maps to Grill + Script.
 - Old **mock mode** maps to Mock.
 
@@ -79,6 +79,64 @@ Behavioral prep follows **Decode -> Select -> Deliver**:
 1. **Decode:** Identify what the question is really testing: signal area, company value, cultural expectation, and interview type.
 2. **Select:** Choose the strongest story using `Scope > Relevance > Uniqueness > Recency`.
 3. **Deliver:** Tell the story with CARL, emphasizing the requested signal early.
+
+## Solve Mode
+
+Use solve mode when the user asks to prepare for a behavioral round end-to-end, build a story library, create answer scripts, or convert a company/role brief into interview-ready behavioral prep.
+
+Solve mode follows **Decode -> Select -> Deliver**:
+
+### 1. Decode
+
+1. Read `input/0_requirements.md` and any referenced resume, company notes, role descriptions, rubrics, question banks, prior stories, or BQ vault files.
+2. Identify:
+   - Company and role.
+   - Interview type and likely interviewer lens.
+   - Target level: Staff or Senior Staff.
+   - Likely signal areas and company values.
+   - Repeated or high-priority prompts.
+   - Any logistics or facts that should not dominate the answer.
+3. Write the decoded round context into `output/brainstorm_notes.md` or the appropriate BQ vault output file.
+
+### 2. Select
+
+1. Search Julie's existing story bank first:
+   - Round-local `input/` and `output/story_library.md` when available.
+   - BQ vault `03_story_bank/BQ_Story_Mapping.md`, `03_story_bank/BQ_story_bank.md`, `03_story_bank/L7_stories_brainstorm.md`, `03_story_bank/self_intro.md`, and `03_story_bank/stories/`.
+2. If there is a good match, select and adapt that story instead of inventing a new one.
+3. Rank matched stories using `Scope > Relevance > Uniqueness > Recency`.
+4. Prefer stories with Staff+ evidence across 3-4 dimensions, especially:
+   - Technical judgment.
+   - Scope and impact.
+   - Ambiguity / problem framing.
+   - Cross-functional influence.
+   - Multiplier behavior.
+   - Communication / writing.
+5. Mark each story as `flagship`, `support`, or `not ready`.
+6. If no existing story is a strong match, brainstorm a new story by asking Julie focused questions before drafting:
+   - "What project or situation is closest to this signal?"
+   - "What was your personal decision or action?"
+   - "Who disagreed, depended on it, or changed direction?"
+   - "What changed because of your work?"
+   - "What artifact, process, or judgment outlasted the project?"
+7. Save matched candidates, rejected options, gaps, and new-story probes to `output/brainstorm_notes.md`.
+8. Promote only selected, credible stories into `output/story_library.md`.
+
+### 3. Deliver
+
+1. Convert selected stories into concise CARL bullets.
+2. Write reusable scripts to `output/interview_scripts.md`.
+3. Keep scripts fast to scan:
+   - Tags.
+   - Best prompts.
+   - One-line thesis.
+   - Context.
+   - Actions.
+   - Results.
+   - Learnings.
+   - Likely follow-ups.
+4. Keep `output/story_library.md`, `output/brainstorm_notes.md`, and `output/interview_scripts.md` consistent.
+5. Flag weak facts, uncertain metrics, or scope claims that need verification instead of filling gaps with invented precision.
 
 ### MLE Staff+ Lens
 
