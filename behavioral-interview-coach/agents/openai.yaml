@@ -1,4 +1,4 @@
 interface:
   display_name: "Behavioral Interview Coach"
-  short_description: "Mock and drill Staff+ behavioral interviews"
-  default_prompt: "Use $behavioral-interview-coach to run a Staff+ MLE behavioral interview practice session."
+  short_description: "Brainstorm, grill, and script Staff+ MLE stories"
+  default_prompt: "Use $behavioral-interview-coach to brainstorm, grill, script, or mock a Staff+ MLE behavioral interview story."

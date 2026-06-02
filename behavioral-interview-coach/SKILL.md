@@ -1,306 +1,489 @@
 ---
 name: behavioral-interview-coach
-description: End-to-end behavioral interview prep with solve/learn/mock modes for Staff/Senior Staff Software Engineer roles. Solve mode builds story library and strength examples, learn mode refines stories with auto-notes, mock mode simulates interviews with probing follow-ups and rubric feedback. Works with input/0_requirements.md and outputs to output/ folder.
+description: "End-to-end behavioral interview prep for Staff/Senior Staff MLE and SWE roles with four modes: brainstorm candidate stories, grill one story for deeper detail, convert raw material into CARL-based interview scripts, and run realistic mock interviews with proactive notes and calibrated feedback. Works with input/0_requirements.md and durable outputs under output/."
 ---
 
 # Behavioral Interview Coach
 
-**Purpose:** Complete lifecycle support for behavioral interview prep—from story development through mock interviews with Staff+ rubric calibration.
+**Purpose:** Help Julie prepare for Staff/Senior Staff behavioral interviews, especially frontier AI lab roles, by moving from raw career material to high-signal stories, concise interview scripts, and realistic mock feedback.
+
+Use this skill when the user asks to brainstorm behavioral stories, develop or pressure-test a story, write interview-ready bullets, practice behavioral questions, run a mock interview, or prepare for company/culture/leadership rounds.
 
 ## Directory Structure
 
-```
+```text
 <interview_round>/
   input/
-    0_requirements.md          # Round info, company culture, role description
+    0_requirements.md          # Round info, company culture, role, interviewer notes, values, rubric
+    ...                        # Resume, prior prep, raw notes, company notes, question banks
   output/
-    story_library.md          # STAR stories organized by theme (created/updated by solve & learn)
-    strength_examples.md      # 2-3 bullet examples per Staff+ dimension (created by solve)
-    learn_notes.md            # Learning session notes (created by learn mode, merged into story_library)
-    my_answers.md             # Your mock interview answers (reviewed by mock mode)
-    mock_feedback.md          # Mock interview feedback (created by mock mode)
+    story_library.md           # Polished CARL story catalog and Quick Story Map
+    brainstorm_notes.md        # Raw candidate story ideas by topic/signal
+    grill_notes.md             # Probing questions, answers, gaps, and follow-up TODOs
+    interview_scripts.md       # Short bullet scripts for quick interview reference
+    mock_feedback.md           # Mock notes, rubric scores, verdict, and next drills
+    strength_examples.md       # Optional quick Staff+ evidence bullets
 ```
+
+If the user explicitly says "chat only", do not write artifacts. Otherwise, update durable output files proactively when a mode produces reusable material.
+
+## Julie's BQ Vault
+
+When working in `/Users/xue/Documents/work/3_BQ`, use this folder structure:
+
+```text
+3_BQ/
+  00_framework/              # Behavioral interview method, signal areas, practice, pitfalls, interview types
+  01_preferences_rubrics/    # Julie's answer style preferences and Staff+ MLE rubrics
+  02_questions/              # Behavioral question banks
+  03_story_bank/             # Story maps, self-intro, brainstorms, and source stories
+    stories/                 # Individual detailed story notes
+  04_interview_scripts/      # Interview-ready short bullet scripts
+  05_company_prep/           # Company-specific prep, e.g. stripe/
+  06_mock_feedback/          # Mock notes, grill notes, and feedback logs
+```
+
+Use these folders as the default source and destination when no round-local `input/` or `output/` exists:
+
+- Framework refresh: read `00_framework/`.
+- Style and rubric calibration: read `01_preferences_rubrics/BQ_Interview_Prep_Preferences.md` and `01_preferences_rubrics/staff-plus-mle-rubrics.md`.
+- Question selection: read `02_questions/bq_question_bank.md`.
+- Story brainstorming or grounding: read `03_story_bank/`, especially `03_story_bank/BQ_Story_Mapping.md`, `03_story_bank/BQ_story_bank.md`, `03_story_bank/L7_stories_brainstorm.md`, `03_story_bank/self_intro.md`, and `03_story_bank/stories/`.
+- Script outputs: write to `04_interview_scripts/`.
+- Company-specific outputs: write under `05_company_prep/<company>/`.
+- Mock and grill outputs: write to `06_mock_feedback/`.
+
+Path resolution priority:
+
+1. If the current working directory or user-specified path is inside `/Users/xue/Documents/work/3_BQ`, treat the BQ vault as the active workspace.
+2. If a round-local `input/0_requirements.md` exists, read it first for company, role, interviewer, and rubric context.
+3. If no round-local `input/` or `output/` exists, use the BQ vault folders above directly for both source material and durable outputs.
+4. If the user names a company, prefer `05_company_prep/<company>/` for company-specific scripts, notes, and mocks, while still grounding in the shared rubric, question bank, and story bank.
 
 ## Modes
 
-- **Solve mode:** Analyze `input/0_requirements.md`, build `output/story_library.md` (STAR stories), create `output/strength_examples.md` (Staff+ dimension examples).
-- **Learn mode:** Refine stories, answer questions, auto-take notes in `output/learn_notes.md`, proactively merge into `output/story_library.md`.
-- **Mock mode:** Interview as hiring manager, review your `output/my_answers.md`, ask probing follow-ups, give rubric feedback in `output/mock_feedback.md`.
+- **Brainstorm mode:** Find candidate stories for a topic, signal area, company value, or interview type.
+- **Grill mode:** Pressure-test one story with deep questions to surface missing detail, Staff+ signal, and credibility risks.
+- **Script mode:** Convert raw material into short, plain-language, interview-ready bullet scripts.
+- **Mock mode:** Run a realistic interview, ask probing follow-ups, take notes, and share calibrated feedback.
 
----
+Compatibility aliases:
+- Old **solve mode** maps to Brainstorm + Script.
+- Old **learn mode** maps to Grill + Script.
+- Old **mock mode** maps to Mock.
 
-## Solve Mode Workflow
+## Core Framework
 
-### Phase 1: Requirements Analysis
+Behavioral prep follows **Decode -> Select -> Deliver**:
 
-1. Read `input/0_requirements.md`:
-   - Company, team, role level (Staff+ expectations).
-   - Interview round (behavioral screen, hiring committee, culture fit).
-   - Key dimensions (impact, judgment, ambiguity, influence, leadership, communication).
-   - Company values and role-specific themes (e.g., safety focus for safety roles, research velocity for research roles).
+1. **Decode:** Identify what the question is really testing: signal area, company value, cultural expectation, and interview type.
+2. **Select:** Choose the strongest story using `Scope > Relevance > Uniqueness > Recency`.
+3. **Deliver:** Tell the story with CARL, emphasizing the requested signal early.
 
-2. Identify story themes:
-   - Impact and scaling (org/team-level outcome, measurable change).
-   - Technical judgment (right problem, tradeoffs, evidence-based decision).
-   - Ambiguity and constraints (underspecified goals, changing context, incomplete data).
-   - Cross-functional influence (aligned stakeholders, difficult conversations, changed minds).
-   - People leadership (mentoring, growing others, delegation, process change).
-   - Failure or pivot (learned from mistake, course-corrected, owned outcome).
-   - Role fit or company values (mission, safety, ethics, transparency).
+### MLE Staff+ Lens
 
-3. **Identify the role's PRIMARY lens, then tell every story through it.** This was the single biggest quality lever. Most candidate stories are pre-framed for the job they *had* (e.g., "automation efficiency," "cost savings"). The same facts must be re-spun toward the dimension the target role actually grades:
-   - Name the role's core dimension from the requirements (e.g., Safeguards → adversarial abuse detection; research infra → velocity/reproducibility; platform → leverage across many engineers).
-   - For each story, ask "what is the version of this told through that lens?" — surface the adversary, the safety property, the leverage, whatever the role cares about — and make that the spine, not an appended afterthought.
-   - Example from a real session: a financial-crime "we made investigations cheaper" story became "we detected adaptive adversaries and turned each caught pattern into a codified, reusable defense" — same project, Safeguards spine.
+For Staff/Senior Staff MLE interviews, calibrate every story around **scope, leverage, and judgment**. The key transition is:
 
-4. **Calibrate to the specific interviewer.** If `0_requirements.md` names the hiring manager and their background, tune examples and follow-ups to what they will recognize and probe (e.g., an ex-research-infra leader will push on evaluation validity; a platform leader on leverage). Bridge the candidate's experience into terms legible to that person.
+- **Senior:** executes a defined ML problem well.
+- **Staff:** defines the right ML work for a team/workstream and pulls others along.
+- **Senior Staff:** shapes multi-team or product-area ML strategy and investment choices.
 
-### Phase 2: Build Story Library
+Strong MLE behavioral stories should show at least 3-4 dimensions. Single-dimension stories usually read as Senior, even when technically deep.
 
-For each theme, develop 1-2 concrete STAR stories:
+Look specifically for:
 
-**STAR Framework:**
-- **Situation:** Context, stakeholders, constraints (1-2 sentences).
-- **Task:** What problem you owned or what decision you faced (1 sentence).
-- **Action:** Your specific contribution and decision (2-3 sentences). Include:
-  - Why you chose this problem / why you frame this way.
-  - What alternatives you rejected and why.
-  - How you handled ambiguity, disagreement, or unclear goals.
-- **Result:** Measurable outcome and impact (1-2 sentences). Specify:
-  - What changed because of your work.
-  - Scale (team, org, product, research community).
-  - Metrics (if available) or clear signals.
-  - Reflection: what you learned or would do differently.
+- Autonomous problem framing: "Were we solving the right problem?"
+- Research-production judgment: data quality vs. model/architecture changes, eval validity, compute/data/alignment constraints.
+- Org-level leverage: standards, eval harnesses, infra patterns, rollout criteria, or design docs others adopted.
+- Multiplier behavior: growing Senior MLEs, delegating meaningful work, sponsorship, and raising the technical bar.
+- Written artifacts: design docs, eval memos, postmortems, model cards, decision records, or research proposals that outlasted the meeting.
 
-**Staff+ Signals to Embed:**
-- Demonstrate technical judgment: "I identified this as the key constraint because..."
-- Show systems thinking: "I influenced X, Y, Z stakeholders because they each needed..."
-- Highlight multiplier effect: "I mentored N people on this approach, which let us..."
-- Own ambiguity: "When the goals shifted, I re-prioritized by..."
-- Show org-level impact: "This change affected team processes / org hiring / research velocity..."
+### Signal Areas
 
-**Each story should also include (as clearly-marked prep notes, not spoken lines):**
-- *Best for:* one line listing the prompts this story answers.
-- *Why it matters for <role/company>:* one integrated reflection (the role-lens bridge) — woven into the close, never a contradictory "actually lead with this" block bolted onto a differently-framed STAR.
-- *Likely follow-ups:* the 4-6 questions this story invites, and for high-probability ones, a **prepared answer** in the candidate's voice.
+Map questions and stories to these eight areas:
 
-**Build a Quick Story Map** at the top of `story_library.md`: a table of `Prompt | Lead Story | Backup`, so the candidate can navigate to the right story fast. Keep it in sync whenever stories are added, merged, or renumbered.
+- **Scope:** size of problem, duration, complexity, business/user/org impact.
+- **Ownership:** proactive problem selection, end-to-end follow-through, measured outcome.
+- **Ambiguity:** unclear goals, missing data, changing requirements, creating decision criteria.
+- **Perseverance:** obstacles, pivots, hard tradeoffs, knowing when to continue or stop.
+- **Conflict Resolution:** direct constructive disagreement, data, empathy, resolution, relationship after.
+- **Growth:** real mistake or feedback, root cause, changed behavior, later application.
+- **Communication:** audience, channel, timing, alignment, two-way understanding.
+- **Leadership:** influence without authority, mentoring, setting direction, multiplying others.
 
-**Lead deep-dive vs. support stories:** designate 1-2 flagship project stories (with both a ~2-min version and a 15-min deep-dive), and keep the rest as shorter support stories. Avoid letting one project answer every prompt — diversify across roles/eras for range, but don't manufacture range by splitting one project into near-identical stories (see Story Library Hygiene).
+### CARL Story Format
 
-**Output: `output/story_library.md`**
+Use CARL as the default format. STAR may appear in existing materials, but convert new work to CARL.
+
+- **Context:** Brief setup, stakes, role, constraints. Keep it short.
+- **Actions:** The center of the answer. Use concrete "I" actions, decisions, tradeoffs, communication, influence, and implementation details.
+- **Results:** What changed. Include metrics with baseline, denominator, and definition when possible.
+- **Learnings:** Specific reflection, what changed in future behavior, and what the candidate would do differently.
+
+## Shared Rules
+
+- Always decode before selecting or shaping a story.
+- Prefer high-scope stories; do not save the best story for later.
+- Keep context short; actions carry most of the interview signal.
+- Use "I" for personal decisions and contributions. Use "we" only for team context.
+- Do not use generic "you" statements in prepared answers; keep the answer in Julie's lived perspective.
+- For Staff+ stories, include decision frameworks, cross-functional influence, and durable impact.
+- For Staff+ MLE stories, show how the candidate defined the right ML problem, not just how they trained, tuned, or launched a model.
+- For Big Tech/frontier lab roles, frame stories around scale, mission, fast-but-careful judgment, data-driven decisions, constructive conflict, and leverage across teams.
+- For scripts, prioritize fast interview reference over prose polish.
+- For mocks, act like a realistic interviewer and save detailed feedback until the end unless the user asks to pause.
+- If facts, metrics, company claims, or role scope are uncertain, flag them rather than inventing precision.
+
+## Answer Style
+
+Default prepared answers should be concise, scannable, and easy to say aloud.
+
+- Use short bullets for prep artifacts, not long paragraphs.
+- Keep spoken language plain and natural, with short sentences and no fluff.
+- Anchor answers in Google + GenAI + LLM/recommendation work when relevant.
+- Prefer concrete examples: Google Discover, LLM4Rec, ranking, CTR/retention/satisfaction, eval, launch, partner teams.
+- Use understated transitions like "one example is..." instead of formal essay connectors.
+- Acknowledge real difficulty or uncertainty; do not make stories sound too polished.
+- Use parenthetical nuance sparingly when it helps: `(CTR)`, `(retention, satisfaction)`, `(hard to define and monitor)`.
+
+### Culture / Values Answer Shape
+
+For culture-fit, values, "why company", and philosophy questions, use a 3-part shape:
+
+1. **Story:** One concrete personal example, usually 1-2 sentences.
+2. **Take:** The belief, lesson, or operating principle Julie derived, 1-2 sentences.
+3. **Company connection:** One sentence linking the lesson to the company's mission, values, or role.
+
+For reusable scripts, label these as `Story`, `My take`, and `Company connection`.
+
+### Question Tags
+
+Tag scripts when useful so Julie can scan quickly:
+
+- `[Teamwork]`
+- `[Conflict]`
+- `[Growth]`
+- `[Failure]`
+- `[Initiative]`
+- `[Culture Fit]`
+- `[Leadership]`
+- `[Technical Judgment]`
+
+## Brainstorm Mode
+
+Use when the user asks for stories for a topic, prompt, company value, signal area, interview type, or raw career material.
+
+### Workflow
+
+1. Read `input/0_requirements.md` and any referenced resume, company notes, prior stories, or question banks.
+2. Decode the topic into likely signal areas and company values.
+3. Generate candidate stories from:
+   - High-impact projects and launches.
+   - Challenging situations, incidents, failed or pivoted efforts.
+   - Ambiguous requirements, changing goals, or unclear metrics.
+   - Technical judgment and tradeoff decisions.
+   - Research-production tradeoffs, eval frameworks, training/eval mismatches, and data quality decisions.
+   - Cross-functional influence and conflict.
+   - Mentoring, sponsorship, delegation, leadership, and team/process improvement.
+   - Written artifacts that changed decisions or became reusable standards.
+   - Career transitions, feedback, growth, and mistakes.
+4. For each candidate story, capture:
+   - `Title`
+   - `Rough facts`
+   - `Likely signal areas`
+   - `MLE Staff+ evidence` (3-4 dimensions if possible)
+   - `Scope level` (Senior, Staff, Senior Staff, or unclear)
+   - `Best prompts`
+   - `Missing facts`
+   - `Flagship or support story`
+5. Write raw ideas to `output/brainstorm_notes.md`.
+6. Promote only sufficiently detailed, credible stories into `output/story_library.md`.
+
+### Brainstorm Output Shape
+
 ```markdown
-# Story Library
+# Brainstorm Notes
 
-## Impact & Scaling
-### Story 1: <Descriptive Title>
-**Situation:** ...
-**Task:** ...
-**Action:** ...
-**Result:** ...
+## Topic: <topic>
 
-### Story 2: <Descriptive Title>
-...
-
-## Technical Judgment
-...
-
-## Ambiguity & Constraints
-...
-
-## Cross-Functional Influence
-...
-
-## People Leadership
-...
-
-## Failure / Pivot
-...
-
-## Role Fit / Company Values
-...
+### Candidate Story: <title>
+- Rough facts:
+- Likely signals:
+- MLE Staff+ evidence:
+- Scope level:
+- Best prompts:
+- Missing facts:
+- Flagship/support:
+- Next probe:
 ```
 
-### Phase 3: Create Strength Examples
+## Grill Mode
 
-For each Staff+ dimension, extract 2-3 bullet points that show quick evidence:
+Use when the user has one story or topic and needs deep probing before writing the final script.
 
-**Output: `output/strength_examples.md`**
+### Workflow
+
+1. State the story/topic being grilled and the primary signal being tested.
+2. Ask **one deep question at a time**. Do not rewrite too early.
+3. Probe for:
+   - Exact personal contribution: "What did you decide?"
+   - Decision framework: "How did you know this was the right problem?"
+   - Alternatives rejected: "What did you consider and why did you reject it?"
+   - Ambiguity: "What was unknown, and how did you create clarity?"
+   - Conflict: "Who disagreed, why, and how did you resolve it?"
+   - Stakeholder influence: "Who changed their mind because of your work?"
+   - Metrics: "What was the baseline, denominator, and definition?"
+   - Impact: "What changed after your work?"
+   - Learning: "What would you do differently now?"
+   - MLE judgment: "How did you decide between data quality, architecture/model changes, infra, or product changes?"
+   - Evaluation: "What eval framework did you define, and how did you know it matched product or research goals?"
+   - Mismatch detection: "Did you catch any training/eval, offline/online, or metric/user-outcome mismatch?"
+   - Resource constraints: "How did compute, data, latency, safety, or alignment constraints change your prioritization?"
+   - Writing/leverage: "What did you write down that others reused: design doc, eval memo, rollout criteria, model card, postmortem?"
+4. Apply the credibility guardrails continuously.
+5. Write chronological notes to `output/grill_notes.md`.
+6. When the story is solid, merge only durable facts and framing into `output/story_library.md`.
+
+### Grill Notes Shape
+
 ```markdown
-# Staff+ Dimensions - Quick Examples
+# Grill Notes
 
-## Scope & Impact
-- Example 1: "Identified 3-month delay in recommender training as blocking 2 teams; re-architected pipeline → 50% speedup, unblocked research velocity"
-- Example 2: "Mentored 4 engineers on ML config patterns; reduced onboarding time by 6 weeks org-wide"
+## Story: <title>
+- Primary signal:
+- Current hypothesis:
 
-## Technical Judgment
-- Example 1: "Evaluated 3 options for experiment tracking (internal, MLflow, custom); chose internal because reproducibility was non-negotiable for our safety constraints"
-- Example 2: "When ranking precision degraded, investigated data distribution shift instead of tuning; prevented silent correctness loss"
-
-...
+### Probe Log
+- Question:
+- Answer:
+- New detail:
+- MLE Staff+ evidence:
+- Gap/TODO:
+- Revised framing:
 ```
 
-### Phase 4: Validation
+## Script Mode
 
-- [ ] Each story shows a clear Staff+ signal (not just execution).
-- [ ] Stories are concrete with names, numbers, timelines (no vague "we improved things").
-- [ ] You own the decision and can explain the reasoning.
-- [ ] Stories are 90 seconds to 2 minutes when told naturally.
-- [ ] At least 2-3 stories told through the role's PRIMARY lens (not the job the candidate had).
-- [ ] Every metric has a known baseline, denominator, and definition; weak/unsupported numbers are flagged.
-- [ ] Each story passes the Credibility & Calibration Guardrails below.
-- [ ] Library is coherent: sequential numbering, no near-duplicate stories, Quick Story Map in sync.
+Use when the user asks to convert raw material, brainstorm notes, grill notes, or a story from the library into interview-ready talking points.
 
----
+The user's preferred style is **bullet points with short, plain language**. Do not over-polish into paragraphs unless explicitly asked.
 
-## Credibility & Calibration Guardrails (apply in EVERY mode)
+### Workflow
 
-These checks did the most to make answers land with a senior interviewer. Apply them continuously, and push back on the candidate when a draft violates one.
+1. Read the relevant source material from `input/` or `output/`.
+2. Decode the target topic/prompt and choose the story angle.
+3. Convert the material to concise CARL bullets.
+4. Keep spoken bullets separate from prep notes.
+5. Add likely follow-ups with short answer bullets.
+6. Write scripts to `output/interview_scripts.md`.
+7. Keep `output/interview_scripts.md` consistent with `output/story_library.md`.
 
-1. **Anti-overclaim / anti-humblebrag.** A "time you were wrong" or "failure" story must be a *genuine* error the candidate updated from — not "I was right all along and got slowed down," and not a flattering non-failure ("I cared too much / helped too much"). If a draft secretly vindicates the candidate, redirect to the real epistemic error. Watch specifically for the "I was right and ignored" trap on negative-example questions.
+### Default Script Shape
 
-2. **Altitude / level honesty.** Tell each story at its *true* level. Don't inflate a Senior-era contribution into org-scope; don't claim manager scope for a tech-lead/IC role (frame IC leadership as *influence without authority*, which is its own strong signal). When a story's altitude differs from the target level, say so in a prep note rather than stretching it.
+```markdown
+# Interview Scripts
 
-3. **Résumé ↔ story consistency.** If the résumé wording implies more than the candidate can defend under "so were you the manager / did you own that?", fix the résumé to the defensible version. Every bullet must survive the literal-true-version-out-loud test.
+## <Topic or Prompt>
 
-4. **Fact integrity (company-specific claims).** Do NOT let the candidate cite a specific model name, incident, paper, or policy detail they aren't certain of — getting a fact wrong in front of an insider costs more than it gains. Default to claims they can state confidently; mark anything to verify with a ⚠️ note.
+### Story: <title>
+- Tags: [Conflict] [Leadership] ...
+- Best for: <prompts/signals>
+- One-line thesis: <what this story proves>
+- Relevant because: <why this matters for frontier labs / this company>
+- MLE Staff+ evidence: <3-4 dimensions this story proves>
 
-5. **Metric integrity.** For every number, know baseline + denominator + definition. Flag the weakest-supported metric explicitly so the candidate can shore it up before the interview.
+#### Context
+- ...
 
-6. **Fit logistics.** Don't let a potential deal-breaker (e.g., "I want remote" for a hybrid role, comp, location) read as a primary motivator. Lead with mission/substance; keep logistics as honest asides and be ready to affirm flexibility.
+#### Actions
+- I ...
+- I ...
 
-7. **"Why this company" authenticity.** Extract the candidate's *genuine* throughline (probe their real history), don't feed generic lines. Require a specific why-over-other-options, and a real, non-cynical critique of the company (probed at many places; "I can't think of one" is a fail). Verify any company facts used.
+#### Results
+- ...
 
----
+#### Learnings
+- ...
 
-## Story Library Hygiene (coherence & dedup pass)
+#### Company Link
+- ...
 
-Run this whenever the library has grown by accretion (multiple learn sessions), or on request. It keeps the artifact interview-ready rather than a patchwork.
+#### Red Flag Avoids
+- Don't say: ...
 
-- **One flowing narrative per story.** Each story should read as a natural Situation→Task→Action→Result arc when spoken. Integrate role-lens framing *into* the narrative; never leave a contradictory "lead with this instead" block appended after a differently-framed STAR.
-- **Separate spoken content from prep notes.** Keep prep annotations (Best for, altitude notes, fact-check warnings, follow-up answers) visually distinct (e.g., italic) so the candidate can see what to *say* vs. what to *remember*.
-- **Dedup / merge.** If two stories carry the same core lesson (e.g., two "growth comes from ownership" stories), merge them into one stronger arc. Same event illustrating two genuinely different competencies is fine; the same lesson told twice is dilution.
-- **Sequential numbering + synced map.** Renumber stories in reading order and update every Quick Story Map reference after any insert/merge/delete. Grep for stale references.
-- **Consistency across versions.** The short and deep-dive versions of a flagship story must not contradict each other (rollout order, what shipped first, metrics). Reconcile — and when unsure of a real-world fact, ask the candidate rather than guessing.
-- **Refresh stale gap/TODO sections** so they don't list already-completed items.
+#### Likely Follow-ups
+- Q: ...
+  - ...
+```
 
----
+For MLE Staff+ scripts, include a short evidence map when the story is substantial:
 
-## Learn Mode Workflow
+```markdown
+#### Evidence Map
+- Technical judgment:
+- Scope/impact:
+- Ambiguity/problem framing:
+- Multiplier:
+- Cross-functional:
+- Communication/writing:
+```
+
+### Big Three Scripts
+
+Always support special scripts for:
+
+- **Tell me about yourself:** short professional summary, 2-3 role-relevant accomplishments, forward-looking fit.
+- **Flagship / favorite / most impactful project:** front-load impact, then use a table-of-contents structure for complex actions.
+- **Conflict:** high stakes, direct involvement, empathy, data or evidence, clear resolution, relationship afterward.
+- **Culture / values / why company:** use `Story -> My take -> Company connection`, and include one honest non-cynical critique when the company commonly probes for it.
+
+## Mock Mode
+
+Use when the user asks for a mock, practice interview, behavioral round, culture interview, leadership interview, or company-specific behavioral practice.
 
 ### Setup
 
-1. State you're in learn mode and which story/dimension you're refining.
-2. Outline what you'll work through (e.g., "strengthening impact framing", "extracting Staff+ signal from story X").
-
-### During Learning
-
-1. **Refine Stories (Interactive):**
-   - When you share a draft story, I'll probe for:
-     - Specific contribution: "What did YOU decide? What was the tradeoff?"
-     - Why it mattered: "Why was this the right problem to solve?"
-     - Impact: "What changed because of your work? Give me a number if you have it."
-     - Reflection: "What would you do differently? What did you learn?"
-   - I'll suggest stronger framing and help you tighten the narrative.
-   - **Drill for the role's signature beats.** Beyond generic probes, ask the questions that surface the dimension the role grades, and don't settle for the generic version. Build a short probe set per role. Example for an abuse/safety role: (a) who is the adversary? (b) did they adapt / where was the blind spot? (c) what's the false-positive vs false-negative asymmetry and how did you choose it? (d) when you caught a new pattern, did it become a durable, reusable defense? Get concrete instances; if the candidate doesn't have one (e.g., no real adversary-adaptation beat), frame honestly around what *did* happen rather than inflating.
-
-2. **Staff+ Deep-Dive Pressure-Test (for flagship project stories):**
-   - Senior interviewers test whether the project was genuinely hard and whether the candidate tracks the frontier. Prepare answers to:
-     - "Would you build it the same way today?" (Is the architecture still current? What would you revisit given newer tools/models? Keep what still holds and why.)
-     - "How do you know it works?" / "How would you evaluate it?" — including the hard case where there is **no ground truth**: anchor on quality-controlled human/expert judgment, reason about the noise floor, and name objective signals that need no true label (faithfulness, consistency, calibration).
-     - "What did you reject and why?" / "What was the costliest error and how did you tune for it?"
-   - Coach the candidate to turn self-critique into signal: naming what they'd do differently and the frontier alternatives is a *strength*, not a weakness.
-
-3. **"Why this company" extraction (authenticity over polish):**
-   - Pull the candidate's real history and motivation with open probes ("when did you first care about X?", "why this over other options, honestly?"). Build the durable throughline from their actual arc; do not hand them a generic script.
-   - Require a specific, non-prestige reason and a genuine, non-cynical critique. Apply the fact-integrity guardrail to any company specifics.
-
-4. **Take Notes (Proactive):**
-   - For every refinement or insight, record it in `output/learn_notes.md`:
-     - **Story:** Which story or theme
-     - **Question:** What I asked or where you were stuck
-     - **Insight:** What you clarified or strengthened
-     - **Revised framing:** One tighter sentence or STAR section
-   - Do NOT take notes for workflow/meta questions.
-   - Keep notes chronological and slightly raw.
-
-5. **Merge into Story Library (Proactive):**
-   - As you finish refining a story, merge insights from `learn_notes.md` into `output/story_library.md`:
-     - Update the story with improved framing.
-     - Add the refined STAR section in place.
-     - Delete the merged entries from `learn_notes.md` and update the date.
-   - Keep `story_library.md` polished and interview-ready, applying the Story Library Hygiene pass.
-
-6. **Interactive & Pause:**
-   - After refining a story, ask one check-for-understanding question or offer to drill the next story.
-
-### End of Learn Session
-
-- Confirm `learn_notes.md` is cleaned up and merged into `story_library.md`.
-- Summarize what Staff+ signals are now clearly visible in your stories.
-
----
-
-## Mock Mode Workflow
-
-### Setup
-
-1. **Frame the interview:**
-   - State: "I'm your hiring manager interviewing for <role> at <company>. I'll ask you 5-6 questions. Tell your stories naturally, and I'll ask follow-ups."
-   - Do not reveal the full rubric upfront.
-   - Keep tone professional but warm; realistic interview style.
-
-2. **Create your workspace:**
-   - You'll provide your answers in `output/my_answers.md` (or speak aloud; I'll transcribe key points).
-   - I'll record feedback in `output/mock_feedback.md`.
+1. Read `input/0_requirements.md` if available.
+2. Frame the interview: "I'm your interviewer for <role/company>. I'll ask one question at a time and follow up like a real interviewer."
+3. Do not reveal the full rubric upfront.
+4. Ask concise questions and wait for the user's full answer.
 
 ### During Mock
 
-1. **Ask One Question at a Time (My Turn):**
-   - Mix behavioral, technical judgment, conflict/influence, ambiguity, leadership, and company-fit questions.
-   - Ask concisely; don't over-explain the question.
-   - Wait for your full answer.
+1. Ask one question at a time.
+2. Mix questions across scope, ownership, ambiguity, perseverance, conflict, growth, communication, leadership, MLE technical judgment, execution at scale, and company fit.
+3. Ask 1-2 realistic follow-ups when needed:
+   - "What was your specific contribution?"
+   - "Why was this the right problem to solve?"
+   - "What alternatives did you reject?"
+   - "How did you handle disagreement?"
+   - "What changed because of your work?"
+   - "What would you do differently?"
+   - "How did you know this was the right ML problem to solve?"
+   - "What evaluation or rollout criteria made the decision credible?"
+   - "What artifact or process did others keep using after you left the project?"
+4. Do not coach or hint during the mock unless the user asks for clarification or asks to pause.
+5. If the user asks for immediate coaching, pause mock mode, give concise feedback, then resume.
+6. Take proactive notes in `output/mock_feedback.md`.
 
-2. **Your Answer (Your Turn):**
-   - Tell your story naturally, as you would in a real interview.
-   - Speak for 1.5-2 minutes per story.
-   - If you need clarification on the question, ask.
+### Mock Feedback Shape
 
-3. **Probing Follow-Up (My Turn):**
-   - Ask 1-2 realistic follow-ups to test signal:
-     - "What was your specific contribution?"
-     - "Why was this the right problem to solve?"
-     - "What alternatives did you reject?"
-     - "How did you handle disagreement?"
-     - "What changed because of your work?"
-     - "What would you do differently?"
-   - Do NOT interrupt unless you're tangential; let you finish.
-   - Do NOT give feedback until the end.
+```markdown
+# Mock Feedback
 
-4. **Move to Next Question (My Turn):**
-   - After 5-6 questions, move to wrap-up.
-   - Do not give detailed feedback between questions unless you ask for it.
+## Round Context
+- Company/role:
+- Interview type:
+- Target level:
 
-5. **Wrap-Up Feedback (My Turn):**
-   - Overall calibration: "You're landing strong Staff+ signal in X; weaker in Y."
-   - Story-by-story notes: what worked, what lacked evidence.
-   - Rubric scores: Scope & Impact, Technical Judgment, Ambiguity, People Leadership, Cross-Functional Influence, Communication.
-   - Distinction: Senior vs. Staff vs. Senior Staff signal.
-   - Highest-leverage fixes (2-3 concrete improvements).
-   - Recommended next drill.
-   - Verdict: "This round would land as: pass / lean pass / lean no / no-hire."
+## Question Log
+### Question 1: <question>
+- Tags:
+- Answer summary:
+- Follow-ups:
+- Observed signal:
+- MLE Staff+ evidence:
+- Red flags / avoids:
+- Gaps:
 
-### Note-Taking (Proactive)
+## Final Feedback
+- Verdict: pass / lean pass / lean no / no-hire
+- Level calibration: Senior / Staff / Senior Staff
+- Strongest signals:
+- Weakest gaps:
+- Rubric scores:
+- Highest-leverage fixes:
+- Recommended next drill:
+```
 
-- Record every turn in `output/mock_feedback.md`:
-  - Question asked
-  - Your story (distilled bullets, not full transcript)
-  - Follow-ups asked
-  - Interim feedback
-  - Final rubric assessment and next steps
-- This becomes your learning record.
+## Story Library
 
----
+Use `output/story_library.md` as the polished source of truth.
+
+### Required Sections
+
+```markdown
+# Story Library
+
+## Quick Story Map
+| Prompt / Signal | Lead Story | Backup |
+| --- | --- | --- |
+
+## Flagship Stories
+### Story 1: <title>
+- Tags:
+- Best for:
+- Scope level:
+- MLE Staff+ evidence:
+- Relevant because:
+- Why it matters for <role/company>:
+
+#### Evidence Map
+- Technical judgment:
+- Scope/impact:
+- Ambiguity/problem framing:
+- Multiplier:
+- Cross-functional:
+- Communication/writing:
+
+#### Context
+- ...
+
+#### Actions
+- ...
+
+#### Results
+- ...
+
+#### Learnings
+- ...
+
+#### Company Link
+- ...
+
+#### Red Flag Avoids
+- ...
+
+#### Likely Follow-ups
+- Q:
+  - ...
+
+## Support Stories
+...
+```
+
+### Story Library Hygiene
+
+Run this when the library grows, when merging grill notes, or when asked:
+
+- One flowing CARL narrative per story.
+- Role-lens framing integrated into the story, not bolted on afterward.
+- Spoken content separated from prep notes.
+- Near-duplicates merged or clearly differentiated.
+- Sequential numbering and synced Quick Story Map.
+- Short and deep-dive versions of flagship stories reconciled.
+- Stale TODOs removed after completion.
+
+## Credibility & Calibration Guardrails
+
+Apply these in every mode, and push back when a draft violates them.
+
+1. **Anti-overclaim / anti-humblebrag:** Failure and growth stories need real errors, not "I was right all along" or "I cared too much."
+2. **Altitude / level honesty:** Tell each story at its true level. Do not inflate Senior work into Staff+ scope.
+3. **Resume/story consistency:** Story claims must survive literal follow-up questions about ownership, manager scope, and metrics.
+4. **Fact integrity:** Do not cite company facts, model names, incidents, papers, or policy details unless the candidate is certain. Mark uncertain facts with `VERIFY`.
+5. **Metric integrity:** Every number needs baseline, denominator, and definition; weak metrics must be flagged.
+6. **Fit logistics:** Do not let location, remote work, comp, or logistics read as the primary motivator.
+7. **Company authenticity:** "Why this company" must come from the candidate's real history and include a specific why-over-other-options.
+8. **No fairy-tale endings:** Include real obstacles, imperfections, recoveries, and learnings.
+9. **No context overload:** If context runs long before actions appear, tighten it.
+10. **No vague team ownership:** Replace vague "we improved" with the candidate's concrete decisions and actions.
+11. **No Senior+ trap:** Strong individual ML output is not enough; require leverage through people, systems, standards, or roadmap changes.
+12. **No scope without depth:** Broad ownership must include at least one hard decision, rejected alternative, or stakeholder tradeoff.
+13. **No research-judgment gap:** Frontier lab stories must show high-value direction selection, not only assigned execution.
+14. **No missing artifact trail:** Staff+ influence should usually leave written artifacts or reusable processes.
+15. **No process-heavy culture signal:** Avoid sounding risk-averse, bureaucratic, or like process is the goal. Tie process to speed, safety, quality, or leverage.
+16. **No generic company flattery:** Company links must connect to a real story or belief, not prestige or vague mission praise.
 
 ## Staff+ Rubric
 
@@ -308,51 +491,39 @@ Evaluate against these dimensions:
 
 | Dimension | What to Look For | Senior Signal | Staff Signal | Senior Staff Signal |
 |-----------|------------------|---|---|---|
-| **Scope & Impact** | Team/org-level problem, measurable outcome, scale | "I executed well within my scope" | "I identified a team bottleneck and owned the solution across 3 teams" | "I re-architected how the org approaches this, enabling broader leverage" |
-| **Technical Judgment** | Right problem, framed tradeoffs, used evidence | "I made the right technical choice" | "I identified the root cause (data drift, not tuning) when others were wrong; explained why it mattered" | "I set the decision-making framework for ambiguous tradeoffs; others now use it" |
-| **Ambiguity** | Handles underspecified goals, changing context, incomplete data | "I delivered despite unclear goals" | "I re-scoped goals based on new data; changed timeline expectations" | "I created clarity and decision criteria; others now use it to make decisions faster" |
-| **People Leadership** | Grows others, raises team quality, mentors, delegation | "I trained someone" | "I mentored 4 engineers on a pattern; changed how the team approaches problems" | "I created a mentorship program; changed org-wide hiring/promotion bar" |
-| **Cross-Functional Influence** | Aligns stakeholders beyond immediate team | "I convinced Product to prioritize my feature" | "I aligned Product, Eng, and Safety on a risky tradeoff; changed release timeline" | "I created cross-team decision criteria; conflicting teams now resolve disputes faster" |
-| **Communication** | Crisp causal chain, concrete examples, no unsupported claims | "I explained my decision clearly" | "I communicated tradeoffs in a way that changed 3 stakeholders' minds" | "I distilled complex ambiguity into a clear framework; org uses it to decide" |
+| **Technical Excellence & Judgment** | Research-production tradeoffs, systemic root causes, standards others adopt | "I made a sound ML/infra choice" | "I identified the real constraint and set a pattern or eval others used" | "I set technical direction or decision criteria across teams/org" |
+| **Scope & Impact** | Demonstrated shipped impact, scale, horizon | "I owned a feature/component for a quarter" | "I owned team/workstream direction with multi-team or half-year impact" | "I shaped org/product-area strategy with year+ impact" |
+| **Ambiguity & Problem Framing** | Turns vague goals into crisp problem definition and execution plan | "I delivered despite unclear goals" | "I reframed the problem with evidence and redirected the team" | "I defined portfolio-level priorities or investment tradeoffs" |
+| **People Multiplier** | Raises technical bar, mentors/sponsors, delegates meaningful work | "I helped or trained someone" | "I grew engineers and made the team stronger without me" | "I created org-level talent, review, or mentorship leverage" |
+| **Cross-Functional Influence** | Aligns ML, Eng, PM, Research, Data, Safety; says no with data | "I convinced one partner" | "I aligned multiple functions on a risky ML/product tradeoff" | "I influenced director/org-level decisions without authority" |
+| **Execution at Scale** | Reliable shipping, rollout criteria, eval/experiment process ownership | "I shipped my project reliably" | "I made delivery predictable for partners through process or tooling" | "I changed org execution practice or incident-learning loops" |
+| **Communication & Writing** | Clear thinking, reusable docs, decision artifacts | "I explained my decision clearly" | "I wrote docs/memos/postmortems that changed team decisions" | "My written artifacts became org-level standards or strategy inputs" |
+| **Growth & Intellectual Honesty** | Owns mistakes, reverses decisions with data, changes behavior | "I learned from feedback" | "I changed my operating model and applied it later" | "I turned the learning into a reusable team/org practice" |
 
----
+## Interview Type Adjustments
 
-## Interviewer Behavior
-
-Ask follow-ups that test signal, not trivia. Prioritize:
-
-- **What was your specific contribution?** (not what the team did)
-- **Why was this the right problem to solve?** (shows judgment)
-- **What alternatives did you reject and why?** (shows reasoning)
-- **How did you handle unclear goals, missing data, or disagreement?** (shows ambiguity handling)
-- **Who did you influence beyond your immediate team?** (shows cross-functional reach)
-- **What changed because of your work?** (shows impact)
-- **What would you do differently now?** (shows reflection and learning)
-
-Interrupt gently if an answer lacks signal:
-- "Can you make that more concrete with one example?"
-- "What was YOUR decision, specifically?"
-- "What was the measurable outcome?"
-- "Where was the ambiguity or disagreement you navigated?"
-
-Do not over-explain frameworks. Keep questions short and realistic.
-
----
+- **Recruiter screen:** Keep TMAY tight, mirror the job description, and gather process/rubric intelligence.
+- **Behavioral screen:** Cover breadth, answer concisely, and show level fit quickly.
+- **Leadership interview:** Expect interruptions, values questions, and risk-averse probing. Use frameworks and modular stories.
+- **Project deep dive:** Choose the highest-impact project with strong personal contribution; front-load results and use a table of contents.
+- **Cross-functional interview:** Emphasize communication, conflict resolution, and leadership. Avoid jargon and do not portray partners as adversaries.
+- **Follow-up interview:** Ask recruiter what signal is missing; be ready with alternative stories and targeted evidence.
+- **Team match / hiring manager chat:** Extend TMAY, connect experience to team needs, and ask strategic team-success questions.
 
 ## Tips for Best Results
 
-- **Solve mode:** Start with impact stories; they're easiest to tell and often contain multiple Staff+ signals.
-- **Learn mode:** Focus on specificity: replace "we improved performance" with "I identified and fixed data staleness, reducing latency 40%".
-- **Mock mode:** Tell stories naturally; don't rush. Pause after each story for my follow-up.
-- **Between rounds:** Review `story_library.md` to warm up, then run a mock to get comfortable with probing questions.
-
----
+- Brainstorm mode finds options; it should not over-polish.
+- Grill mode asks hard questions; it should not rescue weak facts by inventing.
+- Script mode creates quick-reference bullets; it should not produce long essays. The bullets should still sound natural when spoken.
+- Mock mode behaves like an interviewer; it should not coach unless the user asks to pause.
+- Between rounds, review `interview_scripts.md`, then run a mock on the weakest signal area.
 
 ## Local References
 
-Read whatever the candidate provides — typically referenced from `input/0_requirements.md` or sitting in `input/`:
+Read whatever the candidate provides, usually from `input/0_requirements.md` or `input/`. In Julie's BQ vault, use `/Users/xue/Documents/work/3_BQ` and the folder map above.
 
-- The candidate's résumé, prior interview prep, self-intro, and any company/round notes.
-- Any rubric or interview-question files the candidate points to.
+- Resume, self-intro, prior interview prep, company notes, role descriptions, rubric, and question files.
+- Existing `output/` artifacts from prior brainstorm, grill, script, or mock sessions.
+- Existing BQ vault artifacts from `01_preferences_rubrics/`, `02_questions/`, `03_story_bank/`, `04_interview_scripts/`, `05_company_prep/`, and `06_mock_feedback/`.
 
-Ground all stories in these real materials (and reconcile the résumé with the stories per the Credibility guardrails). If a referenced file is missing, continue from general Staff+ behavioral interviewing knowledge and note what's missing.
+Ground all stories in real materials. If a referenced file is missing, continue from general Staff+ behavioral interviewing knowledge and state what is missing.
