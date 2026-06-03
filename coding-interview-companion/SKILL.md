@@ -86,7 +86,7 @@ The skill will:
 All paths are relative to the resolved `problem_dir`:
 
 - **Solve mode:** Scan `<problem_dir>/input/` for comprehensive interview context, create frozen problem setup files in `<problem_dir>/input/`, then generate `<problem_dir>/solution/interview_discussion.md`, `<problem_dir>/solution/<problem_name>_solution.ipynb` for Colab rounds, and `<problem_dir>/solution/deep_dive.md`.
-- **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, proactively take comprehensive and detailed interview-relevant notes in `<problem_dir>/solution/learn_notes.md` during the session without waiting for a separate note-taking request, and stay in learn mode until the user explicitly says `end learn`, `conclude learn`, or `exit learn`.
+- **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, proactively take raw chronological notes of interview-relevant questions and responses in `<problem_dir>/solution/learn_notes.md` during the session without waiting for a separate note-taking request, do not summarize until the learning session concludes, and stay in learn mode until the user explicitly ends it or uses a clear ending hint such as `wrap learning`.
 - **Mock mode:** Interview as a hiring engineer, create `<problem_dir>/mock_MMDD/mock_instructions.md`, create/review `<problem_dir>/mock_MMDD/mock_<problem_name>_<part>.ipynb` for Colab rounds, and record feedback in `<problem_dir>/mock_MMDD/mock_feedback.md`.
 
 ---
@@ -181,7 +181,7 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
 1. Confirm you're in learn mode and state which problem/concept you're exploring.
 2. Default to answering the user's next question directly; offer a short menu only if the user has not chosen a focus.
 3. Create `<problem_dir>/solution/learn_notes.md` if it does not exist.
-4. Proactively update `<problem_dir>/solution/learn_notes.md` after each stabilized interview-relevant exchange, including follow-up Q&A, corrections, examples, and clarified misconceptions.
+4. Proactively update `<problem_dir>/solution/learn_notes.md` after each stabilized interview-relevant exchange with raw notes of the question and response, including follow-up Q&A, corrections, examples, and clarified misconceptions.
 
 ### During Learning
 
@@ -203,24 +203,26 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
    - If you notice confusion, clarify the mental model before going deeper.
    - Point out common pitfalls and how tests or examples expose them.
 
-4. **Comprehensive Session Notes (Default):**
-   - During the learning session, keep `<problem_dir>/solution/learn_notes.md` as the detailed live learning log.
+4. **Raw Session Notes (Default):**
+   - During the learning session, keep `<problem_dir>/solution/learn_notes.md` as the raw chronological learning log.
    - Proactively write notes after each stabilized interview-relevant exchange; do not wait for the user to say "take notes".
-   - For every interview-relevant question, follow-up, correction, example, misconception, tradeoff, or implementation detail, record:
-     - **Q:** The user's question or the active subtopic.
-     - **A:** The detailed answer, including the reasoning chain, not just the conclusion.
-     - **Mental model:** The reusable way to think about the concept in an interview.
-     - **Implementation detail:** API, code, invariant, state transition, data structure behavior, or notebook-specific detail when relevant.
-     - **Example / counterexample:** A small concrete case, edge case, or failure mode when it clarifies the point.
-     - **Interview phrasing:** 1-3 concise bullets Julie could say aloud.
-     - **Open gaps / follow-ups:** Anything uncertain, incomplete, or worth revisiting.
+   - Record the actual question and response content while it is still fresh. Preserve the reasoning, examples, corrections, code details, and follow-up context that appeared in the exchange.
+   - Use a raw transcript-like structure such as:
+     - **Timestamp / turn:**
+     - **Question / prompt:**
+     - **Response notes:**
+     - **Follow-up / correction:**
+     - **Open item:**
+   - Do not group, compress, polish, or convert notes into durable takeaways during the active learning session.
    - Do NOT take notes for workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
-   - Keep notes chronological during the active session. Do not compress them prematurely.
+   - Keep notes chronological during the active session. Do not summarize them prematurely.
 
 5. **Defer Deep-Dive Consolidation:**
    - Do not merge into `<problem_dir>/solution/deep_dive.md` after each individual question.
-   - Stay in learn mode until the user explicitly says `end learn`, `conclude learn`, or `exit learn`.
-   - Do not treat generic phrases like "wrap up", "summarize", "consolidate", "done", "next", or a topic change as permission to exit learn mode unless they include one of the explicit exit commands.
+   - Do not group or summarize `<problem_dir>/solution/learn_notes.md` while learn mode is active.
+   - Stay in learn mode until the user explicitly says `end learn`, `conclude learn`, or `exit learn`, or uses a clear ending hint such as `wrap learning`, `wrap learn`, `wrap up learning`, `finish learning`, `finish learn`, `end learning`, or similar wording.
+   - Treat ending hints as permission to conclude learn mode only when they refer to learning/learn mode or clearly ask to wrap the learning session.
+   - Do not treat generic phrases like "summarize", "consolidate", "done", "next", or a topic change as permission to exit learn mode unless they include a learn-mode ending command or clear learning-session wrap-up hint.
    - While the session is active, preserve detailed raw learning evidence in `<problem_dir>/solution/learn_notes.md`.
 
 6. **Interactive & Pause:**
@@ -229,7 +231,7 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
 
 ### End of Learn Session
 
-- Run this section only after the user explicitly says `end learn`, `conclude learn`, or `exit learn`.
+- Run this section only after the user explicitly says `end learn`, `conclude learn`, or `exit learn`, or uses a clear learn-mode ending hint such as `wrap learning`.
 - Read the full `<problem_dir>/solution/learn_notes.md` before consolidating.
 - Group related notes by concept, pattern, edge case, implementation technique, complexity tradeoff, and interview phrasing.
 - Summarize each group into durable takeaways and merge them into `<problem_dir>/solution/deep_dive.md` under a dated "Learning Notes & Refinements" section or the most relevant existing section.
@@ -335,7 +337,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 ## Tips for Best Results
 
 - **Solve mode:** Create interview-ready `solution/interview_discussion.md` first; it's your cheat sheet before a real interview.
-- **Learn mode:** Default to Q&A with comprehensive live notes; stay in learn mode until explicit `end learn`, `conclude learn`, or `exit learn`, then group and summarize into `solution/deep_dive.md`.
+- **Learn mode:** Default to Q&A with raw chronological question/response notes; stay in learn mode until explicit `end learn`, `conclude learn`, `exit learn`, or a clear hint like `wrap learning`, then group and summarize into `solution/deep_dive.md`.
 - **Mock mode:** Treat it like a real interview: no Googling, no pausing to think for too long, explain as you code.
 - **Between rounds:** Review `solution/interview_discussion.md` to warm up, then run a mock to stress-test under time pressure.
 
