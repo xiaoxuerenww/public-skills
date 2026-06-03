@@ -1,29 +1,30 @@
 ---
 name: coding-interview-companion
-description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: first locate the current problem directory, then scan input/ for comprehensive interview context, use solution/ for study artifacts, and use dated mock_MMDD/ mock-session directories. Solve mode analyzes input/ and writes interview-ready solution artifacts under solution/, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, mock mode simulates an interviewer and reviews the user's attempt under a fresh mock_MMDD/ directory."
+description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: first locate the current problem directory, read and analyze raw source material from context/, generate comprehensive candidate-facing requirements and starter code under input/, use solution/ for study artifacts, and use dated mock_MMDD/ mock-session directories. Solve mode analyzes context/ and writes input/0_requirements.md plus starter files before creating solution artifacts, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, mock mode simulates an interviewer and reviews the user's attempt under a fresh mock_MMDD/ directory."
 ---
 
 # Coding Interview Companion
 
 **Purpose:** Complete lifecycle support for coding interview prep, from requirements analysis through solution writing, learning review, and mock interviews.
 
-**Important:** First identify the current problem directory. All `input/`, `output/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
+**Important:** First identify the current problem directory. All `context/`, `input/`, `output/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
 
 ## Problem Directory Resolution
 
 Before reading or writing files, set `problem_dir`:
 
-1. If the user provides a problem directory or file path, use that directory. If they provide a file inside `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`/`mock/`, walk upward to the nearest directory that contains the problem's artifact folders.
-2. Otherwise, if the current directory contains `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`/`mock/`, use the current directory.
-3. Otherwise, search nearby child directories for `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, or legacy `output/deep_dive.md` and choose the directory that matches the current problem context.
+1. If the user provides a problem directory or file path, use that directory. If they provide a file inside `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`/`mock/`, walk upward to the nearest directory that contains the problem's artifact folders.
+2. Otherwise, if the current directory contains `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`/`mock/`, use the current directory.
+3. Otherwise, search nearby child directories for `context/`, `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, or legacy `output/deep_dive.md` and choose the directory that matches the current problem context.
 4. If multiple directories match and the current problem is ambiguous, ask one concise clarification question.
 
 After resolving `problem_dir`, use:
+- `problem_context = <problem_dir>/context`
 - `problem_input = <problem_dir>/input`
 - `problem_solution_output = <problem_dir>/solution`
 - `problem_mock_output = <problem_dir>/mock_MMDD` where `MMDD` is the current date, e.g. `mock_0602`
 
-Create `problem_input` and the selected mode's artifact directory if needed and they do not exist. In mock mode, create a new dated top-level mock directory for each mock session.
+Create `problem_input` and the selected mode's artifact directory if needed and they do not exist. Treat `context/` as the raw source folder when present; do not overwrite raw context files. In mock mode, create a new dated top-level mock directory for each mock session.
 
 ## Quick Setup
 
@@ -33,14 +34,14 @@ Create `problem_input` and the selected mode's artifact directory if needed and 
    cd my-interview-prep
    ```
 
-2. **Create input folder and requirements file:**
+2. **Create context folder and raw notes file:**
    ```bash
-   mkdir input
-   echo "# Interview Round
+   mkdir context
+   echo "# Raw Interview Context
    - Type: Coding + System Design + Behavioral
    - Date: June 2026
    - Focus areas: algorithms, data structures
-   " > input/0_requirements.md
+   " > context/raw_notes.md
    ```
 
 3. **Invoke the skill** from this directory or pass the problem directory explicitly:
@@ -56,11 +57,13 @@ All paths are **relative to the resolved problem directory**:
 
 ```
 problem-directory/
+  context/
+    ...                         # Raw source material: prompt dumps, notes, screenshots, copied starter code, interview docs
   input/
-    0_requirements.md          # Raw interview info (you create this)
-    <problem_name>.md          # Problem statement (created by solve mode)
-    <problem_name>.ipynb       # Colab notebook skeleton/interface (created by solve mode for Colab rounds)
-    <problem_name>.py          # Optional Python fallback/export when useful
+    0_requirements.md          # Comprehensive candidate-facing requirements synthesized from context/ by solve mode
+    <problem_name>.md          # Clean problem statement derived from context/
+    <problem_name>.ipynb       # Starter notebook/interface derived from context/ for Colab rounds
+    <problem_name>.py          # Optional starter Python fallback/export when useful
   solution/
     interview_discussion.md         # Interview-ready answers (created by solve mode)
     <problem_name>_solution.ipynb   # Full Colab reference solution (created by solve mode for Colab rounds)
@@ -75,7 +78,8 @@ problem-directory/
 
 The skill will:
 - **Resolve:** `problem_dir` before any file operation
-- **Read from:** all relevant files under `<problem_dir>/input/`, starting with `input/0_requirements.md` and including prompt docs, question lists, starter code, notebooks, and named files from the user request
+- **Read raw source from:** all relevant files under `<problem_dir>/context/`, including prompt dumps, question lists, starter code, notebooks, screenshots converted to text, and named files from the user request
+- **Write generated input artifacts to:** `<problem_dir>/input/`, including a comprehensive `input/0_requirements.md` and candidate-facing starter code
 - **Write solve outputs to:** `<problem_dir>/solution/`
 - **Write mock outputs to:** `<problem_dir>/mock_MMDD/`
 - **Write learn notes to:** `<problem_dir>/solution/learn_notes.md`
@@ -85,7 +89,7 @@ The skill will:
 
 All paths are relative to the resolved `problem_dir`:
 
-- **Solve mode:** Scan `<problem_dir>/input/` for comprehensive interview context, create frozen problem setup files in `<problem_dir>/input/`, then generate `<problem_dir>/solution/interview_discussion.md`, `<problem_dir>/solution/<problem_name>_solution.ipynb` for Colab rounds, and `<problem_dir>/solution/deep_dive.md`.
+- **Solve mode:** Read and analyze raw information from `<problem_dir>/context/`, create a comprehensive requirements doc and frozen starter files under `<problem_dir>/input/`, then generate `<problem_dir>/solution/interview_discussion.md`, `<problem_dir>/solution/<problem_name>_solution.ipynb` for Colab rounds, and `<problem_dir>/solution/deep_dive.md`.
 - **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, proactively take raw chronological notes of interview-relevant questions and responses in `<problem_dir>/solution/learn_notes.md` during the session without waiting for a separate note-taking request, do not summarize until the learning session concludes, and stay in learn mode until the user explicitly ends it or uses a clear ending hint such as `wrap learning`.
 - **Mock mode:** Interview as a hiring engineer, create `<problem_dir>/mock_MMDD/mock_instructions.md`, create/review `<problem_dir>/mock_MMDD/mock_<problem_name>_<part>.ipynb` for Colab rounds, and record feedback in `<problem_dir>/mock_MMDD/mock_feedback.md`.
 
@@ -99,17 +103,33 @@ Use this workflow to analyze an interview round and produce interview-ready solu
 
 All file operations are relative to the resolved `problem_dir`.
 
-1. Scan `<problem_dir>/input/` for comprehensive interview context:
-   - Always read `<problem_dir>/input/0_requirements.md` first when present.
-   - Read any input file explicitly named by the user, including Markdown, Python, notebooks, or text artifacts.
-   - Inspect nearby interview-context files such as `*requirements*.md`, `*question*.md`, `*mock*.md`, `*debug*.md`, `*starter*.py`, `*buggy*.py`, and problem-specific `.md`/`.py` files.
-   - Prefer source prompts and starter code under `input/` over derived solution artifacts when defining the candidate-facing problem.
+1. Scan `<problem_dir>/context/` for comprehensive raw interview context:
+   - Read all relevant raw source files under `<problem_dir>/context/`, including Markdown, text, Python, notebooks, copied prompt dumps, screenshots converted to text, and any files explicitly named by the user.
+   - Inspect nearby raw-context files such as `*requirements*.md`, `*question*.md`, `*mock*.md`, `*debug*.md`, `*starter*.py`, `*buggy*.py`, notebook files, and problem-specific `.md`/`.py` files.
+   - Treat `context/` as the source of truth for raw problem information. Do not edit or overwrite raw context files.
+   - Use legacy `input/` or `output/` artifacts only as supporting context when `context/` is missing or incomplete; prefer `context/` for new workflows.
+   - Prefer source prompts and starter code under `context/` over derived solution artifacts when defining the candidate-facing problem.
    - Use solution/output artifacts only as supporting context for answer keys or study notes, never as the source for candidate-facing mock prompts.
    - Identify all interview problems, constraints, follow-ups, and context.
    - If the requirements reference multiple problems or parts, break them into discrete problems.
    - Surface any ambiguities early.
 
-2. Create problem setup files in `<problem_dir>/input/`:
+2. Create a comprehensive requirements document in `<problem_dir>/input/0_requirements.md`:
+   - Synthesize the raw `context/` material into a clean, interview-ready requirements document.
+   - Include:
+     - Round or prompt context.
+     - Problem list and part breakdown.
+     - Candidate-facing problem statement.
+     - Input/output contracts.
+     - Public function/class signatures.
+     - Constraints and assumptions.
+     - Examples and edge cases.
+     - Follow-up questions or variations.
+     - Starter-code source references from `context/`.
+     - Ambiguities, missing facts, and chosen assumptions.
+   - Keep answer keys, expected fixes, hidden hints, rubric notes, and solution reasoning out of candidate-facing requirements unless clearly labeled as interviewer-only notes.
+
+3. Create problem setup files in `<problem_dir>/input/`:
    - For each distinct problem, create `<problem_dir>/input/<problem_name>.md` with:
      - Problem statement (clean, formatted for reference)
      - Input/output contract
@@ -117,13 +137,14 @@ All file operations are relative to the resolved `problem_dir`.
      - Example test cases
      - Follow-up questions or variations
    - For Colab coding problems, create `<problem_dir>/input/<problem_name>.ipynb` with:
-     - Public function/class signatures and type hints (from problem description)
+     - Public function/class signatures and type hints derived from `context/`
      - Docstrings explaining the interface
-     - Stub bodies with `raise NotImplementedError()`
+     - Candidate-facing starter code copied or cleaned from `context/` when available
+     - Stub bodies with `raise NotImplementedError()` only for missing implementation sections
      - Keep this file frozen for learn and mock modes; write reference solutions under `<problem_dir>/solution/` and mock attempts under `<problem_dir>/mock_MMDD/`.
    - Create a `.py` fallback/export only when it helps local validation or the prompt is not Colab-based.
 
-3. Brief summary:
+4. Brief summary:
    - Recap the problem landscape and what you'll solve in order.
    - Call out any non-obvious constraints or tradeoffs.
 
@@ -259,8 +280,8 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - If `<problem_dir>/mock_MMDD/` already exists for a prior mock session that day, create the next available suffix: `mock_MMDD_2/`, `mock_MMDD_3/`, etc.
    - Set `problem_mock_output` to that new directory for the entire mock session.
 
-3. **Scan input context for the mock:**
-   - Read `input/0_requirements.md` when present, then scan the rest of `input/` for candidate-facing prompt docs, full question lists, starter code, and named files relevant to the mock.
+3. **Scan generated input context for the mock:**
+   - Read `input/0_requirements.md` when present, then scan the rest of `input/` for generated candidate-facing prompt docs, full question lists, starter code, and named files relevant to the mock.
    - If the user has an active or named input file, treat it as the primary mock target.
    - Use `input/mock_interview_questions.md` or similar files for prompt shape and constraints only; strip any answer-key, hint, rubric, or expected-fix language.
    - Use `input/*.ipynb`, `input/*_buggy.py`, `input/<problem_name>.py`, or the named input code file as the preferred starter-code source. For Colab rounds, write the mock artifact as `.ipynb`.
@@ -347,7 +368,8 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 
 | File | Purpose | Created by | Edited in Learn | Reviewed in Mock |
 |------|---------|-----------|-----------------|------------------|
-| `<problem_dir>/input/0_requirements.md` | Raw interview info | You | No | No |
+| `<problem_dir>/context/*` | Raw source material | You | No | No |
+| `<problem_dir>/input/0_requirements.md` | Comprehensive generated requirements | Solve | No | Reference |
 | `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
 | `<problem_dir>/input/<problem>.ipynb` | Colab public interface | Solve | No | No |
 | `<problem_dir>/input/<problem>.py` | Optional Python fallback/export | Solve | No | No |
