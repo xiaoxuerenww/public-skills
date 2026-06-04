@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Deep Dive Interview"
+  short_description: "Prepare and mock Staff MLE project deep dives"
+  default_prompt: "Use $project-deep-dive-interview to prepare a Staff MLE project deep dive for a frontier lab interview."
