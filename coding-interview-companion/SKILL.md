@@ -61,6 +61,7 @@ problem-directory/
     ...                         # Raw source material: prompt dumps, notes, screenshots, copied starter code, interview docs
   input/
     0_requirements.md          # Comprehensive candidate-facing requirements synthesized from context/ by solve mode
+    next_round_mock_questions.md # Follow-up drills generated from prior mock misses and weaknesses
     <problem_name>.md          # Clean problem statement derived from context/
     <problem_name>.ipynb       # Starter notebook/interface derived from context/ for Colab rounds
     <problem_name>.py          # Optional starter Python fallback/export when useful
@@ -341,6 +342,17 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - Include 2-4 focused improvements for the next attempt.
    - Ask one follow-up question an interviewer might ask (optimization, concurrency, testing strategy, etc.).
    - Record verdict, improvements, and follow-up in `<problem_mock_output>/mock_feedback.md`.
+   - Summarize the user's misses and weaknesses from this mock session:
+     - Correctness bugs or failed invariants.
+     - Missed edge cases and missing tests.
+     - Complexity or performance blind spots.
+     - API, notebook, or implementation mistakes.
+     - Communication, clarification, or approach gaps.
+     - Follow-up concepts that were weak or incomplete.
+   - Convert those misses into additional next-round mock questions under `<problem_dir>/input/next_round_mock_questions.md`.
+   - Also update the relevant generated problem prompt under `<problem_dir>/input/` with a `## Next Round Mock Focus` section when there is an obvious target file, such as `<problem_name>.md` or `mock_interview_questions.md`.
+   - Keep next-round questions candidate-facing: ask probing questions and add constraints, but do not include answer keys, expected fixes, hidden hints, or solution outlines.
+   - Include source traceability in the input update, such as `Source mock: mock_MMDD/mock_feedback.md`.
 
 ### Note-Taking (Proactive)
 
@@ -350,6 +362,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
   - Hints given during coding
   - Code review findings
   - Final verdict and improvements
+  - End-of-session misses, weaknesses, and next-round question seeds
 - This becomes a learning record and a self-review guide.
 - Do not record workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
 
@@ -370,6 +383,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 |------|---------|-----------|-----------------|------------------|
 | `<problem_dir>/context/*` | Raw source material | You | No | No |
 | `<problem_dir>/input/0_requirements.md` | Comprehensive generated requirements | Solve | No | Reference |
+| `<problem_dir>/input/next_round_mock_questions.md` | Next mock questions from prior misses | Mock | No | Reference |
 | `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
 | `<problem_dir>/input/<problem>.ipynb` | Colab public interface | Solve | No | No |
 | `<problem_dir>/input/<problem>.py` | Optional Python fallback/export | Solve | No | No |
