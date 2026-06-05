@@ -95,7 +95,7 @@ I need a few details before drafting this section:
 3. <question>
 ```
 
-After the user answers, save durable details into the relevant Markdown artifact:
+After the user answers, save durable details into the relevant Markdown artifact. In steps 1-6, optimize for content capture, not formatting polish:
 
 - `input/project_selection.md` for candidate-project facts.
 - `input/project_brief.md` for selected-project facts and ownership.
@@ -145,11 +145,13 @@ For each step include:
 
 Keep this plan as the orchestration artifact. Update status as work progresses instead of scattering status across many files. If a step needs important missing details, ask the user questions before marking the step complete.
 
+For steps 1-6, focus on content, not format. The goal is to surface facts, choices, evidence, gaps, and user clarifications. Use rough Markdown bullets, raw Q&A, and `needs verification` markers freely. Do not spend effort on wording, final ordering, elegant section titles, or interview polish until step 7.
+
 ## Prepare Mode
 
 ### 1. Project Selection
 
-Create `input/project_selection.md` with a ranked project slate.
+Create `input/project_selection.md` with a ranked project slate. Keep it rough and content-first.
 
 Start by asking the user for candidate projects if local notes do not already contain a clear slate. Do not choose a primary project from weak evidence.
 
@@ -161,7 +163,7 @@ Evaluate each candidate project on:
 - Recency and authenticity: recent enough to discuss vividly and grounded in Julie's actual role.
 - Risk: confidential details, weak metrics, unclear ownership, or overclaiming risk.
 
-Write:
+Capture:
 
 - Candidate projects.
 - Best prompts each project can answer.
@@ -171,7 +173,7 @@ Write:
 
 ### 2. Big Picture Overview
 
-Create `output/big_picture_overview.md` as a portfolio-level map before narrowing into the core project:
+Create `output/big_picture_overview.md` as a content-first portfolio-level map before narrowing into the core project:
 
 - Career/project arc in 5-7 bullets.
 - How the selected projects connect to Staff/Senior Staff MLE signals.
@@ -179,13 +181,13 @@ Create `output/big_picture_overview.md` as a portfolio-level map before narrowin
 - What each project demonstrates and what it does not.
 - A concise transition into the selected core project.
 
-This file should help Julie answer broad opener questions before the interviewer chooses where to go deep.
+This file should collect the substance Julie may use for broad opener questions before the interviewer chooses where to go deep. Do not polish the opener yet.
 
 If the career arc or project-to-signal mapping is unclear, ask Julie what she wants the interviewer to remember before drafting the overview.
 
 ### 3. Select Core Deep Dive Project
 
-Create or update `input/project_brief.md` with the chosen core project:
+Create or update `input/project_brief.md` with the chosen core project. Treat this as factual intake, not the final story:
 
 - Interview target: company, role, level, interviewer type, and expected format if known.
 - Source files used.
@@ -219,11 +221,11 @@ Cover both technical and execution details:
 - Cross-functional alignment, stakeholder tradeoffs, sequencing, and decision artifacts.
 - What Julie personally decided, influenced, built, or changed.
 
-When gaps appear, record the strongest current answer plus `needs verification` bullets.
+When gaps appear, record the strongest current answer plus `needs verification` bullets. Preserve raw technical detail even if it is messy.
 
 ### 5. Add Learnings and Retro
 
-Create `output/learnings_retro.md`:
+Create `output/learnings_retro.md` as content capture:
 
 - What went well.
 - What was wrong, uncertain, or changed over time.
@@ -232,17 +234,17 @@ Create `output/learnings_retro.md`:
 - What she would do differently with another 3-6 months.
 - How the project changed later work, standards, platforms, or team strategy.
 
-The retro should sound honest and Staff-level. Avoid generic lessons like "communication is important" unless tied to a concrete change in behavior.
+The retro content should be honest and Staff-level. Avoid generic lessons like "communication is important" unless tied to a concrete change in behavior. Do not over-edit tone until polish.
 
 If the notes do not contain a concrete mistake, pivot, or changed behavior, ask Julie for one before drafting the retro.
 
 ### 6. Mock
 
-Use mock mode after the plan, project selection, big-picture overview, technical grill, and retro exist. Create or update `input/mock_questions.md` before the mock and `output/mock_feedback.md` after feedback.
+Use mock mode after the plan, project selection, big-picture overview, technical grill, and retro exist. Create or update `input/mock_questions.md` before the mock and `output/mock_feedback.md` after feedback. During the mock, prioritize realistic probing and feedback content over clean transcript formatting.
 
 ### 7. Polish
 
-Polish only after the previous steps have produced enough material. Create the final Markdown artifacts:
+Polish only after the previous steps have produced enough content. Step 7 is where format, narrative order, wording, and final interview usability matter. Create the final Markdown artifacts:
 
 - `output/project_deep_dive.md`
 - `output/one_pager.md`
