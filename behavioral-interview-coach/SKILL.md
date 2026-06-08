@@ -17,7 +17,7 @@ Use this skill when the user asks to brainstorm behavioral stories, develop or p
     0_requirements.md          # Round info, company culture, role, interviewer notes, values, rubric
     ...                        # Resume, prior prep, raw notes, company notes, question banks
   output/
-    story_library.md           # Polished CARL story catalog and Quick Story Map
+    story_library.md           # Polished story catalog with short openings, CARL depth, and Quick Story Map
     brainstorm_notes.md        # Raw candidate story ideas by topic/signal
     grill_notes.md             # Probing questions, answers, gaps, and follow-up TODOs
     interview_scripts.md       # Short bullet scripts for quick interview reference
@@ -64,6 +64,7 @@ Path resolution priority:
 
 - **Brainstorm mode:** Find candidate stories for a topic, signal area, company value, or interview type.
 - **Grill mode:** Pressure-test one story with deep questions to surface missing detail, Staff+ signal, and credibility risks.
+- **Story Builder mode:** Julie gives a story starter → Claude grills for BQ-relevant detail one question at a time → groups the full story into a signal category → drafts a CARL story → links to matching BQ questions in the vault.
 - **Script mode:** Convert raw material into short, plain-language, interview-ready bullet scripts.
 - **Mock mode:** Run a realistic interview, ask probing follow-ups, take notes, and share calibrated feedback.
 
@@ -78,7 +79,7 @@ Behavioral prep follows **Decode -> Select -> Deliver**:
 
 1. **Decode:** Identify what the question is really testing: signal area, company value, cultural expectation, and interview type.
 2. **Select:** Choose the strongest story using `Scope > Relevance > Uniqueness > Recency`.
-3. **Deliver:** Tell the story with CARL, emphasizing the requested signal early.
+3. **Deliver:** Start with a short spoken opening, then keep deeper CARL detail, follow-ups, and evidence ready for probing.
 
 ## Solve Mode
 
@@ -124,17 +125,17 @@ Solve mode follows **Decode -> Select -> Deliver**:
 
 ### 3. Deliver
 
-1. Convert selected stories into concise CARL bullets.
+1. Convert selected stories into a short opening plus concise CARL bullets.
 2. Write reusable scripts to `output/interview_scripts.md`.
 3. Keep scripts fast to scan:
    - Tags.
-   - Best prompts.
-   - One-line thesis.
-   - Context.
-   - Actions.
-   - Results.
-   - Learnings.
-   - Likely follow-ups.
+   - Best for.
+   - Short opening from question keywords to Julie's genuine experience.
+   - Complete CARL story in bullets.
+   - Additional details / evidence / examples.
+   - Potential follow-ups.
+   - Avoid red flags.
+   - Connection with other stories.
 4. Keep `output/story_library.md`, `output/brainstorm_notes.md`, and `output/interview_scripts.md` consistent.
 5. Flag weak facts, uncertain metrics, or scope claims that need verification instead of filling gaps with invented precision.
 
@@ -173,6 +174,7 @@ Map questions and stories to these eight areas:
 
 Use CARL as the default format. STAR may appear in existing materials, but convert new work to CARL.
 
+- **Short opening:** Every polished story starts with 2-3 spoken sentences before CARL detail. It should bridge from the question keywords to Julie's genuine experience and name the key or strongest point of the story.
 - **Context:** Brief setup, stakes, role, constraints. Keep it short.
 - **Actions:** The center of the answer. Use concrete "I" actions, decisions, tradeoffs, communication, influence, and implementation details.
 - **Results:** What changed. Include metrics with baseline, denominator, and definition when possible.
@@ -183,6 +185,9 @@ Use CARL as the default format. STAR may appear in existing materials, but conve
 - Always decode before selecting or shaping a story.
 - Prefer high-scope stories; do not save the best story for later.
 - Keep context short; actions carry most of the interview signal.
+- For every saved story or script, write the short opening first, then separate deeper follow-up/evidence notes from the spoken opener.
+- Keep the answer script itself concise and interruption-ready. Do not front-load all CARL detail; hold detailed actions, metrics, tradeoffs, and evidence for follow-up questions or an appendix.
+- Preserve supporting details and evidence. If they are too detailed for live delivery, move them to `3. Additional Details / Evidence / Examples` or `4. Potential Follow-ups` instead of deleting them.
 - Use "I" for personal decisions and contributions. Use "we" only for team context.
 - Do not use generic "you" statements in prepared answers; keep the answer in Julie's lived perspective.
 - For Staff+ stories, include decision frameworks, cross-functional influence, and durable impact.
@@ -197,6 +202,7 @@ Use CARL as the default format. STAR may appear in existing materials, but conve
 Default prepared answers should be concise, scannable, and easy to say aloud.
 
 - Use short bullets for prep artifacts, not long paragraphs.
+- Answer scripts should be short enough to stop cleanly after the opener if the interviewer jumps in.
 - Keep spoken language plain and natural, with short sentences and no fluff.
 - Anchor answers in Google + GenAI + LLM/recommendation work when relevant.
 - Prefer concrete examples: Google Discover, LLM4Rec, ranking, CTR/retention/satisfaction, eval, launch, partner teams.
@@ -251,7 +257,7 @@ Use when the user asks for stories for a topic, prompt, company value, signal ar
    - `Likely signal areas`
    - `MLE Staff+ evidence` (3-4 dimensions if possible)
    - `Scope level` (Senior, Staff, Senior Staff, or unclear)
-   - `Best prompts`
+   - `Best for`
    - `Missing facts`
    - `Flagship or support story`
 5. Write raw ideas to `output/brainstorm_notes.md`.
@@ -269,7 +275,7 @@ Use when the user asks for stories for a topic, prompt, company value, signal ar
 - Likely signals:
 - MLE Staff+ evidence:
 - Scope level:
-- Best prompts:
+- Best for:
 - Missing facts:
 - Flagship/support:
 - Next probe:
@@ -320,21 +326,196 @@ Use when the user has one story or topic and needs deep probing before writing t
 - Revised framing:
 ```
 
+## Story Builder Mode
+
+Use when Julie has a raw story starter — a situation, project, or moment — and wants to turn it into a polished, vault-linked BQ story without already knowing which question it answers.
+
+Trigger phrases: "story builder", "I have a story", "let me tell you about", "build a story from", "I want to develop this story".
+
+### Workflow
+
+#### Phase 1 — Story Intake
+
+1. Ask Julie to share her story starter. Accept any form: a few sentences, a project name, a situation, or a rough memory.
+2. Immediately read `02_questions/bq_question_bank.md` and `03_story_bank/BQ_Story_Mapping.md` from the BQ vault to understand what categories and questions already exist. Do this silently; do not narrate it.
+3. Do not draft anything yet. Move to Phase 2.
+
+#### Phase 2 — Targeted Grilling
+
+Ask **one question at a time**. Wait for Julie's full answer before the next question. Target 6–10 questions total, covering:
+
+1. **Personal contribution:** "What specifically did *you* decide or do? What was yours vs. the team's?"
+2. **Stakes and scope:** "What would have happened if this hadn't been done, or if it had failed?"
+3. **Ambiguity or difficulty:** "What was unclear, contested, or hard? What made this non-obvious?"
+4. **Conflict or tension:** "Was there anyone who disagreed with your approach, or competing priorities you had to navigate?"
+5. **How you influenced others:** "Who changed their mind, behavior, or plan because of your work?"
+6. **Decision or tradeoff:** "What alternatives did you consider and why did you reject them?"
+7. **Concrete outcome:** "What measurably changed? What's the baseline and the result?"
+8. **Durable artifact or leverage:** "Did you write anything down — a doc, memo, criteria, postmortem — that others used after you?"
+9. **Learning or growth:** "What would you do differently? What changed in how you work after this?"
+10. **Follow-up resilience:** "If an interviewer asked 'but what was *your* personal decision there?', what would you say?"
+
+Skip questions whose answers are already clear from the story starter or prior answers. Probe MLE-specific angles (eval mismatch, research-production tradeoff, data vs. model vs. infra judgment) if the story is ML-adjacent.
+
+Apply credibility guardrails continuously: flag vague claims, metric gaps, or "we" statements that obscure Julie's personal contribution.
+
+#### Phase 3 — Story Grouping
+
+After grilling, map the story to:
+
+1. **Primary signal area** (one of the eight: Scope, Ownership, Ambiguity, Perseverance, Conflict Resolution, Growth, Communication, Leadership).
+2. **Secondary signal areas** (up to two).
+3. **Question tags** that apply: `[Teamwork]`, `[Conflict]`, `[Growth]`, `[Failure]`, `[Initiative]`, `[Culture Fit]`, `[Leadership]`, `[Technical Judgment]`.
+4. **Scope level:** Senior, Staff, or Senior Staff based on the Staff+ rubric.
+5. **Existing story category** in `03_story_bank/BQ_Story_Mapping.md` — place the story there if a category fits, or propose a new category if none fits well.
+
+Present the grouping to Julie as a short summary before drafting:
+
+```markdown
+**Story grouping:**
+- Primary signal: <signal area>
+- Secondary signals: <signal area>, <signal area>
+- Tags: [Tag1] [Tag2]
+- Scope level: <Senior / Staff / Senior Staff>
+- Story category: <existing category name or "new: <proposed name>">
+- Story status: <flagship / support / not ready>
+```
+
+Ask Julie to confirm or correct before moving to Phase 4.
+
+#### Phase 4 — CARL Draft
+
+Draft a full story using the grilled answers. Every story must use the standard drafting structure: tags, best for, a short opening that connects question keywords to Julie's genuine experience, complete CARL bullets, evidence/examples, follow-ups, red-flag avoids, and connections to other stories.
+
+- **Tags:** Question tags and signal areas.
+- **Best for:** The prompts, signals, values, or interview types this story should anchor.
+- **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to Julie's real experience. Include one key or strongest point of the story so the interviewer immediately hears the signal.
+- **Complete CARL story:** Each CARL component must be in bullet point format. Use 2-4 bullets for Context, 5-8 for Actions, 2-4 for Results, and 1-3 for Learnings. Actions should carry the most detail.
+- **Additional details / evidence / examples:** Preserve metrics, definitions, artifacts, rejected alternatives, conflict details, implementation examples, and Staff+ evidence that are useful for probing but too detailed for the opening.
+- **Potential follow-ups:** 2-4 likely follow-up questions with short answer bullets.
+- **Avoid red flags:** 1-3 things not to say, overstate, or frame poorly.
+- **Connection with other stories:** Note related stories, contrast stories, backup stories, or adjacent signals so Julie can switch cleanly in an interview.
+
+Flag `VERIFY` on uncertain metrics or facts rather than inventing precision.
+
+#### Phase 5 — BQ Question Linking
+
+After drafting, read `02_questions/bq_question_bank.md` and identify the **top 3–5 questions** this story best answers.
+
+Present them as a linked table:
+
+```markdown
+**Matching BQ Questions:**
+| # | Question | Signal | Fit |
+|---|----------|--------|-----|
+| 1 | <question text> | [Tag] | Strong / Good / Partial |
+| 2 | ... | | |
+```
+
+For "Strong" fits, note the specific angle the story answers well.
+For "Partial" fits, note what additional detail would make it stronger.
+
+#### Phase 6 — Save
+
+Save the completed story to `03_story_bank/stories/<story-title-slug>.md` using the Story Library format.
+
+Update `03_story_bank/BQ_Story_Mapping.md` to add the story under its category.
+
+If a script is needed, write it to `04_interview_scripts/` following the default script shape.
+
+### Story Builder Output Shape
+
+```markdown
+# Story: <Title>
+
+**Tags:** [Tag1] [Tag2]
+**Best for:** <prompt/signal 1>; <prompt/signal 2>; <prompt/signal 3>
+
+## 1. Short Opening
+2-3 sentences that connect the question keywords to Julie's genuine experience.
+
+- Key / strongest point:
+
+## 2. Complete CARL Story
+### Context
+- ...
+
+### Actions
+- I ...
+- I ...
+
+### Results
+- ...
+
+### Learnings
+- ...
+
+## 3. Additional Details / Evidence / Examples
+- Decision/tradeoff:
+- Rejected alternatives:
+- Stakeholder/conflict evidence:
+- Metrics/eval evidence:
+- Artifact/leverage:
+- Staff+ signal:
+- Metric definitions:
+- Concrete examples:
+- Written artifacts:
+- Extra implementation/detail:
+- Verification needed:
+
+## 4. Potential Follow-ups
+- Q: ...
+  - ...
+
+## 5. Avoid Red Flags
+- Don't say:
+- Don't overstate:
+
+## 6. Connection With Other Stories
+- Related stories:
+- Backup story:
+- Contrast story:
+
+## Matching BQ Questions
+| # | Question | Signal | Fit |
+|---|----------|--------|-----|
+| 1 | ... | [Tag] | Strong |
+```
+
+### Story Builder Rules
+
+- Never draft the CARL story before grilling is complete — premature drafting locks in weak facts.
+- Ask exactly one question per turn. Do not batch questions.
+- If Julie tries to jump to the draft before enough detail exists, tell her what is still missing and ask the next probe.
+- If the story is too weak for Staff+ after grilling, say so clearly and suggest what would strengthen it, rather than over-polishing weak material.
+- Always confirm the story grouping with Julie before drafting.
+- Flag all uncertain metrics with `VERIFY` rather than inventing precision.
+- After saving, tell Julie which BQ question this story best anchors so she can update her story map mentally.
+
 ## Script Mode
 
 Use when the user asks to convert raw material, brainstorm notes, grill notes, or a story from the library into interview-ready talking points.
 
 The user's preferred style is **bullet points with short, plain language**. Do not over-polish into paragraphs unless explicitly asked.
 
+Script mode optimizes for live interview pacing:
+
+- The spoken script should be the opener plus optional follow-up hooks, not a full monologue.
+- Keep the first answer short; expect the interviewer to interrupt, redirect, or ask for evidence.
+- Put detailed CARL bullets, metrics, and Staff+ evidence under prep-only follow-up sections or an appendix.
+- Preserve useful raw details, examples, artifacts, and metric definitions even when they are not spoken upfront.
+- Do not write long narrative paragraphs or exhaustive action lists in the answer script.
+
 ### Workflow
 
 1. Read the relevant source material from `input/` or `output/`.
 2. Decode the target topic/prompt and choose the story angle.
-3. Convert the material to concise CARL bullets.
-4. Keep spoken bullets separate from prep notes.
-5. Add likely follow-ups with short answer bullets.
-6. Write scripts to `output/interview_scripts.md`.
-7. Keep `output/interview_scripts.md` consistent with `output/story_library.md`.
+3. Convert the material to a concise short opening plus 2-4 potential follow-ups.
+4. Keep the spoken answer script separate from prep notes; the script should be ready for interviewer interruption after any bullet.
+5. Add deeper CARL detail and evidence/examples as prep material with short answer bullets.
+6. Preserve extra supporting details in `3. Additional Details / Evidence / Examples` when they are credible but too detailed for the main script.
+7. Write scripts to `output/interview_scripts.md`.
+8. Keep `output/interview_scripts.md` consistent with `output/story_library.md`.
 
 ### Default Script Shape
 
@@ -346,32 +527,43 @@ The user's preferred style is **bullet points with short, plain language**. Do n
 ### Story: <title>
 - Tags: [Conflict] [Leadership] ...
 - Best for: <prompts/signals>
-- One-line thesis: <what this story proves>
-- Relevant because: <why this matters for frontier labs / this company>
-- MLE Staff+ evidence: <3-4 dimensions this story proves>
 
-#### Context
-- ...
+#### 1. Short Opening
+2-3 sentences that connect the question keywords to Julie's genuine experience.
 
-#### Actions
-- I ...
-- I ...
+- Key / strongest point:
 
-#### Results
-- ...
+#### 2. Complete CARL Story
+- Context:
+- Actions:
+- Results:
+- Learning:
 
-#### Learnings
-- ...
+#### 3. Additional Details / Evidence / Examples
+- Decision/tradeoff:
+- Rejected alternatives:
+- Stakeholder/conflict evidence:
+- Metrics/eval evidence:
+- Artifact/leverage:
+- Staff+ signal:
+- Metric definitions:
+- Concrete examples:
+- Written artifacts:
+- Extra implementation/detail:
+- Verification needed:
 
-#### Company Link
-- ...
-
-#### Red Flag Avoids
-- Don't say: ...
-
-#### Likely Follow-ups
+#### 4. Potential Follow-ups
 - Q: ...
   - ...
+
+#### 5. Avoid Red Flags
+- Don't say:
+- Don't overstate:
+
+#### 6. Connection With Other Stories
+- Related stories:
+- Backup story:
+- Contrast story:
 ```
 
 For MLE Staff+ scripts, include a short evidence map when the story is substantial:
@@ -471,10 +663,11 @@ Use `output/story_library.md` as the polished source of truth.
 ### Story 1: <title>
 - Tags:
 - Best for:
-- Scope level:
-- MLE Staff+ evidence:
-- Relevant because:
-- Why it matters for <role/company>:
+
+#### 1. Short Opening
+2-3 sentences that connect the question keywords to Julie's genuine experience.
+
+- Key / strongest point:
 
 #### Evidence Map
 - Technical judgment:
@@ -484,27 +677,44 @@ Use `output/story_library.md` as the polished source of truth.
 - Cross-functional:
 - Communication/writing:
 
-#### Context
+#### 2. Complete CARL Story
+##### Context
 - ...
 
-#### Actions
+##### Actions
 - ...
 
-#### Results
+##### Results
 - ...
 
-#### Learnings
+##### Learnings
 - ...
 
-#### Company Link
-- ...
+#### 3. Additional Details / Evidence / Examples
+- Decision/tradeoff:
+- Rejected alternatives:
+- Stakeholder/conflict evidence:
+- Metrics/eval evidence:
+- Artifact/leverage:
+- Staff+ signal:
+- Metric definitions:
+- Concrete examples:
+- Written artifacts:
+- Extra implementation/detail:
+- Verification needed:
 
-#### Red Flag Avoids
-- ...
-
-#### Likely Follow-ups
+#### 4. Potential Follow-ups
 - Q:
   - ...
+
+#### 5. Avoid Red Flags
+- Don't say:
+- Don't overstate:
+
+#### 6. Connection With Other Stories
+- Related stories:
+- Backup story:
+- Contrast story:
 
 ## Support Stories
 ...
@@ -515,6 +725,9 @@ Use `output/story_library.md` as the polished source of truth.
 Run this when the library grows, when merging grill notes, or when asked:
 
 - One flowing CARL narrative per story.
+- Every story has a short opening that can stand alone before deeper probing.
+- Additional details / evidence / examples are separate from the opener so Julie can answer interruptions without overloading the first response.
+- Supporting details are preserved in the evidence/examples and potential-followup sections, not lost during script tightening.
 - Role-lens framing integrated into the story, not bolted on afterward.
 - Spoken content separated from prep notes.
 - Near-duplicates merged or clearly differentiated.

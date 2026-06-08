@@ -251,7 +251,7 @@ Polish only after the previous steps have produced enough content. Step 7 is whe
 
 Polish for:
 
-- A crisp 60-second opener.
+- A crisp 30-second opener that loosely follows CARL: Context, Action, Result, Learning.
 - Clear personal ownership.
 - 1-2 core technical decisions with evidence and alternatives.
 - Honest metrics and caveats.
@@ -268,7 +268,7 @@ Create `output/project_deep_dive.md` as the durable main artifact:
 ```text
 # Project Deep Dive
 
-## 60-Second Opener
+## 30-Second CARL Opener
 ## Project Context
 ## My Role and Ownership
 ## Problem Framing
@@ -284,13 +284,23 @@ Create `output/project_deep_dive.md` as the durable main artifact:
 ## Likely Follow-Ups
 ```
 
-Keep it interview-ready, not essay-like. Use concise bullets where possible. Make the opener sayable in under one minute.
+Keep it interview-ready, not essay-like. Use concise bullets where possible. Make the opener sayable in about 30 seconds.
+
+For `## 30-Second CARL Opener`, use a compact CARL shape:
+
+- **Context:** What the project was and why it mattered.
+- **Action:** What Julie personally drove or decided.
+- **Result:** What changed, with verified metrics or clear qualitative impact.
+- **Learning:** The Staff-level lesson, retro, or durable judgment signal.
+
+Keep this to 4 short spoken bullets or one tight paragraph. Do not force full behavioral-story detail; the goal is to orient the interviewer and invite technical probing.
 
 ### Final One-Pager
 
 Create `output/one_pager.md` for fast interview reference:
 
 - **Thesis:** one sentence.
+- **30-second CARL opener:** Context, Action, Result, Learning.
 - **Signals:** 4-6 Staff+ signals this project demonstrates.
 - **Numbers:** verified metrics only; otherwise mark as `verify`.
 - **Hard decisions:** 2-3 bullets with option -> choice -> reason.
