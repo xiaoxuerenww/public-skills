@@ -6,6 +6,44 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-06-15 - Anthropic loop closed; refocus on Databricks and other company prep
+
+**What we discussed:**
+- Julie did not pass the Anthropic interview loop, and the remaining two rounds were canceled.
+- This closes the Anthropic path for this cycle. The immediate next focus is other company interview prep, with Databricks already scheduled.
+- The prior plan was to finish Anthropic strongly, then move to Databricks and other AI-company interviews. The outcome changes the sequence but not the larger strategy: Anthropic was one market datapoint, not the whole frontier path.
+- Databricks should now be treated as the primary active loop, not as a consolation prize or backup. It has already been identified as a serious opportunity because of the hiring-manager connection, possible financial upside, and potentially better mix of trust, technical growth, and survivability.
+- Julie's short postmortem is that the likely weak signal was the ML configuration coding round, where she had to read a lot of unfamiliar Python function code and messy research-style code. She has not done much hands-on coding in her current role recently and mainly refreshed Python memory for the interview.
+- Other rounds, including behavioral and HM conversations, felt strong.
+
+**Key insights:**
+- The Anthropic rejection is data, not a verdict. It may reveal interview calibration gaps, company/team mismatch, or Anthropic-specific bar fit, but it does not invalidate Julie's broader Staff / Senior Staff MLE trajectory.
+- This is a moment to avoid the self-limiting interpretation: "I failed Anthropic, so maybe I am not frontier-caliber." That is fear overgeneralizing from one loop.
+- The useful interpretation is narrower and more actionable: extract the gaps from the Anthropic process, then convert them directly into Databricks prep.
+- The plan remains market discovery. Anthropic closing creates space to focus, not evidence that the overall strategy was wrong.
+- The most actionable gap is code-reading fluency under unfamiliar conditions: navigating messy Python, inferring intent from functions, tracing data/config flow, and modifying code without full context.
+- This is a trainable execution gap, not a ceiling. It is consistent with the known gap that Julie has strong practical ML judgment but needs interview-ready coding speed and framework/codebase fluency after less hands-on coding in her current role.
+
+**Principles at play:**
+- **Principle 8 - Built for Challenge**: A rejection is painful but survivable. The task is to metabolize it into sharper prep instead of letting it become an identity story.
+- **Principle 5 - Don't Let Self-Limiting Beliefs Set the Ceiling**: Do not turn one company's decision into a ceiling on what roles Julie can land.
+- **Principle 4 - Think Carefully, Act Thoughtfully**: Reflect enough to identify the real gaps, then redirect energy quickly to the scheduled Databricks loop.
+- **Principle 9 - Work and Life as Exploration - Fun is the Mission**: The interview process is still exploration and calibration. Success and failure are data, not verdicts.
+- **Principle 6 - Work at the Frontier - With the Best**: Databricks and other high-caliber AI companies remain aligned with the larger goal of working on frontier-relevant systems with strong people.
+
+**Action items:**
+- [ ] Do a short Anthropic postmortem: list the rounds, what felt strong, what felt weak, what feedback or signal was available, and which gaps are reusable for other loops.
+- [ ] Convert the postmortem into a Databricks prep plan instead of replaying the rejection emotionally.
+- [ ] Add daily messy-code reading practice before Databricks: take an unfamiliar Python or ML repo/file, map function purpose, trace inputs/outputs, identify config flow, and make one small change.
+- [ ] Practice explaining unfamiliar code out loud: "what I know, what I infer, what I would inspect next, what change I would make."
+- [ ] Treat Databricks as the primary active loop and prepare for it on its own terms: company products, ML/AI platform strategy, Lakehouse / Mosaic AI context, systems design, and Julie's RAG / LM-ranking technical spine.
+- [ ] Keep other company prep active after Databricks, but do not scatter attention before the scheduled loop.
+- [ ] Watch for the self-limiting story: "Anthropic rejected me, so I am not good enough." Replace it with the more precise story: "Anthropic closed; now I use the signal to get sharper for Databricks."
+
+**Session note for future:** Anthropic is no longer active: Julie did not pass, and the remaining two rounds were canceled. This should be treated as a painful but bounded market datapoint, not a verdict on her ceiling. The likely weak signal was the ML configuration coding round: unfamiliar Python functions, messy research-style code, and reduced recent hands-on coding in her current role. Behavioral and HM rounds felt strong. The immediate coaching stance is to metabolize the rejection quickly, convert the code-reading gap into daily practice, and redirect the energy into Databricks, which was already a serious path because of the hiring-manager connection, possible financial upside, and potentially better fit on trust, technical growth, and survivability.
+
+---
+
 ## 2026-06-14 - Anthropic diligence, Databricks opportunity, and six-month path toward elite early-stage AI labs
 
 **What we discussed:**
