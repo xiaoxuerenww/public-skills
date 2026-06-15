@@ -6,6 +6,67 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-06-14 - Anthropic diligence, Databricks opportunity, and six-month path toward elite early-stage AI labs
+
+**What we discussed:**
+- Julie is 4 out of 6 interviews through the Anthropic loop, with two remaining in the next two weeks.
+- She is treating Anthropic as a serious option under diligence, not an automatic prize. The key evaluation dimensions are financial upside, technical upside, survival chance, and health/family cost.
+- She has firsthand evidence that Anthropic is extremely fast-paced and stressful, with little onboarding and high expectations to deliver in the first week and establish herself in the first month.
+- She is concerned that the Knowledge team, focused on web search and evaluation, may not be one of the most central teams at Anthropic, despite the company brand and intensity.
+- In parallel, she is talking to Databricks, where she has a connection with the hiring manager. She knows the hiring manager is strong, and Databricks may have financial upside from an expected fundraising and valuation increase.
+- She also spoke with or applied to early-stage AI labs including Harvey.AI and Thinking machine Labs. Thinking machine Labs passed her resume around but no team was interested right now.
+- New goal: build a path to get closer to Thinking machine Labs or similar elite new AI labs over the next six months, through connections, credibility-building, and future interview opportunities.
+- Work update: Julie's scope at Google is expanding because some people left and she took over their scope. She is now leading the whole Jing AI for recommendation efforts in her team, which can become a strong Senior Staff interview story.
+- The risk is that the expanded scope spreads her across too many projects and pulls her into manager-like coordination work. That helps organizational coverage but does not build the deep technical expertise she needs for interviews or the next job.
+- Julie has chosen two technical directions to go deeper on: (1) RAG system ranking / LM-based ranking, which she has already been working on, and (2) agent systems for machine learning engineer automation.
+- Manager update: Julie recognizes that the new manager giving her more responsibility does not necessarily mean more trust. It is mostly because other Staff engineers left and she is taking over their scope.
+- She observes that the manager is weak at motivating the team, has split the team into chapters that create isolation and territorial behavior, and is soft on external alignment and conflict handling. The manager often holds information, does not resolve blockers, and pushes Staff engineers to do external alignment.
+- Current stance: this manager is not someone Julie wants to work with long term, but so far the situation does not block or materially affect her. She wants to keep pursuing external opportunities and check in again in about three months on whether to stay, switch teams internally, or remain with minimal work effort while interviewing.
+- Updated manager stance: there is now little to no emotional cost because Julie understands the manager better and has set the right expectations. She is no longer looking for their approval and is clearer about what she wants. The primary goal is external frontier opportunities. The secondary goal is to do the current job well and help others with calibrated, bare-minimum effort appropriate for the role.
+
+**Key insights:**
+- The goal is not tied to any single company. It is tied to building at the frontier. That makes exploring Databricks and early-stage AI labs strategic market discovery, not hedging.
+- Anthropic needs to clear a high bar as a specific team opportunity, not just as a brand. A stressful role with compressed financial upside and uncertain team centrality needs strong evidence on technical compounding and survivability.
+- Databricks is a serious parallel path because Julie has a known strong hiring-manager connection and possible financial upside. This may offer a better mix of trust, technical growth, and economic return than an unknown high-stress Anthropic team.
+- Thinking machine Labs is not closed forever just because there is no team interest now. The useful question is how to become legible and connected enough over six months that the next pass is warmer and better matched.
+- The expanded Google scope is useful only if Julie converts it into deep technical directions. Broad oversight can create a Senior Staff leadership story, but depth is what compounds for frontier interviews and future technical credibility. Her two current depth bets are RAG / LM-based ranking and agent systems for MLE automation.
+- The manager pattern is now evidence, not just emotional reaction: weak team motivation, fragmented chapters, territorial charter leads, and poor external alignment. The current manager is a poor long-term fit, but not yet a hard blocker.
+- The old approval-seeking loop is much weaker here. Julie cares less about what the manager thinks and is still doing the right amount of work for the role.
+
+**Principles at play:**
+- **Principle 1 - Follow Curiosity, Even When It's Hard**: Exploring early-stage labs reflects real curiosity about where frontier work is happening.
+- **Principle 3 - Be Brave - Act Before You Feel Ready**: Continuing Anthropic while opening Databricks and early-stage conversations is active movement, not waiting.
+- **Principle 4 - Think Carefully, Act Thoughtfully**: The next decision requires diligence on financial upside, technical upside, survivability, and life cost.
+- **Principle 6 - Work at the Frontier - With the Best**: Thinking machine Labs and similar labs are attractive because of the caliber of people and frontier ambition.
+- **Priority ordering - Health > Family > Money > Technical Growth**: Anthropic's stress and onboarding expectations must be evaluated against health and family, not only technical prestige.
+- **Principle 7 - Keep Improving - Work and Life Together**: The expanded work scope should be shaped into deliberate technical growth, not just more responsibility.
+- **Principle 4 - Think Carefully, Act Thoughtfully**: The manager situation should be monitored with a three-month decision checkpoint instead of reacted to immediately.
+
+**Action items:**
+- [ ] Finish the remaining Anthropic interviews with full effort while using them to diligence first-30-day expectations, manager support, and team centrality.
+- [ ] Kick off Databricks after the Anthropic interviews and treat it as a high-quality parallel option, not a backup.
+- [ ] Interview with Databricks and other already-applied AI companies after Anthropic to see whether there is a more interesting or better-fit opportunity.
+- [ ] Build a six-month relationship and credibility plan for Thinking machine Labs or similar elite AI labs.
+- [ ] Build connections to Neon Labs or similar new AI labs that can connect Julie with top scientists she admires and wants to work with.
+- [ ] Identify 5-10 people at Thinking machine Labs or adjacent labs whose work overlaps with Julie's LLM retrieval, eval, recommendation, or large-scale ML background.
+- [ ] Find warm paths through existing Google, DeepMind, Anthropic, OpenAI, Databricks, Meta, or investor/operator networks.
+- [ ] Create one or two concrete public or semi-public artifacts that make Julie legible to these labs: for example, a short technical memo on LLM retrieval/eval, a project narrative, or a targeted open-source/research-adjacent contribution.
+- [ ] At Google, choose one deep technical direction inside the expanded Jing AI recommendation scope and protect time for it. Do not let the role become only manager-like coordination across many projects.
+- [ ] Shape RAG / LM-based ranking into the primary technical spine for Anthropic / Databricks / frontier-lab interviews.
+- [ ] Explore agent systems for MLE automation as a second, forward-looking technical bet, but define a narrow wedge so it does not become another broad coordination surface.
+- [ ] In about three months, reassess the current Google team: stay, switch internally, or stay with minimal effort while continuing external interviews.
+- [ ] Until then, avoid over-investing in fixing the manager's operating model. Take useful scope, protect deep technical work, do the right amount of work for the role, and preserve energy for external frontier opportunities.
+
+**Current plan:**
+1. Try her best and complete the Anthropic interview loop.
+2. After Anthropic, interview with Databricks and other AI companies she has already applied to, then evaluate whether any opportunity is genuinely interesting and well matched.
+3. In parallel, build connections to Neon Labs, Thinking machine Labs, or similar new AI labs that can connect her with top scientists she admires and may want to work with over the next few months.
+4. After completing the current interview queue, seriously evaluate moving to the Bay Area or San Francisco as a connection-building strategy, especially for technical and social events where top-tier AI scientists are present. Julie's current view is that staying remote from Seattle does not work because she lacks regular in-person AI exposure there, and targeted SF trips are too costly and information-poor for frequent casual events. She strongly wants to move to the Bay Area.
+
+**Session note for future:** Julie is shifting from company-logo pursuit to frontier-market discovery. Anthropic remains active but is now under serious diligence because of stress, weak onboarding, uncertain Knowledge-team centrality, and possibly compressed financial upside. Databricks is emerging as a strong parallel path with a trusted hiring-manager connection and financial upside. The current plan is to finish Anthropic strongly, then interview Databricks and already-applied AI companies, while building a six-month path toward Neon Labs, Thinking machine Labs, or similar elite early-stage AI labs through network building, credibility artifacts, warmer team-specific matching, and likely Bay Area / San Francisco presence after the current interview queue is complete. Remote Seattle and occasional SF trips currently look insufficient for the relationship density she wants. At Google, her expanded Jing AI recommendation scope can support a Senior Staff story, but only if she converts it into deep technical expertise instead of spreading herself across manager-like coordination. Her chosen depth directions are RAG / LM-based ranking and agent systems for MLE automation. Her new manager still looks like a poor long-term fit because of weak team motivation, chapter fragmentation, and poor external alignment, but this is not yet a hard blocker and now has little emotional cost. Julie is no longer seeking approval from this manager. Her primary goal is external frontier opportunities; her secondary goal is doing the current job well and helping others with calibrated effort. Reassess in about three months whether to stay, switch internally, or stay with minimal effort while interviewing.
+
+---
+
 ## 2026-05-18 — Manager reframed; domain locked; timeline firmed: "He can't guide or give space, so I stop seeking approval"
 
 **What we discussed:**
@@ -359,4 +420,3 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 - Principle 3 — Be Brave — Act Before You Feel Ready (this session was largely about naming and fighting Julie's recurring pattern of waiting for permission)
 - Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling
 - Principle 6 — Work at the Frontier — With the Best
-
