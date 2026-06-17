@@ -1,0 +1,4 @@
+interface:
+  display_name: "MLE/SWE Growth Goal Coach"
+  short_description: "Pick a focused MLE/SWE growth lane"
+  default_prompt: "Use $mle-swe-growth-goal to help me choose a 3-6 month growth direction."
