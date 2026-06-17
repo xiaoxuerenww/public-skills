@@ -458,3 +458,25 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 - Principle 3 — Be Brave — Act Before You Feel Ready (this session was largely about naming and fighting Julie's recurring pattern of waiting for permission)
 - Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling
 - Principle 6 — Work at the Frontier — With the Best
+## 2026-06-17 — Narrowing 3-6 month skill focus: research-adjacent Staff AI direction
+
+**What we surfaced:**
+- Julie is choosing a 3-6 month skill focus and was torn between becoming more research-y versus optimizing for a broader/generalist AI engineering lane.
+- Through the quiz, her strongest signals were not pure research and not generic SWE. She repeatedly chose company trajectory, people/culture, research-adjacent teams, turning ambiguous frontier ideas into real systems, and shaping technical direction.
+- The clearest target identity is: **research-adjacent Staff AI Engineer / Research Engineer focused on agent/eval systems**.
+
+**Key insights:**
+- The dream-job pull is not "I personally invent the algorithm." It is: "Researchers bring rough ideas, and I build the systems that make those ideas testable, scalable, and real" plus "I sit at the intersection of research, product, and infra and help decide what technical direction is worth betting on."
+- Her 3-6 month investment should build technical depth in service of better technical judgment, not depth for its own sake.
+- The right optimization is to become **research-fluent enough to be a dangerous builder around researchers**.
+
+**Action direction:**
+- Primary focus: agent/model evaluation systems, failure analysis, and feedback loops.
+- Secondary focus: agent runtime reliability and inference/runtime systems.
+- Supporting skill: read unfamiliar research code/papers quickly enough to make better technical bets and build the missing systems around them.
+
+**Principles at play:**
+- Principle 1 — Follow Curiosity, Even When It's Hard
+- Principle 3 — Be Brave — Act Before You Feel Ready
+- Principle 6 — Work at the Frontier — With the Best
+- Living tension: Curiosity vs. Focus
