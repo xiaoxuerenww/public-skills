@@ -6,6 +6,33 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-06-21 — Strategy pivot: position early for the next wave (AI-for-science) vs. chase current frontier labs
+
+**What we surfaced:**
+- After a conversation with a friend about AI trends, Julie is reframing her strategy: instead of chasing a seat at the *current* frontier labs (late-stage, very high valuation, likely non-critical components), she wants to position early for the *next* wave. Her two candidate waves are robotics and AI-for-science/medicine. Her gut pull is **AI-for-science**.
+- Core thesis (held *before* the Anthropic rejection, so evidence-based not rejection-driven): joining a late-stage, very-high-valuation lab on a non-critical component caps both financial upside and frontier-intellectual upside, and costs the opportunity to be early on whatever forms next. This is the same logic as her May 11 investor value-shift (be early where upside is front-loaded).
+- Near-term plan is unchanged: finish the Databricks and Harvey.AI loops. If offers come, she faces a fork — take the bird in hand (capital, platform credibility, a more-promising-company-she-can-see-today) OR decline to keep exploring and pivot strategy toward the next-wave frontier.
+
+**Key insights:**
+- This passed the fear-vs-evidence test: she'd still scrutinize an Anthropic offer on financial/technical grounds even before the rejection, and the next-wave thesis predates June 15.
+- The real risk is an **asymmetric fork**: Databricks/Harvey is concrete (real offer, comp, team) while "keep exploring the next wave" is still fog. Declining a concrete offer *into fog* is the most dangerous form of her known Hedging Pattern — it feels like courage in the moment but can be avoidance. She can only tell which if the AI-for-science path is also concrete by the time offers land.
+- Convergence insight: her June 17 skill focus (research-fluent builder around researchers; agent/eval systems) feeds AI-for-science directly (eval infra, agents for scientific reasoning, systems that make research testable — her AutoRater/eval spine pointed at science). So the same 3–6 month build serves Databricks, Harvey, *and* the next wave. No conflict in skill investment.
+
+**Principles at play:**
+- Principle 1 — Follow Curiosity (AI-for-science genuinely pulls her; fun is the signal)
+- Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling
+- Principle 6 — Work at the Frontier — With the Best
+- May 11 value-shift — early upside as foundation for the eventual investor act
+- Living tension: optionality/exploration vs. commitment (Hedging Pattern watch)
+
+**The blocker:** The fork is asymmetric. The fix is to make the AI-for-science side concrete *before* offers land, so any decision to decline is a real choice between two visible options, not declining into fog.
+
+**Action item (deferred — TODO next week, week of 2026-06-22):**
+- [ ] Time-boxed 2–3 hour map of the AI-for-science frontier so it stops being a vibe: (1) who's doing it at the frontier (e.g., FutureHouse, Isomorphic Labs, Lila, Periodic Labs, DeepMind/Anthropic AI-for-science efforts, well-funded seed/Series-A bio+AI); (2) what builder-roles exist for her profile (eval/agent/infra person who makes the science scale, not bench scientist); (3) the one skill or artifact that would make her an obvious early hire when the wave forms.
+- If it lights her up and a real path appears → the fork becomes a genuine choice. If it fizzles → "next wave" was partly a story, and Databricks/Harvey get full commitment. Either outcome is a win for 3 hours of effort.
+
+**Session note for future:** Julie is pivoting from "win a seat at a current frontier lab" toward "be early on the next wave," with AI-for-science as her chosen direction (over robotics). The thesis is sound and consistent with her May 11 investor logic, not a rejection rationalization. Near-term loops (Databricks, Harvey.AI) continue unchanged; the strategy change only triggers if she gets offers and chooses to keep exploring rather than join. The coaching focus is to de-risk the eventual fork by making AI-for-science concrete before offers arrive — otherwise declining an offer "to explore" risks being the Hedging Pattern in disguise. Her June 17 skill focus already converges with AI-for-science, so the build is shared. Action deferred to the week of June 22.
+
 ## 2026-06-15 - Anthropic loop closed; refocus on Databricks and other company prep
 
 **What we discussed:**

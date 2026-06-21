@@ -119,6 +119,10 @@ Read only the relevant reference file(s) for the prompt. For non-serving researc
 5. Observability / evaluation / iteration / failure handling
 ```
 
+When solve mode is for a product ML system, especially recommendation, ranking, search, feed, ads, marketplace, or personalization problems, follow the example-solution shape from:
+`/Users/xue/Documents/work/0_databricks/4_SystemDesign/Case study/Recommendation/Video Recommendation System Design  ML System Design in a Hurry.md`.
+Use it as a structural reference, not as copied content.
+
 ## Staff/Principal Operating Principles
 
 Use these principles in every solve, learn, and mock interaction:
@@ -194,36 +198,46 @@ All file operations are relative to the resolved `problem_dir`.
 
 For each problem (one at a time if multiple):
 
-1. **Requirements & Scoping:**
-   - Functional requirements tied to success metrics.
-   - Non-functional requirements (latency, cost, reliability, fairness).
-   - Explicit non-goals.
-   - Scale assumptions and bottleneck analysis.
-   - Metrics taxonomy: business, offline ML, online product, guardrail, and infrastructure metrics.
-   - State assumptions and make decisions; avoid leaving major choices as open option lists.
+1. **Problem Framing:**
+   - Start with "what product surface are we designing?" and make the scope concrete.
+   - Ask or answer 3-5 clarifying questions with assumptions for users, items, latency, number of results, freshness, and safety constraints.
+   - Establish a business objective before the ML objective. Prefer long-term product health over shallow metrics. Example pattern: not just CTR, but quality-adjusted engagement, user satisfaction, marketplace health, creator or seller sustainability, trust, or task success.
+   - Translate the business objective into the ML objective: ranking, retrieval, classification, forecasting, generation, planning, anomaly detection, or control-plane correctness.
 
-2. **Architecture & Design:**
-   - Start with the simplest viable architecture, then add complexity only where constraints require it.
-   - High-level data flow and control flow.
-   - Major components and their contracts.
-   - Trade-offs between choices (e.g., real-time vs. batch, centralized vs. distributed).
-   - Why this design meets requirements.
-   - Call out hybrid architecture choices where useful: rules + ML, batch + realtime, retrieval + ranking + reranking, primary model + fallback.
+2. **High-Level Design:**
+   - Draw the main system before diving into features or models.
+   - For ranking/recommendation/search problems, default to a multi-stage architecture when scale requires it: candidate generation, lightweight ranker or filter, heavy ranker, reranker or policy layer, logging, training, evaluation, and monitoring.
+   - Explain each stage by its contract, latency/cost budget, and optimization target. Candidate generation optimizes recall, lightweight ranking optimizes cheap pruning, heavy ranking optimizes quality, reranking optimizes slate/business constraints.
+   - Call out what can be precomputed, cached, streamed, or served online.
 
-3. **Deep Dives (2-3 hardest components):**
-   - For each hard component: problem → options → chosen solution → why it wins.
-   - Examples: feature engineering, training/serving consistency, experiment tracking, config validation, reproducibility, metric semantics.
-   - Show component evolution when relevant: MVP → hardened production → scale-out.
-   - Tie model choices to serving, data freshness, cost, and operational constraints.
+3. **Data and Features:**
+   - Organize data by signal quality and freshness instead of listing every possible field.
+   - Cover explicit feedback, implicit feedback, contextual/session data, item/content features, user/account features, and platform or policy signals when relevant.
+   - Explain feature freshness, cacheability, normalization, leakage risk, position or selection bias, and training-serving consistency.
+   - Keep this section moving; give representative feature groups and offer depth only where it affects correctness or latency.
 
-4. **Failure Modes & Mitigation:**
-   - Silent correctness failures (data staleness, training/serving skew, experiment validity loss).
-   - Debugging and monitoring signals.
-   - Rollback and retry behavior.
-   - Cost controls and graceful degradation.
-   - Include safety/privacy risks, leakage, drift, hallucination/factuality failures for GenAI systems, canary rollout, retraining triggers, and long-term maintainability.
+4. **Modeling:**
+   - Start with baselines and benchmarks, then choose the production model.
+   - For retrieval, explain embeddings, two-tower or sparse retrieval, ANN/vector search, hard negatives, and recall measurement when relevant.
+   - For ranking, distinguish cheap rankers from heavy rankers. Choose models based on latency, sequence modeling needs, sparse/dense feature handling, debuggability, and infrastructure cost.
+   - For multi-objective systems, define prediction heads or score components and how they combine into a value model.
+   - Discuss loss functions only when they matter for bias correction, multitask learning, calibration, long-term objective alignment, or safety.
 
-5. **L6+ Signals to Demonstrate:**
+5. **Inference and Evaluation:**
+   - Tie serving design to the architecture: offline precompute, online feature fetch, model serving, batching, hardware, caching, fallbacks, and degradation.
+   - Evaluate each stage separately and end-to-end. Include candidate recall, ranking metrics, calibration, online A/B tests, guardrails, infra health, and long-term product metrics.
+   - Mention experiment validity risks such as novelty effects, position bias, feedback loops, delayed outcomes, segment regressions, and interference.
+
+6. **Deep Dives (2-3 hardest components):**
+   - Pick from the real cruxes, not generic components. Common choices: feedback loops, cold start, explore/exploit, freshness, debiasing, marketplace health, data quality, model latency, experiment validity, and safety.
+   - For each hard component: problem, why it matters, options, chosen solution, why it wins, failure mode, and how to measure success.
+   - Show component evolution from MVP to production hardening to scale-out.
+
+7. **Failure Modes & Mitigation:**
+   - Cover silent correctness failures, data staleness, training-serving skew, leakage, drift, popularity or exposure bias, experiment validity loss, policy/safety regressions, and cost blowups.
+   - Define debugging signals, rollout gates, canary metrics, rollback, retraining triggers, fallbacks, and graceful degradation.
+
+8. **L6+ Signals to Demonstrate:**
    - **Problem framing**: Convert ambiguous prompt into crisp product goal, explicit non-goals, measurable success criteria.
    - **Technical judgment**: Identify 1-2 risks that matter most; spend depth there instead of touring every component.
    - **ML correctness ownership**: Protect experiment validity, data quality, evaluation semantics, reproducibility.
@@ -237,15 +251,18 @@ For each problem (one at a time if multiple):
 
 1. **Write `<problem_dir>/output/interview_solutions.md` (Interview-Ready Answer):**
    - **Opener**: Problem framing and thesis (1 sentence summary of the design).
-   - **Clarifying Questions**: 3-5 key questions you'd ask.
-   - **Requirements**: Functional, non-functional, non-goals, success metrics.
-   - **High-Level Architecture**: ASCII diagram + text. Data flow, control flow, major components.
+   - **Understanding the Problem**: Product surface, users, scale, latency, constraints, and scope assumptions.
+   - **Problem Framing**: Clarifying questions, business objective, ML objective, non-goals, and success criteria.
+   - **High-Level Design**: ASCII diagram + text. Data flow, control flow, major stages, and stage contracts.
+   - **Data and Features**: Training data, feedback signals, context, feature groups, freshness, bias, and consistency.
+   - **Modeling**: Baselines, model selection, architecture, loss/objective, calibration, and value-model composition.
+   - **Inference and Evaluation**: Serving path, caching/precompute, latency/cost budget, offline metrics, online tests, and guardrails.
    - **Crux & Simplifications**: What is hard, what is straightforward, and where complexity was intentionally avoided.
    - **Deep Dives**: 2-3 sections on hardest components. Problem → Options → Chosen solution + Why.
    - **Trade-Offs & Alternatives**: What you didn't choose and why.
-   - **Metrics**: Business, offline ML, online product, guardrail, and infrastructure metrics.
    - **Failure Modes & Debugging**: Silent failures, monitoring, rollback, cost controls.
    - **Evolution Plan**: MVP, hardening, scale-out, and future model/system evolution.
+   - **Level Calibration**: What mid-level, senior, and staff-level answers would emphasize for this problem.
    - **Wrap-Up**: Restate thesis and why the design meets requirements.
    - **Interview Delivery**: How to present under time pressure; which sections to expand/compress.
    - Write as if explaining to an interviewer: conversational, confident, complete.

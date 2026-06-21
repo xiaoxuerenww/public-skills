@@ -502,11 +502,16 @@ def build_table_of_contents(markdown_content: str) -> str:
                     break
             if metadata_line:
                 posted_match = re.match(
-                    r"^`Post ID: .*?\| .*?\| `?Published: (?P<date>\d{4}-\d{2}-\d{2})",
+                    r"^`Post ID: .*?\| .*?\| `?Published: (?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})",
                     metadata_line,
                 )
                 if posted_match:
-                    display_heading = f"{heading} {posted_match.group('date')}"
+                    display_heading = (
+                        f"{heading} "
+                        f"{posted_match.group('year')}-"
+                        f"{int(posted_match.group('month')):02d}-"
+                        f"{int(posted_match.group('day')):02d}"
+                    )
 
         toc_lines.append(f"- [{display_heading}](#{pending_anchor_id})")
         pending_anchor_id = None
@@ -518,7 +523,10 @@ def build_table_of_contents(markdown_content: str) -> str:
 
 
 def extract_published_date(markdown_content: str) -> str | None:
-    match = re.search(r"`Published: (?P<date>\d{4}-\d{2}-\d{2})", markdown_content)
+    match = re.search(
+        r"`Published: (?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})",
+        markdown_content,
+    )
     if match is None:
         return None
-    return match.group("date")
+    return f"{match.group('year')}-{int(match.group('month')):02d}-{int(match.group('day')):02d}"
