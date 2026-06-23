@@ -6,6 +6,42 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-06-23 - Job-search channel learning: cold apply is low-yield; Staff+ search needs network-first strategy
+
+**What we surfaced:**
+- Julie reflected that cold applying has been very low-yield: after applying to more than 20 companies, only one interview came from a cold application.
+- Most real interview opportunities have come through referrals, existing connections, or warm paths.
+- The key learning is that a Staff / Senior Staff search is not like a new-grad search. At this level, network and context matter much more because the goal is not just getting into a funnel, but finding matched positions, hidden needs, team-specific signal, and strategic information.
+- Julie also clarified target-level calibration: given her work experience and background, she should target Senior Staff or Senior Manager roles in smaller companies, and potentially Director roles at startups. For big tech or frontier labs, Staff or Senior Staff remains appropriate.
+- Senior Staff is a valid target level for this interview round, not an overreach.
+- Current active interview queue is Databricks and Harvey.ai, with a goal to complete both by the end of July. If an offer comes, Julie will evaluate whether it is genuinely a great opportunity and whether to switch. If she decides not to switch to those companies, the fallback is to find another Google team with room to grow technically or leadership-wise.
+- Julie considered whether to interview with companies she is not interested in, such as TikTok, mainly as mock interview practice because she has not interviewed externally in 10 years and has not previously done ML fundamentals or ML system design interviews. After applying the "would I seriously consider it under the right team/level/scope?" test, she clarified the answer is no for TikTok.
+
+**Key insights:**
+- Cold apply is useful as a coverage mechanism, but it should not be the main strategy. The evidence says it is low-conversion and weak on role fit.
+- For Staff+ roles, the stronger motion is: identify the teams and problems first, then use connections to understand fit, find the right hiring manager, and route into the process with context.
+- This directly supports the current next-wave / AI-for-science strategy. If Julie wants to be early to the next wave, she needs relationship density and strategic information, not just public job postings.
+- Level should be calibrated by company stage and scope. At smaller companies, Julie's 9+ years at Google, Staff TL scope, 0-to-1 ML systems, and cross-org leadership can map to Senior Staff, Senior Manager, or startup Director scope. At big tech and frontier labs, title compression and calibration make Staff / Senior Staff the cleaner target.
+- The important mindset shift is to stop underselling the target level. The question is not "Am I allowed to target Senior Staff?" The better question is "Which company stage and role scope makes Senior Staff or above the truthful mapping?"
+- Real-company interviews can provide useful calibration that AI mocks cannot, especially on interviewer judgment, pacing, follow-up questions, and the emotional pressure of being evaluated by a human.
+- But there is an integrity boundary: do not take an interview purely as a disposable mock if Julie has zero serious interest in the company under any plausible team, scope, level, or compensation. TikTok fails this test for Julie, so it should not be scheduled just for practice.
+- A better rule is "calibration interviews only with nonzero-option value." It is acceptable to take a lower-priority interview with light preparation if Julie would seriously consider the company under the right team/level/scope, or if the interview gives genuine market signal. It is not acceptable if the answer is already no.
+- Given Databricks and Harvey.ai are the real July queue, additional interviews should not steal prep bandwidth or emotional energy from ML fundamentals and system design prep for those loops.
+
+**Principles at play:**
+- Principle 4 - Think Carefully, Act Thoughtfully: update strategy based on actual conversion data.
+- Principle 6 - Work at the Frontier - With the Best: the right roles are likely found through people, team context, and problem fit.
+- Principle 5 - Don't Let Self-Limiting Beliefs Set the Ceiling: Senior Staff is a legitimate target for this round.
+- Principle 2 - Integrity First: do not use companies as disposable practice if there is no honest possibility of interest.
+- Principle 9 - Work and Life as Exploration - Fun is the Mission: treat the job search as market discovery, not an anonymous application grind.
+
+**Action item:**
+- [ ] Shift the search operating rule to network-first: for each target company or AI-for-science lab, identify 2-3 relevant people, one target team/problem, and one warm path before or alongside any application.
+- [ ] Use stage-aware level targeting: startups/smaller companies = Senior Staff / Senior Manager / possible Director; big tech and frontier labs = Staff / Senior Staff.
+- [ ] Do not schedule TikTok just for practice. Ask a friend for a realistic mock or get a paid Staff+ mock interviewer before Databricks and Harvey.ai. Use AI mocks for repetition and coverage. Only add a real-company calibration interview if it has nonzero-option value and does not disrupt July prep.
+
+**Session note for future:** Julie has evidence that cold applications are low-yield for her Staff+ search: more than 20 cold applications produced only one interview, while most interviews came through referrals or connections. The updated strategy should be network-first, using connections not just for referrals but for matched positions, hiring-manager context, and strategic information. She also clarified level targeting: Senior Staff is a valid target for this round. For smaller companies, target Senior Staff / Senior Manager and possibly Director at startups; for big tech and frontier labs, target Staff / Senior Staff. Current queue is Databricks and Harvey.ai by end of July, then offer evaluation or internal Google team search. For interview practice, do not schedule TikTok just for practice because Julie would not seriously consider working there; ask a friend for realistic mocks or get a paid Staff+ mock interviewer, and use AI mocks for repetition. Real-company calibration interviews are only appropriate when there is nonzero-option value and they do not drain prep from the real July loops.
+
 ## 2026-06-21 — Strategy pivot: position early for the next wave (AI-for-science) vs. chase current frontier labs
 
 **What we surfaced:**
