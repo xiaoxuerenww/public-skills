@@ -1,107 +1,68 @@
 ---
 name: ml-system-design-interview
-description: "End-to-end ML system design interview prep with solve, learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, or research infrastructure: first locate the current problem directory, discover existing *requirements.md context under the problem tree, then use input/ and output/ subdirectories. Solve mode builds L6+ answers, learn mode waits for the user's questions and answers grounded in notes or search results with interview-relevant auto-notes, mock mode simulates a realistic interviewer and reviews the user's design attempt."
+description: "End-to-end ML system design interview prep with create, solve, companioned learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, evaluation systems, or research infrastructure: locate the current problem directory, preserve raw context, generate input prompts, write solution artifacts, take learning notes, and run dated mock sessions."
 ---
 
 # ML System Design Interview
 
-**Purpose:** Complete lifecycle support for ML system design interview prep—from requirements analysis through mock interviews.
+**Purpose:** Complete lifecycle support for Staff/Senior Staff ML system design prep: create a problem folder, synthesize L6+ solutions, companion learning with notes, and run realistic mock interviews.
 
-**Important:** First identify the current problem directory. All `input/` and `output/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
+**Boundary:** Use this for ML system design, architecture, platform, serving, ranking, recommendation, evaluation, experiment, and research-infrastructure prompts. Do not use it for coding implementation rounds or pure ML theory Q&A.
+
+**Important:** First identify the current problem directory. All `context/`, `input/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that problem directory, similar to `coding-interview-companion`.
 
 ## Problem Directory Resolution
 
 Before reading or writing files, set `problem_dir`:
 
-1. If the user provides a problem directory or file path, use that directory. If they provide a file inside `input/` or `output/`, use its parent problem directory.
-2. Otherwise, if the current directory contains `input/` or `output/`, use the current directory.
-3. Otherwise, search nearby child directories for `input/0_requirements.md`, `*requirements.md`, `input/*.md`, or `output/deep_dive.md` and choose the directory that matches the current problem context.
+1. If the user provides a problem directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`, walk upward to the nearest directory that contains the problem's artifact folders.
+2. Otherwise, if the current directory contains `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`, use the current directory.
+3. Otherwise, search nearby child directories for `context/*.md`, `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, legacy `output/deep_dive.md`, or `**/*requirements.md` and choose the directory that matches the current problem context.
 4. If multiple directories match and the current problem is ambiguous, ask one concise clarification question.
 
 After resolving `problem_dir`, use:
+
+- `problem_context = <problem_dir>/context`
 - `problem_input = <problem_dir>/input`
-- `problem_output = <problem_dir>/output`
+- `problem_solution = <problem_dir>/solution`
+- `problem_mock = <problem_dir>/mock_MMDD` where `MMDD` is the current local date, e.g. `mock_0602`
 
-Create `problem_input` and `problem_output` if the selected mode needs them and they do not exist.
-
-## Initial Requirements Discovery
-
-Before solve, learn, or mock setup, understand the problem context:
-
-1. Search inside `problem_dir` for requirement docs matching `**/*requirements.md`.
-   - Include nested docs such as `<problem_dir>/*/*requirements.md`.
-   - Prefer the most specific problem-level requirement doc over broad planning notes.
-   - Ignore generated prep outputs unless no other requirements exist.
-2. Read the discovered requirement docs first to infer the intended ML system design interview prompt.
-3. Create or update `<problem_dir>/input/0_requirements.md` as the normalized starting point for prep.
-   - If the discovered requirements are clear, distill them into a concise interview prompt with problem, context, scale, constraints, goals, non-goals, and focus areas.
-   - If the discovered requirements are vague, still make the best ML system design interpretation from available context. State assumptions explicitly instead of blocking on clarification.
-   - Preserve links or file paths back to the source requirement docs so later work can trace where the prep prompt came from.
-4. Treat `<problem_dir>/input/0_requirements.md` as the canonical prep entrypoint after this setup step.
-
-## Quick Setup
-
-1. **Create a directory** for your interview prep:
-   ```bash
-   mkdir my-ml-system-design-prep
-   cd my-ml-system-design-prep
-   ```
-
-2. **Add any existing problem context or create an initial requirements file:**
-   ```bash
-   mkdir input
-   echo "# System Design Interview
-   - Problem: Design a recommendation system
-   - Scale: 1M users, 100M items
-   - Latency: <500ms p99
-   - Focus: ML correctness, platform thinking
-   " > input/0_requirements.md
-   ```
-   Existing nested docs such as `notes/round1_requirements.md` or `company/system_design_requirements.md` are also valid; the skill will find them and normalize them into `input/0_requirements.md`.
-
-3. **Invoke the skill** from this directory or pass the problem directory explicitly:
-   ```
-   /ml-system-design-interview
-
-   "Solve mode for ./my-ml-system-design-prep"
-   ```
+Create directories as needed for the selected mode. Treat `context/` as raw source material and never overwrite it. Legacy `output/` is allowed as supporting context for old prep folders, but new artifacts should use `solution/` and `mock_MMDD/`.
 
 ## Directory Structure
 
-All paths are **relative to the resolved problem directory**:
+All paths are relative to the resolved `problem_dir`:
 
-```
+```text
 problem-directory/
+  context/
+    ...                         # Raw prompt dumps, requirements, notes, screenshots converted to text, source docs
   input/
-    0_requirements.md          # Normalized prep prompt (created from discovered requirements)
-    <problem_name>.md          # Problem statement (created by solve mode)
-  output/
-    interview_solutions.md     # Interview-ready answer (created by solve mode)
-    deep_dive.md               # L6+ concepts & design rationale (created by solve, updated at learn wrap-up)
-    learn_notes.md             # Chronological learning notes (created/updated during learn mode)
-    my_solution.md             # Your answer attempt (reviewed by mock mode)
-    mock_feedback.md           # Mock interview feedback (created by mock mode)
+    0_requirements.md           # Normalized prep prompt from raw context and discovered requirements
+    <problem_name>.md           # Candidate-facing problem statement
+    next_round_mock_questions.md # Follow-up drills generated from prior mock misses
+  solution/
+    interview_solutions.md      # Interview-ready L6+ answer
+    deep_dive.md                # Design rationale and durable concepts
+    learn_notes.md              # Companion learning Q&A notes
+  mock_MMDD/
+    mock_instructions.md        # Candidate-facing mock prompt and constraints
+    my_solution.md              # Julie's design attempt for this mock
+    mock_feedback.md            # Mock transcript, strict feedback, verdict, weakness notes
 ```
-
-The skill will:
-- **Resolve:** `problem_dir` before any file operation
-- **Read from:** discovered `<problem_dir>/**/*requirements.md`, then `<problem_dir>/input/0_requirements.md`
-- **Write to:** `<problem_dir>/input/` and `<problem_dir>/output/`
-- **Create directories** if they don't exist
 
 ## Modes
 
-All paths are relative to the resolved `problem_dir`:
-
-- **Solve mode:** Discover source `*requirements.md` docs, normalize them into `<problem_dir>/input/0_requirements.md`, frame the problem as L6+ MLE, build `<problem_dir>/output/interview_solutions.md` and `<problem_dir>/output/deep_dive.md`, then check the answer against the feedback rubric.
-- **Learn mode:** Let the user read the material and ask questions; do not explain upfront. Answer only when asked, ground responses in local notes or provided/web search results, record stabilized Q&A in `<problem_dir>/output/learn_notes.md`, and defer `<problem_dir>/output/deep_dive.md` updates until learn-mode wrap-up.
-- **Mock mode:** Interview as a realistic hiring engineer, review `<problem_dir>/output/my_solution.md`, ask one question per turn, and record interview-relevant feedback in `<problem_dir>/output/mock_feedback.md`.
+- **Create mode:** Create or normalize the problem directory from Julie's request, raw notes, or requirement docs. Preserve raw material in `context/`, then write `input/0_requirements.md` and `input/<problem_name>.md`.
+- **Solve mode:** Read `context/` and `input/`, normalize requirements if needed, frame the problem as L6+ MLE system design, then write `solution/interview_solutions.md` and `solution/deep_dive.md`.
+- **Companioned learn mode:** Passive read-along Q&A. Wait for Julie's questions, answer directly with concise necessary context, ground responses in local notes or cited sources, and record stabilized Q&A in `solution/learn_notes.md`. Do not prompt, quiz, or ask check-for-understanding questions.
+- **Mock mode:** Interview as a realistic hiring engineer, create a fresh dated `mock_MMDD/` session, ask one question per turn, review `mock_MMDD/my_solution.md`, and record feedback in `mock_MMDD/mock_feedback.md`.
 
 ---
 
 ## Reference Materials
 
-This skill leverages bundled frameworks in the skill directory. Resolve these paths relative to `/Users/xue/.codex/skills/ml-system-design-interview/`, not relative to `problem_dir`:
+Resolve these paths relative to `/Users/xue/.codex/skills/ml-system-design-interview/`, not `problem_dir`:
 
 - `references/interview-answer-template.md`: answer structure, timing, special question types
 - `references/mlsd-5phase-framework.md`: generic 5-phase ML system design framework
@@ -109,340 +70,257 @@ This skill leverages bundled frameworks in the skill directory. Resolve these pa
 - `references/quick-concepts-cheatsheet.md`: metrics, latency, serving patterns, tech stack
 - `references/framework-adaptation.md`: adapt framework to research infrastructure prompts
 
-Read only the relevant reference file(s) for the prompt. For non-serving research infrastructure (experiment platforms, ML config, sweeps), adapt the 5 phases:
+Read only the relevant reference files for the prompt. For non-serving research infrastructure prompts, adapt the 5 phases:
 
 ```text
 1. Scope and success criteria
-2. Inputs / data / config / metadata model
+2. Inputs, data, config, and metadata model
 3. Core algorithm or control plane
-4. Execution / storage / infrastructure
-5. Observability / evaluation / iteration / failure handling
+4. Execution, storage, and infrastructure
+5. Observability, evaluation, iteration, and failure handling
 ```
 
-When solve mode is for a product ML system, especially recommendation, ranking, search, feed, ads, marketplace, or personalization problems, follow the example-solution shape from:
-`/Users/xue/Documents/work/0_databricks/4_SystemDesign/Case study/Recommendation/Video Recommendation System Design  ML System Design in a Hurry.md`.
-Use it as a structural reference, not as copied content.
+For product ML systems, especially recommendation, ranking, search, feed, ads, marketplace, or personalization, use this local note as a structural reference only, not copied content:
+`4_SystemDesign/Case study/Recommendation/Video Recommendation System Design  ML System Design in a Hurry.md`.
 
 ## Staff/Principal Operating Principles
 
-Use these principles in every solve, learn, and mock interaction:
+Use these principles in every mode:
 
-1. **Communicate like a staff+ peer:**
-   - Skip 101-level explanations unless the user asks.
-   - Use shared vocabulary and concise framing to maximize signal per sentence.
-   - State decisions clearly; do not only list options for the interviewer to choose.
+1. **Communicate like a staff+ peer.** Skip 101-level explanations unless asked. Use shared vocabulary, concise framing, and clear decisions.
+2. **Find the crux early.** Separate straightforward plumbing from the 1-2 highest-risk design problems. Spend depth where judgment matters.
+3. **Cut complexity by default.** Start with the simplest design that satisfies requirements. Add distributed systems, realtime paths, deep models, LLMs, or extra services only when constraints force them.
+4. **Use ML production judgment.** Tie product goals, data, modeling, training, serving, evaluation, monitoring, and operations to latency, cost, freshness, safety, privacy, and rollback constraints.
+5. **Show evolution and maturity.** Explain MVP, production hardening, and scale-out. Cover drift, leakage, training-serving skew, PII, safety, canaries, rollback, retraining, and maintainability.
+6. **Use a metrics taxonomy.** Include business, offline ML, online product, guardrail, and infrastructure metrics.
+7. **Keep explanations concise.** Answer the question with necessary context and details. Avoid broad component tours unless they are needed.
 
-2. **Find the crux early:**
-   - Separate straightforward plumbing from the 1-2 highest-risk design problems.
-   - Earmark hard parts explicitly, then spend depth where the system can fail or where judgment matters most.
-   - Avoid broad component tours when the interviewer is testing technical judgment.
+## Create Mode Workflow
 
-3. **Cut complexity by default:**
-   - Start with the simplest design that satisfies functional requirements and stated constraints.
-   - Add distributed systems, realtime paths, deep models, LLMs, or extra services only when scale, latency, quality, safety, or reliability forces them.
-   - Justify each added complexity against maintainability, cost, and operational burden.
+Use create mode when Julie asks to create a new ML system design problem, provides raw context without structure, or wants the skill to initialize prep artifacts.
 
-4. **Use ML production judgment:**
-   - Decompose systems into product goal, data, retrieval/ranking/modeling, training, serving, evaluation, monitoring, feedback loops, and operations.
-   - Tie every modeling choice to infrastructure constraints such as latency, throughput, GPU/CPU cost, caching, data freshness, privacy, and rollback.
-   - Prefer hybrid production architectures when appropriate: rules + ML, batch + realtime, retrieval + ranking + reranking, primary model + fallback.
-
-5. **Show evolution and maturity:**
-   - Explain how the design can evolve from MVP to hardened production to scale-out.
-   - Use component evolution patterns when relevant, e.g. rules -> classical ML -> deep models -> LLM/RAG/agents, or BM25 -> dense retrieval -> hybrid retrieval -> reranking.
-   - Include failure modes, safety, drift, training-serving skew, leakage, PII, monitoring, retraining triggers, canary rollout, rollback, and long-term maintainability.
-
-6. **Use a metrics taxonomy:**
-   - Business metrics: revenue, retention, conversion, task success, user trust.
-   - Offline ML metrics: AUC, NDCG, precision/recall, calibration, hallucination or factuality measures.
-   - Online product metrics: CTR, engagement, latency-sensitive success metrics, experiment lift.
-   - Guardrail metrics: fairness, safety, abuse, privacy, complaint rate, regressions.
-   - Infrastructure metrics: p95/p99 latency, cost per request, throughput, freshness, availability, error rate.
-
----
+1. Resolve or create `problem_dir`.
+   - If Julie provides a problem name but no path, create a lower-case snake_case directory in the current workspace.
+   - Use a descriptive slug, e.g. `harmful_content_detection`, `rag_for_data_assets`, `experiment_tracking_platform`.
+2. Create `context/`, `input/`, and `solution/`.
+3. Preserve raw source material:
+   - If Julie pasted raw notes or a prompt, write it to `context/raw_notes.md`.
+   - If source files already exist, leave them unchanged.
+   - If legacy `*requirements.md` or `output/` files exist, read them as supporting context and do not overwrite them.
+4. Write `input/0_requirements.md` with:
+   - Prompt, product surface, users, stakeholders, scale, constraints, goals, non-goals, and focus areas.
+   - What the interviewer is testing: scoping, ML judgment, platform thinking, operational maturity, cross-team impact.
+   - ML objective, product objective, success metrics, and guardrails.
+   - Ambiguities and chosen assumptions.
+   - Source Requirements section listing source files used.
+5. Write `input/<problem_name>.md` with:
+   - Clean candidate-facing problem statement.
+   - Clarifying questions to ask upfront.
+   - Known constraints and explicit non-goals.
+   - Success metrics.
+   - Follow-up themes, without answer keys or hidden hints.
+6. Summarize created files and suggest solve mode only if Julie asked for the full answer next.
 
 ## Solve Mode Workflow
 
-Use this workflow to analyze a system design prompt and produce interview-ready solutions.
+Use solve mode to analyze a system design prompt and produce interview-ready solution artifacts.
 
 ### Phase 1: Requirements Analysis
 
-All file operations are relative to the resolved `problem_dir`.
-
-1. Discover initial requirements:
-   - Search `problem_dir` for `**/*requirements.md`, including nested docs under `<problem_dir>/*/*requirements.md`.
-   - Read all relevant requirement docs before generating prep artifacts.
-   - If `<problem_dir>/input/0_requirements.md` already exists, compare it with the discovered source docs and update it if it is missing important context.
-
-2. Normalize the prep entrypoint:
-   - Create or update `<problem_dir>/input/0_requirements.md`.
-   - Capture prompt, context, scale, users, stakeholders, constraints, goals, non-goals, and focus areas.
-   - Identify what the interviewer is testing (scoping, ML judgment, platform thinking, cross-team impact).
-   - If the source requirements are vague, infer the most likely ML system design interview from available context and state assumptions explicitly.
-   - Include a short "Source Requirements" section listing the files used.
-
-3. Create `<problem_dir>/input/<problem_name>.md`:
-   - Clean problem statement (distilled from raw input).
-   - Clarifying questions (important to ask upfront).
-   - Known constraints (scale, latency, cost, compliance, etc.).
-   - Explicit non-goals.
-   - Success metrics (product, model, system, guardrails).
-
-4. Brief summary:
-   - Frame the problem type (product serving, research infra, ranking, config, etc.).
-   - Identify the crux: the 1-2 hardest parts where staff-level judgment matters.
-   - Name the straightforward parts you will intentionally shortcut.
-   - List L6+ signals to show: problem framing, ambiguity ownership, ML correctness, platform thinking, operational maturity.
+1. Resolve `problem_dir`.
+2. Read raw context from `context/`, generated prompts from `input/`, and any discovered `**/*requirements.md` under `problem_dir`.
+3. Prefer source prompts and raw requirements over derived solution artifacts. Use legacy `output/` only as supporting context.
+4. Create or update `input/0_requirements.md` if it is missing important context.
+5. Identify:
+   - Problem type: product serving, research infra, ranking, config, evaluation, model serving, monitoring, etc.
+   - Product objective, ML objective, users, scale, latency, cost, privacy, safety, and compliance constraints.
+   - The crux: 1-2 hardest parts where staff-level judgment matters.
+   - Straightforward parts to intentionally shortcut.
+   - L6+ signals to demonstrate: ambiguity ownership, ML correctness, platform thinking, operational maturity, and strategic sequencing.
 
 ### Phase 2: Solve the System
 
-For each problem (one at a time if multiple):
+For each problem, structure the answer around:
 
-1. **Problem Framing:**
-   - Start with "what product surface are we designing?" and make the scope concrete.
-   - Ask or answer 3-5 clarifying questions with assumptions for users, items, latency, number of results, freshness, and safety constraints.
-   - Establish a business objective before the ML objective. Prefer long-term product health over shallow metrics. Example pattern: not just CTR, but quality-adjusted engagement, user satisfaction, marketplace health, creator or seller sustainability, trust, or task success.
-   - Translate the business objective into the ML objective: ranking, retrieval, classification, forecasting, generation, planning, anomaly detection, or control-plane correctness.
+1. **Problem Framing:** Product surface, clarifying questions, assumptions, business objective, ML objective, non-goals, and success criteria.
+2. **High-Level Design:** Main components, data flow, control flow, stage contracts, latency and cost budgets, precompute versus online paths, caching, fallbacks, and degradation.
+3. **Data and Features:** Signal quality, freshness, explicit and implicit feedback, context, item/content/user features, leakage risk, bias, and training-serving consistency.
+4. **Modeling:** Baselines, production model choice, retrieval or ranking stages, objective/loss when it matters, calibration, multitask or multi-objective composition, and model evolution.
+5. **Inference and Evaluation:** Serving path, model serving, batching, hardware, caching, offline metrics, online tests, guardrails, experiment validity, and infra health.
+6. **Deep Dives:** Pick 2-3 real cruxes. For each: problem, why it matters, options, chosen solution, why it wins, failure mode, and measurement.
+7. **Failure Modes and Mitigation:** Data staleness, training-serving skew, leakage, drift, exposure bias, feedback loops, policy or safety regressions, cost blowups, canaries, rollback, and retraining triggers.
+8. **Evolution Plan:** MVP, hardening, scale-out, and future model/system evolution.
 
-2. **High-Level Design:**
-   - Draw the main system before diving into features or models.
-   - For ranking/recommendation/search problems, default to a multi-stage architecture when scale requires it: candidate generation, lightweight ranker or filter, heavy ranker, reranker or policy layer, logging, training, evaluation, and monitoring.
-   - Explain each stage by its contract, latency/cost budget, and optimization target. Candidate generation optimizes recall, lightweight ranking optimizes cheap pruning, heavy ranking optimizes quality, reranking optimizes slate/business constraints.
-   - Call out what can be precomputed, cached, streamed, or served online.
+### Phase 3: Create Solution Documents
 
-3. **Data and Features:**
-   - Organize data by signal quality and freshness instead of listing every possible field.
-   - Cover explicit feedback, implicit feedback, contextual/session data, item/content features, user/account features, and platform or policy signals when relevant.
-   - Explain feature freshness, cacheability, normalization, leakage risk, position or selection bias, and training-serving consistency.
-   - Keep this section moving; give representative feature groups and offer depth only where it affects correctness or latency.
+1. Write `solution/interview_solutions.md` as the interview-ready answer:
+   - Opener
+   - Understanding the Problem
+   - Problem Framing
+   - High-Level Design with ASCII diagram when useful
+   - Data and Features
+   - Modeling
+   - Inference and Evaluation
+   - Crux and Simplifications
+   - Deep Dives
+   - Trade-Offs and Alternatives
+   - Failure Modes and Debugging
+   - Evolution Plan
+   - Level Calibration
+   - Wrap-Up
+   - Interview Delivery
 
-4. **Modeling:**
-   - Start with baselines and benchmarks, then choose the production model.
-   - For retrieval, explain embeddings, two-tower or sparse retrieval, ANN/vector search, hard negatives, and recall measurement when relevant.
-   - For ranking, distinguish cheap rankers from heavy rankers. Choose models based on latency, sequence modeling needs, sparse/dense feature handling, debuggability, and infrastructure cost.
-   - For multi-objective systems, define prediction heads or score components and how they combine into a value model.
-   - Discuss loss functions only when they matter for bias correction, multitask learning, calibration, long-term objective alignment, or safety.
-
-5. **Inference and Evaluation:**
-   - Tie serving design to the architecture: offline precompute, online feature fetch, model serving, batching, hardware, caching, fallbacks, and degradation.
-   - Evaluate each stage separately and end-to-end. Include candidate recall, ranking metrics, calibration, online A/B tests, guardrails, infra health, and long-term product metrics.
-   - Mention experiment validity risks such as novelty effects, position bias, feedback loops, delayed outcomes, segment regressions, and interference.
-
-6. **Deep Dives (2-3 hardest components):**
-   - Pick from the real cruxes, not generic components. Common choices: feedback loops, cold start, explore/exploit, freshness, debiasing, marketplace health, data quality, model latency, experiment validity, and safety.
-   - For each hard component: problem, why it matters, options, chosen solution, why it wins, failure mode, and how to measure success.
-   - Show component evolution from MVP to production hardening to scale-out.
-
-7. **Failure Modes & Mitigation:**
-   - Cover silent correctness failures, data staleness, training-serving skew, leakage, drift, popularity or exposure bias, experiment validity loss, policy/safety regressions, and cost blowups.
-   - Define debugging signals, rollout gates, canary metrics, rollback, retraining triggers, fallbacks, and graceful degradation.
-
-8. **L6+ Signals to Demonstrate:**
-   - **Problem framing**: Convert ambiguous prompt into crisp product goal, explicit non-goals, measurable success criteria.
-   - **Technical judgment**: Identify 1-2 risks that matter most; spend depth there instead of touring every component.
-   - **ML correctness ownership**: Protect experiment validity, data quality, evaluation semantics, reproducibility.
-   - **Platform thinking**: Design APIs, contracts, invariants that let many teams move faster without tribal knowledge.
-   - **Operational maturity**: Define debugging paths, incident signals, cost controls, degradation modes.
-   - **Pragmatic reuse**: Name commodity tools worth reusing while owning critical boundaries and invariants.
-   - **Strategic sequencing**: Separate MVP, hardening, and scale-out phases for credibility under constraints.
-   - **Staff communication**: Speak concisely to a staff+ interviewer; skip basics, state decisions, and justify tradeoffs without over-explaining.
-
-### Phase 3: Create Output Documents
-
-1. **Write `<problem_dir>/output/interview_solutions.md` (Interview-Ready Answer):**
-   - **Opener**: Problem framing and thesis (1 sentence summary of the design).
-   - **Understanding the Problem**: Product surface, users, scale, latency, constraints, and scope assumptions.
-   - **Problem Framing**: Clarifying questions, business objective, ML objective, non-goals, and success criteria.
-   - **High-Level Design**: ASCII diagram + text. Data flow, control flow, major stages, and stage contracts.
-   - **Data and Features**: Training data, feedback signals, context, feature groups, freshness, bias, and consistency.
-   - **Modeling**: Baselines, model selection, architecture, loss/objective, calibration, and value-model composition.
-   - **Inference and Evaluation**: Serving path, caching/precompute, latency/cost budget, offline metrics, online tests, and guardrails.
-   - **Crux & Simplifications**: What is hard, what is straightforward, and where complexity was intentionally avoided.
-   - **Deep Dives**: 2-3 sections on hardest components. Problem → Options → Chosen solution + Why.
-   - **Trade-Offs & Alternatives**: What you didn't choose and why.
-   - **Failure Modes & Debugging**: Silent failures, monitoring, rollback, cost controls.
-   - **Evolution Plan**: MVP, hardening, scale-out, and future model/system evolution.
-   - **Level Calibration**: What mid-level, senior, and staff-level answers would emphasize for this problem.
-   - **Wrap-Up**: Restate thesis and why the design meets requirements.
-   - **Interview Delivery**: How to present under time pressure; which sections to expand/compress.
-   - Write as if explaining to an interviewer: conversational, confident, complete.
-
-2. **Create `<problem_dir>/output/deep_dive.md` (Design Rationale & L6+ Concepts):**
+2. Write `solution/deep_dive.md` as the durable reference:
    - One section per major component or design decision.
-   - **Component Name**: Problem statement, why it's hard.
-   - **Alternatives**: What else you considered; trade-offs.
-   - **Chosen Solution**: Full explanation + conceptual sketches.
-   - **Why It Works**: Invariants, guarantees, correctness arguments.
-   - **Pragmatic Notes**: Known tools, when to use them, tribal knowledge to avoid.
-   - **Related Concepts**: Link to your study notes if available.
-   - Deeper and broader than `interview_solutions.md`; assume you know the basics.
-   - Include L6+ thinking: ambiguity ownership, cross-team contracts, migration strategy, operational maturity.
+   - For each section: problem, why hard, alternatives, chosen solution, why it works, invariants, pragmatic notes, and related concepts.
+   - Include L6+ thinking: ambiguity ownership, cross-team contracts, migration strategy, ML correctness, operational maturity.
 
-3. **Rubric Pass:**
-   - Before finalizing, check `interview_solutions.md` against the Feedback Rubric.
-   - Strengthen weak dimensions, especially crux identification, complexity control, ML correctness, L6+ signal, failure modes, and communication.
-   - Prefer adding targeted depth to the 1-2 riskiest parts over broad component tours.
-   - Remove unnecessary 101 explanations and replace option lists with clear decisions plus concise justification.
+3. Run a rubric pass before finalizing:
+   - Strengthen crux identification, complexity control, decision-making, ML correctness, metrics, failure modes, L6+ signal, and communication.
+   - Prefer targeted depth on the riskiest parts over broad component tours.
+   - Remove unnecessary 101 explanations and replace option lists with decisions plus concise justification.
 
-4. **Walk-through:**
-   - Summarize the system design: key insight, architecture thesis, hardest trade-off.
-   - Mention which output files were created or updated.
+4. Walk through the created artifacts:
+   - Key architecture thesis.
+   - Hardest tradeoff.
+   - Files created or updated.
 
----
+## Companioned Learn Mode Workflow
 
-## Learn Mode Workflow
-
-Use this workflow as read-along Q&A support with auto-notes. The user is reading the material independently; do not explain upfront or start teaching unless they ask. Do not edit frozen files in `<problem_dir>/input/`.
+Use companioned learn mode as read-along Q&A support with auto-notes. The user is reading independently. Do not explain upfront or start teaching unless asked.
 
 ### Setup
 
-1. Confirm you're in learn mode and state which problem/component you're exploring.
-2. Read the relevant local context silently: `<problem_dir>/input/0_requirements.md`, `<problem_dir>/input/<problem>.md`, `<problem_dir>/output/deep_dive.md`, and any provided notes or search-result packets.
-3. Create `<problem_dir>/output/learn_notes.md` if it does not exist.
-4. Do not summarize, explain, propose a menu, or ask what the user wants next. Be ready to answer when the user asks.
+1. Resolve `problem_dir`.
+2. Read relevant local context silently: `input/0_requirements.md`, `input/<problem>.md`, `solution/interview_solutions.md`, `solution/deep_dive.md`, `solution/learn_notes.md`, and any provided notes or search-result packets. If only legacy `output/` exists, read it as supporting context.
+3. Create `solution/learn_notes.md` if it does not exist.
+4. Wait for Julie's question. Do not summarize, propose a menu, ask what she wants next, quiz her, or ask check-for-understanding questions.
 
 ### During Learning
 
 1. **Read-Along Q&A Loop:**
-   - Wait for the user's question; do not proactively explain, continue, or advance topics.
-   - If the user asks a question, answer that question directly and stop.
-   - Do not ask the user for questions, offer menus, ask check-for-understanding questions, or end with prompts.
-   - If the user says "next", continue only if there is an established sequence from prior user questions or material; otherwise stay concise and do not invent a lecture.
+   - Wait for the user's question.
+   - Answer the immediate question directly and stop cleanly.
+   - Do not proactively explain, continue, advance topics, or end with prompts.
+   - If the user says "next", continue only if there is an established sequence from prior user questions or material.
 
 2. **Grounding:**
-   - Ground answers in local notes first: `input/0_requirements.md`, problem statements, `output/deep_dive.md`, `output/learn_notes.md`, and bundled references.
-   - If the user provides web search results, use those results as grounding and distinguish what is sourced from them.
+   - Ground answers in local notes first: `input/0_requirements.md`, problem statements, `solution/interview_solutions.md`, `solution/deep_dive.md`, `solution/learn_notes.md`, and relevant bundled references.
+   - If the user provides web search results, use those results as grounding and distinguish sourced facts from inference.
    - If the user explicitly asks to search the web, search and cite sources before answering.
-   - If the local notes and provided results do not contain enough evidence, say what is inferred and what is missing.
+   - If local notes and provided results are insufficient, say what is inferred and what is missing.
 
 3. **Explanations:**
-   - Use plain language first, then technical depth.
-   - Keep answers concise; answer the immediate question, then add context.
-   - Use one compact example per explanation; avoid stacking examples.
+   - Use plain language first, then technical depth if needed.
+   - Keep answers brief with necessary context and details.
+   - Use one compact example at most.
    - Tie design choices back to requirements and L6+ signals.
-   - Highlight what you should say in a real interview.
+   - Highlight Staff+ interview phrasing when useful.
    - Emphasize staff-level habits: identify the crux, cut unnecessary complexity, make decisions, and connect ML choices to production constraints.
-   - When teaching patterns, explain the evolution path from simple baseline to production-grade system instead of presenting only the final architecture.
 
-4. **Answer Questions:**
-   - When you ask about architecture, trade-offs, L6+ judgment, failure modes, or delivery, answer fully.
-   - If there's confusion, clarify the mental model before going deeper.
-   - Distinguish "basic correct answer" from "L6+ answer" when relevant.
-   - Point out common pitfalls in system design interviewing.
-   - Prefer examples that show tradeoff reasoning across latency, quality, cost, safety, maintainability, and infrastructure constraints.
-
-5. **Auto-Notes (Default):**
-   - After each question is stabilized, record it in `<problem_dir>/output/learn_notes.md`.
-   - A question is stabilized when the direct answer and any immediate follow-up clarification are complete.
-   - Include follow-up questions and refinements under the same note entry so the learning thread stays coherent.
-   - For every interview-relevant stabilized question or insight, record:
-     - **Q:** Your question (concise)
-     - **A:** The answer (1-3 sentences)
-     - **Follow-ups:** Immediate follow-up questions/answers or refinements, if any
+4. **Auto-Notes:**
+   - After each stabilized interview-relevant question or insight, record it in `solution/learn_notes.md`.
+   - A question is stabilized when the direct answer and immediate clarification are complete.
+   - Include:
+     - **Q:** Concise question
+     - **A:** 1-3 sentence answer
+     - **Follow-ups:** Immediate refinements, if any
      - **Mental model:** What to remember or misconception fixed
-     - **Interview phrasing:** One sentence you can say aloud
-     - **Grounding:** Local note, source file, or web/search-result source used
-   - Do NOT take notes for workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
-   - Keep notes chronological and slightly raw.
-   - Organize Q&A by parent topic (e.g., "# Experiment Tracking", "## Config Validation") for easy review.
-   - Do not update `<problem_dir>/output/deep_dive.md` during active learn mode.
+     - **Interview phrasing:** One sentence Julie can say aloud
+     - **Grounding:** Local note, source file, or cited source used
+   - Do not record workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
+   - Keep notes chronological and slightly raw, grouped by parent topic.
 
-6. **Defer Deep-Dive Updates:**
-   - During active learn mode, write only to `<problem_dir>/output/learn_notes.md`.
-   - Do not merge, rewrite, or polish `<problem_dir>/output/deep_dive.md` until the user exits or wraps up learn mode.
-   - Treat `learn_notes.md` as the raw chronological buffer for the session.
-
-7. **Stop After Answering:**
-   - After answering, stop cleanly so the user can keep reading.
-   - Do not end with prompts such as "Any questions?", "Want to go deeper?", or check-for-understanding questions.
+5. **Defer Deep-Dive Updates:**
+   - During active learn mode, write only to `solution/learn_notes.md`.
+   - Do not merge, rewrite, or polish `solution/deep_dive.md` until Julie explicitly exits or wraps up learn mode.
+   - Stay in learn mode until Julie says `end learn`, `conclude learn`, `exit learn`, `wrap learning`, `finish learning`, or asks to consolidate learning notes.
+   - Do not treat generic `summarize`, `done`, `next`, or a topic change as permission to exit learn mode unless it clearly refers to the learning session.
 
 ### End of Learn Session
 
-- When the user says they are done, exiting learn mode, wrapping up, or asks to consolidate notes:
-  - Analyze `<problem_dir>/output/learn_notes.md` across the whole session.
-  - Remove duplicate, low-signal, or non-interview-relevant entries unless explicitly requested.
-  - Regroup related Q&A threads by durable concepts, components, tradeoffs, and interview phrasing.
-  - Merge the cleaned takeaways into `<problem_dir>/output/deep_dive.md` under relevant sections or a "Learning Notes & Refinements" section.
-  - Preserve source grounding when useful.
-  - After merging, either clear merged entries from `learn_notes.md` or mark them as merged with date, depending on the existing file style.
-- Summarize what changed in `deep_dive.md` and what remains in `learn_notes.md`.
+When Julie explicitly wraps learning or asks to consolidate:
 
----
+1. Read the full `solution/learn_notes.md`.
+2. Remove duplicate, low-signal, or non-interview-relevant entries unless explicitly requested.
+3. Regroup related Q&A threads by durable concepts, components, tradeoffs, failure modes, and interview phrasing.
+4. Merge cleaned takeaways into `solution/deep_dive.md` under relevant sections or a dated `Learning Notes & Refinements` section.
+5. Preserve source grounding, examples, edge cases, and strong phrasing.
+6. Reset `solution/learn_notes.md` to a short staging inbox or mark merged entries with the date.
+7. Summarize what changed in `deep_dive.md` and what remains open.
 
 ## Mock Mode Workflow
 
-Use this workflow to simulate a real system design interview with step-by-step feedback.
+Use mock mode to simulate a real ML system design interview with step-by-step feedback.
 
 ### Setup
 
-1. **Frame the interview:**
-   - State only the interview problem and your role as interviewer; do not tell the user the sequence of steps to follow unless they explicitly ask about process.
-   - Do not reveal the full intended answer upfront.
-   - Keep feedback in interviewer tone: concise, probing, honest.
-   - Ask exactly one question per assistant turn in mock mode; do not bundle multiple numbered questions or prompts in the same turn.
-   - Treat the exchange like a real interview: do not coach, narrate what the candidate should do next, or provide a checklist of tasks.
-   - Probe for staff-level judgment: crux identification, decision-making, complexity control, ML + infra tradeoffs, and operational maturity.
-
-2. **Create your workspace:**
-   - You write your answer in `<problem_dir>/output/my_solution.md` (Markdown outline + ASCII diagrams, not full code).
-   - I record feedback in `<problem_dir>/output/mock_feedback.md`.
+1. Resolve `problem_dir`.
+2. Read mock context from `input/0_requirements.md`, `input/<problem>.md`, `solution/interview_solutions.md`, `solution/deep_dive.md`, and raw source notes. If only legacy `output/` exists, read it as supporting context.
+3. Create a fresh top-level mock directory named `mock_MMDD/`. If one already exists today, create `mock_MMDD_2/`, `mock_MMDD_3/`, etc.
+4. Write `mock_instructions.md` with only the candidate-facing prompt, constraints, allowed assumptions, expected deliverables, and how Julie should signal completion. Do not include answer keys, hints, rubrics, or expected sequence.
+5. Create `my_solution.md` as Julie's Markdown outline workspace with no solution hints.
+6. Create `mock_feedback.md`.
+7. State only the interview problem and your role as interviewer.
+8. Ask exactly one question. Do not reveal the answer, rubric, expected sequence, or hints.
 
 ### During Mock
 
-1. **Clarification Questions (Your Turn):**
-   - When you ask clarifying questions, I answer directly with constraints and examples.
-   - I pick reasonable assumptions for ambiguous points.
-   - I do NOT volunteer hidden edge cases or gotchas.
-   - Ask one clarification question at a time, then wait for the answer before asking the next question.
-   - Do not suggest which clarifying questions to ask; wait for the candidate to drive this phase.
-   - Record Q&A in `<problem_dir>/output/mock_feedback.md`.
+1. **Ask one question per assistant turn.**
+   - Probe one thing at a time: clarification, product objective, architecture, data, modeling, metrics, failure mode, scalability, cross-team contract, or operational maturity.
+   - Do not bundle multiple numbered questions.
+   - Do not coach, narrate next steps, or provide checklists.
 
-2. **Approach Explanation (Your Turn):**
-   - When you outline your approach, I give concise feedback:
-     - Missing requirements or constraints? Call them out.
-     - Overcomplicating? Ask a probing question that exposes the issue; do not volunteer hints unless the candidate asks for clarification.
-     - Only listing options? Ask which one they choose and why.
-     - Spending time on basics? Redirect toward the crux or highest-risk tradeoff.
-     - Validate the idea? Move forward.
-   - End feedback with at most one targeted next question.
-   - Record approach feedback in `<problem_dir>/output/mock_feedback.md`.
+2. **Clarification Questions:**
+   - When Julie asks clarifying questions, answer directly with constraints and examples.
+   - Pick reasonable assumptions for ambiguous points.
+   - Do not volunteer hidden edge cases or gotchas.
+   - Record Q&A in `mock_feedback.md`.
 
-3. **Detailed Design (Your Turn):**
-   - You write in `<problem_dir>/output/my_solution.md`.
-   - I do NOT edit files or write the solution for you.
-   - Do not provide hints, reference pointers, or solution direction unless the candidate explicitly asks for clarification or help.
-   - Record hints in `<problem_dir>/output/mock_feedback.md`.
+3. **Approach Feedback:**
+   - When Julie outlines an approach, give concise interviewer feedback.
+   - Call out missing requirements, overcomplication, option-listing without decisions, weak crux identification, or too much time on basics.
+   - End with at most one targeted next question.
+   - Record feedback in `mock_feedback.md`.
 
-4. **Design Review (My Turn):**
-   - When you say "done", I review `<problem_dir>/output/my_solution.md`:
-     - Missing requirements or correctness gaps first.
-     - Then missing crux identification, decision-making, complexity control, deep dives, trade-off analysis, failure mode coverage, metrics, evolution plan, and L6+ signals.
-     - Then delivery and communication.
-     - Provide smallest conceptual fix for each issue (no auto-patching).
-   - Record findings in `<problem_dir>/output/mock_feedback.md`.
+4. **Design Work:**
+   - Julie writes in `mock_MMDD/my_solution.md`.
+   - Do not edit files or write the solution for her.
+   - Do not provide hints, reference pointers, or solution direction unless she explicitly asks for clarification or help.
+   - Record any hints in `mock_feedback.md`.
 
-5. **Follow-up:**
-   - If there are multiple design parts, repeat Setup and During Mock steps 1-4 for the next part.
-   - If there are no more design parts, ask one scaling, operational, or cross-team follow-up question at a time.
+5. **Design Review:**
+   - When Julie says "done", review `mock_MMDD/my_solution.md`.
+   - Review in this order: missing requirements or correctness gaps, crux identification, decision-making, complexity control, deep dives, tradeoffs, failure modes, metrics, evolution plan, L6+ signals, then communication.
+   - Provide the smallest conceptual fix for each issue. Do not auto-patch her mock answer.
+   - Record findings in `mock_feedback.md`.
 
-6. **Closing (My Turn):**
-   - Give a verdict: "strong pass / pass / lean pass / lean no / no-hire for this round" (or score if you ask).
-   - Include 2-4 focused improvements for the next attempt.
-   - Ask one follow-up question an interviewer might ask (optimization, cross-team impact, failure handling, etc.).
-   - Record verdict, improvements, and follow-up in `<problem_dir>/output/mock_feedback.md`.
+6. **Follow-Up:**
+   - Ask one scaling, operational, ML correctness, or cross-team follow-up at a time after the current design has been reviewed.
 
-### Note-Taking (Proactive)
+### Closing
 
-- Record every interview-relevant turn in `<problem_dir>/output/mock_feedback.md`:
-  - Your clarification Qs and my answers
-  - Your approach + my feedback
-  - Hints given during design
-  - Design review findings
-  - Final verdict and improvements
-- This becomes your learning record and self-review guide.
-- Do not record workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
+When Julie asks to stop or the mock reaches a natural end:
 
----
+- Give a verdict: `strong pass`, `pass`, `lean pass`, `lean no`, or `no-hire for this round`.
+- Include 2-4 focused improvements.
+- Identify the weakest concept to review next.
+- Record the verdict and improvements in `mock_feedback.md`.
+- Summarize misses and weaknesses from the session.
+- Convert important misses into candidate-facing next-round prompts in `input/next_round_mock_questions.md`, without answer keys or hidden hints.
+
+### Note-Taking
+
+Record every interview-relevant turn in `mock_feedback.md`:
+
+- Julie's clarification questions and interviewer answers
+- Julie's approach and feedback
+- Hints given during design
+- Design review findings
+- Final verdict and improvements
+- End-of-session misses, weaknesses, and next-round question seeds
+
+Do not record workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
 
 ## Feedback Rubric
 
@@ -450,38 +328,45 @@ Evaluate answers against:
 
 | Dimension | What to Look For |
 |-----------|------------------|
-| **Scoping** | Clear requirements, non-goals, scale, constraints, and success metrics. |
-| **Architecture** | Coherent components and data/control flow; aligned with requirements. |
-| **Crux** | Identifies the 1-2 hardest risks early and avoids spending time on obvious plumbing. |
-| **Complexity Control** | Starts simple and adds complexity only when constraints force it. |
-| **Decision-Making** | Makes clear choices with concise justification instead of only listing options. |
-| **Depth** | Can dive into hard components and explain trade-offs clearly. |
-| **ML Correctness** | Protects experiment validity, data quality, reproducibility, metric semantics. |
-| **Metrics** | Covers business, offline ML, online product, guardrail, and infrastructure metrics. |
-| **Pragmatism** | Reuses existing tools where appropriate; avoids speculative complexity. |
-| **L6+ Signal** | Frames ambiguity, owns failure modes, prioritizes by impact, defines invariants. |
-| **Production Maturity** | Handles drift, training-serving skew, privacy/safety, rollout, rollback, retraining, and long-term maintainability. |
-| **Communication** | Structured, concise, peer-level, responsive to interviewer pushback, and avoids over-explaining basics. |
-
----
+| Scoping | Clear requirements, non-goals, scale, constraints, and success metrics. |
+| Architecture | Coherent components and data/control flow aligned with requirements. |
+| Crux | Identifies the 1-2 hardest risks early and avoids obvious plumbing. |
+| Complexity Control | Starts simple and adds complexity only when constraints force it. |
+| Decision-Making | Makes clear choices with concise justification instead of only listing options. |
+| Depth | Can dive into hard components and explain tradeoffs clearly. |
+| ML Correctness | Protects experiment validity, data quality, reproducibility, and metric semantics. |
+| Metrics | Covers business, offline ML, online product, guardrail, and infrastructure metrics. |
+| Pragmatism | Reuses existing tools where appropriate and avoids speculative complexity. |
+| L6+ Signal | Frames ambiguity, owns failure modes, prioritizes by impact, and defines invariants. |
+| Production Maturity | Handles drift, training-serving skew, privacy, safety, rollout, rollback, retraining, and maintainability. |
+| Communication | Structured, concise, peer-level, responsive to pushback, and avoids over-explaining basics. |
 
 ## Tips for Best Results
 
-- **Solve mode:** Create `<problem_dir>/output/interview_solutions.md` first; it's your cheat sheet before a real interview.
-- **Learn mode:** Default to read-along Q&A with auto-notes; write stabilized Q&A to `learn_notes.md` during the session and consolidate into `deep_dive.md` only at wrap-up.
-- **Mock mode:** Treat it like a real interview: outline first, design second, don't over-optimize.
-- **Between rounds:** Review `<problem_dir>/output/interview_solutions.md` to warm up, then run a mock to stress-test under time pressure.
-
----
+- **Create mode:** Preserve raw context in `context/`, then generate clean candidate-facing inputs.
+- **Solve mode:** Create `solution/interview_solutions.md` first. It is the cheat sheet before a real interview.
+- **Companioned learn mode:** Default to read-along Q&A with auto-notes, then consolidate into `solution/deep_dive.md` only at wrap-up.
+- **Mock mode:** Treat it like a real interview: outline first, design second, do not over-optimize.
+- **Between rounds:** Review `solution/interview_solutions.md`, then run a mock to stress-test under time pressure.
 
 ## File Reference
 
 | File | Purpose | Created by | Edited in Learn | Reviewed in Mock |
-|------|---------|-----------|-----------------|------------------|
-| `<problem_dir>/input/0_requirements.md` | Normalized prep prompt from source requirements | Setup/Solve | No | No |
-| `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
-| `<problem_dir>/output/interview_solutions.md` | Interview cheat sheet | Solve | Yes (optional) | Reference |
-| `<problem_dir>/output/deep_dive.md` | Design rationale & L6+ concepts | Solve + Learn wrap-up | Yes (wrap-up only) | Reference |
-| `<problem_dir>/output/learn_notes.md` | Raw chronological learning notes | Learn | Yes (during session) | No |
-| `<problem_dir>/output/my_solution.md` | Your design attempt | You | No | Yes |
-| `<problem_dir>/output/mock_feedback.md` | Interview feedback | Mock | No | Record |
+|------|---------|------------|-----------------|------------------|
+| `context/*` | Raw source material | Create/User | No | Reference |
+| `input/0_requirements.md` | Normalized prep prompt from raw context | Create/Solve | No | Reference |
+| `input/<problem>.md` | Candidate-facing problem statement | Create/Solve | No | Reference |
+| `input/next_round_mock_questions.md` | Next mock prompts from prior misses | Mock | No | Reference |
+| `solution/interview_solutions.md` | Interview cheat sheet | Solve | Optional reference only | Reference |
+| `solution/deep_dive.md` | Design rationale and L6+ concepts | Solve + Learn wrap-up | Wrap-up only | Reference |
+| `solution/learn_notes.md` | Raw chronological learning notes | Learn | Yes | No |
+| `mock_MMDD/mock_instructions.md` | Candidate-facing mock prompt | Mock | No | Reference |
+| `mock_MMDD/my_solution.md` | Julie's mock design attempt | User | No | Yes |
+| `mock_MMDD/mock_feedback.md` | Interview feedback, transcript, verdict | Mock | No | Yes |
+
+## Relationship to Other Skills
+
+- Use `coding-interview-companion` for algorithm, coding, or implementation rounds.
+- Use `ml-fundamentals-interview` for non-system-design ML theory Q&A and conversational theory mocks.
+- Use `ml-daily-quiz` for tracked daily drills and spaced review over a fixed question bank.
+- Use this skill for ML system design, research infrastructure, serving, evaluation, ranking, recommendation, and platform design prep.
