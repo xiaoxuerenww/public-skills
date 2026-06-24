@@ -1,97 +1,129 @@
 ---
 name: teach
-description: Teach the user a new skill or concept, within this workspace.
+description: Teach the user a new skill or concept, either as a quick frontier-interview one-pager or as a stateful four-document learning workspace.
 disable-model-invocation: true
 argument-hint: "What would you like to learn about?"
 ---
 
-The user has asked you to teach them something. This is a stateful request - they intend to learn the topic over multiple sessions.
+The user has asked you to teach them something. Use the lightest mode that satisfies the request.
 
-## Teaching Workspace
+## Mode Selection
 
-Always group all teaching output inside a single dedicated directory. Treat the current directory as the parent workspace unless it is already the selected teaching directory. Before reading or writing lesson state, resolve `teaching_dir`:
+1. **Quick Concept Mode**: Use this when the user asks to learn, explain, drill, refresh, prepare, or deeply understand one specific ML, systems, coding, math, research, or product concept. Answer in chat first. Do not create files unless the user explicitly asks to take notes or start a course.
+2. **Stateful Course Mode**: Use this when the user invokes `$teach`, asks for a course, lesson sequence, multi-session learning plan, companion mode, quiz mode, finish-course consolidation, or clearly wants persistent workspace artifacts.
+
+If the concept is clear, answer directly. If it is broad, choose the most interview-relevant slice and state the scope in one sentence. Ask at most one clarifying question only when the level, target, or mode is truly ambiguous. Otherwise assume Staff/Senior Staff MLE depth with implementation and system-design relevance.
+
+## Quick Concept Mode
+
+Goal: help the user quickly build interview-ready command of one concept in a concise one-pager. Optimize for frontier AI lab interviews: strong fundamentals, implementation intuition, systems tradeoffs, crisp communication, and practical failure modes.
+
+Use this one-page structure unless the user asks for a different format:
+
+1. **TL;DR**: 2-3 sentences defining the concept and why it matters.
+2. **Mental Model**: One simple intuition plus one concrete example.
+3. **Mechanics**: Key equations, algorithms, APIs, invariants, or steps.
+4. **Interview Lens**: What a frontier lab interviewer is likely testing.
+5. **Pitfalls & Tradeoffs**: Common mistakes, edge cases, alternatives, and when the idea breaks.
+6. **Tiny Example**: Minimal code, pseudocode, calculation, or design sketch only when it improves precision.
+7. **Recall Hooks**: 3-5 bullets the user can memorize.
+8. **Drill**: 2-3 practice questions, increasing in difficulty.
+
+Omit sections that add little signal. Prefer dense, crisp bullets over long prose. Use equations or code only when they improve recall or precision. Avoid appendices, long taxonomies, and broad surveys.
+
+### Quick Concept Note-Taking
+
+Do not write or update note files by default during Quick Concept Mode.
+
+Only create a Markdown note after the user explicitly says "take notes". Save to:
+
+```text
+${LEARN_BUDDY_INBOX:-~/Documents/work/0_inbox}/<concept>.md
+```
+
+Use a descriptive lowercase hyphenated filename. If the target file exists, append `-2`, `-3`, etc. Do not overwrite an existing note unless the user explicitly asks. After saving, report the file path: "Saved to: [path]".
+
+## Stateful Course Workspace
+
+Always group course output inside one dedicated `teaching_dir`. Treat the current directory as the parent workspace unless it is already the selected teaching directory.
+
+Resolve `teaching_dir`:
 
 1. If the user gives an explicit directory, use it. Create it if needed.
-2. Else, if the current directory already contains a course index named `<topic_slug>_course.md` plus at least one of `lessons/`, `reference/`, `assets/`, or `learning_records/`, use the current directory as `teaching_dir`.
-3. Else, if a nearby child directory clearly matches the topic and contains a course index named `<topic_slug>_course.md`, use that existing child directory.
-4. Else, create a new child directory named `<topic-slug>_course` under the current directory, for example `rag_course`, `pytorch_course`, or `system_design_course`.
+2. Else, if the current directory contains `index.md` plus at least one of `solution.md`, `deep_dive.md`, or `reference.md`, use the current directory.
+3. Else, if a nearby child directory clearly matches the topic and contains `index.md`, use that existing child directory.
+4. Else, create a new child directory named `<topic_slug>_course` under the current directory, for example `rag_course`, `pytorch_course`, or `system_design_course`.
 
-Never scatter teaching files directly in the parent workspace. All paths below are relative to `teaching_dir`:
+Use lower-case snake_case for generated directory names. When reporting files back to the user, include the `teaching_dir` prefix in wikilinks, such as `[[rag_course/index.md]]` or `[[rag_course/solution.md]]`.
 
-- `<topic_slug>_course.md`: The course index, mission, and cross-session manual, for example `rag_course.md` inside `rag_course/`. It tells the user why they are learning the topic, how to take the course, what to do next, and how to resume after a break. Maintain it every session. Use the format in [course_format.md](./course_format.md).
-- `./reference/*.md`: A directory of Markdown reference materials. These are the compressed learnings from the lessons - cheat sheets, reference algorithms, syntax, yoga poses, glossaries. They are the raw units of learning. They should be concise, printable, and designed for quick reference.
-- `./reference/resources.md`: A curated list of resources for contextual knowledge, knowledge acquisition, and wisdom/community discovery. Use the format in [resources_format.md](./resources_format.md).
-- `./learning_records/*.md`: A directory of learning records, which capture what the user has learned. These are loosely equivalent to architectural decision records in software development - they capture non-obvious lessons and key insights that may need to be revised later, or drive future sessions. These should be used to calculate the zone of proximal development. They are titled `0001_<snake_case_name>.md`, where the number increments each time. Use the format in [learning_record_format.md](./learning_record_format.md).
-- `./lessons/*.md`: A directory of Markdown lessons. A **lesson** is a single, self-contained Markdown output that teaches one tightly-scoped thing tied to the mission. Lesson files are titled `0001_<snake_case_name>.md`.
-- `learn_notes.md`: Chronological companion-mode notes from the user's questions, answers, misconceptions, and interview phrasing.
-- `deep_dive.md`: Polished course synthesis created when the user finishes a course.
-- `./assets/*`: Optional reusable Markdown snippets, diagrams, templates, scripts, or small helpers shared across lessons. See [Assets](#assets).
-- `notes.md`: A scratchpad for you to jot down user preferences, or working notes.
+## The Four Documents
 
-Use lower-case snake_case for all generated file names and directory names. The only exception is Codex's required `SKILL.md` file inside the skill itself.
+Stateful Course Mode may create or update only these four Markdown files in `teaching_dir`:
 
-When reporting files back to the user, include the `teaching_dir` prefix in wikilinks, such as `[[rag_course/rag_course.md]]` or `[[rag_course/lessons/0001_rag_mental_model.md]]`.
+1. `index.md`: course index, mission, progress tracker, learning records, and restart manual.
+2. `solution.md`: the current lesson, worked examples, exercises, quiz prompts, answer keys, and companion-mode notes.
+3. `deep_dive.md`: polished synthesis created or updated when the user finishes a course or asks for consolidation.
+4. `reference.md`: compact durable reference material, glossary, formulas, snippets, source list, and external resources.
 
-## Philosophy
+Never create directories named `learning_records/` or `assets/`. Also do not create `lessons/`, `reference/`, `learn_notes.md`, `notes.md`, separate resource files, or numbered lesson files. If an older teaching directory already contains those files, leave them alone unless the user asks to migrate them. Create and update only the four documents going forward.
 
-To learn at a deep level, the user needs three things:
+## `index.md`
 
-- **Knowledge**, captured from high-quality, high-trust resources
-- **Skills**, acquired through highly-relevant interactive lessons devised by you, based on the knowledge
-- **Wisdom**, which comes from interacting with other learners and practitioners
+`index.md` is the source of truth for the course. Create it before or alongside the first `solution.md` update, then maintain it whenever course state changes.
 
-Before `reference/resources.md` is well-populated, your focus should be to find high-quality resources which will help the user acquire knowledge. Never trust your parametric knowledge.
-
-Some topics may require more skills than knowledge. Learning more about theoretical physics might be more knowledge-based. For yoga, more skills-based.
-
-### Fluency vs Storage Strength
-
-You should be careful to split between two types of learning:
-
-- **Fluency strength**: in-the-moment retrieval of knowledge
-- **Storage strength**: long-term retention of knowledge
-
-Fluency can give the user an illusory sense of mastery, but storage strength is the real goal. Try to design lessons which build long-term retention by desirable difficulty:
-
-- Using retrieval practice (recall from memory)
-- Spacing (distributing practice over time)
-- Interleaving (mixing up different but related topics in practice - for skills practice only)
-
-## Course Index And Cross-Session Manual
-
-A course index file named `<topic_slug>_course.md` is required for every teaching directory. For example, the `rag_course/` directory uses `rag_course.md`. Create it before or alongside the first lesson, then update it whenever you add a lesson, reference, learning record, or mission-relevant note.
-
-The course index should follow [course_format.md](./course_format.md) and include:
+It must include:
 
 - Course title.
-- Mission section with why, success criteria, constraints, and out-of-scope items. There is no separate mission file.
+- Mission: why the user is learning the topic, success criteria, constraints, and out-of-scope items.
 - How to use this course across sessions.
 - Current status: not started, in progress, paused, review, or complete.
-- `## Course tasks` as the source of truth for progress.
-- One checkbox task per lesson, drill, or review milestone.
+- `## Course tasks` with one checkbox task per lesson, drill, review, or consolidation milestone.
 - Estimated time for every task, such as `(15 min)`, `(30-45 min)`, or `(2 sessions)`.
+- Links to `solution.md`, `deep_dive.md`, and `reference.md`.
+- `## Learning records` with durable insights, corrected misconceptions, weak spots, strong interview phrasing, and dated progress notes.
 - Review schedule or spaced-repetition prompts.
-- Reference index linking to `reference/*.md`, including `reference/resources.md`.
-- Session restart instructions, such as: "Read `<topic_slug>_course.md`, then ask the agent to continue from the next unchecked task."
+- Session restart instructions, such as: "Read `index.md`, then continue from the next unchecked task."
 
-Do not add separate `## Completed lessons` or `## Next session` sections. Completed work is represented by checked tasks in `## Course tasks`.
+Represent completed work only by checked tasks in `## Course tasks`. Do not add separate completed-lessons sections.
 
-When a user resumes the course, read `<topic_slug>_course.md`, recent `learning_records/*.md`, and the latest lesson before deciding what to teach next.
+Example task format:
 
-## Companion Mode
+```md
+## Course tasks
 
-Trigger companion mode when the user says `$teach companion mode`, `$teach companion`, or clearly asks to learn alongside an existing course with ongoing Q&A.
+- [ ] Build the core mental model for attention. (20 min)
+- [ ] Work through one PyTorch shape drill. (15 min)
+- [ ] Review failure modes and interview phrasing. (20 min)
+- [ ] Consolidate into `deep_dive.md`. (30 min)
+```
 
-In companion mode:
+Learning record format:
 
-1. Resolve `teaching_dir`, read `<topic_slug>_course.md`, `reference/resources.md`, existing `learn_notes.md`, and the current or latest relevant lesson.
-2. Create `learn_notes.md` if it does not exist.
-3. Stay in companion mode for the current chat until the user explicitly says to exit, stop, finish, or leave companion mode. Do not silently exit companion mode after one answer.
-4. Do not prompt the user with questions, quizzes, checks for understanding, suggested exercises, or next-step prompts in companion mode. Take questions from the user and answer them. Only quiz mode should proactively ask the user questions.
-5. Answer the user's learning questions directly and briefly, with only the necessary context and details. Ground answers first in the course files and trusted resources. If the answer needs current or external information, search and cite sources.
-6. Proactively append each substantive learning Q&A to `learn_notes.md` after answering. Do not ask permission before taking notes.
-7. Do not record workflow, environment, or file-management questions unless the user explicitly asks to keep them.
-8. Keep the note chronological and slightly raw. Use this format:
+```md
+## Learning records
+
+- {YYYY-MM-DD}: {durable insight, corrected misconception, weak spot, or strong interview phrasing}. Next action: {specific review, drill, or task link}.
+```
+
+When a user resumes the course, read `index.md`, the latest relevant part of `solution.md`, and `reference.md` before deciding what to teach next.
+
+## `solution.md`
+
+`solution.md` is the active teaching surface. Put lessons, worked examples, exercises, answer keys, quiz prompts, feedback, companion-mode Q&A, and session notes here.
+
+A teaching unit should be short and self-contained. It should give the user one tangible win and fit the mission in `index.md`.
+
+For each substantial teaching unit, prefer this structure:
+
+1. Objective.
+2. Minimal knowledge needed.
+3. Worked example or implementation sketch.
+4. Retrieval practice or drill.
+5. Answer key or self-check.
+6. Interview phrasing when relevant.
+7. Pointers to `reference.md`.
+
+For companion-mode Q&A, append chronological entries to `solution.md`:
 
 ```md
 ## {YYYY-MM-DD} - {short topic}
@@ -104,26 +136,56 @@ In companion mode:
 
 **Interview phrasing:** {one sentence the user can say aloud, if relevant}
 
-**Grounding:** {course lesson, reference file, or external source}
+**Grounding:** {section in solution.md, reference.md, or external source}
 ```
 
-Companion mode is for user-initiated Q&A and note capture, not for rewriting the whole course and not for quizzing. Keep `learn_notes.md` as the raw buffer until the user finishes the course.
+## `reference.md`
 
-## Finish Course Consolidation
+`reference.md` is the compressed durable reference. Keep it concise, printable, and useful for quick review.
 
-Trigger finish-course consolidation when the user says `finish $teach <course name>`, `finish $teach <teaching_dir>`, or an equivalent explicit finish command.
+Use it for:
 
-When finishing a course:
+- Glossary.
+- Key equations and invariants.
+- Algorithms and flowcharts.
+- PyTorch/Python snippets.
+- Systems tradeoffs and failure modes.
+- Interview phrasing.
+- Curated sources and external resources.
+- Community or practitioner resources when real-world wisdom is needed.
 
-1. Resolve the target `teaching_dir` from the course name or directory.
-2. Read `<topic_slug>_course.md`, all `lessons/*.md`, `reference/*.md`, `learn_notes.md`, and relevant `learning_records/*.md`.
-3. Tidy `learn_notes.md`: remove duplicates, group related Q&A, preserve source grounding, and mark entries as merged with the finish date. Keep raw details only when they are still useful.
-4. Create or update `deep_dive.md` as the polished synthesis. It should include durable concepts, tradeoffs, common pitfalls, interview phrasing, implementation patterns, evaluation/debugging guidance, and links back to lessons and references.
-5. Update `<topic_slug>_course.md`: mark completed tasks if the user's learning indicates completion, set status to `review` or `complete`, and add review prompts that point to `deep_dive.md`.
-6. If the finish process reveals a durable learning milestone or corrected misconception, add a `learning_records/000N_<snake_case_name>.md` file.
-7. Report the files updated using wikilinks.
+Before `reference.md` is well-populated, prioritize high-quality resources for knowledge acquisition. For current or external claims, search and cite trusted sources. Avoid citation clutter in `solution.md`; put durable source lists in `reference.md`.
 
-Do not run finish-course consolidation unless the user explicitly uses a finish command.
+## `deep_dive.md`
+
+`deep_dive.md` is the polished synthesis. Create or update it when the user explicitly finishes a course, asks to consolidate, or asks for a durable study note.
+
+It should include:
+
+- Durable concepts and mental models.
+- Tradeoffs and failure modes.
+- Implementation patterns.
+- Evaluation and debugging guidance.
+- Interview phrasing.
+- Links back to `solution.md` and `reference.md`.
+
+Do not run finish-course consolidation unless the user explicitly uses a finish or consolidation command.
+
+## Companion Mode
+
+Trigger companion mode when the user says `$teach companion mode`, `$teach companion`, or clearly asks to learn alongside an existing course with ongoing Q&A.
+
+In companion mode:
+
+1. Resolve `teaching_dir`.
+2. Read `index.md`, `solution.md`, and `reference.md` if they exist.
+3. Stay in companion mode for the current chat until the user explicitly says to exit, stop, finish, or leave companion mode.
+4. Do not prompt the user with questions, quizzes, checks for understanding, suggested exercises, or next-step prompts. Take questions from the user and answer them.
+5. Answer directly and briefly. Ground answers first in the course files and trusted resources.
+6. Append each substantive learning Q&A to `solution.md`. Do not record workflow, environment, or file-management questions unless the user explicitly asks to keep them.
+7. If the Q&A reveals a durable insight, corrected misconception, weak spot, or strong reusable interview phrasing, add a concise dated entry to `## Learning records` in `index.md`.
+
+Companion mode is for user-initiated Q&A and note capture, not for rewriting the whole course and not for quizzing.
 
 ## Quiz Mode
 
@@ -131,56 +193,20 @@ Trigger quiz mode when the user says `$teach quiz mode`, `$teach quiz`, `quiz me
 
 In quiz mode:
 
-1. Resolve `teaching_dir`, read `<topic_slug>_course.md`, relevant `lessons/*.md`, `reference/*.md`, `learn_notes.md` if it exists, and recent `learning_records/*.md`.
-2. Stay in quiz mode for the current chat until the user explicitly says to exit, stop, finish, or leave quiz mode. Do not silently exit quiz mode after one question.
-3. Ask exactly one question per assistant turn.
-4. Ask no more than 5 questions in a quiz session unless the user explicitly asks for more. Prefer the most relevant and important questions over broad coverage.
-5. Prioritize questions that test core mental models, common misconceptions, interview-critical tradeoffs, and the user's known weak spots from `learn_notes.md` or prior answers.
-6. Use a mix of question types:
-   - Single choice: 3 options, one correct answer.
-   - Multi choice: 4-5 options, state how many are correct.
-   - Brief answer: one short phrase, one sentence, or a small design choice.
-7. For single-choice and multi-choice questions, use clickable UI options when the environment supports it, so the user can answer with the mouse instead of typing. Prefer `request_user_input` when available for this turn. If clickable options are unavailable, fall back to a plain Markdown question with labeled options.
-8. For brief-answer questions, ask in normal chat and wait for the user's typed response.
-9. Prefer retrieval practice over recognition. Use brief answer when recall matters, and single or multi choice when contrast or tradeoff discrimination matters.
-10. After the user answers, give concise feedback:
-   - Verdict: correct, partially correct, or not quite.
-   - Correction: the minimal fix.
-   - Mental model: one sentence.
-   - Interview phrasing if useful.
-11. Then ask the next single question in the same response unless the user asks to pause or exit. If the quiz has reached 5 questions, stop asking questions and provide the end-of-quiz summary instead. If the next question is single-choice or multi-choice and clickable options are available, use clickable options again.
-12. Keep difficulty adaptive:
-   - If the user answers easily, increase ambiguity or ask for tradeoffs.
-   - If the user misses, ask a simpler follow-up before moving on.
-   - Interleave older lessons with the current lesson to build storage strength.
-13. Proactively append quiz-relevant misses, corrected misconceptions, and strong interview phrasing to `learn_notes.md`. Do not record every trivial correct answer.
-14. Track quiz performance in the chat so you can summarize it when quiz mode ends: topics tested, correct answers, partial answers, misses, recurring weak concepts, and recommended next drills.
-15. When the user exits, stops, pauses, or finishes quiz mode, summarize the quiz conversation and write an end-of-quiz weakness note to `learn_notes.md` before ending quiz mode.
-16. If the user demonstrates stable understanding of a non-obvious concept across quiz turns, add or update a learning record in `learning_records/`.
+1. Resolve `teaching_dir`.
+2. Read `index.md`, `solution.md`, `reference.md`, and `deep_dive.md` if it exists.
+3. Stay in quiz mode for the current chat until the user explicitly says to exit, stop, finish, or leave quiz mode.
+4. Ask exactly one question per assistant turn.
+5. Ask no more than 5 questions in a quiz session unless the user explicitly asks for more.
+6. Prioritize core mental models, common misconceptions, interview-critical tradeoffs, and weak spots recorded in `index.md`.
+7. Use brief-answer questions when recall matters. Use single-choice or multi-choice questions when contrast or tradeoff discrimination matters.
+8. For single-choice and multi-choice questions, use clickable UI options when available. Prefer `request_user_input` when available for this turn. Otherwise use plain Markdown with labeled options.
+9. After the user answers, give concise feedback: verdict, correction, mental model, and interview phrasing if useful.
+10. Append quiz-relevant raw feedback to `solution.md`. Do not record every trivial correct answer.
+11. Add durable misses, corrected misconceptions, strong interview phrasing, and next drills to `## Learning records` in `index.md`.
+12. When quiz mode ends, append a short raw quiz summary to `solution.md` and a concise durable summary to `index.md`.
 
-Quiz-mode note format for `learn_notes.md`:
-
-```md
-## {YYYY-MM-DD} - Quiz: {short topic}
-
-### Prompt
-{question}
-
-### User answer
-{answer}
-
-### Feedback
-{verdict and correction}
-
-**Mental model:** {what to remember}
-
-**Interview phrasing:** {optional sentence}
-
-**Grounding:** {lesson/reference/source}
-```
-
-
-End-of-quiz summary format for `learn_notes.md`:
+End-of-quiz summary format:
 
 ```md
 ## {YYYY-MM-DD} - Quiz summary: {course or topic}
@@ -193,106 +219,43 @@ End-of-quiz summary format for `learn_notes.md`:
 
 **Corrections to remember:** {durable fixes}
 
-**Recommended drills:** {1-3 focused drills or lesson links}
+**Recommended drills:** {1-3 focused drills}
 
-**Grounding:** {lesson/reference/source}
+**Grounding:** {solution.md, reference.md, or source}
 ```
 
-The user-facing end-of-quiz response should be concise: score or rough performance, top 2-3 weaknesses, and next recommended drill. Do not overpraise; make it useful for the next study session.
+Durable quiz summary format for `index.md`:
 
-Quiz mode is separate from companion mode. Companion mode only answers user-initiated questions; quiz mode actively prompts the user with questions.
+```md
+## Learning records
 
-## Lessons
+- {YYYY-MM-DD}: Quiz summary: strengths: {short list}; weak spots: {short list}; corrections: {durable fixes}; next drills: {1-3 focused drills}.
+```
 
-A lesson is the main thing you produce: the unit in which knowledge and skills reach the user. Each lesson is one self-contained Markdown file, saved to `./lessons/` and titled `0001_<snake_case_name>.md` where the number increments each time.
+## Finish Course Consolidation
 
-All user-facing teaching outputs must be Markdown unless the user explicitly asks for another format. Do not create HTML lessons or HTML reference docs by default. If an older teaching directory already contains HTML files, leave them alone unless the user asks to convert them; create new Markdown files going forward.
+Trigger finish-course consolidation when the user says `finish $teach <course name>`, `finish $teach <teaching_dir>`, or an equivalent explicit finish or consolidation command.
 
-A lesson should be clean, readable, printable Markdown with strong headings, compact diagrams, tables where useful, citations, and retrieval practice. The user should be able to review it directly inside Obsidian.
+When finishing a course:
 
-The lesson should be short, and completable very quickly. Learners' working memory is very small, and we need to stay within it. But each lesson should give the user a single tangible win that they can build on. It should be directly tied to the mission, and should be in the user's zone of proximal development.
+1. Resolve `teaching_dir`.
+2. Read `index.md`, `solution.md`, `reference.md`, and existing `deep_dive.md` if present.
+3. Tidy relevant raw notes inside `solution.md`: remove duplicates, group related Q&A, preserve source grounding, and mark entries as merged with the finish date when useful.
+4. Create or update `deep_dive.md` as the polished synthesis.
+5. Update `reference.md` with any durable formulas, glossary entries, snippets, or source links.
+6. Update `index.md`: mark completed tasks if the user's learning indicates completion, set status to `review` or `complete`, add or tidy `## Learning records`, and add review prompts pointing to `deep_dive.md`.
+7. Report the four files updated using wikilinks.
 
-If possible, open the lesson file for the user by running a CLI command.
+## Teaching Principles
 
-Each lesson should link to other lessons, the `<topic_slug>_course.md` index, and reference documents using Markdown links or Obsidian wikilinks.
-
-Each lesson should recommend a primary source for the user to read or watch. This should be the most high-quality, high-trust resource you found on the topic.
-
-Each lesson should contain a reminder to ask followup questions to the agent. The agent is their teacher, and can assist with anything that's unclear.
-
-## Assets
-
-Lessons are Markdown-first, so assets are optional. Use `./assets/` only for reusable Markdown templates, diagram source files, small scripts, quiz snippets, images, or other helpers that a second lesson would reuse.
-
-Reuse is the default, not the exception. Before authoring a lesson, read `./assets/` and build from the components already there. When a lesson needs something new and reusable, write it as a component in `./assets/` and link to it. Avoid creating HTML, CSS, or JavaScript assets unless the user explicitly asks for an interactive web artifact.
-
-## The Mission
-
-Every lesson should be tied into the mission in `<topic_slug>_course.md` - the reason that the user is interested in learning about the topic.
-
-If the user is unclear about the mission, or the mission section in `<topic_slug>_course.md` is not populated, your first job should be to question the user on why they want to learn this.
-
-Failing to understand the mission will mean knowledge acquisition is not grounded in real-world goals. Lessons will feel too abstract. You will have no way of judging what the user should do next.
-
-Missions may change as the user develops more skills and knowledge. This is normal - make sure to update the mission section in `<topic_slug>_course.md` and add a learning record to capture the change. Confirm with the user before changing the mission.
-
-## Zone Of Proximal Development
-
-Each lesson, the user should always feel as if they are being challenged 'just enough'.
-
-The user may specify an exact thing they want to learn. If they don't, figure out their zone of proximal development by:
-
-- Reading their `learning_records`
-- Figuring out the right thing to teach them based on their mission
-- Teach the most relevant thing that fits in their zone of proximal development
-
-## Knowledge
-
-Lessons should be designed around a skill the user is going to learn. The knowledge in the lesson should be only what's required to acquire that skill. Explain briefly with necessary context and details; do not over-index on background, exhaustive caveats, or broad tours unless the user asks for depth. You teach the knowledge first, then get the user to practice the skills via an interactive feedback loop.
-
-Knowledge should first be gathered from trusted resources. Use `reference/resources.md` to keep track of them. Lessons should include citations for important claims, but avoid citation clutter or long source tours that distract from the learning objective.
-
-For acquiring knowledge, difficulty is the enemy. It eats working memory you need for understanding.
-
-## Skills
-
-If knowledge is all about acquisition, skills are about durability and flexibility. Make the knowledge stick.
-
-For skill acquisition, difficulty is the tool. Effortful retrieval is what builds storage strength. Skills should be taught through interactive lessons. There are several tools at your disposal:
-
-- Markdown lessons with retrieval questions, worked examples, answer keys, and short drills.
-- Lessons which guide the user through a list of real-world steps to take, for instance yoga poses, coding exercises, or interview answer drills.
-
-Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. In Markdown, place questions before answers, then include an answer key or self-check section after the exercise. If the platform supports collapsible details, they are acceptable, but do not rely on HTML-only interactions.
-
-For quizzes, each answer should be exactly the same number of words (and characters, if possible). Don't give the user any clues about the answer through formatting.
-
-## Acquiring Wisdom
-
-Wisdom comes from true real-world interaction - testing your skills outside the learning environment.
-
-When the user asks a question that appears to require wisdom, your default posture should be to attempt to answer - but to ultimately delegate to a **community**.
-
-A community is a place (online or offline) where the user can test their skills in the real world. This might be a forum, a subreddit, a real-world class (budget permitting) or a local interest group.
-
-You should attempt to find high-reputation communities the user can join. If the user expresses a preference that they don't want to join a community, respect it.
-
-## Reference Documents
-
-While creating lessons, you should also create Markdown reference documents. Lessons can reference these documents - they are useful for tracking raw units of knowledge useful across lessons.
-
-Lessons may be revisited, but reference documents will be used more often. They should be the compressed essence of the lesson, in Markdown format designed for quick reference.
-
-Some learning topics lend themselves to reference:
-
-- Syntax and code snippets for programming
-- Algorithms and flowcharts for processes
-- Yoga poses and sequences for yoga
-- Exercises and routines for fitness
-- Glossaries for any topic with its own nomenclature
-
-Glossaries, in particular, are an essential reference. Once one is created, it should be adhered to in every lesson.
-
-## `notes.md`
-
-The user will sometimes express preferences of how they want to be taught, or things you should keep in mind. This is the place to record those preferences, so you can refer back to them when designing lessons or working with the user.
+- Assume strong ML fundamentals and Python/PyTorch fluency unless the user says otherwise.
+- Emphasize subtleties that distinguish senior candidates: invariants, scaling behavior, failure modes, production constraints, and experimental design.
+- For math-heavy concepts, include the smallest derivation that explains the result, then translate it back to intuition.
+- For systems concepts, cover latency, throughput, memory, correctness, reliability, observability, and operational failure modes.
+- For ML training/inference concepts, cover data, objective, optimization, evaluation, scaling, debugging, and deployment implications.
+- Build storage strength with retrieval practice, spacing, and interleaving where useful.
+- Keep lessons short. Working memory is small.
+- Prefer "what breaks and why" over broad surveys.
+- Name uncertainty explicitly when the field has multiple valid conventions.
+- Use PyTorch by default for deep-learning examples.
+- Tie every stateful teaching unit back to the mission in `index.md`.
