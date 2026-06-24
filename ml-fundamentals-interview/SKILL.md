@@ -1,33 +1,23 @@
 ---
-name: ml-fundamentals-interview
-description: "Staff/Senior Staff MLE ML theory and fundamentals interview prep for conversational Q&A rounds. Use for create, solve, companioned learn, or mock mode when preparing non-coding, non-system-design ML fundamentals topics with one self-contained topic directory."
+name: mock-ml-fundamental
+description: "Staff/Senior Staff MLE ML theory and fundamentals mock interviews. Supports setup mock and mock: questions come from a user-specified question bank; answer assessment may use learning artifacts."
 ---
 
-# ML Fundamentals Interview
+# Mock ML Fundamental
 
-**Purpose:** End-to-end Staff/Senior Staff MLE ML fundamentals prep for conversational theory rounds: create topic folders, synthesize answers, companion learning with notes, and run realistic mocks.
+**Purpose:** Set up and run realistic Staff/Senior Staff MLE ML fundamentals mock interviews.
 
-**Boundary:** Use this for ML theory and fundamentals. Do not use it for coding rounds, daily quiz tracking, or ML system design whiteboards.
-
-**Important:** First identify the current topic directory. All `context/`, `input/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that topic directory, similar to `coding-interview-companion`.
+**Boundary:** This skill is mock-only. Do not use it to create topics, solve study prompts, write deep dives, or run companion learning. Use `teach` for learn mode, solve mode, explanations, study notes, and consolidation.
 
 ## Topic Directory Resolution
 
 Before reading or writing files, set `topic_dir`:
 
-1. If the user provides a topic directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy flat files, walk upward to the nearest directory that contains the topic artifacts.
-2. Otherwise, if the current directory contains `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy flat topic files such as `topic.md`, `answer.md`, `deep_dive.md`, `learn_notes.md`, or `mock_feedback.md`, use the current directory.
-3. Otherwise, search nearby child directories for `context/*.md`, `input/0_requirements.md`, `input/topic.md`, `solution/deep_dive.md`, `solution/learn_notes.md`, or legacy flat files.
-4. If multiple topic directories match and the current topic is ambiguous, ask one concise clarification question.
-
-After resolving `topic_dir`, use:
-
-- `topic_context = <topic_dir>/context`
-- `topic_input = <topic_dir>/input`
-- `topic_solution = <topic_dir>/solution`
-- `topic_mock = <topic_dir>/mock_MMDD` where `MMDD` is the current local date, e.g. `mock_0602`
-
-Create directories as needed for the selected mode. Treat `context/` as raw source material and never overwrite it.
+1. If Julie provides a topic directory, use it.
+2. If Julie provides a file path, walk upward to the nearest directory that contains root mock files such as `mock_question_bank.md` or `mock.md`, or optional assessment files such as `deep_dive.md`, `reference.md`, or `solution.md`.
+3. Otherwise, if the current directory contains `mock_question_bank.md`, `mock.md`, `deep_dive.md`, `reference.md`, or `solution.md`, use the current directory.
+4. Otherwise, search nearby child directories for `mock_question_bank.md` or `mock.md`.
+5. If multiple topic directories match and the current topic is ambiguous, ask one concise clarification question.
 
 ## Directory Structure
 
@@ -35,197 +25,109 @@ All paths are relative to `topic_dir`:
 
 ```text
 topic-directory/
-  context/
-    ...                         # Raw notes, prompt dumps, screenshots converted to text, source docs
-  input/
-    0_requirements.md           # Clean topic requirements synthesized from context or the user request
-    topic.md                    # Candidate-facing topic prompt and scope
-    follow_up_questions.md      # Important interviewer probes and next-round focus
-  solution/
-    answer.md                   # Crisp spoken Staff+ answer
-    deep_dive.md                # Durable reference and refinements
-    learn_notes.md              # Raw/stabilized companion learning notes
-  mock_MMDD/
-    mock_instructions.md        # Candidate-facing mock topic and constraints
-    mock_feedback.md            # Mock transcript, strict feedback, verdict, weakness notes
+  mock_question_bank.md       # User-specified source question bank for question selection
+  deep_dive.md                # Optional answer and assessment grounding only
+  reference.md                # Optional answer and assessment grounding only
+  solution.md                 # Interviewer-only solution key for all mock questions
+  mock.md                     # Candidate-facing setup, dated transcript, feedback, verdict, rollup, and next-round probes
 ```
-
-Legacy flat files directly under `topic_dir` are allowed as read-only supporting context unless Julie asks to migrate them. New artifacts should use the directory structure above.
-
-## Modes
-
-- **Create mode:** Create or normalize the topic directory from Julie's request or raw notes. Write `context/raw_notes.md` when source material is provided directly, then create `input/0_requirements.md` and `input/topic.md`.
-- **Solve mode:** Read `context/` and `input/`, create or update `input/0_requirements.md` if missing, then write `solution/answer.md` and `solution/deep_dive.md`.
-- **Companioned learn mode:** Passive Q&A companion. Answer Julie's questions directly, keep concise necessary context, and proactively record stabilized interview-relevant Q&A in `solution/learn_notes.md`. Do not prompt or quiz unless explicitly in mock mode.
-- **Mock mode:** Run a realistic Staff/Senior Staff MLE conversational theory interview, one question per turn, and record feedback in a fresh `mock_MMDD/` session.
 
 ## Staff+ Operating Principles
 
 1. **Assume strong ML fundamentals.** Avoid 101-level teaching unless Julie asks. Spend depth on mechanisms, assumptions, equations, failure modes, and tradeoffs.
-2. **Optimize for Staff/Senior Staff MLE signal.** Start with a crisp thesis, explain the causal mechanism, and connect to LLMs, representation learning, optimization, evaluation, scaling behavior, or reliability when relevant.
-3. **Separate correctness from seniority.** Name the basic correct answer, then show the Staff+ answer: assumptions, where it breaks, practical implications, and strong interview phrasing.
-4. **Stay conversational and concise.** Prefer oral-answer structure over long essays. Use one compact example only when it sharpens intuition.
-5. **Be proactive with notes.** Update learning or mock notes after meaningful interview-relevant exchanges without asking permission.
-
-## Create Mode Workflow
-
-Use create mode when Julie asks to create a topic, provides raw notes without an existing structure, or wants this skill to initialize prep artifacts.
-
-1. Resolve or create `topic_dir`.
-   - If Julie provides a topic name but no path, create a lower-case snake_case directory in the current workspace.
-   - Use a descriptive topic slug, e.g. `cross_entropy_vs_kl`, `bias_variance_tradeoff`, `attention_mechanism`.
-2. Create `context/`, `input/`, and `solution/`.
-3. Preserve raw source material:
-   - If Julie pasted raw notes or a prompt, write it to `context/raw_notes.md`.
-   - If source files already exist, leave them unchanged.
-4. Write `input/0_requirements.md` with:
-   - Topic framing and likely interviewer prompt.
-   - Concepts in scope and out of scope.
-   - Required definitions, notation, equations, mechanisms, assumptions, and failure modes.
-   - Staff+ evaluation criteria.
-   - Likely follow-up probes.
-   - Ambiguities and chosen assumptions.
-5. Write `input/topic.md` as the candidate-facing topic prompt:
-   - Clean question.
-   - Expected answer dimensions.
-   - Constraints and assumptions.
-   - Follow-up themes, without answer keys.
-6. Summarize created files and suggest solve mode only if Julie asked for the full answer next.
-
-## Solve Mode Workflow
-
-Use solve mode to turn a topic description into interview-ready study artifacts.
-
-### Phase 1: Topic Analysis
-
-1. Resolve `topic_dir`.
-2. Read raw source from `context/` and generated prompts from `input/`, preferring `input/0_requirements.md`, `input/topic.md`, and explicit files named by Julie.
-3. If `input/0_requirements.md` is missing, create it from available context before writing solutions.
-4. Identify:
-   - Core concept and likely interview prompt.
-   - What a Staff/Senior Staff MLE interviewer is testing.
-   - Essential definitions, equations, mechanisms, assumptions, and failure modes.
-   - Likely follow-up probes and common misconceptions.
-5. If context is vague, make reasonable assumptions and state them in the output instead of blocking.
-
-### Phase 2: Create `solution/answer.md`
-
-Write `solution/answer.md` as a crisp spoken answer for a real interview:
-
-- **Question / Topic:** Likely interview prompt.
-- **Short Answer:** 3-6 sentence thesis-first answer.
-- **Core Mechanism:** Causal explanation, with equations only when useful.
-- **Staff+ Depth:** Assumptions, failure modes, tradeoffs, and production relevance.
-- **Example:** One compact example if it clarifies the concept.
-- **Follow-Ups:** Likely interviewer probes and short answer sketches.
-- **Delivery Notes:** What Julie should say aloud under time pressure.
-
-Keep it interview-ready and conversational, not a textbook chapter.
-
-### Phase 3: Create `solution/deep_dive.md`
-
-Write `solution/deep_dive.md` as the durable reference:
-
-- **Concept Map:** Adjacent ML fundamentals and dependencies.
-- **Definitions & Notation:** Precise terms, variables, and assumptions.
-- **Mechanism / Derivation:** Full explanation, derivation, or proof sketch when relevant.
-- **Intuition:** One clear mental model.
-- **Edge Cases & Failure Modes:** Where the concept breaks or becomes misleading.
-- **Practical ML / LLM Relevance:** Training, evaluation, scaling, optimization, representations, or reliability.
-- **Common Misconceptions:** Candidate mistakes and corrections.
-- **Staff+ Interview Follow-Ups:** Harder questions with strong answer outlines.
-- **Interview Phrasing:** Short sentences Julie can say aloud.
-
-`deep_dive.md` should be deeper than `answer.md` but still focused on interview use.
-
-### Phase 4: Walk-Through
-
-Summarize:
-
-- The topic framing.
-- Highest-risk concepts to review.
-- Files created or updated.
-
-## Companioned Learn Mode Workflow
-
-Use companioned learn mode as a passive read-along Q&A companion with auto-notes. Do not lecture upfront.
-
-### Setup
-
-1. Resolve `topic_dir`.
-2. Silently read relevant local context from `input/`, `solution/answer.md`, `solution/deep_dive.md`, and source notes.
-3. Create `solution/learn_notes.md` if it does not exist.
-4. Wait for Julie's question. Do not offer a menu, prompt her with questions, quiz her, or start teaching unless asked.
-
-### During Learning
-
-1. **Answer the immediate question.**
-   - Answer directly and stop cleanly.
-   - Keep explanations brief with only necessary context and details.
-   - Use plain language first, then technical depth if needed.
-   - Use one compact example at most.
-   - Highlight Staff+ interview phrasing when useful.
-
-2. **Keep notes for stable interview questions.**
-   - A question is stabilized when the direct answer and immediate clarification are complete.
-   - Record every interview-relevant stabilized question or insight in `solution/learn_notes.md`.
-   - Do not record workflow, environment, IDE, file-conversion, or meta questions unless explicitly asked.
-
-3. **Use this note format:**
-
-   ```markdown
-   ## <parent topic>
-
-   ### Q: <concise question>
-   - A: <1-3 sentence answer>
-   - Mental model: <what to remember>
-   - Staff+ phrasing: <one sentence to say aloud>
-   - Follow-ups: <immediate refinements, if any>
-   - Grounding: <local file or source used>
-   ```
-
-4. **Do not update `solution/deep_dive.md` during active learn mode.**
-   - Keep `solution/learn_notes.md` as the session buffer.
-   - Stay in learn mode until Julie explicitly says `end learn`, `conclude learn`, `exit learn`, `wrap learning`, `finish learning`, or asks to consolidate learning notes.
-   - Do not treat generic `summarize`, `done`, `next`, or a topic change as permission to exit learn mode unless it clearly refers to the learning session.
-
-### End of Learn Session
-
-When Julie explicitly wraps learning or asks to consolidate:
-
-1. Read the full `solution/learn_notes.md`.
-2. Remove duplicate, low-signal, or non-interview-relevant entries unless Julie asked to preserve them.
-3. Group related questions by concept, misconception, follow-up theme, or interview phrasing.
-4. Merge cleaned takeaways into `solution/deep_dive.md` under relevant sections or a dated `Learning Notes & Refinements` section.
-5. Preserve useful grounding, examples, edge cases, and strong phrasing.
-6. Reset `solution/learn_notes.md` to a short staging inbox or mark merged entries with the date.
-7. Summarize what changed in `deep_dive.md` and what remains open.
+2. **Optimize for Staff/Senior Staff MLE signal.** Evaluate whether the answer explains the causal mechanism and connects to LLMs, representation learning, optimization, evaluation, scaling behavior, or reliability when relevant.
+3. **Separate correctness from seniority.** Name the basic correctness issue, then judge Staff+ strength: assumptions, where it breaks, practical implications, and interview phrasing.
+4. **Stay interviewer-like.** Ask one question at a time. Do not coach unless Julie asks for help.
+5. **Be strict and useful.** Record mock notes, weaknesses, and next drills without asking permission.
 
 ## Mock Mode Workflow
 
-Use mock mode to simulate a Staff/Senior Staff MLE conversational theory interview.
+This skill has two explicit workflows:
 
-### Setup
+- **Setup mock:** Prepare root-level mock artifacts from the user-specified question bank. Stop after setup; do not start the interview.
+- **Mock:** Run the live Staff/Senior Staff MLE conversational theory interview. If setup artifacts are missing, run setup first, then ask the first question.
+
+### Setup Mock
+
+Trigger this workflow when Julie says `setup mock`, `set up mock`, `prepare mock`, or asks to initialize mock files.
 
 1. Resolve `topic_dir`.
-2. Read mock context from `input/0_requirements.md`, `input/topic.md`, `solution/answer.md`, `solution/deep_dive.md`, and source notes.
-3. Create a fresh top-level mock directory named `mock_MMDD/`. If one already exists today, create `mock_MMDD_2/`, `mock_MMDD_3/`, etc.
-4. Write `mock_instructions.md` with only the candidate-facing topic, constraints, and expected answer dimensions. Do not include answer keys, hints, rubrics, or expected sequence.
-5. Create `mock_feedback.md`.
-6. State only the interview topic and your role as interviewer.
-7. Ask exactly one question. Do not reveal the answer, rubric, expected sequence, or hints.
+2. Resolve the user-specified question bank before creating mock content.
+   - If Julie provides a question-bank file path, read it and use it as the sole source bank for this session.
+   - If Julie provides question-bank content directly, write or append it to root `mock_question_bank.md`, normalizing each question to checkbox format.
+   - If a root `mock_question_bank.md` exists, use it unless Julie provided a different one.
+   - If no question bank is specified or discoverable, ask one concise clarification question for the question-bank file or content before starting setup.
+   - Do not use `deep_dive.md`, `reference.md`, `solution.md`, or other learning artifacts to create, expand, or fill gaps in the question bank.
+   - `solution.md` is created from the finalized question bank as the interviewer-only answer key; `deep_dive.md` and `reference.md` may be used later only as supplemental answer and assessment grounding after Julie answers.
+   - Do not auto-generate the initial question bank unless Julie explicitly asks you to create one, and then ground it only in the materials she provides for that question bank.
+   - The question bank should contain questions, expected answers or evaluation notes, what each question tests, and grounding/source notes when available.
+   - Every question must be a Markdown checkbox item. Use unchecked boxes for not-yet-asked questions and checked boxes for questions already used in a completed mock session.
+
+Question-bank entry format:
+
+```markdown
+## <topic>
+
+- [ ] **Q:** <candidate-facing question>
+  - Tests: <concept, skill, or misconception>
+  - Expected answer / evaluation notes: <interviewer-only answer guidance>
+  - Grounding: <source section or note, if available>
+  - Asked: <blank until used, then YYYY-MM-DD mock>
+```
+3. Create or update root `solution.md` for all questions in `mock_question_bank.md`.
+   - Include every mock question, grouped by topic in the same order as the question bank.
+   - Use the question bank's expected answer, evaluation notes, tests, and grounding as the primary source.
+   - If a question lacks enough answer guidance, include a `Needs answer source` note instead of inventing unsupported content.
+   - Keep `solution.md` interviewer-only. Do not expose it during the mock unless Julie explicitly asks after the mock.
+   - Do not add new questions to `solution.md` that are absent from `mock_question_bank.md`.
+4. Create `mock.md` at the root of `topic_dir` if it does not exist. Append one dated section for every mock session.
+5. In `mock.md`, include a candidate-facing setup block with only the topic, constraints, and expected answer dimensions derived from `mock_question_bank.md`. Do not include answer keys, hints, rubrics, grounding, or expected sequence.
+6. In the same dated section of `mock.md`, include placeholders for the transcript, per-turn feedback, verdict, weaknesses, next review, and next-round probes.
+7. Do not expose `mock_question_bank.md` or `solution.md` to Julie during the mock unless she asks to inspect them after the mock.
+8. Stop after setup. Report the files prepared using wikilinks and say that `mock` will start the interview.
+
+Root `solution.md` format:
+
+```markdown
+# Mock Solutions
+
+## <topic>
+
+### Q: <candidate-facing question>
+
+- Tests: <concept, skill, or misconception>
+- Expected answer: <interviewer-only answer guidance>
+- Evaluation notes: <what makes the answer strong, partial, or wrong>
+- Staff+ signals: <mechanism, assumptions, tradeoffs, edge cases, LLM/frontier relevance>
+- Grounding: <source section or question-bank note>
+```
+
+### Mock
+
+Trigger this workflow when Julie says `mock`, `start mock`, `run mock`, or asks to begin the interview.
+
+1. Resolve `topic_dir`.
+2. Verify `mock.md`, `mock_question_bank.md`, and `solution.md` exist. If any are missing, run **Setup Mock** first.
+3. Read `mock_question_bank.md` for question selection. Read `solution.md` after Julie answers for answer and assessment grounding. Read `deep_dive.md` and `reference.md` only if they exist and only as supplemental answer and assessment grounding after Julie answers.
+4. State only the interview topic and your role as interviewer.
+5. Ask exactly one question from `mock_question_bank.md`. Do not reveal the answer, rubric, expected sequence, grounding, or hints.
 
 ### During Mock
 
 1. **Ask one question per assistant turn.**
+   - Ask from `mock_question_bank.md` by default.
+   - Prefer unchecked questions that match the current weak spot or natural follow-up path.
+   - If the conversation reveals a new grounded follow-up, add it to `mock_question_bank.md` before or after asking it, but keep it clearly marked as session-generated.
    - Probe one thing at a time: definition, mechanism, equation, assumption, failure mode, tradeoff, production implication, or connection to LLM systems.
    - Do not bundle multiple numbered questions.
    - Do not coach or suggest what Julie should answer next.
+   - Do not ask questions that are not supported by `mock_question_bank.md` unless Julie explicitly asks to broaden the mock and provides additional question-bank material.
 
 2. **When Julie answers, respond like an interviewer.**
    - Give strict Staff+ feedback: correct, imprecise, missing, or wrong.
    - Distinguish basic correctness from Staff+ strength when useful.
    - Provide a stronger answer after feedback.
+   - Ground feedback, assessment, and stronger answers first in `solution.md`, then in available `deep_dive.md`, `reference.md`, and the evaluation notes in `mock_question_bank.md`. Do not use those learning artifacts to introduce new questions that are absent from the question bank.
    - Ask exactly one follow-up question.
 
 3. **Only give hints when asked.**
@@ -233,13 +135,16 @@ Use mock mode to simulate a Staff/Senior Staff MLE conversational theory intervi
    - If Julie asks for help, give the smallest useful hint and record it.
    - If Julie says "I don't know", briefly teach the missing concept, then return to the interview with one follow-up.
 
-4. **Record interview-relevant turns in `mock_feedback.md`:**
+4. **Record every interview-relevant turn in the dated section of `mock.md`:**
 
    ```markdown
    ## <date> - <topic>
 
    ### Question
    <question asked>
+
+   ### Grounding
+   <mock_question_bank.md section used to select the question; solution.md section plus any deep_dive.md, reference.md, or question-bank evaluation notes used for assessment>
 
    ### Julie's Answer
    <faithful summary or quote>
@@ -261,9 +166,29 @@ When Julie asks to stop or the mock reaches a natural end:
 - Give a verdict: `strong pass`, `pass`, `lean pass`, `lean no`, or `no-hire for this round`.
 - Include 2-4 focused improvements.
 - Identify the weakest concept to review next.
-- Record the verdict and improvements in `mock_feedback.md`.
+- Record the verdict and improvements in the dated section for this session in root `mock.md`.
+- Complete the rollup fields for this session in root `mock.md`.
+- In `mock_question_bank.md`, check off every question asked in this mock session and fill its `Asked:` field with the mock date or session label.
 - Summarize misses and weaknesses from the session.
-- Convert important misses into candidate-facing next-round probes in `input/follow_up_questions.md`, without answer keys or hidden hints.
+- Convert important misses into candidate-facing next-round probes inside the dated section of root `mock.md`, without answer keys or hidden hints.
+
+Root `mock.md` dated section format:
+
+```markdown
+## YYYY-MM-DD - <topic or focus>
+
+- Candidate-facing setup:
+  - Topic: <topic or focus>
+  - Constraints: <scope, target level, or interview constraints>
+  - Expected answer dimensions: <candidate-facing dimensions only, no answer keys or hidden rubric>
+- Question source: `mock_question_bank.md`
+- Answer and assessment grounding: `solution.md`, plus `deep_dive.md`, `reference.md`, and/or question-bank evaluation notes used
+- Verdict: `strong pass | pass | lean pass | lean no | no-hire for this round`
+- Strengths: <short bullets or one-line summary>
+- Weaknesses: <specific concepts, confusions, or communication issues>
+- Next review: <weakest concept and 1-3 drills>
+- Next-round probes: <candidate-facing follow-up questions from important misses, without answer keys>
+```
 
 ## Feedback Rubric
 
@@ -283,21 +208,17 @@ Evaluate Staff/Senior Staff MLE theory answers against:
 
 ## File Reference
 
-| File | Purpose | Created by | Edited in Learn | Reviewed in Mock |
-|------|---------|------------|-----------------|------------------|
-| `context/*` | Raw source material | Create/User | No | Reference |
-| `input/0_requirements.md` | Generated topic requirements | Create/Solve | No | Reference |
-| `input/topic.md` | Candidate-facing topic prompt | Create/Solve | No | Reference |
-| `input/follow_up_questions.md` | Next-round probes from misses | Mock | No | Reference |
-| `solution/answer.md` | Staff+ interview-ready spoken answer | Solve | Optional reference only | Reference |
-| `solution/deep_dive.md` | Durable ML theory reference | Solve + Learn wrap-up | Wrap-up only | Reference |
-| `solution/learn_notes.md` | Learning Q&A notes | Learn | Yes | No |
-| `mock_MMDD/mock_instructions.md` | Candidate-facing mock topic | Mock | No | Reference |
-| `mock_MMDD/mock_feedback.md` | Mock transcript, feedback, verdict | Mock | No | Yes |
+| File | Purpose | Created by | Reviewed in Mock |
+|------|---------|------------|------------------|
+| `mock_question_bank.md` | User-specified source question bank for question selection | User | Primary |
+| `deep_dive.md` | Optional answer and assessment grounding | User/Teach | Assessment only |
+| `reference.md` | Optional answer and assessment grounding | User/Teach | Assessment only |
+| `solution.md` | Interviewer-only solution key for every question in `mock_question_bank.md` | Mock | Assessment only |
+| `mock.md` | Candidate-facing setup, dated transcript, feedback, verdict, rollup, and next-round probes | Mock | Yes |
 
 ## Relationship to Other Skills
 
 - Use `coding-interview-companion` for algorithm, coding, or implementation rounds.
 - Use `ml-system-design-interview` for ML system design, architecture, platform, serving, ranking, or research infrastructure rounds.
 - Use `ml-daily-quiz` for tracked daily drills and spaced review over a fixed question bank.
-- Use this skill for topic-folder-based ML theory prep and conversational Staff+ mock interviews.
+- Use `teach` for ML fundamentals learn mode, solve mode, explanations, study notes, companion learning, and consolidation.

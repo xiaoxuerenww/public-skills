@@ -1,6 +1,6 @@
-# reference/resources.md Format
+# 2_deep_dive.md Resources Format
 
-`reference/resources.md` is the curated set of trusted sources for this topic. Knowledge for explainers should be drawn from here, not from parametric guesses. Wisdom comes from the communities listed here.
+The resources section in `2_deep_dive.md` is the curated set of trusted sources for this topic. Knowledge for explainers should be drawn from `2_deep_dive.md`, not from parametric guesses. Wisdom comes from the communities listed here.
 
 ## Structure
 
