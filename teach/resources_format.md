@@ -1,6 +1,6 @@
-# 2_deep_dive.md Resources Format
+# deep_dive.md Resources Format
 
-The resources section in `2_deep_dive.md` is the curated set of trusted sources for this topic. Knowledge for explainers should be drawn from `2_deep_dive.md`, not from parametric guesses. Wisdom comes from the communities listed here.
+The resources section in `deep_dive.md` is the curated set of trusted sources for this topic. Knowledge for explainers should be drawn from `deep_dive.md`, not from parametric guesses. Wisdom comes from the communities listed here. Runnable code examples belong in `code/` and should be linked from `deep_dive.md`.
 
 ## Structure
 

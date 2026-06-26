@@ -85,6 +85,7 @@ The skill will:
 - **Write mock outputs to:** `<problem_dir>/mock_MMDD/`
 - **Write learn notes to:** `<problem_dir>/solution/learn_notes.md`
 - **Create directories** if they don't exist
+- **Clean duplicate setup files:** after setup, remove legacy duplicate files only when the same raw source is preserved in `context/` or the same generated artifact is preserved in `input/` / `solution/`
 
 ## Modes
 
@@ -145,7 +146,16 @@ All file operations are relative to the resolved `problem_dir`.
      - Keep this file frozen for learn and mock modes; write reference solutions under `<problem_dir>/solution/` and mock attempts under `<problem_dir>/mock_MMDD/`.
    - Create a `.py` fallback/export only when it helps local validation or the prompt is not Colab-based.
 
-4. Brief summary:
+4. Clean up duplicate setup files:
+   - After creating `context/`, `input/`, and `solution/` artifacts, scan the resolved `problem_dir` and its immediate parent for setup duplicates from the old flat layout.
+   - Remove an old legacy prompt/source file only when it is byte-for-byte duplicated in `<problem_dir>/context/` or its full content has been intentionally preserved there.
+   - Remove an old generated requirements, prompt, starter, solution, or discussion file only when the corresponding normalized file exists under `<problem_dir>/input/` or `<problem_dir>/solution/` and contains the same information.
+   - Do not delete raw context that exists only in one place. If a legacy raw file is the only source, move or copy it into `<problem_dir>/context/` first, verify the content, then remove the duplicate legacy copy.
+   - Do not delete unrelated notes, neighboring problem files, or legacy artifacts for other rounds. If the duplicate relationship is not exact or obvious, keep the file and mention it as a cleanup candidate.
+   - When removing files, also remove empty directories created only by that cleanup if they are inside `problem_dir`; leave parent directories alone unless the user explicitly asked for broader cleanup.
+   - Report the removed paths and the retained canonical paths in the final summary.
+
+5. Brief summary:
    - Recap the problem landscape and what you'll solve in order.
    - Call out any non-obvious constraints or tradeoffs.
 

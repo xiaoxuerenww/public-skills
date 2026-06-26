@@ -14,8 +14,8 @@ description: "Staff/Senior Staff MLE ML theory and fundamentals mock interviews.
 Before reading or writing files, set `topic_dir`:
 
 1. If Julie provides a topic directory, use it.
-2. If Julie provides a file path, walk upward to the nearest directory that contains root mock files such as `mock_question_bank.md` or `mock.md`, or optional assessment files such as `deep_dive.md`, `reference.md`, or `solution.md`.
-3. Otherwise, if the current directory contains `mock_question_bank.md`, `mock.md`, `deep_dive.md`, `reference.md`, or `solution.md`, use the current directory.
+2. If Julie provides a file path, walk upward to the nearest directory that contains root mock files such as `mock_question_bank.md` or `mock.md`, or optional assessment files such as `deep_dive.md` or `solution.md`.
+3. Otherwise, if the current directory contains `mock_question_bank.md`, `mock.md`, `deep_dive.md`, or `solution.md`, use the current directory.
 4. Otherwise, search nearby child directories for `mock_question_bank.md` or `mock.md`.
 5. If multiple topic directories match and the current topic is ambiguous, ask one concise clarification question.
 
@@ -27,7 +27,6 @@ All paths are relative to `topic_dir`:
 topic-directory/
   mock_question_bank.md       # User-specified source question bank for question selection
   deep_dive.md                # Optional answer and assessment grounding only
-  reference.md                # Optional answer and assessment grounding only
   solution.md                 # Interviewer-only solution key for all mock questions
   mock.md                     # Candidate-facing setup, dated transcript, feedback, verdict, rollup, and next-round probes
 ```
@@ -57,8 +56,8 @@ Trigger this workflow when Julie says `setup mock`, `set up mock`, `prepare mock
    - If Julie provides question-bank content directly, write or append it to root `mock_question_bank.md`, normalizing each question to checkbox format.
    - If a root `mock_question_bank.md` exists, use it unless Julie provided a different one.
    - If no question bank is specified or discoverable, ask one concise clarification question for the question-bank file or content before starting setup.
-   - Do not use `deep_dive.md`, `reference.md`, `solution.md`, or other learning artifacts to create, expand, or fill gaps in the question bank.
-   - `solution.md` is created from the finalized question bank as the interviewer-only answer key; `deep_dive.md` and `reference.md` may be used later only as supplemental answer and assessment grounding after Julie answers.
+   - Do not use `deep_dive.md`, `solution.md`, or other learning artifacts to create, expand, or fill gaps in the question bank.
+   - `solution.md` is created from the finalized question bank as the interviewer-only answer key; `deep_dive.md` may be used later only as supplemental answer and assessment grounding after Julie answers.
    - Do not auto-generate the initial question bank unless Julie explicitly asks you to create one, and then ground it only in the materials she provides for that question bank.
    - The question bank should contain questions, expected answers or evaluation notes, what each question tests, and grounding/source notes when available.
    - Every question must be a Markdown checkbox item. Use unchecked boxes for not-yet-asked questions and checked boxes for questions already used in a completed mock session.
@@ -108,7 +107,7 @@ Trigger this workflow when Julie says `mock`, `start mock`, `run mock`, or asks 
 
 1. Resolve `topic_dir`.
 2. Verify `mock.md`, `mock_question_bank.md`, and `solution.md` exist. If any are missing, run **Setup Mock** first.
-3. Read `mock_question_bank.md` for question selection. Read `solution.md` after Julie answers for answer and assessment grounding. Read `deep_dive.md` and `reference.md` only if they exist and only as supplemental answer and assessment grounding after Julie answers.
+3. Read `mock_question_bank.md` for question selection. Read `solution.md` after Julie answers for answer and assessment grounding. Read `deep_dive.md` only if it exists and only as supplemental answer and assessment grounding after Julie answers.
 4. State only the interview topic and your role as interviewer.
 5. Ask exactly one question from `mock_question_bank.md`. Do not reveal the answer, rubric, expected sequence, grounding, or hints.
 
@@ -127,7 +126,7 @@ Trigger this workflow when Julie says `mock`, `start mock`, `run mock`, or asks 
    - Give strict Staff+ feedback: correct, imprecise, missing, or wrong.
    - Distinguish basic correctness from Staff+ strength when useful.
    - Provide a stronger answer after feedback.
-   - Ground feedback, assessment, and stronger answers first in `solution.md`, then in available `deep_dive.md`, `reference.md`, and the evaluation notes in `mock_question_bank.md`. Do not use those learning artifacts to introduce new questions that are absent from the question bank.
+   - Ground feedback, assessment, and stronger answers first in `solution.md`, then in available `deep_dive.md` and the evaluation notes in `mock_question_bank.md`. Do not use those learning artifacts to introduce new questions that are absent from the question bank.
    - Ask exactly one follow-up question.
 
 3. **Only give hints when asked.**
@@ -144,7 +143,7 @@ Trigger this workflow when Julie says `mock`, `start mock`, `run mock`, or asks 
    <question asked>
 
    ### Grounding
-   <mock_question_bank.md section used to select the question; solution.md section plus any deep_dive.md, reference.md, or question-bank evaluation notes used for assessment>
+   <mock_question_bank.md section used to select the question; solution.md section plus any deep_dive.md or question-bank evaluation notes used for assessment>
 
    ### Julie's Answer
    <faithful summary or quote>
@@ -182,7 +181,7 @@ Root `mock.md` dated section format:
   - Constraints: <scope, target level, or interview constraints>
   - Expected answer dimensions: <candidate-facing dimensions only, no answer keys or hidden rubric>
 - Question source: `mock_question_bank.md`
-- Answer and assessment grounding: `solution.md`, plus `deep_dive.md`, `reference.md`, and/or question-bank evaluation notes used
+- Answer and assessment grounding: `solution.md`, plus `deep_dive.md` and/or question-bank evaluation notes used
 - Verdict: `strong pass | pass | lean pass | lean no | no-hire for this round`
 - Strengths: <short bullets or one-line summary>
 - Weaknesses: <specific concepts, confusions, or communication issues>
@@ -212,7 +211,6 @@ Evaluate Staff/Senior Staff MLE theory answers against:
 |------|---------|------------|------------------|
 | `mock_question_bank.md` | User-specified source question bank for question selection | User | Primary |
 | `deep_dive.md` | Optional answer and assessment grounding | User/Teach | Assessment only |
-| `reference.md` | Optional answer and assessment grounding | User/Teach | Assessment only |
 | `solution.md` | Interviewer-only solution key for every question in `mock_question_bank.md` | Mock | Assessment only |
 | `mock.md` | Candidate-facing setup, dated transcript, feedback, verdict, rollup, and next-round probes | Mock | Yes |
 

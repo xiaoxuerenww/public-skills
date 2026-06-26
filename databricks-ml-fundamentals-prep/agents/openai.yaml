@@ -1,0 +1,4 @@
+interface:
+  display_name: "Databricks ML Fundamentals Prep"
+  short_description: "Mock and teach prep for Databricks ML fundamentals"
+  default_prompt: "Use $databricks-ml-fundamentals-prep to set up or update a Databricks ML fundamentals topic directory from the default question bank, inferring the topic from the directory name unless I specify one."
