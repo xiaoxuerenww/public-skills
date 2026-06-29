@@ -96,6 +96,7 @@ Trigger this workflow when the user says `$teach update @<teaching_dir>/`, asks 
    - Read [[index]] to understand mission and progress. (5 min)
    - Read [[solution]] for the active lesson, drills, and Q&A. (15-25 min)
    - Read [[deep_dive]] for polished synthesis, formulas, glossary, sources, and quick review. (15-30 min)
+   - Add or refresh a total estimated time line in [[index]] that sums the initial setup/read-through path, for example `**Estimated setup time:** 35-60 min`.
 6. Do not mark doc-reading tasks complete unless the user explicitly says they read that doc or existing course state clearly records it. If the user marked an older equivalent doc as read, transfer progress only when the active doc fully supersedes it, and add a learning record explaining the transfer.
 7. Run a course integrity audit before reporting completion:
    - Verify the three active durable docs exist and are non-empty, except [[deep_dive]] may be absent or brief before consolidation. Verify [[learn_notes]] exists if companion mode has been used.
@@ -141,8 +142,10 @@ It must include:
 - Mission: why the user is learning the topic, success criteria, constraints, and out-of-scope items.
 - How to use this course across sessions.
 - Current status: not started, in progress, paused, review, or complete.
+- Estimated setup time near the top of the file, summarizing the total time for the initial read-through or setup path, such as `**Estimated setup time:** 45-75 min`.
 - `## Course tasks` with one checkbox task per lesson, drill, review, consolidation milestone, and required course-doc reading step.
 - Estimated time for every task, such as `(15 min)`, `(30-45 min)`, or `(2 sessions)`.
+- When creating or refreshing `index.md` during setup, compute the total setup estimate from the required first-pass tasks and include it before `## Course tasks`. Use a range when individual tasks have ranges. Do not include optional future review tasks in the setup total.
 - A task plan for reading all active course docs: [[index]], [[solution]], and [[deep_dive]] when it exists or is non-empty. Keep these as checkboxes in `## Course tasks`, not as a separate completed-docs section.
 - Links to [[solution]] and [[deep_dive]].
 - `## Learning records` with durable insights, corrected misconceptions, weak spots, strong interview phrasing, and dated progress notes.
@@ -156,6 +159,8 @@ When updating an existing course, especially from `$teach update @<teaching_dir>
 Example task format:
 
 ```md
+**Estimated setup time:** 85-125 min
+
 ## Course tasks
 
 - [ ] Read [[index]] to understand the course mission and progress. (5 min)

@@ -63,39 +63,76 @@ poetry run scrape-post https://www.1point3acres.com/home/pins/1175782 --json
 
 ### Scrape One Company
 
-Use existing saved input pages:
+By default, scrape only posts newer than the last local scrape. The command infers
+a start date from existing input pages and raw posts, then prompts you to confirm
+or override it before making requests:
 
 ```bash
-poetry run scrape-company anthropic
+poetry run scrape-company databricks
 ```
 
-Use the first `n` input pages:
+Use the first `n` refreshed input pages for the default incremental scrape:
 
 ```bash
 poetry run scrape-company anthropic --max-pages 3
 ```
 
-Use all available input pages:
+Use all refreshed input pages for the default incremental scrape:
 
 ```bash
 poetry run scrape-company anthropic --max-pages -1
 ```
 
-Fetch fresh company input pages first:
+Provide the proposed start date explicitly. The command still prompts you to
+confirm or override it:
 
 ```bash
-poetry run scrape-company anthropic --refresh-inputs
+poetry run scrape-company databricks --start-date 2026-05-29
 ```
 
-With `--refresh-inputs`, the scraper fetches the browser-facing company list pages at
+Filter the company-page records before scraping. The filter is natural language
+by default and matches against fields parsed from the company list page, including
+`subject`, `en_subject`, `tags`, `date`, `position_type`, and option values.
+
+```bash
+poetry run scrape-company databricks --filter-condition 'MLE or Machine Learning posts'
+```
+
+```bash
+poetry run scrape-company databricks --filter-condition 'ML LLM fundamentals'
+```
+
+Use `expr:` only when you want a structured boolean filter. Structured filters
+can reference `post_id`, `subject`, `en_subject`, `source`, `tags`, `date`,
+`dateline`, `position_type`, and option keys such as `company`, `jobcategory`,
+`jobtype`, `jobyear`, `jobseason`, and `fresh`. Supported helpers are
+`contains(value, text)` and `regex(value, pattern)`.
+
+```bash
+poetry run scrape-company databricks --filter-condition 'expr:jobcategory == 12'
+```
+
+Run the old full scrape behavior without a date cutoff:
+
+```bash
+poetry run scrape-company anthropic --full-scrape
+```
+
+Use existing saved input pages in full-scrape mode:
+
+```bash
+poetry run scrape-company anthropic --full-scrape --max-pages 3
+```
+
+Fetch fresh company input pages in full-scrape mode:
+
+```bash
+poetry run scrape-company anthropic --full-scrape --refresh-inputs
+```
+
+With default incremental mode or `--refresh-inputs`, the scraper fetches the browser-facing company list pages at
 `https://www.1point3acres.com/interview/company/<company>?page=<n>`
 and saves the raw HTML into `inputs/<company>/`.
-
-Fetch fresh pages and use only the first 6:
-
-```bash
-poetry run scrape-company anthropic --max-pages 6 --refresh-inputs
-```
 
 ## Inputs And Outputs
 

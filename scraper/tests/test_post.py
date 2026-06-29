@@ -1,4 +1,5 @@
 import unittest
+from datetime import date, datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import Mock, patch
@@ -16,16 +17,23 @@ from scraper.company import (
     collect_company_post_targets_from_files,
     combine_company_posts,
     download_post_assets,
+    extract_post_ids_from_markdown,
     extract_position_type_tag,
     extract_published_date,
     fetch_company_page_html,
     fetch_company_input_pages,
+    filter_post_records_after_start_date,
+    filter_post_records_by_condition,
+    infer_last_company_scrape_date,
     limit_input_html_files,
     load_company_input_files,
     inject_post_tags_into_markdown,
     is_http_403_or_429_error,
+    parse_start_date,
+    build_filter_context,
     run_company_scrape,
     sanitize_filename,
+    main as scrape_company_main,
 )
 from scraper.cli import extract_post_id, format_post_markdown, save_post_content
 from scraper import (
@@ -553,6 +561,284 @@ lz用python面的吗 不知道这题有没有非python版本
             ["Anthropic", "2026(4-6月)", "全职", "码农类", "在职跳槽"],
         )
 
+    def test_parse_post_records_extracts_next_data_dateline(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "trpcState": {
+                "json": {
+                  "queries": [
+                    {
+                      "state": {
+                        "data": {
+                          "data": [
+                            {
+                              "tid": 1175782,
+                              "dateline": 1778089756,
+                              "options": {"company": "anthropic"}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+        </script>
+        """
+
+        records = parse_post_records_from_html(html)
+
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0].post_id, "1175782")
+        self.assertEqual(records[0].dateline, 1778089756)
+        self.assertEqual(records[0].subject, None)
+        self.assertEqual(records[0].options, {"company": "anthropic"})
+
+    def test_parse_post_records_extracts_next_data_filter_fields(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "trpcState": {
+                "json": {
+                  "queries": [
+                    {
+                      "state": {
+                        "data": {
+                          "data": [
+                            {
+                              "tid": 1173457,
+                              "subject": "数据砖老年MLE现场表演",
+                              "enSubject": "Databricks Senior MLE Interview",
+                              "dateline": 1776475986,
+                              "source": "bbs",
+                              "options": {"company": "databricks", "jobcategory": 12}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+        </script>
+        """
+
+        records = parse_post_records_from_html(html)
+
+        self.assertEqual(records[0].subject, "数据砖老年MLE现场表演")
+        self.assertEqual(records[0].en_subject, "Databricks Senior MLE Interview")
+        self.assertEqual(records[0].source, "bbs")
+        self.assertEqual(records[0].options, {"company": "databricks", "jobcategory": 12})
+
+    def test_parse_post_records_merges_thread_tags_with_next_data_dateline(self) -> None:
+        html = """
+        <div data-sentry-component="ForumThreadItem">
+          <a href="https://www.1point3acres.com/home/pins/1175782">Anthropic 面经</a>
+          <div class="text-muted-foreground text-xs">
+            <span>Anthropic</span>
+          </div>
+        </div>
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "trpcState": {
+                "json": {
+                  "queries": [
+                    {
+                      "state": {
+                        "data": {
+                          "data": [
+                            {"tid": 1175782, "dateline": 1778089756}
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+        </script>
+        """
+
+        records = parse_post_records_from_html(html)
+
+        self.assertEqual(records[0].tags, ("Anthropic",))
+        self.assertEqual(records[0].dateline, 1778089756)
+        self.assertEqual(records[0].subject, "Anthropic 面经")
+
+    def test_filter_condition_supports_options_and_contains(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "trpcState": {
+                "json": {
+                  "queries": [
+                    {
+                      "state": {
+                        "data": {
+                          "data": [
+                            {
+                              "tid": 1173457,
+                              "subject": "数据砖老年MLE现场表演",
+                              "enSubject": "Databricks Senior MLE Interview",
+                              "dateline": 1776475986,
+                              "source": "bbs",
+                              "options": {"company": "databricks", "jobcategory": 12}
+                            },
+                            {
+                              "tid": 1177707,
+                              "subject": "databrick 全流程",
+                              "enSubject": "Software Engineer Interview",
+                              "dateline": 1779487644,
+                              "source": "bbs",
+                              "options": {"company": "databricks", "jobcategory": 1}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+        </script>
+        """
+        records = parse_post_records_from_html(html)
+
+        filtered = filter_post_records_by_condition(
+            records,
+            filter_condition='jobcategory == 12 and contains(en_subject, "MLE")',
+        )
+
+        self.assertEqual([record.post_id for record in filtered], ["1173457"])
+
+    def test_filter_condition_supports_natural_language(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "trpcState": {
+                "json": {
+                  "queries": [
+                    {
+                      "state": {
+                        "data": {
+                          "data": [
+                            {
+                              "tid": 1173457,
+                              "subject": "数据砖老年MLE现场表演",
+                              "enSubject": "Databricks Senior MLE Interview",
+                              "options": {"company": "databricks", "jobcategory": 12}
+                            },
+                            {
+                              "tid": 1177707,
+                              "subject": "databrick 全流程",
+                              "enSubject": "Software Engineer Interview",
+                              "options": {"company": "databricks", "jobcategory": 1}
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+        </script>
+        """
+        records = parse_post_records_from_html(html)
+
+        filtered = filter_post_records_by_condition(
+            records,
+            filter_condition="only MLE posts",
+        )
+
+        self.assertEqual([record.post_id for record in filtered], ["1173457"])
+
+    def test_filter_condition_supports_natural_language_or(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props":{"pageProps":{"trpcState":{"json":{"queries":[{"state":{"data":{"data":[
+        {"tid":1173457,"subject":"MLE onsite"},
+        {"tid":1172872,"subject":"Machine Learning Engineer VO"},
+        {"tid":1177707,"subject":"backend SWE"}
+        ]}}}]}}}}}
+        </script>
+        """
+        records = parse_post_records_from_html(html)
+
+        filtered = filter_post_records_by_condition(
+            records,
+            filter_condition="MLE or Machine Learning",
+        )
+
+        self.assertEqual([record.post_id for record in filtered], ["1173457", "1172872"])
+
+    def test_filter_context_exposes_tags_and_position_type(self) -> None:
+        html = """
+        <div data-sentry-component="ForumThreadItem">
+          <a href="https://www.1point3acres.com/home/pins/1175782"><h3>Anthropic 面经</h3></a>
+          <div class="text-muted-foreground text-xs">
+            <span>Anthropic</span>
+            <span class="bg-muted-foreground"></span>
+            <span>2026(4-6月)</span>
+            <span class="bg-muted-foreground"></span>
+            <span>全职</span>
+            <span class="bg-muted-foreground"></span>
+            <span>码农类</span>
+          </div>
+        </div>
+        """
+        record = parse_post_records_from_html(html)[0]
+
+        context = build_filter_context(record)
+
+        self.assertEqual(context["title"], "Anthropic 面经")
+        self.assertEqual(context["position_type"], "码农类")
+        self.assertTrue(
+            filter_post_records_by_condition(
+                [record],
+                filter_condition='contains(tags, "码农类") and title == "Anthropic 面经"',
+            )
+        )
+
+    def test_filter_condition_rejects_unsafe_syntax(self) -> None:
+        html = """
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props":{"pageProps":{"trpcState":{"json":{"queries":[{"state":{"data":{"data":[
+        {"tid":1173457,"subject":"MLE"}
+        ]}}}]}}}}}
+        </script>
+        """
+        records = parse_post_records_from_html(html)
+
+        with self.assertRaises(ValueError):
+            filter_post_records_by_condition(
+                records,
+                filter_condition='expr:__import__("os").system("echo nope")',
+            )
+
     def test_collect_company_post_metadata_keeps_first_tags_for_post(self) -> None:
         with TemporaryDirectory() as temp_dir:
             input_dir = Path(temp_dir) / "anthropic"
@@ -637,6 +923,46 @@ lz用python面的吗 不知道这题有没有非python版本
 
         self.assertEqual(html_files, [Path(temp_dir) / "anthropic" / "1.html"])
         mock_fetch.assert_called_once()
+
+    def test_filter_post_records_after_start_date_uses_dateline(self) -> None:
+        newer = int(datetime(2026, 5, 30).timestamp())
+        older = int(datetime(2026, 5, 28).timestamp())
+        html = f"""
+        <script id="__NEXT_DATA__" type="application/json">
+        {{
+          "props": {{
+            "pageProps": {{
+              "trpcState": {{
+                "json": {{
+                  "queries": [
+                    {{
+                      "state": {{
+                        "data": {{
+                          "data": [
+                            {{"tid": 1176000, "dateline": {newer}}},
+                            {{"tid": 1175000, "dateline": {older}}}
+                          ]
+                        }}
+                      }}
+                    }}
+                  ]
+                }}
+              }}
+            }}
+          }}
+        }}
+        </script>
+        """
+        records = parse_post_records_from_html(html)
+
+        filtered = filter_post_records_after_start_date(records, start_date=date(2026, 5, 29))
+
+        self.assertEqual([record.post_id for record in filtered], ["1176000"])
+
+    def test_parse_start_date_requires_iso_date(self) -> None:
+        self.assertEqual(parse_start_date("2026-05-29"), date(2026, 5, 29))
+        with self.assertRaises(ValueError):
+            parse_start_date("05/29/2026")
 
     def test_download_post_assets_saves_images_and_attachments(self) -> None:
         post = ScrapedPost(
@@ -885,6 +1211,41 @@ lz用python面的吗 不知道这题有没有非python版本
         self.assertEqual(len(paths), 1)
         mock_fetch.assert_called_once()
 
+    def test_fetch_company_input_pages_stops_after_start_date(self) -> None:
+        newer = int(datetime(2026, 5, 30).timestamp())
+        older = int(datetime(2026, 5, 28).timestamp())
+        session = Mock()
+        with TemporaryDirectory() as temp_dir, patch(
+            "scraper.company.fetch_company_page_html",
+            side_effect=[
+                f"""
+                <script id="__NEXT_DATA__" type="application/json">
+                {{"props":{{"pageProps":{{"trpcState":{{"json":{{"queries":[{{"state":{{"data":{{"data":[
+                {{"tid":1176000,"dateline":{newer}}},
+                {{"tid":1175000,"dateline":{older}}}
+                ]}}}}}}]}}}}}}}}}}
+                </script>
+                """,
+                """
+                <script id="__NEXT_DATA__" type="application/json">
+                {"props":{"pageProps":{"trpcState":{"json":{"queries":[{"state":{"data":{"data":[
+                {"tid":1174000,"dateline":1777392000}
+                ]}}}]}}}}}
+                </script>
+                """,
+            ],
+        ) as mock_fetch:
+            paths = fetch_company_input_pages(
+                "anthropic",
+                input_dir=Path(temp_dir) / "anthropic",
+                session=session,
+                max_pages=-1,
+                stop_after_date=date(2026, 5, 29),
+            )
+
+        self.assertEqual(paths, [Path(temp_dir) / "anthropic" / "1.html"])
+        mock_fetch.assert_called_once()
+
     def test_fetch_company_page_html_uses_human_company_url(self) -> None:
         session = Mock()
         response = Mock(text="<html></html>")
@@ -956,6 +1317,152 @@ lz用python面的吗 不知道这题有没有非python版本
                 outputs_root=Path("outputs"),
                 max_pages=0,
             )
+
+    def test_main_defaults_to_incremental_scrape_with_confirmation(self) -> None:
+        with patch("sys.argv", ["scrape-company", "databricks"]), patch(
+            "scraper.company.infer_last_company_scrape_date",
+            return_value=date(2026, 5, 29),
+        ) as mock_infer, patch(
+            "scraper.company.prompt_for_start_date",
+            return_value=date(2026, 5, 29),
+        ) as mock_prompt, patch(
+            "scraper.company.run_company_scrape",
+            return_value={
+                "identified": 0,
+                "already_exists": 0,
+                "newly_scraped": 0,
+                "failed": 0,
+                "combined_output_path": Path("outputs/databricks/databricks.md"),
+                "start_date": "2026-05-29",
+            },
+        ) as mock_run:
+            scrape_company_main()
+
+        mock_infer.assert_called_once()
+        mock_prompt.assert_called_once_with("databricks", date(2026, 5, 29))
+        self.assertEqual(mock_run.call_args.kwargs["start_date"], date(2026, 5, 29))
+        self.assertTrue(mock_run.call_args.kwargs["refresh_inputs"])
+
+    def test_main_full_scrape_preserves_no_cutoff_mode(self) -> None:
+        with patch("sys.argv", ["scrape-company", "databricks", "--full-scrape"]), patch(
+            "scraper.company.infer_last_company_scrape_date",
+        ) as mock_infer, patch(
+            "scraper.company.prompt_for_start_date",
+        ) as mock_prompt, patch(
+            "scraper.company.run_company_scrape",
+            return_value={
+                "identified": 0,
+                "already_exists": 0,
+                "newly_scraped": 0,
+                "failed": 0,
+                "combined_output_path": Path("outputs/databricks/databricks.md"),
+                "start_date": None,
+            },
+        ) as mock_run:
+            scrape_company_main()
+
+        mock_infer.assert_not_called()
+        mock_prompt.assert_not_called()
+        self.assertIsNone(mock_run.call_args.kwargs["start_date"])
+        self.assertFalse(mock_run.call_args.kwargs["refresh_inputs"])
+
+    def test_run_company_scrape_with_start_date_only_scrapes_newer_posts(self) -> None:
+        newer = int(datetime(2026, 5, 30).timestamp())
+        older = int(datetime(2026, 5, 28).timestamp())
+        with TemporaryDirectory() as temp_dir:
+            inputs_root = Path(temp_dir) / "inputs"
+            outputs_root = Path(temp_dir) / "outputs"
+            company_dir = inputs_root / "anthropic"
+            company_dir.mkdir(parents=True)
+            html_path = company_dir / "1.html"
+            html_path.write_text(
+                f"""
+                <script id="__NEXT_DATA__" type="application/json">
+                {{"props":{{"pageProps":{{"trpcState":{{"json":{{"queries":[{{"state":{{"data":{{"data":[
+                {{"tid":1176000,"dateline":{newer}}},
+                {{"tid":1175000,"dateline":{older}}}
+                ]}}}}}}]}}}}}}}}}}
+                </script>
+                """,
+                encoding="utf-8",
+            )
+
+            with patch("scraper.company.build_authenticated_session", return_value=Mock()), patch(
+                "scraper.company.load_company_input_files",
+                return_value=[html_path],
+            ), patch(
+                "scraper.company.scrape_post",
+                return_value=ScrapedPost(
+                    url="https://www.1point3acres.com/bbs/thread-1176000-1-1.html",
+                    title="Fresh",
+                    author="author",
+                    published_at=str(newer),
+                    content="body",
+                ),
+            ) as mock_scrape, patch("scraper.company.download_post_assets", return_value=(0, 0)):
+                stats = run_company_scrape(
+                    "anthropic",
+                    inputs_root=inputs_root,
+                    outputs_root=outputs_root,
+                    start_date=date(2026, 5, 29),
+                )
+
+            self.assertEqual(stats["identified"], 1)
+            self.assertEqual(stats["start_date"], "2026-05-29")
+            mock_scrape.assert_called_once()
+            self.assertTrue((outputs_root / "raw_posts" / "1176000.md").exists())
+            self.assertFalse((outputs_root / "raw_posts" / "1175000.md").exists())
+
+    def test_infer_last_company_scrape_date_ignores_derived_company_notes(self) -> None:
+        with TemporaryDirectory() as temp_dir:
+            inputs_root = Path(temp_dir) / "inputs"
+            outputs_root = Path(temp_dir) / "outputs"
+            input_dir = inputs_root / "anthropic"
+            input_dir.mkdir(parents=True)
+            input_html = input_dir / "1.html"
+            input_html.write_text("<html></html>", encoding="utf-8")
+
+            raw_posts = outputs_root / "raw_posts"
+            raw_posts.mkdir(parents=True)
+            raw_post = raw_posts / "1175782.md"
+            raw_post.write_text("# Post\n", encoding="utf-8")
+
+            company_output = outputs_root / "anthropic"
+            company_output.mkdir(parents=True)
+            combined = company_output / "anthropic.md"
+            combined.write_text('<a id="post-1175782"></a>\n# Post\n', encoding="utf-8")
+            derived_note = company_output / "derived_note.md"
+            derived_note.write_text("# Later note\n", encoding="utf-8")
+
+            input_ts = datetime(2026, 5, 28, 10, 0).timestamp()
+            raw_ts = datetime(2026, 5, 29, 11, 57).timestamp()
+            derived_ts = datetime(2026, 6, 29, 15, 45).timestamp()
+            input_html.touch()
+            raw_post.touch()
+            derived_note.touch()
+            import os
+
+            os.utime(input_html, (input_ts, input_ts))
+            os.utime(raw_post, (raw_ts, raw_ts))
+            os.utime(derived_note, (derived_ts, derived_ts))
+
+            inferred = infer_last_company_scrape_date(
+                "anthropic",
+                inputs_root=inputs_root,
+                outputs_root=outputs_root,
+            )
+
+        self.assertEqual(inferred, date(2026, 5, 29))
+
+    def test_extract_post_ids_from_markdown(self) -> None:
+        with TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "company.md"
+            path.write_text(
+                '<a id="post-1175782"></a>\n<a id="post-1176000"></a>\n',
+                encoding="utf-8",
+            )
+
+            self.assertEqual(extract_post_ids_from_markdown(path), ["1175782", "1176000"])
 
     def test_is_http_403_or_429_error_detects_http_error(self) -> None:
         response = requests.Response()

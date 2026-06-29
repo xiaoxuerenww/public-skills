@@ -26,6 +26,11 @@ class ForumPostRecord:
     post_id: str
     target: str
     tags: tuple[str, ...]
+    dateline: int | None = None
+    subject: str | None = None
+    en_subject: str | None = None
+    source: str | None = None
+    options: dict[str, object] | None = None
 
 
 def parse_post_ids_from_html_file(path: str | Path) -> list[str]:
@@ -58,6 +63,8 @@ def parse_post_records_from_html_file(path: str | Path) -> list[ForumPostRecord]
 def parse_post_records_from_html(html: str) -> list[ForumPostRecord]:
     soup = BeautifulSoup(html, "html.parser")
     thread_items = soup.find_all(attrs={"data-sentry-component": "ForumThreadItem"})
+    next_data_records = _parse_next_data_post_records(soup)
+    next_data_by_post_id = {record.post_id: record for record in next_data_records}
     records: list[ForumPostRecord] = []
     seen_ids: set[str] = set()
 
@@ -69,18 +76,25 @@ def parse_post_records_from_html(html: str) -> list[ForumPostRecord]:
         if post_id is None or post_id in seen_ids:
             continue
         seen_ids.add(post_id)
+        next_record = next_data_by_post_id.get(post_id)
         records.append(
             ForumPostRecord(
                 post_id=post_id,
                 target=target,
                 tags=tuple(_extract_thread_item_tags(thread_item)),
+                dateline=next_record.dateline if next_record else None,
+                subject=(next_record.subject if next_record else None)
+                or _extract_thread_item_subject(thread_item),
+                en_subject=next_record.en_subject if next_record else None,
+                source=next_record.source if next_record else None,
+                options=next_record.options if next_record else None,
             )
         )
 
     if records:
         return records
 
-    return _parse_next_data_post_records(soup)
+    return next_data_records
 
 
 def parse_post_targets_from_html(html: str) -> list[str]:
@@ -171,6 +185,20 @@ def _extract_thread_item_tags(thread_item) -> list[str]:
     return []
 
 
+def _extract_thread_item_subject(thread_item) -> str | None:
+    heading = thread_item.find("h3")
+    if heading is not None:
+        text = heading.get_text(" ", strip=True)
+        if text:
+            return text
+
+    for tag in thread_item.find_all("a"):
+        text = tag.get_text(" ", strip=True)
+        if text:
+            return text
+    return None
+
+
 def _parse_next_data_post_records(soup: BeautifulSoup) -> list[ForumPostRecord]:
     script = soup.find("script", id="__NEXT_DATA__")
     if script is None:
@@ -216,6 +244,13 @@ def _parse_next_data_post_records(soup: BeautifulSoup) -> list[ForumPostRecord]:
                     post_id=post_id_text,
                     target=f"{BASE_URL}/bbs/thread-{post_id_text}-1-1.html",
                     tags=(),
+                    dateline=item.get("dateline") if isinstance(item.get("dateline"), int) else None,
+                    subject=item.get("subject") if isinstance(item.get("subject"), str) else None,
+                    en_subject=(
+                        item.get("enSubject") if isinstance(item.get("enSubject"), str) else None
+                    ),
+                    source=item.get("source") if isinstance(item.get("source"), str) else None,
+                    options=item.get("options") if isinstance(item.get("options"), dict) else None,
                 )
             )
 

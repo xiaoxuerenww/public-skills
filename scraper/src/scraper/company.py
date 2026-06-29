@@ -1,14 +1,18 @@
 from __future__ import annotations
 
 import argparse
+import ast
+from datetime import date, datetime
 from pathlib import Path
 import re
+import sys
 from urllib.parse import unquote, urlparse
 
 import requests
 
 from .cli import extract_post_id, save_post_content
 from .forum import (
+    ForumPostRecord,
     parse_post_records_from_html,
     parse_post_records_from_html_file,
     parse_post_targets_from_html_file,
@@ -51,9 +55,51 @@ def main() -> None:
     parser.add_argument(
         "--refresh-inputs",
         action="store_true",
-        help="Fetch company input HTML pages again before scraping. By default, existing input HTML files are reused.",
+        help=(
+            "Fetch company input HTML pages again before scraping. Incremental mode does this by "
+            "default; --full-scrape reuses existing input HTML unless this is set."
+        ),
+    )
+    parser.add_argument(
+        "--since-last-scrape",
+        action="store_true",
+        help=(
+            "Deprecated no-op: this is now the default unless --full-scrape is set."
+        ),
+    )
+    parser.add_argument(
+        "--start-date",
+        help="Start date in YYYY-MM-DD format. You will still be prompted to confirm.",
+    )
+    parser.add_argument(
+        "--full-scrape",
+        action="store_true",
+        help="Disable the default date cutoff and scrape all posts from the selected company pages.",
+    )
+    parser.add_argument(
+        "--filter-condition",
+        help=(
+            "Natural-language filter over company-page fields, for example "
+            "'MLE or Machine Learning posts'. Use expr:<condition> for structured filters."
+        ),
     )
     args = parser.parse_args()
+
+    if args.full_scrape and (args.since_last_scrape or args.start_date):
+        parser.error("--full-scrape cannot be combined with --since-last-scrape or --start-date.")
+
+    start_date = None
+    if not args.full_scrape:
+        inferred_start_date = (
+            parse_start_date(args.start_date)
+            if args.start_date
+            else infer_last_company_scrape_date(
+                args.company,
+                inputs_root=Path(args.inputs_root),
+                outputs_root=Path(args.outputs_root),
+            )
+        )
+        start_date = prompt_for_start_date(args.company, inferred_start_date)
 
     stats = run_company_scrape(
         args.company,
@@ -61,7 +107,9 @@ def main() -> None:
         outputs_root=Path(args.outputs_root),
         env_file=args.env_file,
         max_pages=args.max_pages,
-        refresh_inputs=args.refresh_inputs,
+        refresh_inputs=args.refresh_inputs or start_date is not None,
+        start_date=start_date,
+        filter_condition=args.filter_condition,
     )
 
     print(
@@ -71,6 +119,10 @@ def main() -> None:
         f"{stats['newly_scraped']} newly scraped, "
         f"{stats['failed']} failed scraping."
     )
+    if stats.get("start_date"):
+        print(f"start_date: {stats['start_date']}")
+    if stats.get("filter_condition"):
+        print(f"filter_condition: {stats['filter_condition']}")
     print(f"combined_output: {stats['combined_output_path']}")
 
 
@@ -82,6 +134,8 @@ def run_company_scrape(
     env_file: str | None = None,
     max_pages: int = 1,
     refresh_inputs: bool = False,
+    start_date: date | None = None,
+    filter_condition: str | None = None,
 ) -> dict[str, object]:
     if max_pages == 0 or max_pages < -1:
         raise ValueError("max_pages must be -1 or a positive integer.")
@@ -95,13 +149,21 @@ def run_company_scrape(
         session=session,
         refresh_inputs=refresh_inputs,
         max_pages=max_pages,
+        stop_after_date=start_date,
     )
+    if not html_files and start_date is not None:
+        html_files = limit_input_html_files(sorted_company_html_files(input_dir), max_pages=max_pages)
     if not html_files:
         raise FileNotFoundError(f"No company input HTML files available in {input_dir}")
 
-    all_post_targets = collect_company_post_targets_from_files(html_files)
-    post_metadata = collect_company_post_metadata_from_files(html_files)
-    post_targets = all_post_targets
+    scrape_post_records = collect_company_post_records_from_files(html_files)
+    post_records = filter_post_records_after_start_date(scrape_post_records, start_date=start_date)
+    post_records = filter_post_records_by_condition(
+        post_records,
+        filter_condition=filter_condition,
+    )
+    all_post_targets = [record.target for record in scrape_post_records]
+    post_targets = [record.target for record in post_records]
     if max_pages == -1:
         print(f"Identified {len(post_targets)} posts from {len(html_files)} HTML files.")
     else:
@@ -156,9 +218,21 @@ def run_company_scrape(
                 print("Stopping early after an HTTP 403/429 response to reduce account risk.")
                 break
 
+    combine_html_files = (
+        limit_input_html_files(sorted_company_html_files(input_dir), max_pages=-1)
+        if start_date is not None
+        else html_files
+    )
+    combine_post_records = collect_company_post_records_from_files(combine_html_files)
+    combine_post_records = filter_post_records_by_condition(
+        combine_post_records,
+        filter_condition=filter_condition,
+    )
+    post_metadata = metadata_from_post_records(combine_post_records)
+
     combine_company_posts(
         company,
-        post_targets=post_targets,
+        post_targets=[record.target for record in combine_post_records],
         raw_posts_dir=raw_posts_dir,
         output_path=combined_output_path,
         post_metadata=post_metadata,
@@ -171,6 +245,8 @@ def run_company_scrape(
         "newly_scraped": newly_scraped,
         "failed": failed,
         "combined_output_path": combined_output_path,
+        "start_date": start_date.isoformat() if start_date else None,
+        "filter_condition": filter_condition,
     }
 
 
@@ -179,18 +255,32 @@ def collect_company_post_targets(input_dir: Path) -> list[str]:
 
 
 def collect_company_post_targets_from_files(html_files: list[Path]) -> list[str]:
-    targets: list[str] = []
+    return [record.target for record in collect_company_post_records_from_files(html_files)]
+
+
+def collect_company_post_records_from_files(html_files: list[Path]) -> list[ForumPostRecord]:
+    records: list[ForumPostRecord] = []
     seen_ids: set[str] = set()
 
     for html_file in html_files:
-        for target in parse_post_targets_from_html_file(html_file):
-            post_id = extract_post_id(target)
-            if post_id in seen_ids:
-                continue
-            seen_ids.add(post_id)
-            targets.append(target)
+        parsed_records = parse_post_records_from_html_file(html_file)
+        if not parsed_records:
+            parsed_records = [
+                ForumPostRecord(
+                    post_id=extract_post_id(target),
+                    target=target,
+                    tags=(),
+                )
+                for target in parse_post_targets_from_html_file(html_file)
+            ]
 
-    return targets
+        for record in parsed_records:
+            if record.post_id in seen_ids:
+                continue
+            seen_ids.add(record.post_id)
+            records.append(record)
+
+    return records
 
 
 def collect_company_post_metadata(input_dir: Path) -> dict[str, list[str]]:
@@ -198,11 +288,13 @@ def collect_company_post_metadata(input_dir: Path) -> dict[str, list[str]]:
 
 
 def collect_company_post_metadata_from_files(html_files: list[Path]) -> dict[str, list[str]]:
+    return metadata_from_post_records(collect_company_post_records_from_files(html_files))
+
+def metadata_from_post_records(records: list[ForumPostRecord]) -> dict[str, list[str]]:
     metadata_by_post_id: dict[str, list[str]] = {}
 
-    for html_file in html_files:
-        for record in parse_post_records_from_html_file(html_file):
-            metadata_by_post_id.setdefault(record.post_id, list(record.tags))
+    for record in records:
+        metadata_by_post_id.setdefault(record.post_id, list(record.tags))
 
     return metadata_by_post_id
 
@@ -214,6 +306,7 @@ def load_company_input_files(
     session,
     refresh_inputs: bool,
     max_pages: int,
+    stop_after_date: date | None = None,
 ) -> list[Path]:
     existing_html_files = sorted_company_html_files(input_dir)
     if existing_html_files and not refresh_inputs:
@@ -228,7 +321,13 @@ def load_company_input_files(
     else:
         print(f"Fetching input HTML files into {input_dir}.")
 
-    return fetch_company_input_pages(company, input_dir=input_dir, session=session, max_pages=max_pages)
+    return fetch_company_input_pages(
+        company,
+        input_dir=input_dir,
+        session=session,
+        max_pages=max_pages,
+        stop_after_date=stop_after_date,
+    )
 
 
 def limit_input_html_files(html_files: list[Path], *, max_pages: int) -> list[Path]:
@@ -247,6 +346,7 @@ def fetch_company_input_pages(
     input_dir: Path,
     session,
     max_pages: int,
+    stop_after_date: date | None = None,
 ) -> list[Path]:
     input_dir.mkdir(parents=True, exist_ok=True)
 
@@ -263,6 +363,17 @@ def fetch_company_input_pages(
             session=session,
         )
         page_records = parse_post_records_from_html(html_text)
+        if stop_after_date is not None:
+            newer_page_records = filter_post_records_after_start_date(
+                page_records,
+                start_date=stop_after_date,
+            )
+            if not newer_page_records:
+                print(
+                    f"[inputs] stopping before page {page}: no posts after {stop_after_date.isoformat()}"
+                )
+                break
+
         page_targets = tuple(record.target for record in page_records)
         if not page_targets or page_targets in seen_page_targets:
             break
@@ -278,10 +389,357 @@ def fetch_company_input_pages(
             break
         if len(page_targets) < THREAD_PAGE_SIZE:
             break
+        if stop_after_date is not None and page_contains_posts_on_or_before_date(
+            page_records,
+            stop_after_date,
+        ):
+            print(f"[inputs] stopping after page {page}: reached {stop_after_date.isoformat()}")
+            break
 
         page += 1
 
     return saved_paths
+
+
+def filter_post_records_after_start_date(
+    records: list[ForumPostRecord],
+    *,
+    start_date: date | None,
+) -> list[ForumPostRecord]:
+    if start_date is None:
+        return list(records)
+
+    filtered: list[ForumPostRecord] = []
+    for record in records:
+        record_date = record_date_from_dateline(record.dateline)
+        if record_date is None or record_date > start_date:
+            filtered.append(record)
+    return filtered
+
+
+def filter_post_records_by_condition(
+    records: list[ForumPostRecord],
+    *,
+    filter_condition: str | None,
+) -> list[ForumPostRecord]:
+    if not filter_condition:
+        return list(records)
+
+    if should_parse_structured_filter(filter_condition):
+        expression = parse_filter_condition(strip_expression_prefix(filter_condition))
+        return [
+            record
+            for record in records
+            if evaluate_filter_expression(expression, build_filter_context(record))
+        ]
+
+    query_groups = parse_natural_language_filter(filter_condition)
+    return [
+        record
+        for record in records
+        if matches_natural_language_filter(record, query_groups)
+    ]
+
+
+def should_parse_structured_filter(filter_condition: str) -> bool:
+    if filter_condition.strip().startswith("expr:"):
+        return True
+    return re.search(
+        r"==|!=|<=|>=|<|>|\bnot\s+in\b|\bin\b|\bcontains\s*\(|\bregex\s*\(",
+        filter_condition,
+    ) is not None
+
+
+def strip_expression_prefix(filter_condition: str) -> str:
+    stripped = filter_condition.strip()
+    if stripped.startswith("expr:"):
+        return stripped[len("expr:") :].strip()
+    return filter_condition
+
+
+def parse_filter_condition(filter_condition: str) -> ast.Expression:
+    try:
+        expression = ast.parse(filter_condition, mode="eval")
+    except SyntaxError as exc:
+        raise ValueError(f"Invalid filter condition: {filter_condition}") from exc
+    validate_filter_ast(expression)
+    return expression
+
+
+def validate_filter_ast(node: ast.AST) -> None:
+    allowed_nodes = (
+        ast.Expression,
+        ast.BoolOp,
+        ast.UnaryOp,
+        ast.Compare,
+        ast.Name,
+        ast.Load,
+        ast.Constant,
+        ast.List,
+        ast.Tuple,
+        ast.Set,
+        ast.Call,
+        ast.And,
+        ast.Or,
+        ast.Not,
+        ast.Eq,
+        ast.NotEq,
+        ast.Lt,
+        ast.LtE,
+        ast.Gt,
+        ast.GtE,
+        ast.In,
+        ast.NotIn,
+    )
+    for child in ast.walk(node):
+        if not isinstance(child, allowed_nodes):
+            raise ValueError(f"Unsupported filter syntax: {type(child).__name__}")
+        if isinstance(child, ast.Call):
+            if not isinstance(child.func, ast.Name) or child.func.id not in {"contains", "regex"}:
+                raise ValueError("Only contains(...) and regex(...) calls are supported in filters.")
+            if child.keywords:
+                raise ValueError("Filter function keyword arguments are not supported.")
+
+
+def build_filter_context(record: ForumPostRecord) -> dict[str, object]:
+    record_date = record_date_from_dateline(record.dateline)
+    context: dict[str, object] = {
+        "post_id": record.post_id,
+        "target": record.target,
+        "subject": record.subject or "",
+        "title": record.subject or "",
+        "en_subject": record.en_subject or "",
+        "source": record.source or "",
+        "tags": tuple(record.tags),
+        "dateline": record.dateline,
+        "date": record_date.isoformat() if record_date else None,
+        "position_type": record.tags[3] if len(record.tags) >= 4 else "",
+    }
+    if record.options:
+        for key, value in record.options.items():
+            if isinstance(key, str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", key):
+                context[key] = value
+    return context
+
+
+def evaluate_filter_expression(expression: ast.Expression, context: dict[str, object]) -> bool:
+    return bool(evaluate_filter_ast(expression.body, context))
+
+
+def evaluate_filter_ast(node: ast.AST, context: dict[str, object]) -> object:
+    if isinstance(node, ast.BoolOp):
+        if isinstance(node.op, ast.And):
+            return all(bool(evaluate_filter_ast(value, context)) for value in node.values)
+        if isinstance(node.op, ast.Or):
+            return any(bool(evaluate_filter_ast(value, context)) for value in node.values)
+    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+        return not bool(evaluate_filter_ast(node.operand, context))
+    if isinstance(node, ast.Compare):
+        left = evaluate_filter_ast(node.left, context)
+        for operator, comparator in zip(node.ops, node.comparators):
+            right = evaluate_filter_ast(comparator, context)
+            if not evaluate_comparison(left, operator, right):
+                return False
+            left = right
+        return True
+    if isinstance(node, ast.Name):
+        if node.id not in context:
+            raise ValueError(f"Unknown filter field: {node.id}")
+        return context[node.id]
+    if isinstance(node, ast.Constant):
+        return node.value
+    if isinstance(node, (ast.List, ast.Tuple, ast.Set)):
+        return [evaluate_filter_ast(element, context) for element in node.elts]
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name):
+        args = [evaluate_filter_ast(arg, context) for arg in node.args]
+        if node.func.id == "contains":
+            if len(args) != 2:
+                raise ValueError("contains(...) expects exactly two arguments.")
+            return filter_contains(args[0], args[1])
+        if node.func.id == "regex":
+            if len(args) != 2:
+                raise ValueError("regex(...) expects exactly two arguments.")
+            return re.search(str(args[1]), stringify_filter_value(args[0])) is not None
+    raise ValueError(f"Unsupported filter syntax: {type(node).__name__}")
+
+
+def evaluate_comparison(left: object, operator: ast.cmpop, right: object) -> bool:
+    if isinstance(operator, ast.Eq):
+        return left == right
+    if isinstance(operator, ast.NotEq):
+        return left != right
+    if isinstance(operator, ast.In):
+        return left in right  # type: ignore[operator]
+    if isinstance(operator, ast.NotIn):
+        return left not in right  # type: ignore[operator]
+    if isinstance(operator, (ast.Lt, ast.LtE, ast.Gt, ast.GtE)):
+        if isinstance(operator, ast.Lt):
+            return left < right  # type: ignore[operator]
+        if isinstance(operator, ast.LtE):
+            return left <= right  # type: ignore[operator]
+        if isinstance(operator, ast.Gt):
+            return left > right  # type: ignore[operator]
+        if isinstance(operator, ast.GtE):
+            return left >= right  # type: ignore[operator]
+    raise ValueError(f"Unsupported comparison operator: {type(operator).__name__}")
+
+
+def filter_contains(value: object, needle: object) -> bool:
+    needle_text = str(needle).lower()
+    if isinstance(value, dict):
+        return any(needle_text in stringify_filter_value(item).lower() for item in value.values())
+    if isinstance(value, (list, tuple, set)):
+        return any(needle_text in stringify_filter_value(item).lower() for item in value)
+    return needle_text in stringify_filter_value(value).lower()
+
+
+def stringify_filter_value(value: object) -> str:
+    if value is None:
+        return ""
+    return str(value)
+
+
+NATURAL_LANGUAGE_FILTER_STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "about",
+    "all",
+    "by",
+    "company",
+    "condition",
+    "conditions",
+    "filter",
+    "for",
+    "from",
+    "include",
+    "includes",
+    "including",
+    "interview",
+    "interviews",
+    "only",
+    "post",
+    "posts",
+    "related",
+    "scrape",
+    "show",
+    "that",
+    "the",
+    "to",
+    "with",
+}
+
+
+def parse_natural_language_filter(filter_condition: str) -> list[list[str]]:
+    raw_groups = re.split(r"\b(?:or|或者)\b|或", filter_condition, flags=re.IGNORECASE)
+    groups: list[list[str]] = []
+    for raw_group in raw_groups:
+        phrases = [match.strip().lower() for match in re.findall(r'"([^"]+)"|\'([^\']+)\'', raw_group) for match in match if match.strip()]
+        unquoted = re.sub(r'"[^"]+"|\'[^\']+\'', " ", raw_group)
+        tokens = [
+            token.lower()
+            for token in re.findall(r"[A-Za-z0-9]+|[\u4e00-\u9fff]+", unquoted)
+            if token.lower() not in NATURAL_LANGUAGE_FILTER_STOPWORDS
+        ]
+        terms = phrases + tokens
+        if terms:
+            groups.append(terms)
+    if groups:
+        return groups
+
+    fallback = filter_condition.strip().lower()
+    return [[fallback]] if fallback else []
+
+
+def matches_natural_language_filter(
+    record: ForumPostRecord,
+    query_groups: list[list[str]],
+) -> bool:
+    if not query_groups:
+        return True
+    haystack = build_natural_language_filter_text(record)
+    return any(all(term in haystack for term in group) for group in query_groups)
+
+
+def build_natural_language_filter_text(record: ForumPostRecord) -> str:
+    context = build_filter_context(record)
+    values: list[str] = []
+    for value in context.values():
+        if isinstance(value, (list, tuple, set)):
+            values.extend(stringify_filter_value(item) for item in value)
+        else:
+            values.append(stringify_filter_value(value))
+    return " ".join(values).lower()
+
+
+def page_contains_posts_on_or_before_date(records: list[ForumPostRecord], cutoff: date) -> bool:
+    for record in records:
+        record_date = record_date_from_dateline(record.dateline)
+        if record_date is not None and record_date <= cutoff:
+            return True
+    return False
+
+
+def record_date_from_dateline(dateline: int | None) -> date | None:
+    if dateline is None:
+        return None
+    return datetime.fromtimestamp(dateline).date()
+
+
+def parse_start_date(value: str) -> date:
+    try:
+        return date.fromisoformat(value)
+    except ValueError as exc:
+        raise ValueError(f"start date must use YYYY-MM-DD format: {value}") from exc
+
+
+def prompt_for_start_date(company: str, default_start_date: date) -> date:
+    while True:
+        response = input(
+            f"Start incremental scrape for {company} after {default_start_date.isoformat()}? "
+            "Press Enter to accept, type YYYY-MM-DD to override, or q to abort: "
+        ).strip()
+        if not response:
+            return default_start_date
+        if response.lower() in {"q", "quit", "n", "no"}:
+            print("Aborted before scraping.")
+            sys.exit(1)
+        try:
+            return parse_start_date(response)
+        except ValueError as exc:
+            print(exc)
+
+
+def infer_last_company_scrape_date(
+    company: str,
+    *,
+    inputs_root: Path,
+    outputs_root: Path,
+) -> date:
+    timestamps: list[float] = []
+    input_dir = inputs_root / company
+    for html_file in sorted_company_html_files(input_dir):
+        timestamps.append(html_file.stat().st_mtime)
+
+    raw_posts_dir = outputs_root / "raw_posts"
+    combined_output_path = outputs_root / company / f"{company}.md"
+    for post_id in extract_post_ids_from_markdown(combined_output_path):
+        raw_post_path = raw_posts_dir / f"{post_id}.md"
+        if raw_post_path.exists():
+            timestamps.append(raw_post_path.stat().st_mtime)
+
+    if not timestamps:
+        raise FileNotFoundError(
+            f"Could not infer last scrape date for {company}; pass --start-date YYYY-MM-DD."
+        )
+    return datetime.fromtimestamp(max(timestamps)).date()
+
+
+def extract_post_ids_from_markdown(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    return sorted(set(re.findall(r'<a id="post-(\d+)"></a>', text)))
 
 
 def _html_page_sort_key(path: Path) -> tuple[int, str]:
