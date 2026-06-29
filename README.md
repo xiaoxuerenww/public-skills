@@ -109,6 +109,9 @@ Job search and role tracking across frontier AI labs.
 ### **doc-grounded-qa**
 Document analysis and Q&A. Use to read and analyze PDFs, job descriptions, company notes.
 
+### **post-process-scraper-outputs**
+Post-process local scraper outputs into raw interview-round evidence files. Use when extracting raw posts or replies for any company and interview round, grouped by question, with original post links and no rewriting or summarization.
+
 ### **frontier-lab-news-digest**
 Daily news digest from frontier AI labs (Anthropic, OpenAI, xAI, Google DeepMind, Meta).
 

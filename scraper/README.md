@@ -157,6 +157,7 @@ outputs/raw_posts/<post_id>.md
 outputs/raw_images/<post_id>_<filename>
 outputs/raw_attachements/<post_id>_<filename>
 outputs/<company>/<company>.md
+outputs/<company>/<company>_<interview_round>.md
 ```
 
 Example:
@@ -166,6 +167,41 @@ outputs/raw_posts/1175782.md
 outputs/raw_images/1175782_example.png
 outputs/raw_attachements/1175782_example.pdf
 outputs/anthropic/anthropic.md
+outputs/databricks/databricks_ml_llm_fundamental.md
+```
+
+## Post-Process Round Evidence
+
+Use the `post-process-scraper-outputs` Codex skill to turn scraped raw posts into
+a round-specific raw evidence file:
+
+```text
+/Users/xue/.codex/skills/post-process-scraper-outputs/SKILL.md
+```
+
+The output file is:
+
+```text
+outputs/<company>/<company>_<interview_round>.md
+```
+
+The post-processing contract is:
+
+- group raw posts and replies by interview question or topic
+- preserve raw post/reply content inside fenced `text` blocks
+- do not rewrite, translate, normalize, or summarize scraped content
+- link every included item to the original post
+
+Example request:
+
+```text
+[$post-process-scraper-outputs] databricks, ml / llm fundamental
+```
+
+Example output:
+
+```text
+outputs/databricks/databricks_ml_llm_fundamental.md
 ```
 
 ## Supported URLs
