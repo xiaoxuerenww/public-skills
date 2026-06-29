@@ -1,6 +1,6 @@
 ---
 name: coding-interview-companion
-description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, practice, or mock mode: first locate the current problem directory, read and analyze raw source material from context/, generate comprehensive candidate-facing requirements and starter code under input/, use solution/ for study artifacts, use dated practice_MMDD/ directories for first-pass implementation drills with interface and tests only, and use dated mock_MMDD/ directories for mock interview sessions. Solve mode analyzes context/ and writes input/0_requirements.md plus starter files before creating solution artifacts, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, practice mode creates a fresh implementation sandbox with public interface stubs and unit tests while leaving implementation to the user, and mock mode simulates an interviewer and reviews the user's attempt under a fresh mock_MMDD/ directory."
+description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, practice, or mock mode: first locate the current problem directory, read and analyze raw source material from context/, generate comprehensive candidate-facing requirements and starter code under input/, use solution/ for study artifacts, use dated practice_MMDD/ directories for first-pass implementation drills with interface and tests only, and use dated mock_MMDD/ directories for mock interview sessions. Solve mode analyzes context/ and writes input/0_requirements.md plus starter files before creating solution artifacts, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, practice mode creates a fresh implementation sandbox with public interface stubs and unit tests while leaving implementation to the user, and mock mode reads input/ plus input/mock.md, simulates an interviewer, reviews the user's attempt under a fresh mock_MMDD/ directory, and appends end-of-session misses to input/mock.md."
 ---
 
 # Coding Interview Companion
@@ -62,6 +62,7 @@ problem-directory/
     ...                         # Raw source material: prompt dumps, notes, screenshots, copied starter code, interview docs
   input/
     0_requirements.md          # Comprehensive candidate-facing requirements synthesized from context/ by solve mode
+    mock.md                    # Central mock-session miss log and recurring weakness tracker
     next_round_mock_questions.md # Follow-up drills generated from prior mock misses and weaknesses
     <problem_name>.md          # Clean problem statement derived from context/
     <problem_name>.ipynb       # Starter notebook/interface derived from context/ for Colab rounds
@@ -89,6 +90,7 @@ The skill will:
 - **Write solve outputs to:** `<problem_dir>/solution/`
 - **Write practice outputs to:** `<problem_dir>/practice_MMDD/`
 - **Write mock outputs to:** `<problem_dir>/mock_MMDD/`
+- **Maintain mock memory in:** `<problem_dir>/input/mock.md`, including date-stamped summaries of misses from each completed mock session
 - **Write learn notes to:** `<problem_dir>/solution/learn_notes.md`
 - **Create directories** if they don't exist
 - **Clean duplicate setup files:** after setup, remove legacy duplicate files only when the same raw source is preserved in `context/` or the same generated artifact is preserved in `input/` / `solution/`
@@ -357,7 +359,8 @@ Use this workflow to simulate a real interview with step-by-step feedback.
    - Set `problem_mock_output` to that new directory for the entire mock session.
 
 3. **Scan generated input context for the mock:**
-   - Read `input/0_requirements.md` when present, then scan the rest of `input/` for generated candidate-facing prompt docs, full question lists, starter code, and named files relevant to the mock.
+   - Read `input/0_requirements.md` when present, then read `input/mock.md` when present, then scan the rest of `input/` for generated candidate-facing prompt docs, full question lists, starter code, and named files relevant to the mock.
+   - Treat `input/mock.md` as the central cross-session mock record. Use it to choose recurring weak spots, prior misses, and next-round focus areas for the new mock, while keeping the live prompt candidate-facing and free of answer keys.
    - If the user has an active or named input file, treat it as the primary mock target.
    - Use `input/mock_interview_questions.md` or similar files for prompt shape and constraints only; strip any answer-key, hint, rubric, or expected-fix language.
    - Use `input/*.ipynb`, `input/*_buggy.py`, `input/<problem_name>.py`, or the named input code file as the preferred starter-code source. For Colab rounds, write the mock artifact as `.ipynb`.
@@ -424,6 +427,13 @@ Use this workflow to simulate a real interview with step-by-step feedback.
      - API, notebook, or implementation mistakes.
      - Communication, clarification, or approach gaps.
      - Follow-up concepts that were weak or incomplete.
+   - Append a date-stamped entry to `<problem_dir>/input/mock.md` with the day's mock misses:
+     - Source mock path, e.g. `mock_MMDD/mock_feedback.md`.
+     - Verdict.
+     - The concrete misses and weak signals from this session.
+     - Recurring pattern if this repeats an older miss from `input/mock.md`.
+     - Next mock focus bullets.
+   - If `<problem_dir>/input/mock.md` does not exist, create it with a short title and append the first session entry. Keep it as a durable central record, not a polished solution document.
    - Convert those misses into additional next-round mock questions under `<problem_dir>/input/next_round_mock_questions.md`.
    - Also update the relevant generated problem prompt under `<problem_dir>/input/` with a `## Next Round Mock Focus` section when there is an obvious target file, such as `<problem_name>.md` or `mock_interview_questions.md`.
    - Keep next-round questions candidate-facing: ask probing questions and add constraints, but do not include answer keys, expected fixes, hidden hints, or solution outlines.
@@ -439,6 +449,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
   - Final verdict and improvements
   - End-of-session misses, weaknesses, and next-round question seeds
 - This becomes a learning record and a self-review guide.
+- At the end of every mock session, also append the day's miss summary to `<problem_dir>/input/mock.md` so future mocks can read the central record before selecting prompts and follow-ups.
 - Do not record workflow, environment, IDE, file-conversion, or tooling questions unless explicitly asked.
 
 ---
@@ -459,6 +470,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 |------|---------|-----------|-----------------|------------------|
 | `<problem_dir>/context/*` | Raw source material | You | No | No |
 | `<problem_dir>/input/0_requirements.md` | Comprehensive generated requirements | Solve | No | Reference |
+| `<problem_dir>/input/mock.md` | Central log of mock misses, recurring weaknesses, and next mock focus | Mock | No | Reference |
 | `<problem_dir>/input/next_round_mock_questions.md` | Next mock questions from prior misses | Mock | No | Reference |
 | `<problem_dir>/input/<problem>.md` | Problem statement | Solve | No | No |
 | `<problem_dir>/input/<problem>.ipynb` | Colab public interface | Solve | No | No |
