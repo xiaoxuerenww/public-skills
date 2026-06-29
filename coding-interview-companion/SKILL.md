@@ -1,13 +1,13 @@
 ---
 name: coding-interview-companion
-description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, or mock mode: first locate the current problem directory, read and analyze raw source material from context/, generate comprehensive candidate-facing requirements and starter code under input/, use solution/ for study artifacts, and use dated mock_MMDD/ mock-session directories. Solve mode analyzes context/ and writes input/0_requirements.md plus starter files before creating solution artifacts, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, mock mode simulates an interviewer and reviews the user's attempt under a fresh mock_MMDD/ directory."
+description: "End-to-end coding interview prep for algorithms, data structures, and practical coding rounds. Use when preparing technical interview problems in solve, learn, practice, or mock mode: first locate the current problem directory, read and analyze raw source material from context/, generate comprehensive candidate-facing requirements and starter code under input/, use solution/ for study artifacts, use dated practice_MMDD/ directories for first-pass implementation drills with interface and tests only, and use dated mock_MMDD/ directories for mock interview sessions. Solve mode analyzes context/ and writes input/0_requirements.md plus starter files before creating solution artifacts, learn mode defaults to interactive Q&A with comprehensive session notes under solution/ and wrap-up-only grouped consolidation, practice mode creates a fresh implementation sandbox with public interface stubs and unit tests while leaving implementation to the user, and mock mode simulates an interviewer and reviews the user's attempt under a fresh mock_MMDD/ directory."
 ---
 
 # Coding Interview Companion
 
 **Purpose:** Complete lifecycle support for coding interview prep, from requirements analysis through solution writing, learning review, and mock interviews.
 
-**Important:** First identify the current problem directory. All `context/`, `input/`, `output/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
+**Important:** First identify the current problem directory. All `context/`, `input/`, `output/`, `solution/`, `practice_MMDD/`, and `mock_MMDD/` paths are subdirectories of that problem directory, not necessarily the shell's current directory.
 
 ## Problem Directory Resolution
 
@@ -22,9 +22,10 @@ After resolving `problem_dir`, use:
 - `problem_context = <problem_dir>/context`
 - `problem_input = <problem_dir>/input`
 - `problem_solution_output = <problem_dir>/solution`
+- `problem_practice_output = <problem_dir>/practice_MMDD` where `MMDD` is the current date, e.g. `practice_0602`
 - `problem_mock_output = <problem_dir>/mock_MMDD` where `MMDD` is the current date, e.g. `mock_0602`
 
-Create `problem_input` and the selected mode's artifact directory if needed and they do not exist. Treat `context/` as the raw source folder when present; do not overwrite raw context files. In mock mode, create a new dated top-level mock directory for each mock session.
+Create `problem_input` and the selected mode's artifact directory if needed and they do not exist. Treat `context/` as the raw source folder when present; do not overwrite raw context files. In practice and mock mode, create a new dated top-level directory for each session.
 
 ## Quick Setup
 
@@ -71,6 +72,10 @@ problem-directory/
     <problem_name>_solution.py      # Optional Python fallback/export when useful
     deep_dive.md                    # Broader concepts and deep dives (created/updated by solve and learn)
     learn_notes.md                  # Learning session notes (created by learn mode, merged into deep_dive)
+  practice_MMDD/
+    practice_instructions.md        # Candidate-facing prompt and implementation contract (created in practice mode)
+    practice_<problem_name>.py      # Public interface scaffold for user implementation (created in practice mode)
+    test_practice_<problem_name>.py # Unit tests for the user implementation (created in practice mode)
   mock_MMDD/
     mock_instructions.md           # Candidate-facing prompt and constraints (created in mock mode)
     mock_<problem_name>_<part>.ipynb # Colab mock scaffold and user attempt (created in mock mode for Colab rounds)
@@ -82,6 +87,7 @@ The skill will:
 - **Read raw source from:** all relevant files under `<problem_dir>/context/`, including prompt dumps, question lists, starter code, notebooks, screenshots converted to text, and named files from the user request
 - **Write generated input artifacts to:** `<problem_dir>/input/`, including a comprehensive `input/0_requirements.md` and candidate-facing starter code
 - **Write solve outputs to:** `<problem_dir>/solution/`
+- **Write practice outputs to:** `<problem_dir>/practice_MMDD/`
 - **Write mock outputs to:** `<problem_dir>/mock_MMDD/`
 - **Write learn notes to:** `<problem_dir>/solution/learn_notes.md`
 - **Create directories** if they don't exist
@@ -93,6 +99,7 @@ All paths are relative to the resolved `problem_dir`:
 
 - **Solve mode:** Read and analyze raw information from `<problem_dir>/context/`, create a comprehensive requirements doc and frozen starter files under `<problem_dir>/input/`, then generate `<problem_dir>/solution/interview_discussion.md`, `<problem_dir>/solution/<problem_name>_solution.ipynb` for Colab rounds, and `<problem_dir>/solution/deep_dive.md`.
 - **Learn mode:** Default to interactive Q&A: answer the user's immediate interview-prep questions, ask targeted follow-ups when useful, proactively take raw chronological notes of interview-relevant questions and responses in `<problem_dir>/solution/learn_notes.md` during the session without waiting for a separate note-taking request, do not summarize until the learning session concludes, and stay in learn mode until the user explicitly ends it or uses a clear ending hint such as `wrap learning`.
+- **Practice mode:** Create a first-pass implementation sandbox under `<problem_dir>/practice_MMDD/`: write candidate-facing instructions, create public interface stubs for the user to implement, create unit tests, and stop without adding solutions, hints, or interviewer feedback.
 - **Mock mode:** Interview as a hiring engineer, create `<problem_dir>/mock_MMDD/mock_instructions.md`, create/review `<problem_dir>/mock_MMDD/mock_<problem_name>_<part>.ipynb` for Colab rounds, and record feedback in `<problem_dir>/mock_MMDD/mock_feedback.md`.
 
 ---
@@ -273,6 +280,64 @@ Use this workflow as an interactive Q&A companion with auto-notes. Do not edit f
 
 ---
 
+## Practice Mode Workflow
+
+Use this workflow for a first-pass solo implementation drill. Practice mode is lighter than mock mode: it sets up the files the user needs to code, then stops.
+
+### Setup
+
+1. **Create practice session directory:**
+   - Create a new top-level practice directory named `<problem_dir>/practice_MMDD/`, where `MMDD` is the current date in the local timezone, e.g. `practice_0602`.
+   - If `<problem_dir>/practice_MMDD/` already exists for a prior practice session that day, create the next available suffix: `practice_MMDD_2/`, `practice_MMDD_3/`, etc.
+   - Set `problem_practice_output` to that new directory for the entire practice session.
+
+2. **Scan generated input context for practice:**
+   - Read `input/0_requirements.md` when present, then scan the rest of `input/` for generated candidate-facing prompt docs, function signatures, starter code, examples, and constraints.
+   - If the user has an active or named input file, treat it as the primary practice target.
+   - Use `input/*.py`, `input/*.ipynb`, `input/<problem_name>.md`, or a named input file as the preferred source of public interfaces.
+   - Use solution artifacts only to understand test expectations when no candidate-facing examples exist. Do not copy solution logic, hints, or implementation details into practice files.
+
+3. **Create candidate-facing instructions:**
+   - Create `<problem_practice_output>/practice_instructions.md` with:
+     - Problem statement.
+     - Public interface contract.
+     - Input/output behavior.
+     - Constraints and edge cases.
+     - How to run the unit tests.
+     - What file the user should edit.
+   - Keep the instructions candidate-facing. Do not include solution outline, hidden hints, rubric language, expected fixes, or answer keys.
+
+4. **Create implementation scaffold:**
+   - Prefer a Python scaffold for local practice: `<problem_practice_output>/practice_<problem_name>.py`.
+   - For each requested function or class, include imports, type hints, docstrings with shape or data-contract notes when useful, and stub bodies using `raise NotImplementedError()`.
+   - Preserve the public interface from `input/` exactly unless the prompt is ambiguous; if ambiguous, choose the simplest interview-friendly signature and record the assumption in `practice_instructions.md`.
+   - Do not implement helper functions, algorithms, or partial logic for the user. Only add minimal pass-through structure needed for imports and tests to run.
+   - For Colab or notebook rounds, create a `.py` scaffold for local unit testing and optionally create a matching `.ipynb` only when the input round is explicitly notebook-based.
+
+5. **Create unit tests:**
+   - Create `<problem_practice_output>/test_practice_<problem_name>.py`.
+   - Use `pytest`-style tests by default unless the local repo clearly uses `unittest`.
+   - Include focused public tests from the prompt examples plus edge cases implied by the candidate-facing requirements.
+   - Tests should import from `practice_<problem_name>.py` and fail with `NotImplementedError` until the user implements the scaffold.
+   - Do not include hidden-solution tests that reveal the algorithm or internal strategy.
+   - Include one command in `practice_instructions.md`, usually:
+     ```bash
+     python3 -m pytest test_practice_<problem_name>.py
+     ```
+
+6. **Verify scaffold only:**
+   - Run a syntax/import check that does not require the solution to pass, such as `python3 -m py_compile practice_<problem_name>.py test_practice_<problem_name>.py`.
+   - Do not run the full pytest suite expecting success before the user implements the scaffold. If you do run pytest, report that failures are expected because implementation stubs raise `NotImplementedError`.
+   - Stop after setup and tell the user which file to implement and which command to run.
+
+### During Practice
+
+- The user owns implementation in `<problem_practice_output>/practice_<problem_name>.py`.
+- Do not edit the implementation after setup unless the user explicitly asks for help, review, or a fix.
+- If the user asks for review, review the current practice implementation like code review: correctness first, then edge cases, complexity, clarity, and tests.
+- If the user asks for hints, give the smallest conceptual hint; do not paste a full solution unless explicitly requested.
+- Practice mode does not create `mock_feedback.md`, does not ask one-interviewer-question-at-a-time, and does not update next-round mock questions unless the user explicitly asks to convert practice misses into follow-up drills.
+
 ## Mock Mode Workflow
 
 Use this workflow to simulate a real interview with step-by-step feedback.
@@ -382,6 +447,7 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 
 - **Solve mode:** Create interview-ready `solution/interview_discussion.md` first; it's your cheat sheet before a real interview.
 - **Learn mode:** Default to Q&A with raw chronological question/response notes; stay in learn mode until explicit `end learn`, `conclude learn`, `exit learn`, or a clear hint like `wrap learning`, then group and summarize into `solution/deep_dive.md`.
+- **Practice mode:** Use this for first-pass coding reps: scaffold the interface and public unit tests, then let the user implement before asking for review.
 - **Mock mode:** Treat it like a real interview: no Googling, no pausing to think for too long, explain as you code.
 - **Between rounds:** Review `solution/interview_discussion.md` to warm up, then run a mock to stress-test under time pressure.
 
@@ -402,6 +468,9 @@ Use this workflow to simulate a real interview with step-by-step feedback.
 | `<problem_dir>/solution/<problem>_solution.py` | Optional Python fallback/export | Solve | No | No |
 | `<problem_dir>/solution/deep_dive.md` | Concept deep dives | Solve + Learn | Yes (merge notes) | Reference |
 | `<problem_dir>/solution/learn_notes.md` | Raw learning notes | Learn | Yes (merge into deep_dive) | No |
+| `<problem_dir>/practice_MMDD/practice_instructions.md` | Practice prompt and run command | Practice | No | Reference |
+| `<problem_dir>/practice_MMDD/practice_<problem>.py` | Your first-pass implementation scaffold | Practice | No | Review on request |
+| `<problem_dir>/practice_MMDD/test_practice_<problem>.py` | Public unit tests for practice implementation | Practice | No | Review on request |
 | `<problem_dir>/mock_MMDD/mock_instructions.md` | Candidate-facing prompt | Mock | No | Reference |
 | `<problem_dir>/mock_MMDD/mock_<problem_name>_<part>.ipynb` | Your Colab attempt | You | No | Yes |
 | `<problem_dir>/mock_MMDD/mock_feedback.md` | Interview feedback | Mock | No | Record |

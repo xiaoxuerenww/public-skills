@@ -125,7 +125,7 @@ Trigger this workflow when the user asks `$teach` to prep for an interview on a 
    - Add crisp interview phrasing Julie can say aloud.
    - Add follow-up probes and drills that deepen the same question-bank concept.
 5. Update [[deep_dive]] as the primary comprehensive study artifact. Organize it by topic clusters from `mock_question_bank.md`, then by individual questions. Use Obsidian callouts, compact tables, and display math as defined in the [[deep_dive]] style rules.
-6. Update [[solution]] as the active prep surface: lesson sequence, worked examples, answer drills, self-checks, and short spoken answer templates that point back to [[deep_dive]].
+6. Update [[solution]] as the active prep surface using the formatted solution pattern below: a scannable answer key, lesson sequence, worked examples, answer drills, self-checks, and short spoken answer templates that point back to [[deep_dive]].
 7. Put reusable quiz prompts, answer keys, and self-checks derived from `mock_question_bank.md` into [[solution]] or [[deep_dive]]. Do not create or update `question_bank.md`.
 8. Update [[index]] with an interview-prep mission, checkbox plan to read all active docs, topic-cluster tasks covering every question-bank section, review schedule, must-answer list, and next action: quiz mode or mock mode.
 9. If the question bank is large, do not truncate coverage. Process it by topic clusters and leave explicit unchecked continuation tasks in [[index]] for any cluster not fully expanded yet.
@@ -187,6 +187,23 @@ When a user resumes the course, read [[index]], the latest relevant part of [[so
 ## `solution.md`
 
 `solution.md` is the active teaching surface. Put lessons, worked examples, exercises, answer keys, quiz prompts, and quiz feedback here. Link to runnable code examples under `code/`. Do not put companion-mode Q&A here; use `learn_notes.md`.
+
+For interview-prep setup from `mock_question_bank.md`, format [[solution]] for fast Obsidian scanning:
+
+- Start with a short `## How to use this file` section.
+- Add a `## Coverage map` table grouping questions by concept cluster.
+- Add a `## 30-second target answer` near the top when the course is interview-targeted.
+- Keep every answer-key question as a `### Q: ...` heading so coverage audits can count it.
+- Under each `### Q: ...`, use this order:
+  - `**Question ID:** Q{n}` when useful for navigation.
+  - `[!question] What the interviewer is testing`
+  - `[!success] Target answer`
+  - `[!tip] Staff+ signal`
+  - `[!warning] Weak answer pattern`
+  - `**Evaluation notes:** ...`
+  - `**Grounding:** ...`
+- After the answer key, add `## Active Teach Prep` with a short `### Fast practice path`, then lessons and reusable drills.
+- Preserve existing answer content, but convert wall-of-text bullets into this format when setting up or refreshing the course.
 
 A teaching unit should be short and self-contained. It should give the user one tangible win and fit the mission in `index.md`.
 
