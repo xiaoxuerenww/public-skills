@@ -1,4 +1,4 @@
 interface:
-  display_name: "ML/LLM Daily Quiz"
-  short_description: "Tracked, learn, and mock Staff+ ML/LLM fundamentals drills"
-  default_prompt: "Use $ml-llm-daily-quiz to quiz me on today's ML/LLM fundamentals question."
+  display_name: "ML Fundamentals Interview"
+  short_description: "Manage Staff+ ML/LLM fundamentals quizzes, prep, learn, and mocks"
+  default_prompt: "Manage this Staff+ ML fundamentals interview prep end to end. Use $ml-llm-daily-quiz for tracked quizzes, spaced review, learn mode, and daily ML/LLM drills. Use $mock-ml-fundamental for grounded Staff+ ML theory mock setup or mock interviews from provided materials and question banks. Use $databricks-ml-fundamentals-prep for Databricks topic directories, mock banks, teach-style refreshes, and canonical question-bank maintenance. Route to the narrowest workflow that matches my request."

@@ -1,33 +1,36 @@
 ---
 name: ml-system-design-interview
-description: "End-to-end ML system design interview prep with create, solve, companioned learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, evaluation systems, or research infrastructure: locate the current problem directory, preserve raw context, generate input prompts, write solution artifacts, take learning notes, and run dated mock sessions."
+description: "End-to-end ML system design interview prep with prep, create, solve, outline-review, companioned learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, evaluation systems, or research infrastructure: locate the current problem directory, preserve ground-truth requirements, generate prep artifacts, synthesize Staff+ solutions, take learning notes, and run dated mock sessions."
 ---
 
 # ML System Design Interview
 
-**Purpose:** Complete lifecycle support for Staff/Senior Staff ML system design prep: create a problem folder, synthesize L6+ solutions, companion learning with notes, and run realistic mock interviews.
+**Purpose:** Complete lifecycle support for Staff/Senior Staff ML system design prep: generate prep artifacts from a ground-truth problem prompt, create a problem folder, synthesize L6+ solutions, create blank keyword-outline practice docs, companion learning with notes, and run realistic mock interviews.
 
 **Boundary:** Use this for ML system design, architecture, platform, serving, ranking, recommendation, evaluation, experiment, and research-infrastructure prompts. Do not use it for coding implementation rounds or pure ML theory Q&A.
 
-**Important:** First identify the current problem directory. All `context/`, `input/`, `solution/`, and `mock_MMDD/` paths are subdirectories of that problem directory, similar to `coding-interview-companion`.
+**Important:** First identify the current problem directory. In prep mode, `<problem_dir>/0_requirements.md` is the ground-truth prompt and must be read but never modified. Legacy `context/`, `input/`, `solution/`, and `mock_MMDD/` paths are also subdirectories of that problem directory, similar to `coding-interview-companion`.
 
 ## Problem Directory Resolution
 
 Before reading or writing files, set `problem_dir`:
 
-1. If the user provides a problem directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`, walk upward to the nearest directory that contains the problem's artifact folders.
-2. Otherwise, if the current directory contains `context/`, `input/`, `solution/`, `mock_MMDD/`, or legacy `output/`, use the current directory.
-3. Otherwise, search nearby child directories for `context/*.md`, `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, legacy `output/deep_dive.md`, or `**/*requirements.md` and choose the directory that matches the current problem context.
+1. If the user provides a problem directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, walk upward to the nearest directory that contains the problem's artifact folders or a root-level `0_requirements.md`.
+2. Otherwise, if the current directory contains `0_requirements.md`, `context/`, `input/`, `solution/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, use the current directory.
+3. Otherwise, search nearby child directories for `0_requirements.md`, `context/*.md`, `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, legacy `output/deep_dive.md`, or `**/*requirements.md` and choose the directory that matches the current problem context.
 4. If multiple directories match and the current problem is ambiguous, ask one concise clarification question.
 
 After resolving `problem_dir`, use:
 
+- `problem_requirements = <problem_dir>/0_requirements.md` for prep mode ground truth. If only legacy `<problem_dir>/input/0_requirements.md` exists, read it as supporting context, but do not rewrite it unless the user explicitly asks outside prep mode.
 - `problem_context = <problem_dir>/context`
+- `problem_reference = <problem_dir>/reference`
 - `problem_input = <problem_dir>/input`
 - `problem_solution = <problem_dir>/solution`
+- `problem_outline = <problem_dir>/outline_MMDD` where `MMDD` is the current local date, e.g. `outline_0602`
 - `problem_mock = <problem_dir>/mock_MMDD` where `MMDD` is the current local date, e.g. `mock_0602`
 
-Create directories as needed for the selected mode. Treat `context/` as raw source material and never overwrite it. Legacy `output/` is allowed as supporting context for old prep folders, but new artifacts should use `solution/` and `mock_MMDD/`.
+Create directories as needed for the selected mode. Treat `context/` as raw source material and never overwrite it. Treat `reference/` as curated study material and never overwrite it unless Julie explicitly asks. Treat root-level `0_requirements.md` as immutable ground truth in prep mode. Legacy `output/` is allowed as supporting context for old prep folders, but new non-prep artifacts should use `solution/` and `mock_MMDD/`.
 
 ## Directory Structure
 
@@ -35,16 +38,27 @@ All paths are relative to the resolved `problem_dir`:
 
 ```text
 problem-directory/
+  0_requirements.md             # Prep-mode ground truth. Read only, never modify in prep mode.
+  1_mock_questions.md           # Candidate-facing mock bank and follow-up probes from requirements
+  2_index.md                    # Study index written last after other prep artifacts exist
+  3_key_topics.md               # Key topics, cruxes, concepts, and coverage map
+  4_deep_dive.md                # Durable Staff+ design rationale and deep dives
+  5_interview_ready_solutions.md # Interview-ready Staff+ answer and delivery script
   context/
     ...                         # Raw prompt dumps, requirements, notes, screenshots converted to text, source docs
+  reference/
+    ...                         # Curated reading materials, PDFs, clipped solutions, source links, examples
   input/
-    0_requirements.md           # Normalized prep prompt from raw context and discovered requirements
-    <problem_name>.md           # Candidate-facing problem statement
+    0_requirements.md           # Legacy normalized prompt from older workflows
+    <problem_name>.md           # Legacy candidate-facing problem statement
     next_round_mock_questions.md # Follow-up drills generated from prior mock misses
   solution/
-    interview_solutions.md      # Interview-ready L6+ answer
-    deep_dive.md                # Design rationale and durable concepts
+    interview_solutions.md      # Legacy interview-ready L6+ answer
+    deep_dive.md                # Legacy design rationale and durable concepts
     learn_notes.md              # Companion learning Q&A notes
+  outline_MMDD/
+    keyword_outline.md          # Blank template copy for Julie's keyword-only talking points
+    outline_feedback.md         # Review of gaps, missing cruxes, and next practice targets
   mock_MMDD/
     mock_instructions.md        # Candidate-facing mock prompt and constraints
     my_solution.md              # Julie's design attempt for this mock
@@ -53,8 +67,10 @@ problem-directory/
 
 ## Modes
 
+- **Prep mode:** Read `<problem_dir>/0_requirements.md` as immutable ground truth and generate numbered root-level prep artifacts in this order: `1_mock_questions.md`, `3_key_topics.md`, `4_deep_dive.md`, `5_interview_ready_solutions.md`, then `2_index.md`. Do not modify `0_requirements.md`.
 - **Create mode:** Create or normalize the problem directory from Julie's request, raw notes, or requirement docs. Preserve raw material in `context/`, then write `input/0_requirements.md` and `input/<problem_name>.md`.
 - **Solve mode:** Read `context/` and `input/`, normalize requirements if needed, frame the problem as L6+ MLE system design, then write `solution/interview_solutions.md` and `solution/deep_dive.md`.
+- **Outline-review mode:** Create a dated blank `outline_MMDD/keyword_outline.md` from `ML_System_Design/1_Frameworks/ML_System_Design_Interview_Template.md` for Julie to fill with keywords only, then review that outline and write `outline_MMDD/outline_feedback.md` with missing coverage, weak cruxes, and concrete next fixes. Do not fill in the solution for her.
 - **Companioned learn mode:** Passive read-along Q&A. Wait for Julie's questions, answer directly with concise necessary context, ground responses in local notes or cited sources, and record stabilized Q&A in `solution/learn_notes.md`. Do not prompt, quiz, or ask check-for-understanding questions.
 - **Mock mode:** Interview as a realistic hiring engineer, create a fresh dated `mock_MMDD/` session, ask one question per turn, review `mock_MMDD/my_solution.md`, and record feedback in `mock_MMDD/mock_feedback.md`.
 
@@ -69,6 +85,8 @@ Resolve these paths relative to `/Users/xue/.codex/skills/ml-system-design-inter
 - `references/interview-communication-guide.md`: expectations, communication criteria
 - `references/quick-concepts-cheatsheet.md`: metrics, latency, serving patterns, tech stack
 - `references/framework-adaptation.md`: adapt framework to research infrastructure prompts
+
+Use the vault template `ML_System_Design/1_Frameworks/ML_System_Design_Interview_Template.md` for outline-review mode when available. If it is missing, recreate only its section headers as a fallback and note that fallback in `outline_feedback.md`.
 
 Read only the relevant reference files for the prompt. For non-serving research infrastructure prompts, adapt the 5 phases:
 
@@ -94,6 +112,116 @@ Use these principles in every mode:
 5. **Show evolution and maturity.** Explain MVP, production hardening, and scale-out. Cover drift, leakage, training-serving skew, PII, safety, canaries, rollback, retraining, and maintainability.
 6. **Use a metrics taxonomy.** Include business, offline ML, online product, guardrail, and infrastructure metrics.
 7. **Keep explanations concise.** Answer the question with necessary context and details. Avoid broad component tours unless they are needed.
+
+
+## Prep Mode Workflow
+
+Use prep mode when Julie asks to `prep`, `set up prep`, `create prep artifacts`, `generate mock questions`, `create key topics`, `create deep dive`, `create interview-ready solutions`, or points to a problem directory that already contains `0_requirements.md`.
+
+### Prep Mode Contract
+
+1. Resolve `problem_dir`.
+2. Require `<problem_dir>/0_requirements.md` as the source of truth.
+   - Read it first and ground every generated artifact in it.
+   - Do not edit, rewrite, rename, move, reformat, or normalize this file.
+   - If it is missing, stop and ask Julie to provide or create `0_requirements.md`; do not silently fall back to inferred requirements for prep mode.
+3. Generate root-level numbered artifacts, not `solution/` artifacts, in this exact order:
+   1. `1_mock_questions.md`
+   2. `3_key_topics.md`
+   3. `4_deep_dive.md`
+   4. `5_interview_ready_solutions.md`
+   5. `2_index.md`
+4. Existing numbered artifacts may be updated in place, but preserve useful user-written notes unless they directly conflict with `0_requirements.md`.
+5. Do not create or update `input/0_requirements.md` in prep mode.
+6. Treat `reference/` files as optional curated study material. Read them when present, use them to enrich Staff+ depth and the ranked-materials section in `2_index.md`, but never let them override `0_requirements.md`.
+7. Treat legacy `context/`, `input/`, `solution/`, and `output/` files as optional supporting context only. They must not override `0_requirements.md`.
+
+### Prep Mode Reference Handling
+
+When `<problem_dir>/reference/` exists:
+
+1. List all files under `reference/` before generating prep artifacts.
+2. Read Markdown, text, and other directly readable local files that are relevant to the prompt. For PDFs or large binary files, extract or inspect only enough to identify title, source, topic coverage, and usefulness unless Julie asks for full PDF-grounded synthesis.
+3. Use references as supporting context for `3_key_topics.md`, `4_deep_dive.md`, and `5_interview_ready_solutions.md` when they add concrete interview-tested framing, but preserve `0_requirements.md` as the source of truth.
+4. In `2_index.md`, add a `Ranked Reference Materials` section. Rank every useful item in `reference/` by interview ROI, where Rank 1 is the highest-priority read.
+5. For each ranked material include:
+   - link using Obsidian wiki-link syntax;
+   - `Why read`: one concise reason tied to the current problem;
+   - `Use for`: mock, key topics, deep dive, spoken answer, or follow-up probes;
+   - `Priority`: must-read, skim, optional, or archive;
+   - `Time`: realistic reading time;
+   - `Key takeaways`: 2-4 bullets, grounded in the material.
+6. If a reference is low-quality, duplicative, off-topic, or mostly generic, still list it as optional or archive and explain why briefly.
+7. If no `reference/` directory exists or it is empty, write `No local reference materials found yet` in the index rather than inventing references.
+
+### Output 1: `1_mock_questions.md`
+
+Write this first so Julie can start practicing immediately. Include:
+
+- Candidate-facing prompt copied or paraphrased only as allowed by `0_requirements.md`.
+- Clarifying questions Julie should ask upfront, with concise expected interviewer answers only if they are grounded in `0_requirements.md`.
+- A realistic first-round mock question set grouped by interview phase: scoping, architecture, data, modeling, evaluation, serving, monitoring, failure modes, and evolution.
+- Staff+ follow-up probes that test crux identification, decision-making, ML correctness, operational maturity, and cross-team ownership.
+- One or more timed mock formats, for example 30-minute and 45-minute versions.
+- No hidden full solution before the mock question sections. Keep answer keys light or put them under a clearly marked `Interviewer notes` section.
+
+### Output 3: `3_key_topics.md`
+
+Write this after mock questions. Include:
+
+- Coverage map from `0_requirements.md` to required concepts.
+- The 1-2 core cruxes and why they matter.
+- Key design decisions Julie must be able to make aloud.
+- Metrics taxonomy: business, product, offline ML, online experiment, guardrail, and infrastructure metrics.
+- Common weak-answer patterns and how to upgrade them to Staff+ phrasing.
+- Glossary or concept notes only where they support interview performance.
+
+### Output 4: `4_deep_dive.md`
+
+Write this after key topics. It is the durable reasoning document. Include:
+
+- One section per major design decision or component.
+- For each section: problem, why hard, alternatives, chosen solution, why it works, invariants, failure modes, mitigation, and measurement.
+- Deep dives on the true cruxes rather than a broad tour of obvious plumbing.
+- Production maturity: drift, leakage, training-serving skew, privacy, safety, cost, capacity, canaries, rollback, retraining, and maintainability.
+- Cross-team contracts and migration plan when relevant.
+
+### Output 5: `5_interview_ready_solutions.md`
+
+Write this after deep dive. It is the spoken answer key. Include:
+
+- 30-second thesis.
+- Problem framing, clarifying questions, assumptions, goals, non-goals, and success criteria.
+- High-level design with ASCII diagram when useful.
+- Data, modeling, serving, evaluation, monitoring, failure modes, and evolution plan.
+- Staff+ crux and simplifications: what to go deep on and what to intentionally shortcut.
+- Interview delivery plan for 30-minute and 45-minute versions.
+- Pushback answers for likely interviewer challenges.
+- Level calibration: mid-level, senior, Staff, and Principal signals when useful.
+
+### Output 2: `2_index.md`
+
+Write this last so it accurately reflects generated files. Include:
+
+- Source of truth link: `[[0_requirements.md]]`.
+- Links to `[[1_mock_questions.md]]`, `[[3_key_topics.md]]`, `[[4_deep_dive.md]]`, and `[[5_interview_ready_solutions.md]]`.
+- A `Ranked Reference Materials` section derived from `<problem_dir>/reference/` when present, using wiki-links and ranking each useful material by interview ROI.
+- Suggested study order and time budget.
+- Checklist of what Julie should rehearse.
+- Open questions or assumptions that came from `0_requirements.md`.
+- Last updated date from the local `date` command.
+
+### Prep Mode Rubric Pass
+
+Before finalizing, verify:
+
+- `0_requirements.md` was not modified.
+- Every numbered artifact is grounded in `0_requirements.md`.
+- The output order was followed: 1, 3, 4, 5, then 2.
+- The artifacts emphasize cruxes, decisions, and Staff+ production judgment.
+- The index links to all generated files and names the source of truth.
+- If `reference/` exists, the index includes ranked reference materials with priority, reading time, why-read, use-for, and key takeaways.
+- There are no answer-key leaks in candidate-facing mock sections unless clearly marked as interviewer notes.
 
 ## Create Mode Workflow
 
@@ -184,6 +312,60 @@ For each problem, structure the answer around:
    - Key architecture thesis.
    - Hardest tradeoff.
    - Files created or updated.
+
+
+## Outline-Review Mode Workflow
+
+Use outline-review mode when Julie asks for a `blank doc`, `blank template`, `keyword outline`, `talking points only`, `let me fill`, `review my outline`, or asks to practice without a full mock. This is lighter than mock mode: the skill scaffolds a blank workspace, Julie fills key words only, then the skill reviews for completeness and Staff+ signal.
+
+### Setup Blank Keyword Outline
+
+1. Resolve `problem_dir`.
+2. Read the best available problem context in this priority order:
+   - root-level `0_requirements.md`
+   - `1_mock_questions.md` or `input/<problem>.md`
+   - `input/0_requirements.md`
+   - raw `context/` notes
+   - existing `solution/` or numbered prep artifacts only as optional supporting context
+3. Create a fresh dated top-level directory named `outline_MMDD/`. If one already exists today, create `outline_MMDD_2/`, `outline_MMDD_3/`, etc.
+4. Copy the section structure from `ML_System_Design/1_Frameworks/ML_System_Design_Interview_Template.md` into `outline_MMDD/keyword_outline.md`.
+5. Keep the document blank except for:
+   - title and source problem link
+   - a short instruction: `Fill keywords only, not full sentences. Aim for the talking points you would say aloud.`
+   - the template section headings
+   - optional HTML comments that say `keywords only` but do not leak hints, answer keys, rubrics, or expected components
+6. Create `outline_MMDD/outline_feedback.md` with a stub containing the date, source files, and `Status: waiting for Julie's keyword outline`.
+7. Tell Julie only where the blank outline is and that she should fill keywords only. Do not suggest the answer structure beyond the copied template.
+
+### Review Filled Keyword Outline
+
+Use this when Julie says `review`, `done`, `feedback`, `what did I miss`, or points to `outline_MMDD/keyword_outline.md`.
+
+1. Read `outline_MMDD/keyword_outline.md` and the same problem context used in setup.
+2. Review Julie's keywords as an interview plan, not polished prose. Do not penalize missing full sentences.
+3. Evaluate against the feedback rubric, with special attention to:
+   - missing requirements, non-goals, scale, constraints, or success metrics
+   - whether the 1-2 cruxes are visible early
+   - architecture coverage and data/control flow
+   - data, features, modeling, serving, evaluation, monitoring, and failure modes
+   - decision-making versus option listing
+   - complexity control and production maturity
+   - Staff+ signals: invariants, tradeoffs, rollout, rollback, ownership, and cross-team contracts
+4. Write `outline_MMDD/outline_feedback.md` with:
+   - verdict: `ready for spoken mock`, `needs one repair pass`, or `not ready yet`
+   - top missing items, grouped by section
+   - strongest signals already present
+   - biggest risk if spoken live
+   - 3-5 keyword-level additions Julie should add, not a full model answer
+   - one focused next drill question if useful
+5. In chat, summarize only the verdict, top 3 misses, and next repair pass. Do not rewrite `keyword_outline.md` unless Julie explicitly asks.
+
+### Outline-Review Guardrails
+
+- Preserve Julie's keyword-only practice format. Do not expand her outline into paragraphs by default.
+- Do not leak a full answer while she is still practicing. Feedback should identify gaps and suggest keywords or categories, not provide a polished solution.
+- If the outline is blank or mostly blank, say so and keep feedback to the minimum missing sections rather than generating an answer.
+- Keep this mode separate from mock mode: no interviewer roleplay, no one-question-at-a-time loop, and no final hire/no-hire verdict.
 
 ## Companioned Learn Mode Workflow
 
@@ -343,8 +525,10 @@ Evaluate answers against:
 
 ## Tips for Best Results
 
+- **Prep mode:** Start from root-level `0_requirements.md`, never modify it, then generate `1_mock_questions.md`, `3_key_topics.md`, `4_deep_dive.md`, `5_interview_ready_solutions.md`, and finally `2_index.md`.
 - **Create mode:** Preserve raw context in `context/`, then generate clean candidate-facing inputs.
 - **Solve mode:** Create `solution/interview_solutions.md` first. It is the cheat sheet before a real interview.
+- **Outline-review mode:** Create a blank `outline_MMDD/keyword_outline.md` from `ML_System_Design_Interview_Template`, wait for Julie to fill keywords only, then write gap-focused feedback without rewriting her answer.
 - **Companioned learn mode:** Default to read-along Q&A with auto-notes, then consolidate into `solution/deep_dive.md` only at wrap-up.
 - **Mock mode:** Treat it like a real interview: outline first, design second, do not over-optimize.
 - **Between rounds:** Review `solution/interview_solutions.md`, then run a mock to stress-test under time pressure.
@@ -353,13 +537,22 @@ Evaluate answers against:
 
 | File | Purpose | Created by | Edited in Learn | Reviewed in Mock |
 |------|---------|------------|-----------------|------------------|
+| `0_requirements.md` | Prep-mode ground truth | User | No | Reference |
+| `1_mock_questions.md` | Mock question bank and probes | Prep | No | Reference |
+| `2_index.md` | Prep index and study checklist, written last | Prep | No | Reference |
+| `3_key_topics.md` | Coverage map, cruxes, concepts, and Staff+ phrasing | Prep | No | Reference |
+| `4_deep_dive.md` | Durable design rationale and Staff+ deep dives | Prep | No | Reference |
+| `5_interview_ready_solutions.md` | Spoken Staff+ answer key | Prep | Optional reference only | Reference |
 | `context/*` | Raw source material | Create/User | No | Reference |
-| `input/0_requirements.md` | Normalized prep prompt from raw context | Create/Solve | No | Reference |
-| `input/<problem>.md` | Candidate-facing problem statement | Create/Solve | No | Reference |
+| `reference/*` | Curated study materials ranked in `2_index.md` during prep | User/Research | Optional reference only | Reference |
+| `input/0_requirements.md` | Legacy normalized prep prompt from raw context | Create/Solve | No | Reference |
+| `input/<problem>.md` | Legacy candidate-facing problem statement | Create/Solve | No | Reference |
 | `input/next_round_mock_questions.md` | Next mock prompts from prior misses | Mock | No | Reference |
-| `solution/interview_solutions.md` | Interview cheat sheet | Solve | Optional reference only | Reference |
-| `solution/deep_dive.md` | Design rationale and L6+ concepts | Solve + Learn wrap-up | Wrap-up only | Reference |
+| `solution/interview_solutions.md` | Legacy interview cheat sheet | Solve | Optional reference only | Reference |
+| `solution/deep_dive.md` | Legacy design rationale and L6+ concepts | Solve + Learn wrap-up | Wrap-up only | Reference |
 | `solution/learn_notes.md` | Raw chronological learning notes | Learn | Yes | No |
+| `outline_MMDD/keyword_outline.md` | Blank template workspace for keyword-only talking points | Outline-review | No | Reviewed in Outline-review |
+| `outline_MMDD/outline_feedback.md` | Gap-focused feedback on Julie's keyword outline | Outline-review | No | Reference |
 | `mock_MMDD/mock_instructions.md` | Candidate-facing mock prompt | Mock | No | Reference |
 | `mock_MMDD/my_solution.md` | Julie's mock design attempt | User | No | Yes |
 | `mock_MMDD/mock_feedback.md` | Interview feedback, transcript, verdict | Mock | No | Yes |

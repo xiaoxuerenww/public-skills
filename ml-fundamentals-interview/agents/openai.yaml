@@ -1,4 +1,0 @@
-interface:
-  display_name: "Mock ML Fundamental"
-  short_description: "Set up and run Staff+ ML theory mock interviews grounded in user-provided materials"
-  default_prompt: "Use $mock-ml-fundamental to setup mock files or run a Staff+ ML theory mock from the provided materials and question bank."
