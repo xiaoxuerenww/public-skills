@@ -41,9 +41,9 @@ problem-directory/
   0_requirements.md             # Prep-mode ground truth. Read only, never modify in prep mode.
   1_mock_questions.md           # Candidate-facing mock bank and follow-up probes from requirements
   2_index.md                    # Study index written last after other prep artifacts exist
-  3_key_topics.md               # Key topics, cruxes, concepts, and coverage map
-  4_deep_dive.md                # Durable Staff+ design rationale and deep dives
-  5_interview_ready_solutions.md # Interview-ready Staff+ answer and delivery script
+  3_key_topics.md               # Concise talking points and short answers for fast review
+  4_interview_ready_solutions.md # Interview-ready Staff+ answer and delivery script
+  5_deep_dive.md                # Durable Staff+ design rationale and deep dives
   context/
     ...                         # Raw prompt dumps, requirements, notes, screenshots converted to text, source docs
   reference/
@@ -67,7 +67,7 @@ problem-directory/
 
 ## Modes
 
-- **Prep mode:** Read `<problem_dir>/0_requirements.md` as immutable ground truth and generate numbered root-level prep artifacts in this order: `1_mock_questions.md`, `3_key_topics.md`, `4_deep_dive.md`, `5_interview_ready_solutions.md`, then `2_index.md`. Do not modify `0_requirements.md`.
+- **Prep mode:** Read `<problem_dir>/0_requirements.md` as immutable ground truth and generate numbered root-level prep artifacts in this order: `1_mock_questions.md`, `3_key_topics.md`, `4_interview_ready_solutions.md`, `5_deep_dive.md`, a final link/style pass on `4_interview_ready_solutions.md`, then `2_index.md`. Do not modify `0_requirements.md`.
 - **Create mode:** Create or normalize the problem directory from Julie's request, raw notes, or requirement docs. Preserve raw material in `context/`, then write `input/0_requirements.md` and `input/<problem_name>.md`.
 - **Solve mode:** Read `context/` and `input/`, normalize requirements if needed, frame the problem as L6+ MLE system design, then write `solution/interview_solutions.md` and `solution/deep_dive.md`.
 - **Outline-review mode:** Create a dated blank `outline_MMDD/keyword_outline.md` from `ML_System_Design/1_Frameworks/ML_System_Design_Interview_Template.md` for Julie to fill with keywords only, then review that outline and write `outline_MMDD/outline_feedback.md` with missing coverage, weak cruxes, and concrete next fixes. Do not fill in the solution for her.
@@ -128,9 +128,10 @@ Use prep mode when Julie asks to `prep`, `set up prep`, `create prep artifacts`,
 3. Generate root-level numbered artifacts, not `solution/` artifacts, in this exact order:
    1. `1_mock_questions.md`
    2. `3_key_topics.md`
-   3. `4_deep_dive.md`
-   4. `5_interview_ready_solutions.md`
-   5. `2_index.md`
+   3. `4_interview_ready_solutions.md`
+   4. `5_deep_dive.md`
+   5. final link/style pass on `4_interview_ready_solutions.md`
+   6. `2_index.md`
 4. Existing numbered artifacts may be updated in place, but preserve useful user-written notes unless they directly conflict with `0_requirements.md`.
 5. Do not create or update `input/0_requirements.md` in prep mode.
 6. Treat `reference/` files as optional curated study material. Read them when present, use them to enrich Staff+ depth and the ranked-materials section in `2_index.md`, but never let them override `0_requirements.md`.
@@ -142,7 +143,7 @@ When `<problem_dir>/reference/` exists:
 
 1. List all files under `reference/` before generating prep artifacts.
 2. Read Markdown, text, and other directly readable local files that are relevant to the prompt. For PDFs or large binary files, extract or inspect only enough to identify title, source, topic coverage, and usefulness unless Julie asks for full PDF-grounded synthesis.
-3. Use references as supporting context for `3_key_topics.md`, `4_deep_dive.md`, and `5_interview_ready_solutions.md` when they add concrete interview-tested framing, but preserve `0_requirements.md` as the source of truth.
+3. Use references as supporting context for `3_key_topics.md`, `4_interview_ready_solutions.md`, and `5_deep_dive.md` when they add concrete interview-tested framing, but preserve `0_requirements.md` as the source of truth.
 4. In `2_index.md`, add a `Ranked Reference Materials` section. Rank every useful item in `reference/` by interview ROI, where Rank 1 is the highest-priority read.
 5. For each ranked material include:
    - link using Obsidian wiki-link syntax;
@@ -167,44 +168,58 @@ Write this first so Julie can start practicing immediately. Include:
 
 ### Output 3: `3_key_topics.md`
 
-Write this after mock questions. Include:
+Write this after mock questions as a concise fast-review sheet, not a deep-dive document. Keep it short, scannable, and interview-delivery oriented.
 
-- Coverage map from `0_requirements.md` to required concepts.
-- The 1-2 core cruxes and why they matter.
-- Key design decisions Julie must be able to make aloud.
-- Metrics taxonomy: business, product, offline ML, online experiment, guardrail, and infrastructure metrics.
-- Common weak-answer patterns and how to upgrade them to Staff+ phrasing.
-- Glossary or concept notes only where they support interview performance.
+Include:
 
-### Output 4: `4_deep_dive.md`
+- A compact coverage map from `0_requirements.md` to the minimum concepts Julie must mention.
+- A `Talking points` section with keyword-level bullets Julie can rehearse aloud.
+- A `Concise answers` section with 1-3 sentence answers to the most likely interviewer questions.
+- The 1-2 core cruxes and why they matter, stated in plain interview language.
+- Key design decisions Julie must be able to make aloud, each with a one-sentence justification.
+- Metrics taxonomy as a compact checklist, not a long explanation.
+- Common weak-answer patterns and one-line Staff+ upgrades.
+- Glossary or concept notes only if they are essential for interview performance.
 
-Write this after key topics. It is the durable reasoning document. Include:
+Avoid:
 
-- One section per major design decision or component.
-- For each section: problem, why hard, alternatives, chosen solution, why it works, invariants, failure modes, mitigation, and measurement.
-- Deep dives on the true cruxes rather than a broad tour of obvious plumbing.
-- Production maturity: drift, leakage, training-serving skew, privacy, safety, cost, capacity, canaries, rollback, retraining, and maintainability.
-- Cross-team contracts and migration plan when relevant.
+- Long paragraphs, full solution scripts, exhaustive component tours, or detailed derivations.
+- Content that belongs in `4_interview_ready_solutions.md` or `5_deep_dive.md`.
 
-### Output 5: `5_interview_ready_solutions.md`
+### Output 4: `4_interview_ready_solutions.md`
 
-Write this after deep dive. It is the spoken answer key. Include:
+Write this after key topics. It is the spoken answer key and should stay lighter than `5_deep_dive.md`. Include:
 
 - 30-second thesis.
 - Problem framing, clarifying questions, assumptions, goals, non-goals, and success criteria.
 - High-level design with ASCII diagram when useful.
 - Data, modeling, serving, evaluation, monitoring, failure modes, and evolution plan.
 - Staff+ crux and simplifications: what to go deep on and what to intentionally shortcut.
+- Inline `Staff-level talking point:` lines inside the relevant sections. Do not create a standalone `## Staff-Level Thesis` or `## Staff-Level Talking Points` block.
+- Obsidian section links from each major section to the matching `5_deep_dive.md` section, for example `Deep dive: [[5_deep_dive#Calibration And Thresholding|calibration and thresholding]]`.
 - Interview delivery plan for 30-minute and 45-minute versions.
 - Pushback answers for likely interviewer challenges.
 - Level calibration: mid-level, senior, Staff, and Principal signals when useful.
+
+After `5_deep_dive.md` exists, make a final pass over `4_interview_ready_solutions.md` to ensure every major section has the right deep-dive link and that Staff-level talking points are inline with the section they support.
+
+### Output 5: `5_deep_dive.md`
+
+Write this after the interview-ready solution. It is the durable reasoning document. Include:
+
+- One section per major design decision or component.
+- For each section: problem, why hard, alternatives, chosen solution, why it works, invariants, failure modes, mitigation, and measurement.
+- Deep dives on the true cruxes rather than a broad tour of obvious plumbing.
+- Production maturity: drift, leakage, training-serving skew, privacy, safety, cost, capacity, canaries, rollback, retraining, and maintainability.
+- Cross-team contracts and migration plan when relevant.
+- Stable, descriptive section headings that can be linked from `4_interview_ready_solutions.md`; avoid renaming them after adding interview-ready links unless you also repair the links.
 
 ### Output 2: `2_index.md`
 
 Write this last so it accurately reflects generated files. Include:
 
 - Source of truth link: `[[0_requirements.md]]`.
-- Links to `[[1_mock_questions.md]]`, `[[3_key_topics.md]]`, `[[4_deep_dive.md]]`, and `[[5_interview_ready_solutions.md]]`.
+- Links to `[[1_mock_questions.md]]`, `[[3_key_topics.md]]`, `[[4_interview_ready_solutions.md]]`, and `[[5_deep_dive.md]]`.
 - A `Ranked Reference Materials` section derived from `<problem_dir>/reference/` when present, using wiki-links and ranking each useful material by interview ROI.
 - Suggested study order and time budget.
 - Checklist of what Julie should rehearse.
@@ -217,7 +232,9 @@ Before finalizing, verify:
 
 - `0_requirements.md` was not modified.
 - Every numbered artifact is grounded in `0_requirements.md`.
-- The output order was followed: 1, 3, 4, 5, then 2.
+- The output order was followed: 1, 3, 4, 5, final link/style pass on 4, then 2.
+- `4_interview_ready_solutions.md` links major sections to matching `5_deep_dive.md` headings and has no broken renamed-section links.
+- Staff-level talking points in `4_interview_ready_solutions.md` are inline inside relevant sections, not isolated in a standalone Staff-level section.
 - The artifacts emphasize cruxes, decisions, and Staff+ production judgment.
 - The index links to all generated files and names the source of truth.
 - If `reference/` exists, the index includes ranked reference materials with priority, reading time, why-read, use-for, and key takeaways.
@@ -525,13 +542,13 @@ Evaluate answers against:
 
 ## Tips for Best Results
 
-- **Prep mode:** Start from root-level `0_requirements.md`, never modify it, then generate `1_mock_questions.md`, `3_key_topics.md`, `4_deep_dive.md`, `5_interview_ready_solutions.md`, and finally `2_index.md`.
+- **Prep mode:** Start from root-level `0_requirements.md`, never modify it, then generate `1_mock_questions.md`, `3_key_topics.md`, `4_interview_ready_solutions.md`, `5_deep_dive.md`, make the final link/style pass on `4_interview_ready_solutions.md`, and finally write `2_index.md`.
 - **Create mode:** Preserve raw context in `context/`, then generate clean candidate-facing inputs.
 - **Solve mode:** Create `solution/interview_solutions.md` first. It is the cheat sheet before a real interview.
 - **Outline-review mode:** Create a blank `outline_MMDD/keyword_outline.md` from `ML_System_Design_Interview_Template`, wait for Julie to fill keywords only, then write gap-focused feedback without rewriting her answer.
 - **Companioned learn mode:** Default to read-along Q&A with auto-notes, then consolidate into `solution/deep_dive.md` only at wrap-up.
 - **Mock mode:** Treat it like a real interview: outline first, design second, do not over-optimize.
-- **Between rounds:** Review `solution/interview_solutions.md`, then run a mock to stress-test under time pressure.
+- **Between rounds:** Review `4_interview_ready_solutions.md` for prep-mode folders or `solution/interview_solutions.md` for legacy solve-mode folders, then run a mock to stress-test under time pressure.
 
 ## File Reference
 
@@ -540,9 +557,9 @@ Evaluate answers against:
 | `0_requirements.md` | Prep-mode ground truth | User | No | Reference |
 | `1_mock_questions.md` | Mock question bank and probes | Prep | No | Reference |
 | `2_index.md` | Prep index and study checklist, written last | Prep | No | Reference |
-| `3_key_topics.md` | Coverage map, cruxes, concepts, and Staff+ phrasing | Prep | No | Reference |
-| `4_deep_dive.md` | Durable design rationale and Staff+ deep dives | Prep | No | Reference |
-| `5_interview_ready_solutions.md` | Spoken Staff+ answer key | Prep | Optional reference only | Reference |
+| `3_key_topics.md` | Concise talking points and short answers for fast review | Prep | No | Reference |
+| `4_interview_ready_solutions.md` | Spoken Staff+ answer key | Prep | Optional reference only | Reference |
+| `5_deep_dive.md` | Durable design rationale and Staff+ deep dives | Prep | No | Reference |
 | `context/*` | Raw source material | Create/User | No | Reference |
 | `reference/*` | Curated study materials ranked in `2_index.md` during prep | User/Research | Optional reference only | Reference |
 | `input/0_requirements.md` | Legacy normalized prep prompt from raw context | Create/Solve | No | Reference |
