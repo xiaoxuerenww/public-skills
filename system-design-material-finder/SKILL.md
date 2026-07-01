@@ -5,7 +5,7 @@ description: Find, curate, and write high-quality learning materials into a Mark
 
 # System Design Material Finder
 
-Find strong learning materials for one concrete system design question, then write a curated Markdown reference index doc and return a short summary with the file link.
+Find interview-ready learning materials for one concrete system design question first, then add production-depth sources only after the interview walkthrough layer is covered. Write a curated Markdown reference index doc and return a short summary with the file link.
 
 ## Core workflow
 
@@ -14,16 +14,19 @@ Find strong learning materials for one concrete system design question, then wri
    - Normalize it into 3 to 6 search concepts, for example `harmful content detection`, `content moderation`, `trust and safety ML`, `multi-modal classification`, `human review queue`.
    - If the target question is ambiguous, make the most likely interpretation and say the assumption briefly.
 
-2. **Search live sources**
+2. **Search live sources, interview-ready first**
    - Browse the web. Do not rely only on memory because resource pages, paywalls, and video availability change.
+   - Start with interview-ready pages for the exact prompt, especially Hello Interview problem breakdowns like `https://www.hellointerview.com/learn/ml-system-design/problem-breakdowns/harmful-content`, Hack2Hire ML system design questions, ByteByteGo ML system design chapters, Interviewing.io mocks, Exponent mocks, and YouTube mock walkthroughs.
    - Search both exact and adjacent phrasings.
-   - Prefer queries that combine the topic with `system design`, `ML system design`, `interview`, `architecture`, `case study`, `paper`, or `YouTube`.
+   - Prefer first-pass queries that combine the topic with `ML system design interview`, `problem breakdown`, `mock interview`, `interview question`, `real interview question`, `case study`, or `YouTube`.
+   - Only after the interview-ready layer is covered, search production engineering posts, official docs, papers, and architecture case studies for Staff-level depth.
 
-3. **Prioritize sources by usefulness**
-   - Prefer interview-shaped walkthroughs for first-pass learning.
-   - Add production engineering posts, papers, or docs when they improve depth.
+3. **Prioritize sources by interview readiness**
+   - Put interview-shaped walkthroughs before production docs, even if the production docs are more technically authoritative.
+   - Rank a direct Hello Interview, Hack2Hire, ByteByteGo, Interviewing.io, or high-quality mock video above a generic company blog for the same topic.
+   - Use production engineering posts, official docs, papers, and architecture case studies as depth sources, not as the first starting point unless no interview-ready source exists.
    - Include YouTube only when the title/channel suggests a real walkthrough, mock interview, or high-quality explanation, not generic hype.
-   - Avoid low-signal SEO pages, copied content, ungrounded Medium posts, and pages with no concrete architecture or trade-offs.
+   - Avoid low-signal Search Engine Optimization (SEO) pages, copied content, ungrounded Medium posts, and pages with no concrete architecture or trade-offs.
 
 4. **Curate, do not dump links**
    - Return 6 to 12 resources max unless the user asks for more.
@@ -47,24 +50,29 @@ Read [references/source_catalog.md](references/source_catalog.md) when ranking o
 
 Default priority:
 
-1. Hello Interview and Hack2Hire for interview-shaped ML system design examples.
-2. ByteByteGo for general system design patterns and some ML system design chapters.
-3. YouTube walkthroughs from credible channels, especially Hello Interview, ByteByteGo, System Design Fight Club, Exponent, MLEpath, or staff-engineer mock interviews.
+1. Direct interview-ready problem breakdowns: Hello Interview, Hack2Hire, ByteByteGo ML system design chapters, Interviewing.io mocks, Exponent mocks, and similar structured interview walkthroughs.
+2. Interview-ready videos from credible channels, especially Hello Interview, ByteByteGo, System Design Fight Club, Exponent, MLEpath, or Staff-level mock interviews.
+3. Close sibling interview prompts when the exact prompt is unavailable, for example content moderation for harmful content detection or Spark OOM troubleshooting for notebook OOM prediction.
 4. Production engineering blogs from Meta, Google, Netflix, Uber, DoorDash, Pinterest, Airbnb, LinkedIn, Spotify, Discord, Cloudflare, OpenAI, Anthropic, and Databricks.
-5. Papers, books, and course material for deeper ML systems concepts, especially Chip Huyen, Stanford CS329S, RecSys papers, retrieval/ranking papers, and moderation/trust-and-safety papers.
-6. Community sources such as Reddit, Blind, Medium, and Substack only as secondary leads unless the author and content quality are strong.
+5. Official docs and platform references that provide feature, serving, observability, or operational details.
+6. Papers, books, and course material for deeper ML systems concepts, especially Chip Huyen, Stanford CS329S, RecSys papers, retrieval/ranking papers, and moderation/trust-and-safety papers.
+7. Community sources such as Reddit, Blind, Medium, and Substack only as secondary leads unless the author and content quality are strong.
 
 ## Search query templates
 
 Use several of these patterns:
 
 ```text
-"<question>" "ML system design"
-"<question>" "system design interview"
-site:hellointerview.com <topic> "system design"
+"<question>" "ML system design interview"
+"<question>" "problem breakdown"
+"<question>" "mock interview"
+"<question>" "real interview question"
+site:hellointerview.com/learn/ml-system-design/problem-breakdowns <topic>
 site:hack2hire.com/questions/ml-system-design <topic>
 site:bytebytego.com <topic> "machine learning system design"
+site:interviewing.io/mocks <topic> "ML"
 site:youtube.com <topic> "ML system design interview"
+site:youtube.com <topic> "mock interview"
 <company> engineering blog <topic> recommendation ranking retrieval moderation architecture
 <topic> production machine learning system architecture case study
 <topic> paper ranking retrieval recommender moderation system
@@ -85,12 +93,12 @@ Use this concise format for the Markdown doc unless the user requests a differen
 ```markdown
 ## Learning materials for <question>
 
-### Best starting point
+### Interview-ready starting points
 1. [Title](url) - Source
    - Why: <why this is useful for this question>
    - Extract: <specific sections, patterns, diagrams, or trade-offs to study>
 
-### Interview walkthroughs
+### Additional interview walkthroughs
 ...
 
 ### Production depth
@@ -106,7 +114,7 @@ Use this concise format for the Markdown doc unless the user requests a differen
 
 ## Quality bar
 
-A good final packet should help the user answer the interview question, not just learn the topic. Prefer resources that contain at least one of:
+A good final packet should help the user answer the interview question, not just learn the topic. It should lead with interview-ready materials whenever they exist, then add depth sources. Prefer resources that contain at least one of:
 
 - Problem framing and clarifying questions.
 - Requirements and scale assumptions.
@@ -117,7 +125,7 @@ A good final packet should help the user answer the interview question, not just
 
 ## Julie-specific defaults
 
-- Favor ML system design over generic backend system design.
+- Favor interview-ready ML system design walkthroughs over generic backend system design or raw production docs.
 - Favor frontier-lab-relevant topics: LLM systems, recommendation, ranking, retrieval, evaluation, model serving, data pipelines, safety, and agentic workflows.
 - Write the reference search results into `reference_index.md` by default, and keep the output concise, scannable, and durable.
 - Expand abbreviations on first use, for example `Approximate Nearest Neighbor (ANN)` before `ANN`.

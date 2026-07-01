@@ -2,12 +2,15 @@
 
 Use this catalog to rank sources and broaden searches. The exact availability of pages changes, so always verify live links.
 
-## Interview-shaped sources
+## Interview-ready sources, highest priority
 
-- **Hello Interview**: Strong for structured system design and ML system design lessons, delivery frameworks, and problem breakdowns. Good first stop for learning the shape of an answer.
-- **Hack2Hire**: Strong for real interview question pages and ML system design examples. Good for matching a prompt to a concrete walkthrough.
-- **ByteByteGo**: Strong for general system design patterns, visual explanations, and some machine learning system design chapters. Useful for backend architecture patterns that support ML systems.
-- **Exponent**: Useful for mock interviews and product/system design walkthroughs. Quality varies by video and interviewer.
+Use these before production docs. The goal is to help Julie answer the interview prompt, not only understand the production domain.
+
+- **Hello Interview problem breakdowns**: Highest priority when an exact or close ML system design prompt exists, for example `https://www.hellointerview.com/learn/ml-system-design/problem-breakdowns/harmful-content`. Strong for clarifying questions, requirements, architecture, metrics, and spoken answer flow.
+- **Hack2Hire ML system design questions**: High priority for real interview question pages and end-to-end ML system design examples. Good for matching a prompt to a concrete walkthrough.
+- **ByteByteGo ML system design chapters**: High priority when the topic appears in the Machine Learning System Design Interview course. Good for canonical interview structure and diagrams, sometimes gated.
+- **Interviewing.io mocks**: High priority when a relevant replay exists because it shows interviewer expectations and feedback.
+- **Exponent mocks and lessons**: Useful for mock interviews and product/system design walkthroughs. Quality varies by video and interviewer.
 - **Taro**: Useful for interview prep discussion and senior engineer guidance. Usually secondary, not primary evidence.
 
 ## YouTube channels and search targets
@@ -51,13 +54,14 @@ Use for conceptual depth and reusable frameworks:
 
 ## Source ranking rubric
 
-Score resources mentally on these axes:
+Score resources mentally on these axes, in order:
 
-1. **Prompt match**: Does it directly answer this system design question or a close sibling?
-2. **Interview utility**: Does it show how to structure a 45 to 60 minute answer?
-3. **Technical depth**: Does it cover data, modeling, serving, evaluation, monitoring, and trade-offs?
-4. **Credibility**: Is it from a reputable interview platform, company engineering blog, paper, or known practitioner?
-5. **Specificity**: Does it include concrete numbers, architecture diagrams, metrics, or failure modes?
-6. **Freshness**: Is it recent enough for LLM, retrieval, and modern ML infra topics?
+1. **Interview readiness**: Does it help structure a 45 to 60 minute interview answer with clarifying questions, requirements, architecture, metrics, and trade-offs?
+2. **Prompt match**: Does it directly answer this system design question or a close sibling?
+3. **Delivery utility**: Does it include a mock, spoken walkthrough, diagram, rubric, or interviewer expectation?
+4. **Technical depth**: Does it cover data, modeling, serving, evaluation, monitoring, and trade-offs?
+5. **Credibility**: Is it from a reputable interview platform, company engineering blog, paper, official doc, or known practitioner?
+6. **Specificity**: Does it include concrete numbers, architecture diagrams, metrics, or failure modes?
+7. **Freshness**: Is it recent enough for LLM, retrieval, and modern ML infra topics?
 
-Prefer a slightly less direct source with strong architecture depth over a direct source that is shallow SEO content.
+Prefer a direct interview-ready walkthrough over an authoritative production doc for the first section. Use production docs and papers to deepen the answer after the interview-ready materials are covered.
