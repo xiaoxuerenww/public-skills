@@ -543,3 +543,170 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 - Principle 3 — Be Brave — Act Before You Feel Ready
 - Principle 6 — Work at the Frontier — With the Best
 - Living tension: Curiosity vs. Focus
+
+---
+
+## 2026-07-04 — Onsite prep anxiety: shifting from catch-up to triage
+
+**What we surfaced:**
+- Julie has a July 15 virtual onsite with four rounds across ML fundamentals, ML system design, and behavioral/project deep dive.
+- Her recent low productivity is coming from the thought "I'm too behind; there is too much to catch up/review."
+- The real issue is not motivation. It is scope overload under high stakes: the prep surface feels infinite, so every study block feels insufficient before it starts.
+
+**Key insight:**
+- "There is more to know" is not evidence that she is unready. For Staff+ interviews, there is always more to know. Readiness now means warming up the highest-yield surfaces, practicing retrieval under pressure, and letting go of anxiety-driven review.
+
+**Principles at play:**
+- Principle 3 — Be Brave: act with the preparation available instead of waiting to feel fully ready.
+- Principle 4 — Think Carefully, Act Thoughtfully: use triage and deliberate practice rather than panic grinding.
+- Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling: do not convert normal prep incompleteness into a verdict about capability.
+- Living tension: Brave vs. Thoughtful.
+
+**Action direction:**
+- Treat the remaining time as triage, not catch-up.
+- Split prep into Must Win, Can Survive, and Let Go buckets.
+- Prioritize balanced readiness across the three onsite domains over exhaustive mastery inside any one domain.
+
+---
+
+## 2026-07-04 — Phone distraction after Anthropic sprint: replacing intensity with protected short blocks
+
+**What we surfaced:**
+- Julie is struggling to concentrate after ramping up for the Anthropic interview. She used to be able to enter a whole-day intense prep mode, but now starts, gets distracted by the phone after about 10 minutes, and can lose the day.
+- The issue is not lack of ambition. It is a learned avoidance loop after a prior high-intensity sprint: start prep, feel the weight of the onsite and prior exhaustion, reach for phone relief, lose momentum, then feel behind.
+
+**Key insight:**
+- Trying to recreate the old whole-day Anthropic intensity is the wrong target. The near-term system should make distraction physically harder and make the first useful prep unit small enough that she can restart many times without shame.
+
+**Principles at play:**
+- Principle 4 — Think Carefully, Act Thoughtfully: solve the environment and loop, not just the intention.
+- Principle 7 — Keep Improving — Work and Life Together: use a sustainable execution system rather than panic intensity.
+- Principle 8 — Built for Challenge: the current struggle is a pattern to redesign, not evidence that she cannot handle the onsite.
+
+**Action direction:**
+- Use phone removal as a hard constraint during prep blocks.
+- Replace all-day intensity with 25-minute protected reps and visible checkmarks.
+- Start each block with a written micro-task that can be completed inside the block.
+
+---
+
+## 2026-07-04 — Reconnecting interview prep to the real why
+
+**What we surfaced:**
+- Julie needs to remind herself why she is interviewing in order to keep prep motivation alive.
+- The useful motivation is not proving she is good enough. It is remembering that she is interviewing to test her real ceiling, move toward frontier AI work, and work with people and problems that raise her standards.
+
+**Key insight:**
+- Prep becomes draining when it turns into a verdict on worth. Prep becomes energizing when it is framed as exploration: each block is one small step toward the kind of work and environment she actually wants.
+
+**Principles at play:**
+- Principle 1 — Follow Curiosity, Even When It's Hard.
+- Principle 3 — Be Brave — Act Before You Feel Ready.
+- Principle 6 — Work at the Frontier — With the Best.
+- Principle 9 — Work and Life as Exploration — Fun is the Mission.
+
+**Action direction:**
+- Put a short "why I interview" note next to the prep timer.
+- Read it before every 25-minute block to interrupt proving-mode and reconnect to exploration-mode.
+
+---
+
+## 2026-07-04 — Interview progress anxiety: distinguishing no offer from no progress
+
+**What we surfaced:**
+- Julie feels nervous because after three months of interviewing she does not yet have an offer, but she has only interviewed with one company.
+- She also feels behind because she did not switch teams in order to focus on interviewing, yet the interview process does not feel like it has produced visible progress.
+- The deeper fear is that she paid an opportunity cost without enough external proof that the choice is working.
+
+**Key insight:**
+- "No offer after one company" is not strong evidence that the strategy is failing. The current pain comes from measuring a frontier transition by the wrong denominator: three calendar months feels large, but one company is a tiny sample size.
+- The real risk is letting the absence of an offer turn into shame, then letting shame create avoidance, which slows the next interview cycle.
+
+**Principles at play:**
+- Principle 3 — Be Brave: continue the path based on the actual goal, not on the discomfort of an incomplete signal.
+- Principle 4 — Think Carefully, Act Thoughtfully: evaluate the evidence by sample size and feedback quality, not by calendar anxiety.
+- Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling: do not convert one company's outcome into a global verdict.
+- Principle 8 — Built for Challenge: the transition is still a hard crossing, not proof of incapability.
+
+**Action direction:**
+- Reframe the last three months as ramp plus first market test, not a failed job search.
+- After July 15, measure progress by interview reps, feedback, referrals, and tightened positioning, not only offers.
+- For the next 11 days, treat the current onsite as the only scoreboard that matters.
+
+---
+
+## 2026-07-04 — Dream-company-only strategy doubt: separating ambition from sequencing
+
+**What we surfaced:**
+- Julie is questioning whether only interviewing dream companies like Anthropic and Databricks was the right strategy, because they are among the hardest and most competitive interview loops.
+- She has not interviewed for about 10 years, and many rounds are new skill-wise, so second-tier companies may have been useful as calibration and interview practice.
+
+**Key insight:**
+- The issue is not whether dream companies are the right target. They are. The question is whether they should be the first reps. A practice-company ladder could reduce pressure and improve interview execution without lowering the ultimate goal.
+
+**Principles at play:**
+- Principle 3 — Be Brave: keep aiming at the real target.
+- Principle 4 — Think Carefully, Act Thoughtfully: improve sequencing instead of treating the first strategy as sacred.
+- Principle 6 — Work at the Frontier — With the Best: dream companies remain the north star.
+
+**Action direction:**
+- Do not change strategy before the July 15 onsite.
+- After July 15, consider adding 2-3 calibration companies before or between dream-company loops to build live interview reps.
+
+---
+
+## 2026-07-04 — Timeline anxiety and bandwidth mismatch
+
+**What we surfaced:**
+- Julie feels nervous because it is already July and her interview progress feels behind the timeline she expected.
+- She also does not feel ready for each onsite, and each onsite requires a few weeks of preparation.
+- The painful mismatch is that her expectations assume near-full interview bandwidth, while her actual life includes work, family load, recovery from prior interview sprints, and limited focus.
+
+**Key insight:**
+- The problem is not only readiness. It is expectation design. A sustainable strategy must match her real bandwidth, not the imaginary version of herself who can prepare at full intensity for weeks.
+
+**Principles at play:**
+- Principle 4 — Think Carefully, Act Thoughtfully: adjust the system to reality instead of judging herself against an unrealistic plan.
+- Principle 7 — Keep Improving — Work and Life Together: career growth has to fit the actual life container.
+- Living tension: Frontier ambition vs. Sustainability.
+
+**Action direction:**
+- For July 15, shrink the scoreboard to daily high-yield prep blocks.
+- After July 15, redesign the interview pipeline around real capacity: fewer parallel loops, planned recovery, and calibration interviews when useful.
+
+---
+
+## 2026-07-04 — Doubting whether a sustainable version exists
+
+**What we surfaced:**
+- Julie is not sure there is a sustainable version of interview prep that still moves her toward frontier roles.
+- The fear is that only all-in intensity produces progress, but all-in intensity has been breaking her energy and focus.
+
+**Key insight:**
+- Sustainability does not need to mean easy, relaxed, or slow. It can mean a repeatable minimum unit that preserves health, family, work stability, and forward motion.
+
+**Principles at play:**
+- Principle 7 — Keep Improving — Work and Life Together: the interview system has to fit her actual life.
+- Principle 8 — Built for Challenge: she can test a new system instead of assuming the only options are all-in or no progress.
+
+**Action direction:**
+- Define and test one sustainable day, not a sustainable identity.
+- Treat the next 48 hours as an experiment: small prep blocks plus one energy-maintaining activity.
+
+---
+
+## 2026-07-04 — Setting expectations for how long interview mode should last
+
+**What we surfaced:**
+- Julie can define a realistic day with interview prep, work, workout, and family time, but worries that even this more balanced mode may not sustain for a couple of months.
+
+**Key insight:**
+- Interview mode should not be treated as an open-ended lifestyle. It needs an explicit review point and exit criteria, otherwise even a balanced plan can start to feel like an endless tunnel.
+
+**Principles at play:**
+- Principle 4 — Think Carefully, Act Thoughtfully: set review points and decision criteria instead of relying on endurance.
+- Principle 7 — Keep Improving — Work and Life Together: career transition should preserve the life system that supports it.
+
+**Action direction:**
+- Treat July 15 as the current sprint endpoint.
+- After the onsite, reassess the pipeline and choose the next 4-6 week cycle deliberately, with a lower-intensity default unless there is a specific onsite.

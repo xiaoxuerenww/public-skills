@@ -18,7 +18,7 @@ This coordinator routes work to these 3 core skills:
 | **behavioral-interview-coach** | Behavioral interviews, stories, leadership, influence. Story library + mock with Staff+ rubric feedback. |
 
 Supporting skills:
-- `ml-daily-quiz` — ML/LLM fundamentals quizzes and spaced review
+- `ml-fundamentals-interview` — ML/LLM fundamentals quizzes, topic prep, learn mode, and mock interviews
 - `learn-buddy` — Single concept one-pagers and refreshers
 
 ---
@@ -127,7 +127,7 @@ Assess readiness across all interview dimensions.
 | "Practice a system design" | ml-system-design-interview | Solve or Mock |
 | "Mock behavioral interview" | behavioral-interview-coach | Mock |
 | "Learn about [concept]" | learn-buddy | Learn |
-| "Daily ML quiz" | ml-daily-quiz | Quiz |
+| "Daily ML quiz", "mock ML fundamental", "set up ML fundamental topic prep" | ml-fundamentals-interview | Quiz / Learn / Mock / Topic Prep |
 
 **Multi-domain or meta requests:** Use coordinator mode.
 
@@ -177,7 +177,7 @@ Follow the specialized skill's persistence rules:
 - **Coding:** Problem folder `output/interview_solutions.md`, `output/deep_dive.md`, `output/learn_notes.md`, `output/mock_feedback.md`
 - **System design:** Active workspace `output/interview_solutions.md`, `output/deep_dive.md`, `output/learn_notes.md`, `output/mock_feedback.md`
 - **Behavioral:** Active workspace `output/story_library.md`, `output/learn_notes.md`, `output/mock_feedback.md`
-- **Fundamentals:** Quiz tracker and `ml_llm_daily_quiz_notes.md`
+- **Fundamentals:** Quiz tracker, `ml_llm_daily_quiz_notes.md`, and topic-level `mock.md` when using ML fundamentals mock mode
 - **Concepts:** `/Users/xue/Documents/work/0_inbox/<concept>.md`
 
 For cross-round artifacts, create `interview_readiness.md` in the active prep folder.
