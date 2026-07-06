@@ -1,4 +1,4 @@
 interface:
   display_name: "System Design Interview"
-  short_description: "Manage Staff+ system design prep, sources, solves, reviews, and mocks"
-  default_prompt: "Manage this Staff+ system design interview prep end to end. Use $ml-system-design-interview for ML system design problem setup, prep artifacts, solves, outline review, companion learning, and mock sessions. Use $system-design-material-finder when reference curation or source discovery is needed. Resolve the problem directory first, preserve 0_requirements.md as ground truth in prep mode, and route to the narrowest workflow that matches my request."
+  short_description: "Manage Staff+ system design prep, solves, practice, reviews, and mocks"
+  default_prompt: "Manage this Staff+ system design interview prep end to end. Use $ml-system-design-interview for ML system design problem setup, prep artifacts, solves, template-based keyword practice with guided discussion notes, outline review, companion learning, and mock sessions. Use $system-design-material-finder when reference curation or source discovery is needed. Resolve the problem directory first, preserve 0_requirements.md as ground truth in prep mode, and route to the narrowest workflow that matches my request."

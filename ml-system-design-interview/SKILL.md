@@ -1,22 +1,22 @@
 ---
 name: ml-system-design-interview
-description: "End-to-end ML system design interview prep with prep, create, solve, outline-review, companioned learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, evaluation systems, or research infrastructure: locate the current problem directory, preserve ground-truth requirements, generate prep artifacts, synthesize Staff+ solutions, take learning notes, and run dated mock sessions."
+description: "End-to-end ML system design interview prep with prep, create, solve, practice, outline-review, companioned learn, and mock modes. Use when designing recommendation systems, ranking platforms, experiment pipelines, ML infra, model serving, evaluation systems, or research infrastructure: locate the current problem directory, preserve ground-truth requirements, generate prep artifacts, synthesize Staff+ solutions, scaffold template-based keyword practice with guided discussion notes, take learning notes, and run dated mock sessions."
 ---
 
 # ML System Design Interview
 
-**Purpose:** Complete lifecycle support for Staff/Senior Staff ML system design prep: generate prep artifacts from a ground-truth problem prompt, create a problem folder, synthesize L6+ solutions, create blank keyword-outline practice docs, companion learning with notes, and run realistic mock interviews.
+**Purpose:** Complete lifecycle support for Staff/Senior Staff ML system design prep: generate prep artifacts from a ground-truth problem prompt, create a problem folder, synthesize L6+ solutions, scaffold template-based practice outlines and guided discussion notes, create blank keyword-outline practice docs, companion learning with notes, and run realistic mock interviews.
 
 **Boundary:** Use this for ML system design, architecture, platform, serving, ranking, recommendation, evaluation, experiment, and research-infrastructure prompts. Do not use it for coding implementation rounds or pure ML theory Q&A.
 
-**Important:** First identify the current problem directory. In prep mode, `<problem_dir>/0_requirements.md` is the ground-truth prompt and must be read but never modified. Legacy `context/`, `input/`, `solution/`, and `mock_MMDD/` paths are also subdirectories of that problem directory, similar to `coding-interview-companion`.
+**Important:** First identify the current problem directory. In prep mode, `<problem_dir>/0_requirements.md` is the ground-truth prompt and must be read but never modified. Legacy `context/`, `input/`, `solution/`, `practice_MMDD/`, and `mock_MMDD/` paths are also subdirectories of that problem directory, similar to `coding-interview-companion`.
 
 ## Problem Directory Resolution
 
 Before reading or writing files, set `problem_dir`:
 
-1. If the user provides a problem directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, walk upward to the nearest directory that contains the problem's artifact folders or a root-level `0_requirements.md`.
-2. Otherwise, if the current directory contains `0_requirements.md`, `context/`, `input/`, `solution/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, use the current directory.
+1. If the user provides a problem directory or file path, use it. If they provide a file inside `context/`, `input/`, `solution/`, `practice_MMDD/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, walk upward to the nearest directory that contains the problem's artifact folders or a root-level `0_requirements.md`.
+2. Otherwise, if the current directory contains `0_requirements.md`, `context/`, `input/`, `solution/`, `practice_MMDD/`, `outline_MMDD/`, `mock_MMDD/`, or legacy `output/`, use the current directory.
 3. Otherwise, search nearby child directories for `0_requirements.md`, `context/*.md`, `input/0_requirements.md`, `input/*.md`, `solution/deep_dive.md`, legacy `output/deep_dive.md`, or `**/*requirements.md` and choose the directory that matches the current problem context.
 4. If multiple directories match and the current problem is ambiguous, ask one concise clarification question.
 
@@ -27,6 +27,7 @@ After resolving `problem_dir`, use:
 - `problem_reference = <problem_dir>/reference`
 - `problem_input = <problem_dir>/input`
 - `problem_solution = <problem_dir>/solution`
+- `problem_practice = <problem_dir>/practice_MMDD` where `MMDD` is the current local date, e.g. `practice_0602`
 - `problem_outline = <problem_dir>/outline_MMDD` where `MMDD` is the current local date, e.g. `outline_0602`
 - `problem_mock = <problem_dir>/mock_MMDD` where `MMDD` is the current local date, e.g. `mock_0602`
 
@@ -56,6 +57,11 @@ problem-directory/
     interview_solutions.md      # Legacy interview-ready L6+ answer
     deep_dive.md                # Legacy design rationale and durable concepts
     learn_notes.md              # Companion learning Q&A notes
+  practice_MMDD/
+    practice_prompt.md          # Candidate-facing timed practice prompt with no answer hints
+    practice_outline.md         # Template-based keyword talking points for Julie to fill
+    practice_feedback.md        # Gap-focused review of the keyword outline
+    practice_notes.md           # Chronological discussion notes, weaknesses, and wrap-up plan
   outline_MMDD/
     keyword_outline.md          # Blank template copy for Julie's keyword-only talking points
     outline_feedback.md         # Review of gaps, missing cruxes, and next practice targets
@@ -70,6 +76,7 @@ problem-directory/
 - **Prep mode:** Read `<problem_dir>/0_requirements.md` as immutable ground truth and generate numbered root-level prep artifacts in this order: `1_mock_questions.md`, `3_key_topics.md`, `4_interview_ready_solutions.md`, `5_deep_dive.md`, a final link/style pass on `4_interview_ready_solutions.md`, then `2_index.md`. Do not modify `0_requirements.md`.
 - **Create mode:** Create or normalize the problem directory from Julie's request, raw notes, or requirement docs. Preserve raw material in `context/`, then write `input/0_requirements.md` and `input/<problem_name>.md`.
 - **Solve mode:** Read `context/` and `input/`, normalize requirements if needed, frame the problem as L6+ MLE system design, then write `solution/interview_solutions.md` and `solution/deep_dive.md`.
+- **Practice mode:** Create a fresh dated `practice_MMDD/` workspace from the Databricks practice template, let Julie fill keyword talking points, review the outline, guide section-by-section discussion, take weakness notes, and wrap up with next practice or mock targets. Do not provide a model answer or roleplay as interviewer unless asked.
 - **Outline-review mode:** Create a dated blank `outline_MMDD/keyword_outline.md` from `ML_System_Design/1_Frameworks/ML_System_Design_Interview_Template.md` for Julie to fill with keywords only, then review that outline and write `outline_MMDD/outline_feedback.md` with missing coverage, weak cruxes, and concrete next fixes. Do not fill in the solution for her.
 - **Companioned learn mode:** Passive read-along Q&A. Wait for Julie's questions, answer directly with concise necessary context, ground responses in local notes or cited sources, and record stabilized Q&A in `solution/learn_notes.md`. Do not prompt, quiz, or ask check-for-understanding questions.
 - **Mock mode:** Interview as a realistic hiring engineer, create a fresh dated `mock_MMDD/` session, ask one question per turn, review `mock_MMDD/my_solution.md`, and record feedback in `mock_MMDD/mock_feedback.md`.
@@ -330,6 +337,126 @@ For each problem, structure the answer around:
    - Hardest tradeoff.
    - Files created or updated.
 
+## Practice Mode Workflow
+
+Use practice mode when Julie asks to `practice`, `create practice`, `timed practice`, `independent attempt`, `keyword outline`, `do a dry run`, `review my practice`, `guide me section by section`, or points to `practice_MMDD/practice_outline.md`. This is between outline-review and mock mode: it gives Julie a template-based keyword outline workspace, reviews the outline, then guides a section-by-section discussion with proactive weakness notes.
+
+Practice mode has five phases:
+
+0. Create a practice doc from `/Users/xue/Documents/work/0_databricks/Templates/ml_system_design_template.md`.
+1. Let Julie outline keyword talking points.
+2. Review the outline and give feedback.
+3. Guide section-by-section discussion, allowing questions and deep dives on weak topics.
+4. Proactively take notes throughout the practice conversation, especially weaknesses.
+5. Wrap up with notes for the next practice or mock.
+
+### Phase 0: Create Practice Doc
+
+1. Resolve `problem_dir`.
+2. Read the best available problem context in this priority order:
+   - root-level `0_requirements.md`
+   - `1_mock_questions.md`
+   - `input/<problem>.md`
+   - `input/0_requirements.md`
+   - raw `context/` notes
+   - existing answer artifacts only to avoid contradicting known constraints, not to leak hints into the prompt
+3. Create a fresh dated top-level directory named `practice_MMDD/`. If one already exists today, create `practice_MMDD_2/`, `practice_MMDD_3/`, etc.
+4. Copy `/Users/xue/Documents/work/0_databricks/Templates/ml_system_design_template.md` into `practice_MMDD/practice_outline.md`.
+   - Preserve the template section structure.
+   - Add only title, date, source prompt link, timebox, and a short instruction: `Fill keywords only, not full prose. Aim for the talking points you would say aloud.`
+   - Remove or leave blank any placeholder text that would become a hint.
+   - If the template is missing, recreate only its section headings as a fallback and note the fallback in `practice_notes.md`.
+5. Write `practice_MMDD/practice_prompt.md` with only:
+   - candidate-facing prompt
+   - timebox, usually 30 or 45 minutes
+   - expected deliverable: keyword talking points in `practice_outline.md`
+   - allowed clarifying assumptions if they are grounded in the source prompt
+   - completion instruction, e.g. `Fill practice_outline.md with keywords, then say done.`
+6. Create `practice_MMDD/practice_feedback.md` with date, source files, timebox, and `Status: waiting for Julie's keyword outline`.
+7. Create `practice_MMDD/practice_notes.md` with:
+   - date and source files
+   - `Status: practice setup`
+   - empty sections for `Conversation Notes`, `Weaknesses`, `Repairs`, and `Next Practice / Mock`
+8. Tell Julie only where `practice_outline.md` is, the timebox, and that she should fill keywords only. Do not include answer guidance in chat.
+
+### Phase 1: Keyword Outline
+
+Julie fills `practice_MMDD/practice_outline.md` with keyword talking points. Do not edit it, expand it, or provide hints while she is filling it unless she explicitly asks a clarification question.
+
+### Phase 2: Review Keyword Outline
+
+Use this when Julie says `done`, `review`, `feedback`, `what did I miss`, or points to `practice_MMDD/practice_outline.md`.
+
+1. Read `practice_MMDD/practice_outline.md`, `practice_MMDD/practice_prompt.md`, `practice_MMDD/practice_notes.md`, and the same problem context used in setup.
+2. Review the outline as keyword talking points, not polished prose. Do not penalize missing full sentences.
+3. Evaluate against the feedback rubric, with special attention to:
+   - whether requirements, goals, non-goals, constraints, and success metrics are explicit
+   - whether the 1-2 cruxes appear early and receive enough depth
+   - whether architecture, data flow, training flow, serving flow, evaluation, and monitoring connect coherently
+   - decision-making versus listing alternatives
+   - whether the answer is appropriately simple for the constraints
+   - production maturity: failure modes, rollback, privacy/safety, drift, cost, ownership, and iteration plan
+   - Staff+ signal: invariants, tradeoffs, rollout sequencing, cross-team contracts, and crisp communication
+4. Write `practice_MMDD/practice_feedback.md` with:
+   - verdict: `ready for section discussion`, `needs one outline repair pass`, or `not ready yet`
+   - strongest signals already present
+   - top missing or weak areas, grouped by section
+   - crux assessment
+   - 3-5 keyword-level repairs Julie should add to `practice_outline.md`, not a full model answer
+   - proposed section-by-section discussion order, prioritizing weak sections first
+5. Append the review summary and weaknesses to `practice_MMDD/practice_notes.md`.
+6. In chat, summarize only the verdict, top 3 misses, and the next repair pass or first discussion section.
+
+### Phase 3: Guided Section Discussion
+
+Use this after the outline review or when Julie asks to discuss the practice section by section.
+
+1. Guide one section at a time in the order from `practice_feedback.md`, usually starting with the weakest or highest-leverage section.
+2. Ask for Julie's spoken explanation for that section, then respond with targeted feedback.
+3. Allow Julie to ask questions at any time. Answer directly, then return to the current section unless she chooses to switch.
+4. Dive deep on weak topics when needed:
+   - clarify the mental model
+   - compare options briefly
+   - give interview phrasing she can say aloud
+   - tie the topic back to requirements, metrics, constraints, and Staff+ signal
+5. Avoid turning the session into a full model answer. The goal is to strengthen Julie's outline and spoken reasoning.
+
+### Phase 4: Proactive Practice Notes
+
+During review and guided discussion, proactively append to `practice_MMDD/practice_notes.md` after each stabilized exchange:
+
+- **Section:** current section
+- **Question or prompt:** what was discussed
+- **Julie's answer:** concise summary, preserving her key wording when useful
+- **Feedback:** what was strong and what was weak
+- **Weakness:** specific gap, misconception, missing tradeoff, or delivery issue
+- **Repair:** concrete keyword, talking point, mental model, or follow-up drill
+- **Next:** what to revisit later
+
+Do not record workflow, environment, IDE, or tooling chatter unless explicitly asked. Keep notes chronological and practical for next practice.
+
+### Phase 5: Wrap Up Practice
+
+When Julie asks to stop, wrap, finish practice, or move to mock:
+
+1. Read `practice_feedback.md`, `practice_notes.md`, and the final `practice_outline.md`.
+2. Append a `Wrap-Up` section to `practice_notes.md` with:
+   - final verdict: `ready for mock`, `needs one repair pass`, or `needs concept review`
+   - top 3 recurring weaknesses
+   - strongest Staff+ signals to preserve
+   - specific repairs before the next practice or mock
+   - 2-4 next practice or mock prompts, without answer keys
+3. If the session exposed durable misses, append candidate-facing drills to `input/next_round_mock_questions.md` without hidden hints.
+4. In chat, summarize the verdict, recurring weaknesses, and next practice/mock plan.
+
+### Practice Guardrails
+
+- Use the Databricks template path above by default for practice docs.
+- Do not write the answer for Julie during setup or outline review.
+- Do not auto-patch `practice_MMDD/practice_outline.md` unless Julie explicitly asks.
+- Feedback can include small keyword-level additions, but avoid full replacement paragraphs unless Julie asks for a rewrite.
+- Keep practice mode separate from mock mode: it is guided coaching and discussion, not interviewer roleplay, and it uses `practice_notes.md` instead of `mock_feedback.md`.
+- Keep practice mode broader than outline-review mode: practice includes keyword outline review, guided section discussion, proactive weakness notes, and wrap-up planning.
 
 ## Outline-Review Mode Workflow
 
@@ -545,6 +672,7 @@ Evaluate answers against:
 - **Prep mode:** Start from root-level `0_requirements.md`, never modify it, then generate `1_mock_questions.md`, `3_key_topics.md`, `4_interview_ready_solutions.md`, `5_deep_dive.md`, make the final link/style pass on `4_interview_ready_solutions.md`, and finally write `2_index.md`.
 - **Create mode:** Preserve raw context in `context/`, then generate clean candidate-facing inputs.
 - **Solve mode:** Create `solution/interview_solutions.md` first. It is the cheat sheet before a real interview.
+- **Practice mode:** Create `practice_MMDD/practice_outline.md` from `/Users/xue/Documents/work/0_databricks/Templates/ml_system_design_template.md`, review Julie's keyword outline, then guide section-by-section discussion with notes in `practice_notes.md`.
 - **Outline-review mode:** Create a blank `outline_MMDD/keyword_outline.md` from `ML_System_Design_Interview_Template`, wait for Julie to fill keywords only, then write gap-focused feedback without rewriting her answer.
 - **Companioned learn mode:** Default to read-along Q&A with auto-notes, then consolidate into `solution/deep_dive.md` only at wrap-up.
 - **Mock mode:** Treat it like a real interview: outline first, design second, do not over-optimize.
@@ -568,6 +696,10 @@ Evaluate answers against:
 | `solution/interview_solutions.md` | Legacy interview cheat sheet | Solve | Optional reference only | Reference |
 | `solution/deep_dive.md` | Legacy design rationale and L6+ concepts | Solve + Learn wrap-up | Wrap-up only | Reference |
 | `solution/learn_notes.md` | Raw chronological learning notes | Learn | Yes | No |
+| `practice_MMDD/practice_prompt.md` | Candidate-facing timed practice prompt | Practice | No | Reference |
+| `practice_MMDD/practice_outline.md` | Template-based keyword talking points | Practice/User | No | Reviewed in Practice |
+| `practice_MMDD/practice_feedback.md` | Gap-focused feedback on Julie's keyword outline | Practice | No | Reference |
+| `practice_MMDD/practice_notes.md` | Guided discussion notes, weaknesses, repairs, and wrap-up plan | Practice | No | Reference |
 | `outline_MMDD/keyword_outline.md` | Blank template workspace for keyword-only talking points | Outline-review | No | Reviewed in Outline-review |
 | `outline_MMDD/outline_feedback.md` | Gap-focused feedback on Julie's keyword outline | Outline-review | No | Reference |
 | `mock_MMDD/mock_instructions.md` | Candidate-facing mock prompt | Mock | No | Reference |
