@@ -1,278 +1,81 @@
-# Interview Prep Skills Ecosystem
+# Codex Skills
 
-A comprehensive, integrated suite of Claude skills for Staff/Senior Staff MLE interview preparation at frontier AI labs (Anthropic, OpenAI, xAI, Google DeepMind, Meta).
+Personal Codex skills for Julie's Staff/Senior Staff MLE interview prep, career planning, writing, job search, and local evidence-processing workflows.
 
-**Status:** Production-ready  
-**Last Updated:** May 2026
-
----
-
-## Overview
-
-This repository contains a redesigned interview prep ecosystem with 4 primary skills and several supporting skills. The primary skills follow a unified **solve → learn → mock** workflow with clean input/output folder structure and auto-note merging.
-
-### Key Features
-
-✅ **Unified Workflow** — All 3 primary skills use the same solve/learn/mock modes  
-✅ **Auto-Note Merging** — Learning notes automatically consolidate into deep dives  
-✅ **Interview-Ready Output** — Generate cheat sheets, solutions, and feedback docs  
-✅ **Staff+ Calibration** — Rubric-based feedback aligned with frontier lab standards  
-✅ **Multi-Round Orchestration** — Plan and execute full mock interviews with coordinator skill  
+**Status:** Active personal skill workspace  
+**Last Updated:** July 2026  
+**Index:** [SKILLS_INDEX.md](SKILLS_INDEX.md)
 
 ---
 
-## Primary Skills (Recommended)
+## What Lives Here
 
-### 1. **coding-interview-companion**
+This repository contains triggerable Codex skills installed under `/Users/xue/.codex/skills`.
 
-End-to-end coding interview prep with solve/learn/mock modes.
+The main interview-prep skills work directly in local prep folders and produce durable Markdown artifacts. The supporting skills cover document-grounded Q&A, job search, writing cleanup, coaching, scraping output cleanup, and skill authoring.
 
-**Use when:**
-- Solving algorithm and data structure problems
-- Preparing for technical coding rounds
-- Need interview-ready solution explanations
-
-**Modes:**
-- **Solve** — Parse requirements, create problem setup, solve in depth/breadth, generate interview solutions + solution code + deep dive
-- **Learn** — Companion your learning, auto-take notes in `learn_notes.md`, proactively merge into `deep_dive.md`
-- **Mock** — Act as interviewer, review `my_solution.py`, give step-by-step feedback, take notes in `mock_feedback.md`
+Use [SKILLS_INDEX.md](SKILLS_INDEX.md) as the current map of available skills, paths, and routing guidance.
 
 ---
 
-### 2. **ml-system-design-interview**
+## Core Interview Prep Skills
 
-ML system design interview prep with L6+ (Staff) calibration.
-
-**Use when:**
-- Designing recommendation systems, ranking platforms, experiment pipelines
-- Preparing for ML infrastructure design rounds
-- Need L6+ system design answers
-
-**Key Focus Areas:**
-- Problem framing and ambiguity ownership
-- ML correctness (experiment validity, data quality, reproducibility)
-- Operational maturity (debugging, monitoring, rollback)
-- Platform thinking (APIs, contracts, invariants)
-- Cross-team impact and pragmatic reuse
-
----
-
-### 3. **behavioral-interview-coach**
-
-Behavioral interview prep with Staff+ rubric calibration.
-
-**Use when:**
-- Building and refining STAR stories
-- Preparing for behavioral/culture screens
-- Need feedback on scope, impact, ambiguity ownership, influence
-
-**Staff+ Dimensions:**
-- Scope & Impact (org/team-level problems, measurable outcomes)
-- Technical Judgment (right problem framing, trade-off analysis)
-- Ambiguity Navigation (underspecified goals, changing context)
-- People Leadership (mentoring, growing others, process change)
-- Cross-Functional Influence (stakeholder alignment, difficult conversations)
-- Communication (crisp causal chain, concrete examples)
-
----
-
-### 4. **interview-prep-multi-agent**
-
-Orchestration and coordination across all interview domains.
-
-**Use when:**
-- Planning your full interview prep across multiple rounds
-- Need a readiness audit across all domains
-- Want to run a full multi-round mock interview
-- Need parallel reviews of multiple artifacts
-
-**Modes:**
-- **Audit Mode** — Review your prep status across coding, system design, behavioral, fundamentals
-- **Plan Mode** — Create a concrete study schedule with verifiable goals
-- **Panel Mode** — Full mock interview with all rounds (coding → system design → behavioral)
-- **Parallel Review Mode** — Get independent reviews of drafts from multiple perspectives
-- **Integration Mode** — Overall readiness assessment (pass-ready vs. practice-ready vs. at-risk)
+| Skill | Use for |
+| --- | --- |
+| `interview-prep-multi-agent` | Coordinate prep across coding, ML/LLM fundamentals, ML system design, project deep dives, behavioral prep, readiness audits, and panel mocks. |
+| `coding-interview-companion` | Algorithms, data structures, practical coding rounds, solve/learn/practice/mock workflows, starter code, tests, and feedback. |
+| `ml-fundamentals-interview` | Daily ML/LLM fundamentals quizzes, spaced review, learn mode, mock mode, Databricks topic prep, and grounded question banks. |
+| `ml-system-design-interview` | ML system design prep for ranking, retrieval, serving, evaluation, experiment platforms, ML infra, and research infrastructure. |
+| `project-deep-dive-interview` | Staff/Senior Staff project deep-dive prep, project narrative shaping, pressure testing, and mock interviews. |
+| `behavioral-interview-coach` | Behavioral story brainstorming, grilling, CARL scripts, culture/HM prep, and Staff+ mock feedback. |
 
 ---
 
 ## Supporting Skills
 
-### **learn-buddy**
-Single concept learning for ML, systems, coding fundamentals. Use for refreshers, one-pagers, and targeted drills.
-
-### **ml-daily-quiz**
-ML/LLM fundamentals quizzes with spaced review. Use for daily drills, Staff/Senior Staff MLE technical depth.
-
-### **frontier-lab-jobs**
-Job search and role tracking across frontier AI labs.
-
-### **doc-grounded-qa**
-Document analysis and Q&A. Use to read and analyze PDFs, job descriptions, company notes.
-
-### **post-process-scraper-outputs**
-Post-process local scraper outputs into raw interview-round evidence files. Use when extracting raw posts or replies for any company and interview round, grouped by question, with original post links and no rewriting or summarization.
-
-### **frontier-lab-news-digest**
-Daily news digest from frontier AI labs (Anthropic, OpenAI, xAI, Google DeepMind, Meta).
-
-### **personalized-life-coach**
-Career and life coaching for decision-making and principle-based reasoning.
+| Skill | Use for |
+| --- | --- |
+| `doc-grounded-qa` | Answer questions from PDFs, docs, notes, resumes, job descriptions, company research, or pasted material with source-grounded notes. |
+| `teach` | Quick concept one-pagers or stateful course workspaces for ML, systems, coding, math, research, or product concepts. |
+| `system-design-material-finder` | Find and curate interview-ready learning resources for system design and ML system design prompts. |
+| `frontier-lab-jobs` | Find, shortlist, and apply to frontier AI lab roles using the local `Applied_Roles.md` tracker. |
+| `frontier-lab-news-digest` | Generate a daily mobile-friendly HTML digest of frontier AI lab news. |
+| `personalized-life-coach` | Work through career/life decisions, recurring blockers, principle tradeoffs, and next actions. |
+| `mle-swe-growth-goal` | Pick a focused MLE/SWE/AI-engineer growth direction over a 3 to 6 month horizon. |
+| `humanizer` | Edit writing to sound more natural and less AI-generated. |
+| `post-process-scraper-outputs` | Convert local scraper outputs into raw, linked evidence files by company and interview round. |
+| `grilling` / `grill-me` | Stress-test a plan or design through focused questioning. |
+| `handoff` | Compact the current conversation into a handoff document for another agent. |
+| `writing-great-skills` | Reference principles and vocabulary for creating predictable skills. |
 
 ---
 
-## Getting Started
+## Typical Workflow
 
-### 1. Install Skills in Claude Code / VS Code
+1. Work from the relevant prep folder, note, tracker, or project directory.
+2. Invoke the skill by name or describe the task naturally.
+3. Let the skill read the local source of truth before writing.
+4. Review the generated Markdown artifacts, tests, feedback docs, or tracker updates.
 
-Skills are automatically discovered from `~/.claude/skills/`. Restart VS Code to refresh the skill list.
-
-### 2. Create an Interview Round Directory
+For ML coding exercises in the interview vault, use:
 
 ```bash
-mkdir ~/my-interview-prep
-cd ~/my-interview-prep
-mkdir input
-
-# Create requirements file
-echo "# Interview Round: Company X
-- Interview type: Coding + System Design + Behavioral
-- Focus areas: ML systems, leadership
-" > input/0_requirements.md
-```
-
-### 3. Use the Primary Skills
-
-**For Coding Problems:**
-```
-/coding-interview-companion
-
-"Solve mode: I have this coding problem..."
-```
-
-**For System Design:**
-```
-/ml-system-design-interview
-
-"Solve mode: Design a recommendation system..."
-```
-
-**For Behavioral:**
-```
-/behavioral-interview-coach
-
-"Solve mode: I need to prepare stories for Anthropic..."
-```
-
-**For Full Interview Planning:**
-```
-/interview-prep-multi-agent
-
-"Plan mode: I have 4 weeks until my interview loop"
-"Mock mode: Run a full 3-round mock interview"
+cd ~/Documents/interview/2026_interview/"3.2 ML Coding"
+python3 ex1_vectorization.py
+python3 -m pytest exN_*.py
 ```
 
 ---
 
-## Workflow Example: 2-Week Prep Sprint
+## Repository Notes
 
-### Week 1: Solve + Learn
-
-**Days 1-2: Coding**
-- Solve 3-5 algorithmic problems
-- Learn: Walk through each solution, auto-take notes
-- Output: `interview_solutions.md` + `deep_dive.md`
-
-**Days 3-4: System Design**
-- Design 2 systems (e.g., recommender + experiment platform)
-- Learn: Deep dive on L6+ patterns, ownership, trade-offs
-- Output: `interview_solutions.md` + `deep_dive.md`
-
-**Day 5: Behavioral**
-- Build 8-10 STAR stories across themes
-- Learn: Refine for Staff+ signals (scope, judgment, influence)
-- Output: `story_library.md` + `strength_examples.md`
-
-### Week 2: Mock + Audit
-
-**Days 6-7: Full Mocks**
-- Run 3-round mock (coding → system design → behavioral)
-- Get comprehensive feedback on all dimensions
-
-**Day 8: Readiness Audit + Final Drills**
-- Assess pass-ready vs. practice-ready status
-- Run targeted drills on weak areas
-- Final polish of cheat sheets
+- User skills live in top-level directories with a `SKILL.md`.
+- Bundled system skills live under `.system/`.
+- `scraper/` is a local utility project, not a triggerable skill because it has no `SKILL.md`.
+- Some skills include agents, scripts, examples, templates, or README files used by the skill.
+- Keep high-level routing in this README and [SKILLS_INDEX.md](SKILLS_INDEX.md); keep detailed behavior inside each `SKILL.md`.
 
 ---
 
-## Output Documents Reference
-
-| Document | Purpose | Created By |
-|----------|---------|-----------|
-| `interview_solutions.md` | Interview cheat sheet | Solve |
-| `<problem>.py` / `my_solution.md` | Full solution/design | Solve |
-| `deep_dive.md` | Concept deep dives | Solve + Learn |
-| `story_library.md` | STAR stories by theme | Solve + Learn |
-| `strength_examples.md` | Staff+ dimension examples | Solve |
-| `mock_feedback.md` | Interview feedback | Mock |
-
----
-
-## Tips & Best Practices
-
-### Solve Mode
-- Start with highest-risk domain first
-- Use `interview_solutions.md` as your pre-interview cheat sheet
-- Create solve notes before attempting mocks
-
-### Learn Mode
-- Ask specific questions about weak points
-- Notes auto-merge into polished docs
-- Ask to merge and update `deep_dive.md` when done
-
-### Mock Mode
-- Treat as a real interview: don't pause, don't look up answers
-- Speak naturally
-- Review `mock_feedback.md` immediately after
-
----
-
-## FAQ
-
-**Q: Can I migrate existing prep work?**  
-A: Use solve mode and reference your existing files. The skill will re-organize and enhance your notes.
-
-**Q: How often should I mock?**  
-A: Final week: 2-3 full mocks. Earlier: targeted drills on weak areas.
-
-**Q: Do notes auto-save?**  
-A: Notes are created in your `output/` folder on disk. You manage version control (git) explicitly.
-
----
-
-## Repository Structure
-
-```
-~/.claude/skills/
-├── coding-interview-companion/
-│   ├── SKILL.md
-│   └── .claude-plugin/plugin.json
-├── ml-system-design-interview/
-│   ├── SKILL.md
-│   └── .claude-plugin/plugin.json
-├── behavioral-interview-coach/
-│   ├── SKILL.md
-│   └── .claude-plugin/plugin.json
-├── interview-prep-multi-agent/
-│   ├── SKILL.md
-│   └── .claude-plugin/plugin.json
-├── learn-buddy/
-├── ml-daily-quiz/
-└── [other skills...]
-```
-
----
-
-**Last Updated:** May 29, 2026  
 **Author:** Julie Xue Wang  
 **Repository:** https://github.com/xiaoxuerenww/skills

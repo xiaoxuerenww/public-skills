@@ -1,6 +1,6 @@
 # Skills Index
 
-Generated: 2026-06-30
+Generated: 2026-07-06
 
 This index groups the skills installed under `/Users/xue/.codex/skills`. It includes user skills, bundled system skills under `.system/`, and one local utility project that is not currently a triggerable skill.
 
@@ -15,9 +15,7 @@ This index groups the skills installed under `/Users/xue/.codex/skills`. It incl
 
 | Skill | Path | Use for |
 | --- | --- | --- |
-| `ml-daily-quiz` | `ml-daily-quiz/SKILL.md` | Daily ML/LLM fundamentals quizzes, spaced review, drills, learn mode, and mock fundamentals practice. |
-| `mock-ml-fundamental` | `ml-fundamentals-interview/SKILL.md` | Staff/Senior Staff ML theory and fundamentals mock interviews from a user-provided question bank. |
-| `databricks-ml-fundamentals-prep` | `ml-fundamentals-prep/SKILL.md` | Databricks ML fundamentals topic prep, mock banks, teach-style refreshes, and topic-directory maintenance. |
+| `ml-fundamentals-interview` | `ml-fundamentals-interview/SKILL.md` | Daily ML/LLM fundamentals quizzes, spaced review, learn mode, Databricks topic prep, mock banks, and grounded mock fundamentals interviews. |
 | `ml-system-design-interview` | `ml-system-design-interview/SKILL.md` | ML system design prep, solve, outline review, learn, and mock workflows for ranking, retrieval, serving, evaluation, and ML infra. |
 | `system-design-material-finder` | `system-design-material-finder/SKILL.md` | Find, curate, and write reference indexes for system design and ML system design prompts. |
 | `project-deep-dive-interview` | `project-deep-dive-interview/SKILL.md` | Prepare, sharpen, and mock Staff/Senior Staff MLE project deep-dive interviews. |
@@ -78,18 +76,10 @@ This index groups the skills installed under `/Users/xue/.codex/skills`. It incl
 
 ## Counts
 
-- User skills with `SKILL.md`: 21
+- User skills with `SKILL.md`: 19
 - Bundled system skills with `SKILL.md`: 5
 - Local non-skill utility projects: 1
 
 ## Worktree Notes
 
-The scan found existing uncommitted changes before this index was added:
-
-- Deleted: `databricks-ml-fundamentals-prep/SKILL.md`
-- Deleted: `databricks-ml-fundamentals-prep/agents/openai.yaml`
-- Modified: `ml-system-design-interview/SKILL.md`
-- Untracked: `ml-fundamentals-prep/`
-- Untracked: `system-design-material-finder/`
-
-This index reflects the current filesystem state, where `ml-fundamentals-prep/` exists and `databricks-ml-fundamentals-prep/` does not.
+This index reflects the current filesystem state.
