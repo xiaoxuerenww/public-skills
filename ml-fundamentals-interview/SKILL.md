@@ -129,6 +129,19 @@ Quiz notes stay in `ml_llm_daily_quiz_notes.md` for spaced review tracking.
 
 Persist quiz notes automatically in `ml_llm_daily_quiz_notes.md`.
 
+When saving any Daily Quiz, Practice Mode, or Mock Mode answer, preserve the raw
+conversation evidence:
+
+- Save Julie's answer as a raw quoted transcript block whenever possible, not
+  only as a paraphrase.
+- Save the grading verdict explicitly as `Verdict: pass` or `Verdict: fail`.
+- Add a `Misses` section that highlights exactly what Julie missed, got wrong,
+  left vague, or failed to defend under follow-up.
+- Keep misses direct and concrete: missing equation, wrong assumption, weak
+  mechanism, missing failure mode, missing tradeoff, or interview-structure gap.
+- Use a concise paraphrase only when the raw answer is unavailable or too long;
+  if paraphrasing, label it as `Paraphrased answer`.
+
 Use this format for each recorded question:
 
 ```markdown
@@ -136,18 +149,27 @@ Use this format for each recorded question:
 
 - Recorded: <timestamp>
 - Status: `<pass|fail>`
+- Verdict: `<pass|fail>`
 - Question ID: `<id>`
 - Times seen: <ask_count including the current attempt>
 - Section: <section path>
 - Topic: <topic>
-- Notes: Ideal answer: ... Julie's answer: ... Feedback: ... Missing/wrong: ... Drill next: ...
+- Raw answer:
+  > <Julie's answer verbatim when available>
+- Misses:
+  - <specific missing/wrong/vague point>
+- Feedback: <direct critique>
+- Ideal answer: <interview-ready answer>
+- Drill next: <specific next target>
 ```
 
 For session summaries, also use the question text as each `##` heading and
 include:
 
-- `Your answer`: the user's actual answer or a faithful paraphrase.
-- `Status`: `pass` or `fail`.
+- `Raw answer`: the user's actual answer as a quoted transcript block when
+  available.
+- `Verdict`: `pass` or `fail`.
+- `Misses`: explicit bullets for what was missing, wrong, or too vague.
 - `Critical feedback`: the main gap first, direct and specific.
 - `Stronger answer`: an interview-ready version.
 - `Drill next`: the next focused practice target.
@@ -184,13 +206,14 @@ spaced review.
    - `fail`: incorrect, shallow, missing the central mechanism/math/tradeoff, or
      not structured enough for a Staff+ interview.
 5. Record each question result after grading the complete set. Put the ideal
-   answer and direct feedback in saved notes for the parent and each follow-up:
+   answer, raw answer, verdict, misses, and direct feedback in saved notes for
+   the parent and each follow-up:
 
    ```bash
    python3 /Users/xue/.codex/skills/ml-fundamentals-interview/scripts/pick_question.py \
      --record-result QUESTION_ID \
      --status pass \
-     --notes "Ideal answer: ... Julie's answer: ... Feedback: ... Missing/wrong: ... Drill next: ..."
+     --notes "Raw answer: ... Verdict: pass|fail. Misses: ... Feedback: ... Ideal answer: ... Drill next: ..."
    ```
 
 6. Give the model answer after recording all results, with:
@@ -252,7 +275,9 @@ more active recall than Learn Mode.
    her request.
 4. Give keyword-level feedback first, then a concise stronger answer.
 5. Save durable takeaways to `learn_notes.md` when the explanation is useful
-   beyond the current turn.
+   beyond the current turn. When saving practice feedback, preserve the raw
+   answer or keyword outline, record `Verdict: pass|fail`, and add `Misses`
+   bullets before the stronger answer.
 6. On wrap-up, follow **Session Wrap-Up Cleanup** and run `$file-cleaner` when
    the active topic directory has both `learn_notes.md` and `deep_dive.md`.
 
@@ -570,7 +595,7 @@ Use this `mock_tracker.md` structure:
 
 | Weakness | Evidence | Last seen | Priority | Next drill |
 |---|---|---:|---|---|
-| <mechanism/topic> | <question or feedback summary> | <timestamp> | `<high|medium|low>` | <specific drill> |
+| <mechanism/topic> | <miss or feedback summary> | <timestamp> | `<high|medium|low>` | <specific drill> |
 
 ## Next Session Plan
 
@@ -624,16 +649,22 @@ Use this `mock.md` structure:
 - Asked: <timestamp>
 - Source: <source file or section>
 - Selection reason: <round robin coverage | recent weakness review | retry>
-- Julie's answer: <faithful answer or concise paraphrase>
-- Status: `<pass|fail>`
+- Raw answer:
+  > <Julie's answer verbatim when available>
+- Verdict: `<pass|fail>`
+- Misses:
+  - <specific missing/wrong/vague point>
 - Critical feedback: <main gap first>
 - Model answer: <interview-ready version grounded in docs>
 - Drill next: <specific next target>
 
 #### Follow-up: <follow-up question text>
 
-- Julie's answer: <faithful answer or concise paraphrase>
-- Status: `<pass|fail>`
+- Raw answer:
+  > <Julie's answer verbatim when available>
+- Verdict: `<pass|fail>`
+- Misses:
+  - <specific missing/wrong/vague point>
 - Critical feedback: <main gap first>
 - Model answer: <grounded answer>
 - Drill next: <specific next target>
@@ -654,6 +685,11 @@ Initial turn format:
 After Julie answers:
 
 ```markdown
+**Verdict:** <pass|fail>
+
+**Misses:**
+- <specific missing/wrong/vague point>
+
 **Feedback:** <what is correct, missing, or imprecise; grade strictly against the docs>
 
 **Model Answer:** <concise answer from the docs>
@@ -661,13 +697,19 @@ After Julie answers:
 **Follow-up Q:** <staff-level follow-up; wait for Julie's answer>
 ```
 
-Then immediately append the parent question, Julie's answer, status, feedback,
-model answer, selection reason, and drill target to `mock.md`, and update
-`mock_tracker.md` with question history, weakness priority, and next due state.
+Then immediately append the parent question, raw answer transcript, verdict,
+misses, feedback, model answer, selection reason, and drill target to `mock.md`,
+and update `mock_tracker.md` with question history, weakness priority, and next
+due state.
 
 After Julie answers the follow-up:
 
 ```markdown
+**Verdict:** <pass|fail>
+
+**Misses:**
+- <specific missing/wrong/vague point>
+
 **Feedback:** <same grading approach>
 
 **Model Answer:** <follow-up answer>
@@ -676,13 +718,54 @@ After Julie answers the follow-up:
 **Q:** <next interview question from the source docs>
 ```
 
-Then append the follow-up answer, status, feedback, model answer, and drill
-target to `mock.md`, update `mock_tracker.md`, and update
-`## Running weakness tracker` if the answer reveals a repeated or high-priority
-gap. If the session has not reached its target question count, immediately ask
-the next parent question without waiting for Julie to request it. At the target
-count, stop and provide a concise session summary with pass/fail pattern, top
-weaknesses, and next drills.
+Then append the follow-up raw answer transcript, verdict, misses, feedback,
+model answer, and drill target to `mock.md`, update `mock_tracker.md`, and
+update `## Running weakness tracker` if the answer reveals a repeated or
+high-priority gap. If the session has not reached its target question count,
+immediately ask the next parent question without waiting for Julie to request
+it. At the target count, stop and provide a concise session summary with
+pass/fail pattern, top misses, weaknesses, and next drills.
+
+### Mock Session End Summary
+
+At the target question count, stop and provide a concise session summary, then
+append to `mock.md`:
+
+1. **Raw conversation transcript** section: preserve Julie's verbatim answers as
+   blockquoted text under each question heading. This section goes before the
+   structured grading section so the raw evidence is always visible.
+2. **Session verdict** with pass/fail counts across parent + follow-up questions.
+3. **Error summary** grouped by severity:
+   - `HIGH`: fails with wrong mechanisms or missing core concepts.
+   - `MEDIUM`: passes that contained factual errors (e.g. wrong shape, wrong
+     formula) even if the overall answer was acceptable.
+   - `LOW`: imprecise language or missing polish that would draw follow-ups.
+   Each error entry should explain what Julie said, what is wrong, what the
+   correct answer is, and the root cause of the confusion.
+4. **Strengths**: specific, technically meaningful things Julie did well.
+5. **Next review**: specific `deep_dive.md` sections to drill before the next
+   mock.
+6. **Next-round probes**: 5 targeted questions for the next session mixing
+   weakness retries and uncovered topics.
+
+### Post-Mock Artifact Updates
+
+When Julie asks to update artifacts after a mock (e.g. "update deep dive",
+"update solution", "update needs_more_work", "enhance deep dive based on mock"),
+use the mock session's error summary and weakness tracker as input:
+
+- **`solution.md`**: add follow-up Q&As that emerged during the mock as
+  `#### Follow-up:` entries under their parent questions. If an existing answer
+  is weaker than the mock's model answer, replace or improve it. Do not add
+  duplicates.
+- **`deep_dive.md`**: add new subsections addressing each mock weakness. Include
+  tables, callout boxes, and common-wrong-answer entries. Update the
+  `## Needs-More-Work Coverage Map` with new entries.
+- **`needs_more_work.md`**: add unchecked `[ ]` items for each mock fail or
+  significant error-in-pass, with `[source:: <date> mock fail]` metadata. Keep
+  the description concrete enough for self-review.
+- **`learn_notes.md`**: append a dated session takeaways section with the key
+  corrected mental models from the mock.
 
 Rules:
 
@@ -697,9 +780,13 @@ Rules:
   Prefer unchecked questions and mark asked questions only after the mock round
   completes.
 - Preserve Julie's actual answer as faithfully as possible in `mock.md`; use a
-  concise paraphrase only when the answer is long or fragmented.
+  raw quoted transcript block by default. Use a concise paraphrase only when the
+  answer is long, fragmented, or unavailable, and label it as paraphrased.
+- Always show and save an explicit verdict and `Misses` bullets before the model
+  answer. Do not bury misses inside general feedback.
 - If Julie asks to move on before answering, record the skipped question in
-  `mock.md` with status `fail`, the missing mechanism, and the next drill target.
+  `mock.md` with `Verdict: fail`, `Misses` bullets naming the missing mechanism,
+  and the next drill target.
 - If Julie asks for a topic shift during a mock, keep using the same active
   `mock.md` and add the new topic under `## Session focus`.
 - On wrap-up, update `mock.md` and `mock_tracker.md` first, then follow
@@ -766,9 +853,9 @@ the next one.
   unrecorded answer or skip. If yes, record it first according to Move-On
   Handling.
 - Follow the Note-Taking Preferences exactly for `ml_llm_daily_quiz_notes.md`.
-- Keep result notes useful for review: exact `pass`/`fail` status, ideal answer,
-  Julie's answer or faithful paraphrase, what was missing or technically wrong,
-  how many times the question has been seen, and the next concept to revisit.
+- Keep result notes useful for review: exact `pass`/`fail` verdict, raw answer
+  transcript when available, highlighted misses, ideal answer, how many times
+  the question has been seen, and the next concept to revisit.
 - Use `fail` for answers that miss the central mechanism, math, or tradeoff.
 - Do not mark an answer `pass` unless it would survive Staff/Senior Staff
   follow-ups.
