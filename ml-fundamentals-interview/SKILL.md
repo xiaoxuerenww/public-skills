@@ -1,20 +1,29 @@
 ---
 name: ml-fundamentals-interview
-description: ML/LLM fundamentals interview prep for Julie. Use for daily tracked quizzes, "quiz me", spaced review, LLM fundamentals drills, Staff/Senior Staff MLE technical-depth practice, Databricks topic prep, mock-question-bank setup, "learn ml fundamental" learn mode, "mock ml fundamental" interview mode, or explicit $ml-fundamentals-interview / $daily-ml-concept requests.
+description: ML/LLM fundamentals interview prep for Julie. Use for daily tracked quizzes, "quiz me", spaced review, LLM fundamentals drills, Staff/Senior Staff MLE technical-depth practice, Databricks topic prep, collect-question mode, solve mode for mock_question_bank answers, mock-question-bank setup, "learn ml fundamental" learn mode, "practice ml fundamental" practice mode, "mock ml fundamental" interview mode, session wrap-up cleanup with $file-cleaner, or explicit $ml-fundamentals-interview / $daily-ml-concept requests.
 ---
 
 # ML/LLM Fundamentals Quiz
 
 ## Purpose
 
-Run Staff/Senior Staff MLE fundamentals drills with three modes:
+Run Staff/Senior Staff MLE fundamentals drills with these modes:
 
 - **Daily Quiz**: tracked no-repeat quiz with notes and pass/fail grading.
 - **Learn Mode**: show one grounded question, model answer, and follow-up immediately.
+- **Practice Mode**: run guided topic practice with answer attempts, keyword-level
+  feedback, and companion notes when a topic directory is active.
 - **Mock Mode**: append a dated section to `mock.md`, ask one grounded
   interview question at a time, and proactively save session notes.
 - **Topic Prep**: create or refresh Databricks ML fundamentals topic artifacts
   from a grounded question bank.
+- **Collect Question Mode**: scan provided question-bank documents for a given
+  interview topic, group question/follow-up relationships, highlight
+  company-specific scraped questions when provided, and write the consolidated
+  bank to `<interview_topic>/mock_question_bank.md`.
+- **Solve Mode**: scan `<interview_topic>/mock_question_bank.md` and create
+  concise interview-ready answers for every parent question and follow-up in
+  `<interview_topic>/solution.md`.
 
 Optimize for frontier AI lab interview depth: concise prompts, rigorous follow-ups,
 derivations when relevant, and critical feedback after the user answers.
@@ -72,15 +81,49 @@ for each note entry.
 ## Mode Routing
 
 - If Julie says "learn ml fundamental", use Learn Mode.
+- If Julie says "practice ml fundamental", use Practice Mode.
 - If Julie says "mock ml fundamental", use Mock Mode.
 - If Julie asks to set up, prepare, initialize, refresh, or update an ML
   fundamentals topic directory, use Topic Prep.
+- If Julie asks to collect, extract, consolidate, gather, or build questions
+  from provided question-bank documents for a topic, use Collect Question Mode.
+- If Julie asks to solve, answer, create solutions for, generate answer keys
+  for, or update `solution.md` from a topic `mock_question_bank.md`, use Solve
+  Mode.
 - If Julie says "quiz me", "daily", "today's", asks for spaced review, or gives
   no explicit learn/mock wording, use Daily Quiz.
 - If Julie names a topic in any mode, select a question from that topic.
 
 This skill is Q&A only: no coding exercises, no whiteboard systems prompts, and
 no system design unless Julie explicitly changes scope.
+
+## Session Wrap-Up Cleanup
+
+When Julie wraps up or ends a **Practice Mode**, **Learn Mode**, or **Mock Mode**
+session, use `$file-cleaner` before the final completion message if the active
+topic directory contains both `learn_notes.md` and `deep_dive.md`.
+
+Wrap-up signals include: "wrap up", "done for now", "end session", "finish",
+"stop here", "summarize session", or an explicit request to clean notes.
+
+Use this workflow:
+
+1. Finish required mode-specific persistence first.
+   - Practice Mode: save the latest practice feedback or weakness notes.
+   - Learn Mode: append any useful Q&A explanation to `learn_notes.md` when a
+     topic directory is active.
+   - Mock Mode: update `mock.md` and `mock_tracker.md` before cleanup.
+2. Resolve the active `topic_dir` using the same path rules as Topic Prep and
+   Mock Mode.
+3. If both `<topic_dir>/learn_notes.md` and `<topic_dir>/deep_dive.md` exist,
+   invoke `$file-cleaner` to consolidate `learn_notes.md` into `deep_dive.md`,
+   regroup from basic to advanced, remove duplicates, and leave `learn_notes.md`
+   as a lightweight companion buffer.
+4. If either file is missing, skip cleanup and mention the missing file briefly.
+5. Report the mode wrap-up artifacts and the file-cleaner result together.
+
+Do not run `$file-cleaner` after Daily Quiz unless Julie explicitly asks. Daily
+Quiz notes stay in `ml_llm_daily_quiz_notes.md` for spaced review tracking.
 
 ## Note-Taking Preferences
 
@@ -192,6 +235,28 @@ Rules:
 - Rotate topics unless Julie picks one.
 - If Julie answers before reading, grade against the docs, name gaps, then show
   the model answer.
+- On wrap-up, follow **Session Wrap-Up Cleanup** and run `$file-cleaner` when
+  the active topic directory has both `learn_notes.md` and `deep_dive.md`.
+
+## Practice Mode
+
+Triggered by "practice ml fundamental".
+
+Use Practice Mode when Julie wants lower-pressure drilling than Mock Mode but
+more active recall than Learn Mode.
+
+1. Resolve the active topic directory using the Topic Prep path rules.
+2. Prefer `mock_question_bank.md` for candidate-facing questions and
+   `solution.md` or `deep_dive.md` for feedback grounding.
+3. Ask one practice question or ask Julie for a keyword outline, depending on
+   her request.
+4. Give keyword-level feedback first, then a concise stronger answer.
+5. Save durable takeaways to `learn_notes.md` when the explanation is useful
+   beyond the current turn.
+6. On wrap-up, follow **Session Wrap-Up Cleanup** and run `$file-cleaner` when
+   the active topic directory has both `learn_notes.md` and `deep_dive.md`.
+
+Do not turn Practice Mode into a full mock transcript unless Julie asks.
 
 ## Topic Prep
 
@@ -238,7 +303,9 @@ Create or update only these topic artifacts:
   items with tests, expected answer/evaluation notes, grounding, and blank
   `Asked:`.
 - `solution.md`: interviewer answer key with one `### Q:` entry for every
-  question in `mock_question_bank.md`; preserve existing answer-key content.
+  parent question and follow-up in `mock_question_bank.md`; use the Solve Mode
+  answer format when generating or refreshing it, and preserve existing
+  answer-key content when not explicitly solving.
 - `mock.md`: candidate-facing setup, dated transcript placeholders, feedback,
   verdict, weaknesses, next review, and next-round probes; do not leak answer
   keys.
@@ -256,6 +323,181 @@ Before reporting completion:
    `mock_question_bank.md`.
 3. Verify `mock.md` does not contain hidden answer keys.
 4. Report updated docs, question and answer-key counts, and any source gaps.
+
+## Collect Question Mode
+
+Triggered when Julie asks to collect, extract, consolidate, gather, or build
+mock questions from provided question-bank documents for an interview topic.
+
+Required inputs:
+
+1. `interview_topic`, for example `transformer`, `word2vec`, or `linear regression`.
+2. One or more local question-bank documents.
+
+Optional input:
+
+- `company`, for example `Databricks`, `Anthropic`, or `OpenAI`.
+
+If any required input is missing and cannot be inferred from the current note,
+selected file, `@file` references, or nearby topic directory, ask one concise
+clarification question. Do not silently fall back to the central Daily Quiz bank
+unless Julie explicitly includes it as a source document.
+
+Use this workflow:
+
+1. Resolve the output topic directory:
+   - Prefer an existing directory whose name matches the topic after removing
+     leading numeric prefixes and separators, such as `3_transformer` for
+     `transformer`.
+   - If no matching directory exists, create `<interview_topic>/` under the
+     current vault root, using a filesystem-safe lowercase slug.
+   - Output only to `<topic_dir>/mock_question_bank.md`.
+2. Read every provided question-bank document completely enough to capture all
+   questions related to the topic.
+   - Treat Markdown headings, bullet lists, numbered lists, checkbox items,
+     `Q:` labels, and bilingual/raw scraped lines as possible questions.
+   - Preserve original question wording when possible.
+   - Do not invent questions that are not grounded in the provided documents.
+3. Extract only questions related to the interview topic.
+   - Include close variants and implementation-level follow-ups.
+   - Exclude unrelated system design, coding, or product questions unless they
+     explicitly test the requested fundamentals topic.
+4. Reorganize question/follow-up relationships:
+   - If a source already has a parent question with indented or nearby
+     follow-ups, keep that relationship.
+   - If multiple documents contain the same parent concept with variants,
+     merge them into one parent question and list variants as follow-ups.
+   - If a question is clearly a narrower probe of another question, nest it as
+     a follow-up instead of creating a duplicate parent.
+   - Keep source grounding for both parent questions and follow-ups.
+5. If `company` is provided, identify questions mentioned in that company's
+   interview-question scraped notes among the provided documents.
+   - Create a dedicated top section named
+     `## <Company> scraped-interview questions`.
+   - Put company-scraped questions there first, with follow-ups nested under
+     each parent when applicable.
+   - Then create a separate section named
+     `## Other grounded questions from provided banks`.
+   - Do not label a question as company-scraped unless the source document or
+     surrounding heading clearly indicates that company.
+6. If `company` is not provided, create one main section named
+   `## Grounded questions from provided banks`.
+7. Use Markdown checkbox format suitable for mock tracking:
+
+   ```markdown
+   # <Interview Topic> Mock Question Bank
+
+   Grounding sources:
+   - [[source file 1]]
+   - [[source file 2]]
+
+   ## <Company> scraped-interview questions
+
+   - [ ] **Q:** <parent question>
+     - Source: <file / heading or source id>
+     - Follow-ups:
+       - [ ] <follow-up question>
+       - [ ] <follow-up question>
+
+   ## Other grounded questions from provided banks
+
+   - [ ] **Q:** <parent question>
+     - Source: <file / heading>
+     - Follow-ups:
+       - [ ] <follow-up question>
+   ```
+
+8. Preserve existing useful checked-state if updating an existing
+   `mock_question_bank.md`:
+   - Keep `[x]` for exact or clearly equivalent questions that were already
+     marked asked.
+   - Keep existing `Asked:` metadata if present.
+   - Remove only duplicates introduced by consolidation.
+
+Before reporting completion:
+
+1. Verify `<topic_dir>/mock_question_bank.md` exists and is non-empty.
+2. Verify every listed parent question has at least one source reference.
+3. If `company` was provided, report how many parent questions were placed in
+   the company scraped section versus the other grounded section.
+4. Report any provided documents that had no topic-relevant questions.
+
+## Solve Mode
+
+Triggered when Julie asks to solve, answer, create solutions for, generate
+answer keys for, or update `solution.md` from a topic `mock_question_bank.md`.
+
+Use this workflow:
+
+1. Resolve `topic_dir`:
+   - Prefer an explicit topic directory or file path from Julie.
+   - If Julie gives an interview topic, prefer an existing matching directory
+     after removing leading numeric prefixes and separators, such as
+     `3_transformer` for `transformer`.
+   - If no topic is explicit, use the current directory only if it contains
+     `mock_question_bank.md`.
+   - If multiple directories match, ask one concise clarification question.
+2. Read `<topic_dir>/mock_question_bank.md` completely.
+3. Extract every parent question and every nested follow-up question.
+   - Preserve the original wording of questions.
+   - Preserve existing checked state only in `mock_question_bank.md`; do not
+     copy checkbox syntax into `solution.md`.
+   - If the bank has question/follow-up hierarchy, keep that hierarchy visible
+     in `solution.md` by placing follow-up answers directly after the parent
+     answer.
+4. Create or refresh `<topic_dir>/solution.md` with interview-ready answers for
+   every extracted question.
+   - Answers should be concise but complete enough for a Staff/Senior Staff MLE
+     interview.
+   - Prefer mechanism, equations, assumptions, tradeoffs, and failure modes over
+     generic definitions.
+   - Do not include a `Grounding` field in `solution.md`.
+   - Do not include long source excerpts.
+5. Put hints after the answer, not before it. Use this exact compact format:
+
+   ```markdown
+   # <Interview Topic> Mock Interview Answers
+
+   ## How to use this file
+
+   Use this as the interviewer answer key for [[mock_question_bank]].
+
+   ### Q: <parent question>
+
+   **Answer:** <interview-ready answer>
+
+   **Hints / grading:**
+   - **What the interviewer is testing:** <one concise line>
+   - **Staff+ signal:** <one concise line>
+   - **Weak answer pattern:** <one concise line>
+   - **Evaluation notes:** <one concise line or short bullet list>
+
+   #### Follow-up: <follow-up question>
+
+   **Answer:** <interview-ready answer>
+
+   **Hints / grading:**
+   - **What the interviewer is testing:** <one concise line>
+   - **Staff+ signal:** <one concise line>
+   - **Weak answer pattern:** <one concise line>
+   - **Evaluation notes:** <one concise line or short bullet list>
+   ```
+
+6. Keep hints concise. Do not add extra rubric sections such as
+   `Interviewer intent`, `Target answer`, `Grounding`, or `Source`.
+7. If updating an existing `solution.md`, preserve any clearly useful existing
+   answers when they match current questions, but rewrite old verbose hint
+   fields into the compact `Hints / grading` format above.
+
+Before reporting completion:
+
+1. Verify `<topic_dir>/solution.md` exists and is non-empty.
+2. Verify it has one `### Q:` entry for every parent question in
+   `mock_question_bank.md`.
+3. Verify every follow-up in `mock_question_bank.md` appears as a
+   `#### Follow-up:` entry in `solution.md`.
+4. Verify `solution.md` contains no `Grounding:` field.
+5. Report the parent-question count and follow-up count solved.
 
 ## Mock Mode
 
@@ -460,6 +702,9 @@ Rules:
   `mock.md` with status `fail`, the missing mechanism, and the next drill target.
 - If Julie asks for a topic shift during a mock, keep using the same active
   `mock.md` and add the new topic under `## Session focus`.
+- On wrap-up, update `mock.md` and `mock_tracker.md` first, then follow
+  **Session Wrap-Up Cleanup** and run `$file-cleaner` when the active topic
+  directory has both `learn_notes.md` and `deep_dive.md`.
 
 ## Learn Mode Handling
 
