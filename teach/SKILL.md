@@ -233,7 +233,11 @@ Companion-mode Q&A format:
 
 ### Q: {user question}
 
+**Raw user answer:** {verbatim or lightly cleaned user answer, if the user is checking their understanding or giving an attempted answer}
+
 **A:** {1-4 sentence answer}
+
+**Key equations:** {preserve useful equations in display LaTeX with $$ blocks; omit if none}
 
 **Mental model:** {what to remember}
 
@@ -291,7 +295,7 @@ In companion mode:
 3. Stay in companion mode for the current chat until the user explicitly says to exit, stop, finish, end learning companion, or leave companion mode.
 4. Do not prompt the user with questions, quizzes, checks for understanding, suggested exercises, or next-step prompts. Take questions from the user and answer them.
 5. Answer directly and briefly. When explaining, give the useful explanation first in a few sentences or tight bullets. Do not over-index on file references, section names, or source grounding; mention grounding only when it improves correctness, resolves ambiguity, or the user asks where something came from.
-6. Append notes to `learn_notes.md` by default for learning Q&A, explanations, corrected misconceptions, examples, drills, and useful follow-up context. Do not put companion-mode Q&A in `solution.md`. Do not record workflow, environment, or file-management questions unless the user explicitly asks to keep them. If the user says not to take notes, skip note capture for that exchange.
+6. Append notes to `learn_notes.md` by default for learning Q&A, explanations, corrected misconceptions, examples, drills, and useful follow-up context. When the user provides an attempted answer, understanding check, derivation, or equation, preserve it under `**Raw user answer:**` before the correction. Preserve important equations in `**Key equations:**` using display LaTeX `$$` blocks instead of dropping them or converting them into prose. Do not put companion-mode Q&A in `solution.md`. Do not record workflow, environment, or file-management questions unless the user explicitly asks to keep them. If the user says not to take notes, skip note capture for that exchange.
 7. If the Q&A reveals a durable insight, corrected misconception, weak spot, or strong reusable interview phrasing, add a concise dated entry to `## Learning records` in `index.md`.
 
 When companion mode ends, tidy `learn_notes.md` before reporting completion: group raw notes by topic, dedup repeated explanations, reorder related entries into a coherent learning path, and preserve useful examples, corrected misconceptions, mental models, and interview phrasing. Keep the file as learning notes, not a polished deep dive. Do not move material into `deep_dive.md` unless the user explicitly asks to consolidate or finish the course. If the user does ask to consolidate, merge durable content into [[deep_dive]] and then clean [[learn_notes]] down to unmerged open questions, a short dated merge note, and any intentionally retained raw details.

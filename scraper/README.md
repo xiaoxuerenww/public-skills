@@ -185,6 +185,10 @@ The output file is:
 outputs/<company>/<company>_<interview_round>.md
 ```
 
+When the user asks to collect `<company> <interview topic>` questions, route the
+request to this skill after confirming the relevant company output exists under
+`outputs/<company>/` or the source posts exist under `outputs/raw_posts/`.
+
 The post-processing contract is:
 
 - group raw posts and replies by interview question or topic
@@ -196,6 +200,8 @@ Example request:
 
 ```text
 [$post-process-scraper-outputs] databricks, ml / llm fundamental
+collect Harvey algorithm coding questions from the scraper output
+extract OpenAI behavioral interview questions and preserve raw post content
 ```
 
 Example output:
