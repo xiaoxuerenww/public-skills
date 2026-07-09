@@ -1,6 +1,6 @@
 ---
 name: project-deep-dive-interview
-description: "Prepare, sharpen, and mock project deep-dive interviews for Software Engineer (SDE), including Staff/Senior Staff, roles at frontier AI labs. Use when the user asks to prepare a project deep dive, select the right project, convert project notes into Markdown narratives or one-pagers, build a high-level preparation plan, ask detailed clarification questions, pressure-test technical and execution depth, run a realistic project deep-dive mock, or create feedback and follow-up drills for Anthropic, OpenAI, xAI, Google DeepMind, Meta, or similar frontier lab interviews. Outputs are Markdown artifacts, not slides."
+description: "Prepare, sharpen, and mock project deep-dive interviews for Software Engineer (SDE), including Staff/Senior Staff, roles at frontier AI labs. Use when the user asks to prepare a project deep dive, quiz them to create a skeleton, ask one question per turn, select the right project, convert project notes into Markdown narratives, one-pagers, or explicitly requested Markdown slide decks, build a high-level preparation plan, consolidate raw evidence, index/tidy intake notes, pressure-test technical and execution depth, run a realistic project deep-dive mock, or create feedback and follow-up drills for Anthropic, OpenAI, xAI, Google DeepMind, Meta, Databricks, or similar AI/ML interviews. Outputs are Markdown artifacts; create slides only when explicitly requested."
 ---
 
 # Project Deep Dive Interview
@@ -9,7 +9,7 @@ description: "Prepare, sharpen, and mock project deep-dive interviews for Softwa
 
 Use this skill for project-focused interviews where the interviewer is testing depth, judgment, ownership, cross-functional influence, engineering rigor, and whether the candidate can defend real tradeoffs under scrutiny.
 
-All outputs must be Markdown. Do not create slides, slide outlines, presentation decks, or PPTX artifacts unless the user explicitly overrides this instruction.
+All outputs must be Markdown. Do not create slides, slide outlines, presentation decks, or PPTX artifacts unless the user explicitly asks for slides or a presentation. If slides are explicitly requested, create a Markdown-native slide document, not PPTX, unless the user explicitly asks for PPTX/Google Slides.
 
 ## Workspace Resolution
 
@@ -22,25 +22,36 @@ Resolve `project_dir` before reading or writing files:
 
 Respect explicit source boundaries. If the user excludes a path, do not read it.
 
-Use these paths when creating durable prep:
+Use the current Project_Deep_dive vault layout when it is present:
 
 ```text
 project_dir/
-  input/
+  requirement/
+    INDEX.md                       # Requirement/source index for the interview round
     0_requirements.md              # Interview context, role, company, format, source files
-    preparation_plan.md            # Seven-step high-level prep plan
-    project_selection.md           # Candidate projects, ranking, selected direction
-    project_brief.md               # Candidate-facing project summary and likely interview frame
-    mock_questions.md              # Candidate-facing next-round prompts, hint-light
-  output/
-    big_picture_overview.md        # Portfolio-level overview and project map
-    project_deep_dive.md           # Main interview-ready narrative and technical defense
-    one_pager.md                   # Fast spoken reference
-    drill_notes.md                 # Weak areas, technical follow-ups, study notes
-    learnings_retro.md             # Learnings, mistakes, retro, and future changes
-    mock_feedback.md               # Mock transcript notes, scorecard, next drills
-    learn_notes.md                 # Temporary chronological notes during learn/drill mode
+    part_1_past_project_retro.md   # Project-retro prompt and evaluation expectations
+    preparation_plan.md            # Optional cross-project prep plan
+  projects/
+    <project_slug>/
+      raw_evidence.md              # Raw source packet preserving source text and local intake
+      00_index.md                  # Optional canonical consolidated intake after tidying
+      interview_plan.md            # Interview-format plan drafted before quiz/intake mode
+      project_deep_dive.md         # Main interview-ready narrative, if requested
+      one_pager.md                 # Fast spoken reference, if requested
+      deep_dive_presentation.md    # Markdown slide deck only when explicitly requested
+      mock_questions.md            # Candidate-facing prompts, hint-light
+      mock_feedback.md             # Mock transcript notes and feedback
+      drill_notes.md               # Temporary/stabilized drill notes, if retained
+      learnings_retro.md           # Learnings, mistakes, retro, and future changes
+  projects/llm4rec/                # Source notes for LLM4Rec platform context
+  projects/llm_ranker/             # Source notes for LLM ranker context
+  projects/AIF/                    # AI Feed / AIF adjacent material
+  projects/autoresearch/           # Autoresearch project material
+  references/                      # External or technical references
+  images/                          # Local images and diagrams
 ```
+
+When this layout exists, write new project-specific artifacts under `projects/<project_slug>/` and read interview requirements from `requirement/` first. If the older `input/` / `output/` layout exists instead, use it as a fallback. Keep only canonical files after consolidation if the user asks to tidy or delete unneeded docs.
 
 If the user asks for "chat only", do not write files. Otherwise, create or update durable files when the work produces reusable prep material.
 
@@ -48,24 +59,95 @@ If the user asks for "chat only", do not write files. Otherwise, create or updat
 
 - **Prepare mode:** Start by creating `input/preparation_plan.md`, then follow the seven-step workflow: project selection, big-picture overview, core deep-dive selection, technical/execution grilling, learnings and retro, mock, and polish.
 - **Ask-user-question mode:** Ask targeted clarification questions whenever project details, ownership, metrics, decision rationale, execution sequence, or interviewer context are missing, vague, contradictory, or too important to infer.
-- **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations to `output/drill_notes.md`.
+- **One-question intake mode:** When the user says `quiz me`, `ask one question per turn`, or wants to create a skeleton from memory, first scan the interview requirements in `requirement/` or legacy `input/0_requirements.md`, draft a short interview plan, create a rough intake skeleton, ask exactly one question per turn, and append each answer into the skeleton before asking the next question.
+- **Assumption-review mode:** When the user asks you to assume missing answers, draft plausible answers explicitly marked as assumptions / needs review, then ask the user to verify or correct them before treating them as facts.
+- **Evidence/index mode:** When the user asks to `index`, `tidy`, `put raw evidence together`, or `delete unneeded docs`, consolidate intake into `projects/<project_slug>/00_index.md`, preserve raw source text in `projects/<project_slug>/raw_evidence.md`, and keep/delete intermediate docs according to the user's request.
+- **Slide mode:** Only when explicitly requested, convert the stabilized intake into a Markdown-native slide deck at `projects/<project_slug>/deep_dive_presentation.md`.
+- **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations to `projects/<project_slug>/drill_notes.md` when using the current vault layout, or `output/<project_slug>/drill_notes.md` in the legacy layout.
 - **Mock mode:** Act as the interviewer. Ask one question at a time, probe deeply, and save feedback to `output/mock_feedback.md` when the mock ends or the user asks for review.
 - **Review mode:** Review the user's written or spoken draft against the Staff/Senior Staff rubric and suggest targeted edits.
 
-Infer the mode from the request. If the user says "prepare", "create a one-pager", "make a talk track", or "turn notes into a project deep dive", use prepare mode. If the next useful action is to gather missing details, switch to ask-user-question mode before drafting. If they say "mock", "interview me", or "ask questions", use mock mode. If they say "drill", "pressure test", "go deeper", or asks about one component, use drill mode.
+Infer the mode from the request. If the user says "prepare", "create a one-pager", "make a talk track", or "turn notes into a project deep dive", use prepare mode. If the user says "quiz me", "create skeleton", or "one question per turn", use one-question intake mode. If the user says "assume answers", use assumption-review mode. If they say "index", "tidy", "raw evidence", "regroup", or "delete unneeded docs", use evidence/index mode. If they explicitly ask for "slides", "presentation", or "Markdown deck", use slide mode. If the next useful action is to gather missing details, switch to ask-user-question mode before drafting. If they say "mock", "interview me", or "ask questions", use mock mode. If they say "drill", "pressure test", "go deeper", or asks about one component, use drill mode.
+
+### Two-doc output pattern
+
+All polished project output should split into two companion documents:
+
+1. **Compact presentation doc** (`deep_dive_presentation.md` or `one_pager.md`): sparse speaking anchors. Tables, bullet points, diagrams. No paragraphs. The candidate reads this during prep or glances at it during the interview. Links to the reference doc for backup.
+2. **Detailed reference doc** (`presenter_reference.md` or `project_deep_dive.md`): full evidence, extended tradeoff analysis, backup answers to likely follow-ups, verification notes. The candidate studies this beforehand but does not present from it.
+
+This split applies whether the compact doc is a slide deck, a narrative outline, or a one-pager. The principle: keep the presenting artifact lean and move density to the reference doc.
 
 ## Source Discovery
 
 Before generating content, read project sources in this order:
 
 1. User-provided files and paths.
-2. `input/0_requirements.md`, if present.
-3. Existing project notes in `project_dir`, especially docs with `context`, `project`, `deep_dive`, `roadmap`, `design`, `postmortem`, `resume`, or `presentation` in the name.
-4. Existing outputs only after reading source notes, to avoid reinforcing stale prep.
+2. Current-vault requirements, if present: `requirement/0_requirements.md`, `requirement/part_1_past_project_retro.md`, and `requirement/INDEX.md`.
+3. Legacy requirements, if present: `input/0_requirements.md`.
+4. The selected project folder under `projects/<project_slug>/`, especially `raw_evidence.md`, `00_index.md`, `interview_plan.md`, `project_deep_dive.md`, `deep_dive_presentation.md`, or notes with `context`, `project`, `deep_dive`, `roadmap`, `design`, `postmortem`, `resume`, or `presentation` in the name.
+5. Adjacent source folders when relevant, especially `projects/llm4rec/`, `projects/llm_ranker/`, `projects/AIF/`, `projects/autoresearch/`, and `references/`.
+6. Existing outputs only after reading source notes, to avoid reinforcing stale prep.
 
 Capture the source list in `input/0_requirements.md` or the generated output so future work can trace what was used.
 
 If project facts, metrics, dates, launch scope, or ownership claims are unclear, mark them as `needs verification` instead of inventing precision.
+
+## Quiz-to-Skeleton Intake Workflow
+
+Use this workflow when the user wants to be quizzed to create a project skeleton, especially for a project where lived details are not yet in notes.
+
+Before asking the first quiz question:
+
+1. Scan interview requirement docs first:
+   - current vault: `requirement/0_requirements.md`, `requirement/part_1_past_project_retro.md`, `requirement/INDEX.md` when present;
+   - legacy vault: `input/0_requirements.md` and adjacent requirement files when present;
+   - user wording such as `0_requirement` should be interpreted as the local requirement docs, then verified by filesystem scan.
+2. Draft or update `projects/<project_slug>/interview_plan.md` with:
+   - interview format and timing;
+   - interviewer background, if known;
+   - expected deliverable, such as 2-page doc, 10-15 slides, or 30-minute project retrospective;
+   - evaluation criteria from the requirement docs;
+   - recommended project framing;
+   - proposed talk-track sections;
+   - known source files and facts to verify.
+3. Create `projects/<project_slug>/deep_dive_slide_intake_skeleton.md` or `projects/<project_slug>/project_intake_skeleton.md` with:
+   - source files already scanned;
+   - the interview-plan summary;
+   - proposed slide/deep-dive skeleton;
+   - missing information per section;
+   - an open question queue.
+4. Ask exactly one question per turn. Do not batch questions unless the user asks.
+5. After each answer, immediately patch the skeleton under `Confirmed answers` and update the relevant slide/section gaps.
+6. Keep a running distinction between:
+   - user-verified facts;
+   - source-derived facts;
+   - assumptions pending review;
+   - do-not-overclaim boundaries.
+7. Prefer questions in this order when building a Staff+ technical retrospective:
+   - project framing and product/user experience;
+   - launch target, baseline, and missing signals;
+   - personal ownership boundary;
+   - architecture path;
+   - hardest technical decisions;
+   - technology rationale and alternatives;
+   - experiment/statistical design;
+   - evaluation and correctness;
+   - rollout/de-risking gates;
+   - reliability/operations;
+   - impact and caveats;
+   - retro and what changed.
+8. If the user says "answer that for me" or "assume answers," draft plausible answers in a separate assumption section or file, label them as `assumed draft`, and ask the user to verify before final polish.
+
+For ML/AI project deep dives, the intake skeleton should explicitly ask for:
+- product target and denominator;
+- baseline failure mode;
+- missing content/user/quality/safety signals;
+- online and offline architecture;
+- training/serving/evaluation constraints;
+- experiment randomization and bias handling;
+- rollout gates and dashboards;
+- reliability incidents and detection gaps.
 
 ## Ask-User-Question Mode
 
@@ -146,6 +228,159 @@ For each step include:
 Keep this plan as the orchestration artifact. Update status as work progresses instead of scattering status across many files. If a step needs important missing details, ask the user questions before marking the step complete.
 
 For steps 1-6, focus on content, not format. The goal is to surface facts, choices, evidence, gaps, and user clarifications. Use rough Markdown bullets, raw Q&A, and `needs verification` markers freely. Do not spend effort on wording, final ordering, elegant section titles, or interview polish until step 7.
+
+## Evidence, Index, and Cleanup Workflow
+
+Use this workflow after a long intake session or when the user asks to regroup notes.
+
+### Canonical intake consolidation
+
+Create `projects/<project_slug>/00_index.md` as the canonical consolidated intake. Preserve information, but deduplicate and regroup by topic:
+
+```text
+0. Source inventory
+1. Interview requirement context
+1A. Interview plan
+2. Project selection and framing
+3. System context and baseline (the existing system the project integrated into)
+4. Product context
+5. Baseline problem and diagnostic method
+6. Role and ownership
+7. End-to-end architecture
+8. Core strategy (coordinated workstreams)
+9. Technology choices, rationale, and timeline
+10. Experiment/statistical design
+11. Evaluation and correctness
+12. Rollout and de-risking (phased: simple → complex)
+13. Performance and reliability
+14. Results and impact + retrospective
+15. Staff+ influence and ownership scope
+16. Do-not-overclaim boundaries
+17. Remaining gaps / TODOs
+18. Follow-up questions
+```
+
+Keep original wording where possible. Do not summarize away details. Keep `needs verification` markers.
+
+### Raw evidence packet
+
+When the user asks for raw evidence, create `projects/<project_slug>/raw_evidence.md` with full source text and local intake artifacts grouped by source. Use fenced Markdown blocks and source file paths so claims are traceable. Do not rewrite raw evidence.
+
+### Cleanup
+
+When the user asks to delete unneeded docs after consolidation, keep the canonical docs by default:
+- `projects/<project_slug>/00_index.md`, if created
+- `projects/<project_slug>/raw_evidence.md`, if created
+- any final deliverable the user already requested, such as `projects/<project_slug>/deep_dive_presentation.md`
+
+Delete only intermediate generated files in that project subfolder, such as assumption drafts, temporary skeletons, gap reviews, project briefs, project selections, or preparation plans, after verifying their content is preserved in the canonical files.
+
+## Markdown Slide Mode
+
+Use slide mode only when the user explicitly asks for slides/presentation. Create `projects/<project_slug>/deep_dive_presentation.md` as a Markdown-native deck.
+
+Default slide structure for ML/AI project retrospectives:
+
+- Use 10-15 main slides by default. Prefer 10-12 slides when the material is already concise, and expand up to 15 slides when a slide becomes wordy or combines multiple ideas. The user may override the slide count; respect their preference.
+- Keep the presentation deck lightweight. If a slide needs dense evidence, detailed tradeoffs, or backup answers, split that material into a sibling presenter-reference doc such as `projects/<project_slug>/<project_slug>_presenter_reference.md` and link to it from the deck.
+- When expanding beyond 10 slides, split by concept rather than adding filler. Good split points: technology ladder vs. technology tradeoffs, novel design problem vs. measurement decisions, experiment design vs. evaluation gates, and launch sequence vs. post-launch hardening.
+
+```text
+# <Project Title>
+## Slide 1: Thesis
+## Slide 2: Role, Ownership, and Outcome
+## Slide 3: System Context
+## Slide 4: Baseline Failure / Where the Existing Stack Broke
+## Slide 5: Product Context and Requirements
+## Slide 6: Core Tension / Tradeoff
+## Slide 7: Diagnosis
+## Slide 8: Core Strategy
+## Slide 9: End-to-End Architecture / Pipeline
+## Slide 10: Technology Choice and Timeline
+## Slide 11: Technology Tradeoffs
+## Slide 12: Experiment Design
+## Slide 13: Evaluation Scorecard / Launch Gates
+## Slide 14: Rollout and De-Risking / Reliability
+## Slide 15: Impact, Retrospective, and Staff+ Signal
+## Appendix A: Do-Not-Overclaim Boundaries
+## Appendix B: Open Verification Items
+## Appendix C: Likely Follow-Up Questions
+```
+
+Slide design principles:
+
+- **Thesis slide (1):** One-sentence claim and the central project tension. Keep ownership detail minimal if there is a separate role slide.
+- **Role / ownership slide (2):** Clarify what the candidate personally drove, what partner teams owned, and the verified outcome metrics.
+- **System context slide (3):** Establish the existing system the project integrated into. Use context source folders (e.g., `projects/0_feed_context/`) to ground the system architecture, recommendation funnel, and baseline model. This slide answers "what was already there?" so the audience understands the constraints.
+- **Baseline failure and diagnosis slides (4, 7):** Go beyond listing symptoms. Explain the diagnostic method (e.g., offline analysis, feature attribution) that made the problem concrete and actionable.
+- **Product requirement vs core tension (5-6):** Separate the legitimate product goal from the contested mechanism or technical tradeoff.
+- **Core strategy vs technology choice (8, 10-11):** Differentiate clearly. Strategy answers "what was your plan?" Technology choice answers "why these specific technologies in this order?" Tradeoff slides should include why-not-skip reasoning.
+- **Experiment and evaluation (12-13):** Separate experiment variants from metric interpretation and launch gates when the combined slide would be too dense.
+- **Rollout / reliability slide (14):** Structure rollout as phased simple-to-complex work, and include reliability if it is a major project learning. If reliability is central, split it into its own slide and compress elsewhere to stay at or below 15 main slides.
+- **Impact and retrospective (15):** Combine impact, what you would do differently, and Staff+ signal. Keep details short and move backup evidence to the presenter-reference doc.
+
+### Table patterns for presentation docs
+
+Use these column structures consistently in slides and compact presentation docs:
+
+| Slide type | Recommended columns |
+|---|---|
+| Tensions | Tension, What goes wrong, Severity |
+| Diagnosis | Area, Symptom, Root cause, Impact |
+| Strategy | Workstream, Goal, My leverage |
+| Technology choices | Stage, Timing, Technology, Purpose |
+| Representation phases | Phase, Representation, What it enables, Tradeoff |
+| Design decisions | Decision, Challenge, Solution, Tradeoff |
+| Launch sequence | Week, System, Change, Size |
+| Offline evaluation | Axis, Method |
+| Online evaluation | Question, Metrics |
+| Role/ownership | Area, What I did |
+
+### Style rules for presentation docs
+
+- Sentence case for all headings ("Core tensions", not "Core Tensions").
+- No em dashes or en dashes. Use commas, colons, or periods.
+- No decorative bold or italic in table cells. Bold only for the slide heading structure.
+- No significance inflation ("pivotal", "crucial", "key"). State the fact.
+- Tradeoffs must be explicit and stated in the same breath as the solution.
+- "Why not X?" is better than "We chose Y because..." for technology decisions.
+- Direct statements over hedged ones. "AIGC was missing the inputs" beats "The system may not have had adequate support for AIGC."
+- Tables over bullet lists when comparing options, listing decisions, or showing a sequence.
+- One diagram per concept slide max. Do not stack diagrams.
+
+Keep slides interview-ready and concise. Expand abbreviations on first use, for example `Gradient Boosted Decision Tree (GBDT)` and `Deep Neural Network (DNN)`. Cite only verified metrics on main slides; move uncertain details to appendix as `needs verification`.
+### Slide Editing Operations
+
+When the user asks to modify an existing slide deck, support these operations:
+
+- **Add slide:** Read context source folders when referenced (e.g., `projects/0_feed_context/`), draft the new slide content, insert it at the right position, and renumber all subsequent slides.
+- **Improve slide:** Read adjacent slides to avoid redundancy, then rewrite with richer framing (tables, diagnostic reasoning, gating logic, concrete tradeoffs).
+- **Merge slides:** When two slides overlap or are too thin, combine them. Move the stronger content forward and fold the weaker content in. Renumber.
+- **Split slide:** When a slide covers two distinct ideas, split and renumber.
+- **Move content between slides:** When content is in the wrong slide (e.g., ownership detail in the thesis), relocate it and adjust both slides.
+- **Renumber:** After any structural change, scan all `## Slide N:` headers and renumber sequentially. Verify with `grep -n "^## Slide"`.
+
+### Diagram Generation for Slides
+
+When the user asks to draw or visualize a flow, architecture, or pipeline:
+
+1. Check for available Python drawing libraries (matplotlib preferred). If not available in the system Python, create a temporary venv: `python3 -m venv /tmp/drawvenv && /tmp/drawvenv/bin/pip install matplotlib`.
+2. Use the `dataviz` skill's palette for colors when available (load `references/palette.md`). Otherwise use a clean, accessible palette.
+3. Save diagrams to the vault's `images/` directory with a descriptive filename.
+4. Embed in the slide using `![[filename.png]]`, replacing any text-based flow block the diagram replaces.
+5. Read the generated image to verify it rendered correctly before moving on.
+
+## Current Vault Artifact Rules
+
+When working in this vault, prefer these artifact locations:
+
+- Interview requirements and prompt docs: `requirement/`.
+- Project-specific canonical work: `projects/<project_slug>/`.
+- Project source notes: existing sibling folders under `projects/`, especially `llm4rec`, `llm_ranker`, `AIF`, and `autoresearch`.
+- External technical references: `references/`.
+- Local diagrams/images: `images/`.
+
+Do not create new top-level `input/` or `output/` folders in this vault unless the user explicitly asks or the current directory already uses that legacy layout. For new project slugs, create `projects/<project_slug>/` and keep final files there.
 
 ## Prepare Mode
 
@@ -252,8 +487,8 @@ Use mock mode after the plan, project selection, big-picture overview, technical
 
 Polish only after the previous steps have produced enough content. Step 7 is where format, narrative order, wording, and final interview usability matter. Create the final Markdown artifacts:
 
-- `output/project_deep_dive.md`
-- `output/one_pager.md`
+- `projects/<project_slug>/project_deep_dive.md`
+- `projects/<project_slug>/one_pager.md`
 
 Polish for:
 
@@ -269,7 +504,7 @@ Before final polish, scan all final claims for unresolved `needs verification` m
 
 ### Final Deep-Dive Narrative
 
-Create `output/project_deep_dive.md` as the durable main artifact:
+Create `projects/<project_slug>/project_deep_dive.md` as the durable main artifact when using the current vault layout:
 
 ```text
 # Project Deep Dive
@@ -294,7 +529,7 @@ Keep it interview-ready, not essay-like. Use concise bullets where possible. Mak
 
 ### Final One-Pager
 
-Create `output/one_pager.md` for fast interview reference:
+Create `projects/<project_slug>/one_pager.md` for fast interview reference:
 
 - **Thesis:** one sentence.
 - **Signals:** 4-6 Staff+ signals this project demonstrates.
@@ -413,3 +648,5 @@ Then provide:
 - Prefer specific technical nouns over generic impact language.
 - Use `needs verification` for uncertain metrics or claims.
 - Separate candidate-facing prompts from answer keys.
+- When in one-question intake or mock mode, ask exactly one question at the end of the response.
+- When the user asks to preserve or regroup information, prefer canonical Markdown docs over chat-only summaries.
