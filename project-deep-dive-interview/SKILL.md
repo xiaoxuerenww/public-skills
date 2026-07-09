@@ -256,11 +256,12 @@ When reviewing interactively, walk slide by slide and ask for approval or change
 For each iteration:
 
 1. Read `deep_dive_presentation.md` and `presenter_reference.md`.
-2. Propose targeted changes, not a full rewrite unless the user asks.
-3. Patch the presentation doc directly after the user approves or asks for the change.
-4. Renumber `## Slide N:` headings after adding, deleting, moving, merging, or splitting slides.
-5. Verify numbering with `grep -n "^## Slide"`.
-6. Repeat until the user is satisfied.
+2. Propose targeted changes, not a full rewrite unless the user asks. Show the proposed edits clearly (quote the current text, then show the replacement) so the user can review the diff.
+3. **Wait for explicit user approval before writing.** Do not patch files until the user says yes, approves, or asks you to apply. If the user requests modifications to the proposal, revise and show the updated proposal for another round of review.
+4. Once approved, patch the presentation doc.
+5. Renumber `## Slide N:` headings after adding, deleting, moving, merging, or splitting slides.
+6. Verify numbering with `grep -n "^## Slide"`.
+7. Repeat until the user is satisfied.
 
 Support these edit operations:
 
