@@ -33,22 +33,15 @@ project_dir/
     preparation_plan.md
   projects/
     <project_slug>/
-      raw_evidence.md
-      00_index.md
-      interview_plan.md
       presenter_reference.md
-      project_deep_dive.md
-      one_pager.md
       deep_dive_presentation.md
-      drill_notes.md
-      learnings_retro.md
   references/
   images/
 ```
 
-When this layout exists, write new project-specific artifacts under `projects/<project_slug>/` and read interview requirements from `requirement/` first. If the older `input/` / `output/` layout exists instead, use it as a fallback. Do not create new top-level `input/` or `output/` folders in the current vault unless the user explicitly asks or the current directory already uses that legacy layout.
+When this layout exists, write only `projects/<project_slug>/presenter_reference.md` and `projects/<project_slug>/deep_dive_presentation.md` under `projects/<project_slug>/` and read interview requirements from `requirement/` first. If the older `input/` / `output/` layout exists instead, still keep project-deep-dive output to these two filenames in the appropriate project/output location.
 
-If the user asks for "chat only", do not write files. Otherwise, create or update durable files when the work produces reusable prep material.
+If the user asks for "chat only", do not write files. Otherwise, create or update only the two durable docs when the work produces reusable prep material.
 
 ## Modes
 
@@ -56,7 +49,7 @@ Only use these modes:
 
 - **Prepare mode:** Run the six-step workflow in order: scan existing materials, outline questions, make reasonable assumptions for some questions, quiz the user to confirm assumptions and fill gaps, output all evidence and information in the reference doc, then output a compact presentation doc.
 - **Polish mode:** Let the user review every slide/section, suggest changes to the compact presentation doc, repeat until the user is satisfied, and when asked to compact the presentation doc, move details into the reference doc.
-- **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations to `projects/<project_slug>/drill_notes.md` when using the current vault layout, or `output/project_deep_dive.md` / `output/drill_notes.md` in the legacy layout.
+- **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations into `projects/<project_slug>/presenter_reference.md`, with any compact speaking anchors reflected in `projects/<project_slug>/deep_dive_presentation.md`.
 
 Infer the mode from the request:
 
@@ -68,12 +61,12 @@ Do not use separate slide, mock, review, evidence, or index modes. If the user a
 
 ## Two-doc output pattern
 
-All polished project output should split into two companion documents:
+All project output should split into exactly two companion documents:
 
-1. **Compact presentation doc** (`projects/<project_slug>/deep_dive_presentation.md` or `one_pager.md`): sparse speaking anchors. Tables, bullets, and diagrams. No dense paragraphs. The candidate reads this during prep or glances at it during the interview. Link to the reference doc for backup.
-2. **Detailed reference doc** (`projects/<project_slug>/presenter_reference.md` or `project_deep_dive.md`): full evidence, extended tradeoff analysis, backup answers to likely follow-ups, verification notes, assumptions, and do-not-overclaim boundaries. The candidate studies this beforehand but does not present from it.
+1. **Compact presentation doc** (`projects/<project_slug>/deep_dive_presentation.md`): sparse speaking anchors. Tables, bullets, and diagrams. No dense paragraphs. The candidate reads this during prep or glances at it during the interview. Link to the reference doc for backup.
+2. **Detailed reference doc** (`projects/<project_slug>/presenter_reference.md`): full evidence, extended tradeoff analysis, backup answers to likely follow-ups, verification notes, assumptions, and do-not-overclaim boundaries. The candidate studies this beforehand but does not present from it.
 
-The principle: keep the presenting artifact lean and move density to the reference doc.
+The principle: keep the presenting artifact lean and move density to the reference doc. Do not create `one_pager.md`, `project_deep_dive.md`, `raw_evidence.md`, `00_index.md`, `interview_plan.md`, `mock_questions.md`, `mock_feedback.md`, `drill_notes.md`, or `learnings_retro.md`.
 
 ## Source discovery
 
@@ -82,7 +75,7 @@ Before generating content, read project sources in this order:
 1. User-provided files and paths.
 2. Current-vault requirements, if present: `requirement/0_requirements.md`, `requirement/part_1_past_project_retro.md`, and `requirement/INDEX.md`.
 3. Legacy requirements, if present: `input/0_requirements.md`.
-4. The selected project folder under `projects/<project_slug>/`, especially `raw_evidence.md`, `00_index.md`, `interview_plan.md`, `presenter_reference.md`, `project_deep_dive.md`, `deep_dive_presentation.md`, or notes with `context`, `project`, `deep_dive`, `roadmap`, `design`, `postmortem`, `resume`, or `presentation` in the name.
+4. The selected project folder under `projects/<project_slug>/`, especially `presenter_reference.md`, `deep_dive_presentation.md`, or notes with `context`, `project`, `deep_dive`, `roadmap`, `design`, `postmortem`, `resume`, or `presentation` in the name.
 5. Adjacent source folders when relevant, especially `projects/llm4rec/`, `projects/llm_ranker/`, `projects/AIF/`, `projects/autoresearch/`, and `references/`.
 6. Existing outputs only after reading source notes, to avoid reinforcing stale prep.
 
@@ -172,7 +165,7 @@ I need a few details before drafting the presentation doc:
 
 ### 5. Output all evidence and information in the reference doc
 
-Create or update `projects/<project_slug>/presenter_reference.md` as the detailed source of truth. If an existing `project_deep_dive.md` is the user's canonical reference doc, update that instead and state the choice.
+Create or update `projects/<project_slug>/presenter_reference.md` as the detailed source of truth.
 
 Use this structure by default:
 
@@ -207,7 +200,7 @@ Preserve raw technical details even if they are messy. Do not summarize away use
 
 ### 6. Output a compact presentation doc
 
-Create or update `projects/<project_slug>/deep_dive_presentation.md` unless the user requests `one_pager.md` instead.
+Create or update `projects/<project_slug>/deep_dive_presentation.md`.
 
 Default presentation structure:
 
@@ -244,11 +237,11 @@ Keep it compact:
 
 ## Polish mode
 
-Use polish mode to iterate on `deep_dive_presentation.md` and its companion reference doc.
+Use polish mode to iterate on `deep_dive_presentation.md` and `presenter_reference.md` only.
 
 ### 1. Let user review every slide/section
 
-Read the current presentation doc and present a concise review queue. For each slide or section, evaluate:
+Read the current `deep_dive_presentation.md` and present a concise review queue. For each slide or section, evaluate:
 
 - Whether the thesis is clear and sayable.
 - Whether ownership is explicit.
@@ -264,7 +257,7 @@ When reviewing interactively, walk slide by slide and ask for approval or change
 
 For each iteration:
 
-1. Read the presentation doc and adjacent reference doc.
+1. Read `deep_dive_presentation.md` and `presenter_reference.md`.
 2. Propose targeted changes, not a full rewrite unless the user asks.
 3. Patch the presentation doc directly after the user approves or asks for the change.
 4. Renumber `## Slide N:` headings after adding, deleting, moving, merging, or splitting slides.
@@ -284,7 +277,7 @@ Support these edit operations:
 
 When the user asks to compact the presentation doc:
 
-1. Read both `deep_dive_presentation.md` and `presenter_reference.md` or the canonical reference doc.
+1. Read both `deep_dive_presentation.md` and `presenter_reference.md`.
 2. Identify dense paragraphs, backup evidence, caveats, long tradeoff analysis, and answer-key material in the presentation doc.
 3. Move those details into the matching section of the reference doc, preserving evidence and wording where useful.
 4. Replace dense presentation content with sparse anchors, tables, or short bullets.
@@ -344,15 +337,15 @@ Avoid making the project sound like a generic architecture tour. The center shou
 
 Use drill mode when the user wants to deepen one weak area or asks a technical follow-up.
 
-1. Read the relevant source files and existing `output/project_deep_dive.md` or `projects/<project_slug>/presenter_reference.md` / `project_deep_dive.md`.
+1. Read the relevant source files and existing `projects/<project_slug>/presenter_reference.md` and `deep_dive_presentation.md`.
 2. Answer only the current question unless the user asks for a full rewrite.
-3. When a stable insight emerges, append it to `output/drill_notes.md` or `projects/<project_slug>/drill_notes.md` with:
+3. When a stable insight emerges, append it to `projects/<project_slug>/presenter_reference.md` under a drill notes or follow-up section with:
    - Date.
    - Topic.
    - Strong answer.
    - Gaps or facts to verify.
    - Follow-up questions to practice.
-4. If the user says to wrap up or consolidate, update the reference doc and compact presentation doc from `drill_notes.md`, then clear or summarize temporary learn notes if present.
+4. If the user says to wrap up or consolidate, update `presenter_reference.md` and `deep_dive_presentation.md` directly. Do not create a separate drill notes file.
 
 Keep drill answers technical and direct. Do not turn the session into broad coaching unless the user asks.
 
@@ -365,4 +358,4 @@ Keep drill answers technical and direct. Do not turn the session into broad coac
 - Use `needs verification` for uncertain metrics or claims.
 - Separate presentation anchors from reference-doc answer keys.
 - When in one-question intake or drill flow, ask exactly one question at the end of the response.
-- When the user asks to preserve or regroup information, prefer canonical Markdown docs over chat-only summaries.
+- When the user asks to preserve or regroup information, put it into `presenter_reference.md` or `deep_dive_presentation.md`, not a third file.
