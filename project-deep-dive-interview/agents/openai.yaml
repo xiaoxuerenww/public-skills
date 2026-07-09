@@ -1,4 +1,4 @@
 interface:
   display_name: "Project Deep Dive Interview"
-  short_description: "Prepare and mock SDE project deep dives"
-  default_prompt: "Use $project-deep-dive-interview to prepare a Software Engineer (SDE) project deep dive for a frontier lab interview."
+  short_description: "Prepare, polish, and drill project deep dives"
+  default_prompt: "Use $project-deep-dive-interview to prepare a compact presentation doc and detailed reference doc for a frontier-lab project deep-dive interview."
