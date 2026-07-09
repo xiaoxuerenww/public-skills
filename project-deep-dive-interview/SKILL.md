@@ -47,7 +47,7 @@ If the user asks for "chat only", do not write files. Otherwise, create or updat
 
 Only use these modes:
 
-- **Prepare mode:** Run the six-step workflow in order: scan existing materials, outline questions, make reasonable assumptions for some questions, quiz the user to confirm assumptions and fill gaps, output all evidence and information in the reference doc, then output a compact presentation doc.
+- **Prepare mode:** Run the six-step workflow in order: scan existing materials, create a quiz question list, make reasonable assumptions for some questions, quiz the user one question per turn to confirm assumptions and fill gaps, output all evidence and information in the reference doc, then output a compact presentation doc.
 - **Polish mode:** Let the user review every slide/section, suggest changes to the compact presentation doc, repeat until the user is satisfied, and when asked to compact the presentation doc, move details into the reference doc.
 - **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations into `projects/<project_slug>/presenter_reference.md`, with any compact speaking anchors reflected in `projects/<project_slug>/deep_dive_presentation.md`.
 
@@ -102,9 +102,9 @@ Capture:
 
 If local notes do not identify a project, ask the user for candidate projects before proceeding.
 
-### 2. Outline questions
+### 2. Create a quiz question list
 
-Create a question outline in the reference doc before drafting final content. The outline should cover:
+Create a quiz question list in `presenter_reference.md` before drafting final content. This is the ordered intake queue for the rest of prepare mode. The list should cover:
 
 - Project framing and product/user experience.
 - Launch target, baseline, and missing signals.
@@ -144,23 +144,20 @@ Rules:
 
 ### 4. Quiz user to confirm assumptions and answer gaps
 
-Quiz the user after assumptions are drafted. Ask concise questions focused on the highest-risk gaps.
+Quiz the user after assumptions are drafted. Always ask exactly one question per turn. Do not batch questions, even if several gaps remain.
 
 Default behavior:
 
-- Ask one question at a time when the user says `quiz me`, `ask one question per turn`, or when the session is already in an intake flow.
-- Otherwise, ask a small batch of 3-6 questions when it is more efficient.
-- After each answer, immediately patch the reference doc with confirmed facts, corrected assumptions, and remaining gaps.
+- Pick the next highest-priority unresolved item from the quiz question list.
+- Ask one concise question at the end of the response.
+- After each answer, immediately patch `presenter_reference.md` with confirmed facts, corrected assumptions, and remaining gaps.
+- Mark the answered item in the quiz question list as answered, corrected, or still needs verification.
 - Keep a running distinction between user-verified facts, source-derived facts, assumptions pending review, and do-not-overclaim boundaries.
 
-Question format for batches:
+Question format:
 
 ```text
-I need a few details before drafting the presentation doc:
-
-1. <question>
-2. <question>
-3. <question>
+Next question: <one question>
 ```
 
 ### 5. Output all evidence and information in the reference doc
@@ -193,6 +190,7 @@ Use this structure by default:
 ## Assumptions pending user review
 ## Do-not-overclaim boundaries
 ## Open verification items
+## Quiz question list
 ## Likely follow-up questions and backup answers
 ```
 
@@ -357,5 +355,5 @@ Keep drill answers technical and direct. Do not turn the session into broad coac
 - Prefer specific technical nouns over generic impact language.
 - Use `needs verification` for uncertain metrics or claims.
 - Separate presentation anchors from reference-doc answer keys.
-- When in one-question intake or drill flow, ask exactly one question at the end of the response.
+- During prepare-mode quiz intake, always ask exactly one question at the end of the response.
 - When the user asks to preserve or regroup information, put it into `presenter_reference.md` or `deep_dive_presentation.md`, not a third file.
