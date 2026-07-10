@@ -237,9 +237,9 @@ Keep it compact:
 
 Use polish mode to iterate on `deep_dive_presentation.md` and `presenter_reference.md` only.
 
-### 1. Let user review every slide/section
+### 1. Scan the full doc for context
 
-Read the current `deep_dive_presentation.md` and present a concise review queue. For each slide or section, evaluate:
+Read both `deep_dive_presentation.md` and `presenter_reference.md` end to end. Internally evaluate every slide/section against these criteria:
 
 - Whether the thesis is clear and sayable.
 - Whether ownership is explicit.
@@ -249,19 +249,19 @@ Read the current `deep_dive_presentation.md` and present a concise review queue.
 - Whether the slide is too dense and should move material to the reference doc.
 - Whether claims need verification.
 
-When reviewing interactively, walk slide by slide and ask for approval or changes before moving on if the user wants tight control.
+Build an internal priority list of improvements, but do not present the full list to the user.
 
-### 2. Suggest changes to the presentation doc and repeat
+### 2. Suggest one improvement at a time
 
 For each iteration:
 
-1. Read `deep_dive_presentation.md` and `presenter_reference.md`.
-2. Propose targeted changes, not a full rewrite unless the user asks. Show the proposed edits clearly (quote the current text, then show the replacement) so the user can review the diff.
-3. **Wait for explicit user approval before writing.** Do not patch files until the user says yes, approves, or asks you to apply. If the user requests modifications to the proposal, revise and show the updated proposal for another round of review.
+1. Pick the single highest-priority improvement from the internal list.
+2. Show the proposed edit for that one slide or section only. Quote the current text and show the replacement so the user can review the diff.
+3. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with two options: "Accept" (apply the change as shown) and "No, other suggestions" (the user types what to change instead). Do not patch files until the user accepts. If the user picks "No, other suggestions" and provides typed feedback, revise the proposal based on their input and show it again with the same accept/revise prompt.
 4. Once approved, patch the presentation doc.
-5. Renumber `## Slide N:` headings after adding, deleting, moving, merging, or splitting slides.
+5. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
 6. Verify numbering with `grep -n "^## Slide"`.
-7. Repeat until the user is satisfied.
+7. Move to the next improvement and repeat until the user is satisfied or says to stop.
 
 Support these edit operations:
 
