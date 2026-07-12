@@ -1,0 +1,1210 @@
+[
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "unquote",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urljoin",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "ZoneInfo",
+        "importPath": "zoneinfo",
+        "description": "zoneinfo",
+        "isExtraImport": true,
+        "detail": "zoneinfo",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "field",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "html",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "html",
+        "description": "html",
+        "detail": "html",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tag",
+        "importPath": "bs4.element",
+        "description": "bs4.element",
+        "isExtraImport": true,
+        "detail": "bs4.element",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "TemporaryDirectory",
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "isExtraImport": true,
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "Mock",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "patch",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "build_asset_filename",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_company_page_url",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_summary",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_table_of_contents",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_metadata",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_metadata_from_files",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_targets",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_targets_from_files",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "combine_company_posts",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "download_post_assets",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "extract_position_type_tag",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "extract_published_date",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_company_page_html",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_company_input_pages",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "limit_input_html_files",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "load_company_input_files",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "inject_post_tags_into_markdown",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "is_http_403_or_429_error",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "run_company_scrape",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "sanitize_filename",
+        "importPath": "scraper.company",
+        "description": "scraper.company",
+        "isExtraImport": true,
+        "detail": "scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "extract_post_id",
+        "importPath": "scraper.cli",
+        "description": "scraper.cli",
+        "isExtraImport": true,
+        "detail": "scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "format_post_markdown",
+        "importPath": "scraper.cli",
+        "description": "scraper.cli",
+        "isExtraImport": true,
+        "detail": "scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "save_post_content",
+        "importPath": "scraper.cli",
+        "description": "scraper.cli",
+        "isExtraImport": true,
+        "detail": "scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "DownloadableAsset",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "ScrapedPost",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "apply_cookie_header",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "build_authenticated_session",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_ids_from_html_file",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_html",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_post",
+        "importPath": "scraper",
+        "description": "scraper",
+        "isExtraImport": true,
+        "detail": "scraper",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_records_from_html",
+        "importPath": "scraper.forum",
+        "description": "scraper.forum",
+        "isExtraImport": true,
+        "detail": "scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG_HTML_DIR",
+        "importPath": "scraper.post",
+        "description": "scraper.post",
+        "isExtraImport": true,
+        "detail": "scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "RequestLimitExceededError",
+        "importPath": "scraper.post",
+        "description": "scraper.post",
+        "isExtraImport": true,
+        "detail": "scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "_rate_limited_get",
+        "importPath": "scraper.post",
+        "description": "scraper.post",
+        "isExtraImport": true,
+        "detail": "scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len('bin') - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = 'scraper-py3.14' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "base = bin_dir[: -len('bin') - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = 'scraper-py3.14' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = 'scraper-py3.14' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = 'scraper-py3.14' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = 'scraper-py3.14' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in '../lib/python3.14/site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": ".venv.bin.activate_this",
+        "description": ".venv.bin.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": ".venv.bin.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def main() -> None:\n    parser = argparse.ArgumentParser(description=\"Scrape an authenticated 1Point3Acres post.\")\n    parser.add_argument(\"url\", help=\"The full post URL to scrape.\")\n    parser.add_argument(\n        \"--env-file\",\n        help=\"Optional legacy .env file containing a raw cookie header or SCRAPER_COOKIE_HEADER.\",\n    )\n    parser.add_argument(\n        \"--json\",\n        action=\"store_true\",",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "save_post_content",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def save_post_content(post: ScrapedPost, *, output_root: Path | None = None) -> Path:\n    output_dir = (output_root or Path(\"outputs/raw_posts\")).resolve()\n    output_dir.mkdir(parents=True, exist_ok=True)\n    output_path = output_dir / f\"{extract_post_id(post.url)}.md\"\n    output_path.write_text(format_post_markdown(post), encoding=\"utf-8\")\n    return output_path\ndef extract_post_id(url: str) -> str:\n    path = urlparse(url).path.rstrip(\"/\")\n    thread_match = re.fullmatch(r\"/bbs/thread-(\\d+)-1-1\\.html\", path)\n    if thread_match is not None:",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "extract_post_id",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def extract_post_id(url: str) -> str:\n    path = urlparse(url).path.rstrip(\"/\")\n    thread_match = re.fullmatch(r\"/bbs/thread-(\\d+)-1-1\\.html\", path)\n    if thread_match is not None:\n        return thread_match.group(1)\n    pin_match = re.fullmatch(r\"/home/pins/(\\d+)\", path)\n    if pin_match is not None:\n        return pin_match.group(1)\n    post_id = path.split(\"/\")[-1]\n    if not post_id:",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "format_post_markdown",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def format_post_markdown(post: ScrapedPost) -> str:\n    main_content, replies = split_post_content(post.content)\n    lines = [f\"# {post.title}\", \"\"]\n    metadata_parts = [f\"Post ID: {extract_post_id(post.url)}\"]\n    if post.author:\n        metadata_parts.append(f\"Author: {post.author}\")\n    formatted_published_at = format_timestamp(post.published_at)\n    if formatted_published_at:\n        metadata_parts.append(f\"Published: {formatted_published_at}\")\n    lines.append(\" | \".join(f\"`{part}`\" for part in metadata_parts))",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "split_post_content",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def split_post_content(content: str) -> tuple[str, list[dict[str, str]]]:\n    marker = \"\\n\\nReplies:\\n\\n\"\n    if marker not in content:\n        return content, []\n    main_content, raw_replies = content.split(marker, 1)\n    chunks = [chunk.strip() for chunk in raw_replies.split(\"\\n\\n\") if chunk.strip()]\n    replies: list[dict[str, str]] = []\n    for index in range(0, len(chunks), 2):\n        if index + 1 >= len(chunks):\n            break",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "format_timestamp",
+        "kind": 2,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "def format_timestamp(value: str | None) -> str | None:\n    if value is None:\n        return None\n    stripped = value.strip()\n    if not stripped:\n        return None\n    if stripped.isdigit():\n        return datetime.fromtimestamp(int(stripped), tz=DISPLAY_TIMEZONE).strftime(\n            \"%Y-%m-%d %H:%M:%S %Z\"\n        )",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "DISPLAY_TIMEZONE",
+        "kind": 5,
+        "importPath": "src.scraper.cli",
+        "description": "src.scraper.cli",
+        "peekOfCode": "DISPLAY_TIMEZONE = ZoneInfo(\"America/Los_Angeles\")\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Scrape an authenticated 1Point3Acres post.\")\n    parser.add_argument(\"url\", help=\"The full post URL to scrape.\")\n    parser.add_argument(\n        \"--env-file\",\n        help=\"Optional legacy .env file containing a raw cookie header or SCRAPER_COOKIE_HEADER.\",\n    )\n    parser.add_argument(\n        \"--json\",",
+        "detail": "src.scraper.cli",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def main() -> None:\n    parser = argparse.ArgumentParser(description=\"Scrape all company posts from saved forum HTML files.\")\n    parser.add_argument(\"company\", help=\"Company folder name under inputs/, for example anthropic.\")\n    parser.add_argument(\n        \"--inputs-root\",\n        default=\"inputs\",\n        help=\"Root folder that contains per-company HTML directories.\",\n    )\n    parser.add_argument(\n        \"--outputs-root\",",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "run_company_scrape",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def run_company_scrape(\n    company: str,\n    *,\n    inputs_root: Path,\n    outputs_root: Path,\n    env_file: str | None = None,\n    max_pages: int = 1,\n    refresh_inputs: bool = False,\n) -> dict[str, object]:\n    if max_pages == 0 or max_pages < -1:",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_targets",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def collect_company_post_targets(input_dir: Path) -> list[str]:\n    return collect_company_post_targets_from_files(sorted_company_html_files(input_dir))\ndef collect_company_post_targets_from_files(html_files: list[Path]) -> list[str]:\n    targets: list[str] = []\n    seen_ids: set[str] = set()\n    for html_file in html_files:\n        for target in parse_post_targets_from_html_file(html_file):\n            post_id = extract_post_id(target)\n            if post_id in seen_ids:\n                continue",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_targets_from_files",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def collect_company_post_targets_from_files(html_files: list[Path]) -> list[str]:\n    targets: list[str] = []\n    seen_ids: set[str] = set()\n    for html_file in html_files:\n        for target in parse_post_targets_from_html_file(html_file):\n            post_id = extract_post_id(target)\n            if post_id in seen_ids:\n                continue\n            seen_ids.add(post_id)\n            targets.append(target)",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_metadata",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def collect_company_post_metadata(input_dir: Path) -> dict[str, list[str]]:\n    return collect_company_post_metadata_from_files(sorted_company_html_files(input_dir))\ndef collect_company_post_metadata_from_files(html_files: list[Path]) -> dict[str, list[str]]:\n    metadata_by_post_id: dict[str, list[str]] = {}\n    for html_file in html_files:\n        for record in parse_post_records_from_html_file(html_file):\n            metadata_by_post_id.setdefault(record.post_id, list(record.tags))\n    return metadata_by_post_id\ndef load_company_input_files(\n    company: str,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "collect_company_post_metadata_from_files",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def collect_company_post_metadata_from_files(html_files: list[Path]) -> dict[str, list[str]]:\n    metadata_by_post_id: dict[str, list[str]] = {}\n    for html_file in html_files:\n        for record in parse_post_records_from_html_file(html_file):\n            metadata_by_post_id.setdefault(record.post_id, list(record.tags))\n    return metadata_by_post_id\ndef load_company_input_files(\n    company: str,\n    *,\n    input_dir: Path,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "load_company_input_files",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def load_company_input_files(\n    company: str,\n    *,\n    input_dir: Path,\n    session,\n    refresh_inputs: bool,\n    max_pages: int,\n) -> list[Path]:\n    existing_html_files = sorted_company_html_files(input_dir)\n    if existing_html_files and not refresh_inputs:",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "limit_input_html_files",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def limit_input_html_files(html_files: list[Path], *, max_pages: int) -> list[Path]:\n    if max_pages == -1:\n        return list(html_files)\n    return list(html_files[:max_pages])\ndef sorted_company_html_files(input_dir: Path) -> list[Path]:\n    return sorted(input_dir.glob(\"*.html\"), key=_html_page_sort_key)\ndef fetch_company_input_pages(\n    company: str,\n    *,\n    input_dir: Path,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "sorted_company_html_files",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def sorted_company_html_files(input_dir: Path) -> list[Path]:\n    return sorted(input_dir.glob(\"*.html\"), key=_html_page_sort_key)\ndef fetch_company_input_pages(\n    company: str,\n    *,\n    input_dir: Path,\n    session,\n    max_pages: int,\n) -> list[Path]:\n    input_dir.mkdir(parents=True, exist_ok=True)",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_company_input_pages",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def fetch_company_input_pages(\n    company: str,\n    *,\n    input_dir: Path,\n    session,\n    max_pages: int,\n) -> list[Path]:\n    input_dir.mkdir(parents=True, exist_ok=True)\n    page = 1\n    last_dateline = 0",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_company_page_html",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def fetch_company_page_html(\n    company: str,\n    *,\n    page: int,\n    session,\n) -> str:\n    response = _rate_limited_get(\n        session,\n        build_company_page_url(company, page=page),\n        timeout=30.0,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_company_page_url",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def build_company_page_url(company: str, *, page: int) -> str:\n    company_slug = company.strip().lower()\n    if not company_slug:\n        raise ValueError(\"company must not be empty\")\n    return f\"https://www.1point3acres.com/interview/company/{company_slug}?page={page}\"\ndef download_post_assets(\n    post: ScrapedPost,\n    *,\n    post_id: str,\n    session,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "download_post_assets",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def download_post_assets(\n    post: ScrapedPost,\n    *,\n    post_id: str,\n    session,\n    image_root: Path,\n    attachment_root: Path,\n) -> tuple[int, int]:\n    image_count = _download_assets(post.images, post_id=post_id, session=session, output_root=image_root)\n    attachment_count = _download_assets(",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_asset_filename",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def build_asset_filename(url: str, *, post_id: str, index: int) -> str:\n    path = unquote(urlparse(url).path)\n    basename = Path(path).name\n    if basename:\n        return f\"{post_id}_{sanitize_filename(basename)}\"\n    return f\"{post_id}_asset-{index}\"\ndef sanitize_filename(filename: str) -> str:\n    sanitized = re.sub(r\"[^A-Za-z0-9._-]+\", \"_\", filename).strip(\"._\")\n    return sanitized or \"asset\"\ndef is_http_403_or_429_error(exc: Exception) -> bool:",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "sanitize_filename",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def sanitize_filename(filename: str) -> str:\n    sanitized = re.sub(r\"[^A-Za-z0-9._-]+\", \"_\", filename).strip(\"._\")\n    return sanitized or \"asset\"\ndef is_http_403_or_429_error(exc: Exception) -> bool:\n    if isinstance(exc, requests.HTTPError) and exc.response is not None:\n        return exc.response.status_code in {403, 429}\n    response = getattr(exc, \"response\", None)\n    return getattr(response, \"status_code\", None) in {403, 429}\ndef combine_company_posts(\n    company: str,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "is_http_403_or_429_error",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def is_http_403_or_429_error(exc: Exception) -> bool:\n    if isinstance(exc, requests.HTTPError) and exc.response is not None:\n        return exc.response.status_code in {403, 429}\n    response = getattr(exc, \"response\", None)\n    return getattr(response, \"status_code\", None) in {403, 429}\ndef combine_company_posts(\n    company: str,\n    *,\n    post_targets: list[str],\n    raw_posts_dir: Path,",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "combine_company_posts",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def combine_company_posts(\n    company: str,\n    *,\n    post_targets: list[str],\n    raw_posts_dir: Path,\n    output_path: Path,\n    post_metadata: dict[str, list[str]] | None = None,\n) -> Path:\n    display_company = company[:1].upper() + company[1:] if company else company\n    parts: list[str] = [f\"# {display_company}\", \"\"]",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "inject_post_tags_into_markdown",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def inject_post_tags_into_markdown(\n    markdown_content: str,\n    *,\n    tags: list[str],\n    published_date: str | None,\n) -> str:\n    position_type_tag = extract_position_type_tag(tags)\n    if not position_type_tag and not published_date:\n        return markdown_content\n    lines = markdown_content.splitlines()",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "extract_position_type_tag",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def extract_position_type_tag(tags: list[str]) -> str | None:\n    if len(tags) >= 4:\n        return tags[3]\n    return None\ndef build_summary(post_count: int, published_dates: list[str]) -> str:\n    if post_count == 0:\n        return \"This file contains 0 posts.\"\n    if not published_dates:\n        return f\"This file contains {post_count} posts.\"\n    return (",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_summary",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def build_summary(post_count: int, published_dates: list[str]) -> str:\n    if post_count == 0:\n        return \"This file contains 0 posts.\"\n    if not published_dates:\n        return f\"This file contains {post_count} posts.\"\n    return (\n        f\"This file contains {post_count} posts created between \"\n        f\"{min(published_dates)} and {max(published_dates)}.\"\n    )\ndef build_table_of_contents(markdown_content: str) -> str:",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "build_table_of_contents",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def build_table_of_contents(markdown_content: str) -> str:\n    toc_lines: list[str] = []\n    lines = markdown_content.splitlines()\n    pending_anchor_id: str | None = None\n    for index, line in enumerate(lines):\n        anchor_match = re.fullmatch(r'<a id=\"(?P<anchor>post-\\d+)\"></a>', line.strip())\n        if anchor_match:\n            pending_anchor_id = anchor_match.group(\"anchor\")\n            continue\n        if not line.startswith(\"# \"):",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "extract_published_date",
+        "kind": 2,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "def extract_published_date(markdown_content: str) -> str | None:\n    match = re.search(r\"`Published: (?P<date>\\d{4}-\\d{2}-\\d{2})\", markdown_content)\n    if match is None:\n        return None\n    return match.group(\"date\")",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "THREAD_PAGE_SIZE",
+        "kind": 5,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "THREAD_PAGE_SIZE = 20\nCOMPANY_PAGE_LIST_MIN_REQUEST_INTERVAL = 30.0\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Scrape all company posts from saved forum HTML files.\")\n    parser.add_argument(\"company\", help=\"Company folder name under inputs/, for example anthropic.\")\n    parser.add_argument(\n        \"--inputs-root\",\n        default=\"inputs\",\n        help=\"Root folder that contains per-company HTML directories.\",\n    )",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "COMPANY_PAGE_LIST_MIN_REQUEST_INTERVAL",
+        "kind": 5,
+        "importPath": "src.scraper.company",
+        "description": "src.scraper.company",
+        "peekOfCode": "COMPANY_PAGE_LIST_MIN_REQUEST_INTERVAL = 30.0\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Scrape all company posts from saved forum HTML files.\")\n    parser.add_argument(\"company\", help=\"Company folder name under inputs/, for example anthropic.\")\n    parser.add_argument(\n        \"--inputs-root\",\n        default=\"inputs\",\n        help=\"Root folder that contains per-company HTML directories.\",\n    )\n    parser.add_argument(",
+        "detail": "src.scraper.company",
+        "documentation": {}
+    },
+    {
+        "label": "REQUEST_COOKIE",
+        "kind": 5,
+        "importPath": "src.scraper.constants",
+        "description": "src.scraper.constants",
+        "peekOfCode": "REQUEST_COOKIE = \"\"",
+        "detail": "src.scraper.constants",
+        "documentation": {}
+    },
+    {
+        "label": "ForumPostRecord",
+        "kind": 6,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "class ForumPostRecord:\n    post_id: str\n    target: str\n    tags: tuple[str, ...]\ndef parse_post_ids_from_html_file(path: str | Path) -> list[str]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")\n    return parse_post_ids_from_html(html)\ndef parse_post_ids_from_html(html: str) -> list[str]:\n    post_ids: list[str] = []",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_ids_from_html_file",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_ids_from_html_file(path: str | Path) -> list[str]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")\n    return parse_post_ids_from_html(html)\ndef parse_post_ids_from_html(html: str) -> list[str]:\n    post_ids: list[str] = []\n    for target in parse_post_targets_from_html(html):\n        post_id = extract_post_id_from_target(target)\n        if post_id is not None:\n            post_ids.append(post_id)",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_ids_from_html",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_ids_from_html(html: str) -> list[str]:\n    post_ids: list[str] = []\n    for target in parse_post_targets_from_html(html):\n        post_id = extract_post_id_from_target(target)\n        if post_id is not None:\n            post_ids.append(post_id)\n    return post_ids\ndef parse_post_targets_from_html_file(path: str | Path) -> list[str]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_targets_from_html_file",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_targets_from_html_file(path: str | Path) -> list[str]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")\n    return parse_post_targets_from_html(html)\ndef parse_post_records_from_html_file(path: str | Path) -> list[ForumPostRecord]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")\n    return parse_post_records_from_html(html)\ndef parse_post_records_from_html(html: str) -> list[ForumPostRecord]:\n    soup = BeautifulSoup(html, \"html.parser\")",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_records_from_html_file",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_records_from_html_file(path: str | Path) -> list[ForumPostRecord]:\n    html_path = Path(path)\n    html = html_path.read_text(encoding=\"utf-8\", errors=\"ignore\")\n    return parse_post_records_from_html(html)\ndef parse_post_records_from_html(html: str) -> list[ForumPostRecord]:\n    soup = BeautifulSoup(html, \"html.parser\")\n    thread_items = soup.find_all(attrs={\"data-sentry-component\": \"ForumThreadItem\"})\n    records: list[ForumPostRecord] = []\n    seen_ids: set[str] = set()\n    for thread_item in thread_items:",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_records_from_html",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_records_from_html(html: str) -> list[ForumPostRecord]:\n    soup = BeautifulSoup(html, \"html.parser\")\n    thread_items = soup.find_all(attrs={\"data-sentry-component\": \"ForumThreadItem\"})\n    records: list[ForumPostRecord] = []\n    seen_ids: set[str] = set()\n    for thread_item in thread_items:\n        target = _find_first_post_target(thread_item)\n        if target is None:\n            continue\n        post_id = extract_post_id_from_target(target)",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_targets_from_html",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def parse_post_targets_from_html(html: str) -> list[str]:\n    soup = BeautifulSoup(html, \"html.parser\")\n    post_targets: list[str] = []\n    seen: set[str] = set()\n    thread_items = soup.find_all(attrs={\"data-sentry-component\": \"ForumThreadItem\"})\n    if thread_items:\n        for record in parse_post_records_from_html(html):\n            if record.target not in seen:\n                seen.add(record.target)\n                post_targets.append(record.target)",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "extract_post_id_from_target",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def extract_post_id_from_target(target: str) -> str | None:\n    match = POST_ID_PATTERN.search(target)\n    if match is None:\n        return None\n    for group in match.groups():\n        if group:\n            return group\n    return None\ndef _collect_post_targets(value: str, post_targets: list[str], seen: set[str]) -> None:\n    for match in POST_TARGET_PATTERN.finditer(value):",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "canonicalize_post_target",
+        "kind": 2,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "def canonicalize_post_target(target: str) -> str:\n    if target.startswith(\"http://\") or target.startswith(\"https://\"):\n        return target\n    return f\"{BASE_URL}{target}\"\ndef _find_first_post_target(thread_item) -> str | None:\n    for tag in thread_item.find_all(href=True):\n        href = tag.get(\"href\")\n        if not isinstance(href, str):\n            continue\n        match = POST_TARGET_PATTERN.search(href)",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "kind": 5,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "BASE_URL = \"https://www.1point3acres.com\"\nPOST_TARGET_PATTERN = re.compile(\n    r\"https://www\\.1point3acres\\.com/home/pins/\\d+\"\n    r\"|https://www\\.1point3acres\\.com/bbs/thread-\\d+-1-1\\.html\"\n    r\"|https://www\\.1point3acres\\.com/interview/post/\\d+\"\n    r\"|/home/pins/\\d+\"\n    r\"|/bbs/thread-\\d+-1-1\\.html\"\n    r\"|/interview/post/\\d+\"\n)\nPOST_ID_PATTERN = re.compile(",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "POST_TARGET_PATTERN",
+        "kind": 5,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "POST_TARGET_PATTERN = re.compile(\n    r\"https://www\\.1point3acres\\.com/home/pins/\\d+\"\n    r\"|https://www\\.1point3acres\\.com/bbs/thread-\\d+-1-1\\.html\"\n    r\"|https://www\\.1point3acres\\.com/interview/post/\\d+\"\n    r\"|/home/pins/\\d+\"\n    r\"|/bbs/thread-\\d+-1-1\\.html\"\n    r\"|/interview/post/\\d+\"\n)\nPOST_ID_PATTERN = re.compile(\n    r\"/home/pins/(\\d+)|/bbs/thread-(\\d+)-1-1\\.html|/interview/post/(\\d+)\"",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "POST_ID_PATTERN",
+        "kind": 5,
+        "importPath": "src.scraper.forum",
+        "description": "src.scraper.forum",
+        "peekOfCode": "POST_ID_PATTERN = re.compile(\n    r\"/home/pins/(\\d+)|/bbs/thread-(\\d+)-1-1\\.html|/interview/post/(\\d+)\"\n)\n@dataclass(frozen=True)\nclass ForumPostRecord:\n    post_id: str\n    target: str\n    tags: tuple[str, ...]\ndef parse_post_ids_from_html_file(path: str | Path) -> list[str]:\n    html_path = Path(path)",
+        "detail": "src.scraper.forum",
+        "documentation": {}
+    },
+    {
+        "label": "DownloadableAsset",
+        "kind": 6,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "class DownloadableAsset:\n    url: str\n    kind: str\n@dataclass(slots=True)\nclass ScrapedPost:\n    url: str\n    title: str\n    author: str | None\n    published_at: str | None\n    content: str",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "ScrapedPost",
+        "kind": 6,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "class ScrapedPost:\n    url: str\n    title: str\n    author: str | None\n    published_at: str | None\n    content: str\n    images: list[DownloadableAsset] = field(default_factory=list)\n    attachments: list[DownloadableAsset] = field(default_factory=list)\nclass RequestLimitExceededError(RuntimeError):\n    \"\"\"Raised when a scrape session exceeds the configured live-request cap.\"\"\"",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "RequestLimitExceededError",
+        "kind": 6,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "class RequestLimitExceededError(RuntimeError):\n    \"\"\"Raised when a scrape session exceeds the configured live-request cap.\"\"\"\ndef build_authenticated_session(\n    *,\n    cookie_header: str | None = None,\n    cookie_domain: str | None = None,\n    env_file: str | None = None,\n) -> requests.Session:\n    \"\"\"Build a requests session from local configuration.\"\"\"\n    env_path = env_file or (\".env\" if Path(\".env\").exists() else None)",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "build_authenticated_session",
+        "kind": 2,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "def build_authenticated_session(\n    *,\n    cookie_header: str | None = None,\n    cookie_domain: str | None = None,\n    env_file: str | None = None,\n) -> requests.Session:\n    \"\"\"Build a requests session from local configuration.\"\"\"\n    env_path = env_file or (\".env\" if Path(\".env\").exists() else None)\n    env_values = load_env_file(env_path) if env_path else {}\n    cookie_header = (",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_post",
+        "kind": 2,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "def scrape_post(\n    url: str,\n    session: requests.Session,\n    *,\n    timeout: float = 30.0,\n) -> ScrapedPost:\n    \"\"\"Fetch a post page with an authenticated session and parse its contents.\"\"\"\n    response = _rate_limited_get(session, url, timeout=timeout)\n    response.raise_for_status()\n    _save_debug_html(response.text, url=url, label=\"initial\")",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "apply_cookie_header",
+        "kind": 2,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "def apply_cookie_header(\n    session: requests.Session,\n    cookie_header: str,\n    *,\n    domain: str,\n) -> None:\n    \"\"\"Populate a session with cookies from a browser-style Cookie header.\"\"\"\n    for chunk in cookie_header.split(\";\"):\n        if \"=\" not in chunk:\n            continue",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "parse_post_html",
+        "kind": 2,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "def parse_post_html(html: str, *, url: str) -> ScrapedPost:\n    \"\"\"Parse post data from 1Point3Acres HTML.\"\"\"\n    soup = BeautifulSoup(html, \"html.parser\")\n    title = _extract_title(soup)\n    content, author, published_at, images, attachments = _parse_html_post_content(soup, url=url)\n    return ScrapedPost(\n        url=url,\n        title=title,\n        author=author,\n        published_at=published_at,",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "load_env_file",
+        "kind": 2,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "def load_env_file(path: str) -> dict[str, str]:\n    values: dict[str, str] = {}\n    with open(path, encoding=\"utf-8\") as env_file:\n        raw_content = env_file.read()\n    stripped_content = raw_content.strip()\n    if not stripped_content:\n        return values\n    content_lines = [\n        line.strip()\n        for line in stripped_content.splitlines()",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_MIN_REQUEST_INTERVAL",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "DEFAULT_MIN_REQUEST_INTERVAL = 10.0\nDEFAULT_REQUEST_INTERVAL_JITTER = 2.0\nDEFAULT_MAX_TOTAL_REQUESTS = 60\nDEFAULT_COOKIE_DOMAIN = \".1point3acres.com\"\nDEBUG_HTML_DIR = Path(\".tmp/raw_html\")\nATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_REQUEST_INTERVAL_JITTER",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "DEFAULT_REQUEST_INTERVAL_JITTER = 2.0\nDEFAULT_MAX_TOTAL_REQUESTS = 60\nDEFAULT_COOKIE_DOMAIN = \".1point3acres.com\"\nDEBUG_HTML_DIR = Path(\".tmp/raw_html\")\nATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_MAX_TOTAL_REQUESTS",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "DEFAULT_MAX_TOTAL_REQUESTS = 60\nDEFAULT_COOKIE_DOMAIN = \".1point3acres.com\"\nDEBUG_HTML_DIR = Path(\".tmp/raw_html\")\nATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",\n    \".ppt\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_COOKIE_DOMAIN",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "DEFAULT_COOKIE_DOMAIN = \".1point3acres.com\"\nDEBUG_HTML_DIR = Path(\".tmp/raw_html\")\nATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",\n    \".ppt\",\n    \".pptx\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG_HTML_DIR",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "DEBUG_HTML_DIR = Path(\".tmp/raw_html\")\nATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",\n    \".ppt\",\n    \".pptx\",\n    \".zip\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "ATTACHMENT_EXTENSIONS",
+        "kind": 5,
+        "importPath": "src.scraper.post",
+        "description": "src.scraper.post",
+        "peekOfCode": "ATTACHMENT_EXTENSIONS = {\n    \".pdf\",\n    \".doc\",\n    \".docx\",\n    \".xls\",\n    \".xlsx\",\n    \".ppt\",\n    \".pptx\",\n    \".zip\",\n    \".rar\",",
+        "detail": "src.scraper.post",
+        "documentation": {}
+    },
+    {
+        "label": "ParsePostHtmlTests",
+        "kind": 6,
+        "importPath": "tests.test_post",
+        "description": "tests.test_post",
+        "peekOfCode": "class ParsePostHtmlTests(unittest.TestCase):\n    def test_extracts_core_fields(self) -> None:\n        html = \"\"\"\n        <html>\n          <head>\n            <title>Fallback Title</title>\n          </head>\n          <body>\n            <div class=\"comiis_viewbox\">\n              <h1>How I Prepared for My Interview</h1>",
+        "detail": "tests.test_post",
+        "documentation": {}
+    }
+]

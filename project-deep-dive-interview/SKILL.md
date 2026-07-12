@@ -257,7 +257,7 @@ For each iteration:
 
 1. Pick the single highest-priority improvement from the internal list.
 2. Show the proposed edit for that one slide or section only. Quote the current text and show the replacement so the user can review the diff.
-3. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with two options: "Accept" (apply the change as shown) and "No, other suggestions" (the user types what to change instead). Do not patch files until the user accepts. If the user picks "No, other suggestions" and provides typed feedback, revise the proposal based on their input and show it again with the same accept/revise prompt.
+3. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with one option: "Accept" (apply the change as shown). The user can also select "Other" to type custom feedback. Do not patch files until the user accepts. If the user provides typed feedback instead, revise the proposal based on their input and show it again with the same prompt.
 4. Once approved, patch the presentation doc.
 5. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
 6. Verify numbering with `grep -n "^## Slide"`.
