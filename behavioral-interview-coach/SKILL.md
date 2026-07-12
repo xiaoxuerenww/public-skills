@@ -1,13 +1,13 @@
 ---
 name: behavioral-interview-coach
-description: "End-to-end behavioral interview prep for Staff/Senior Staff MLE and SWE roles with four modes: brainstorm candidate stories, grill one story for deeper detail, convert raw material into CARL-based interview scripts, and run realistic mock interviews with proactive notes and calibrated feedback. Works with input/0_requirements.md and durable outputs under output/."
+description: "End-to-end behavioral interview prep for Staff/Senior Staff MLE and SWE roles with four modes: brainstorm candidate stories, decode a question and select the best story, build stories from raw starters through grilling and CARL drafting, and run realistic mock interviews with calibrated feedback. Works with input/0_requirements.md and durable outputs under output/."
 ---
 
 # Behavioral Interview Coach
 
 **Purpose:** Help Julie prepare for Staff/Senior Staff behavioral interviews, especially frontier AI lab roles, by moving from raw career material to high-signal stories, concise interview scripts, and realistic mock feedback.
 
-Use this skill when the user asks to brainstorm behavioral stories, develop or pressure-test a story, write interview-ready bullets, practice behavioral questions, run a mock interview, or prepare for company/culture/leadership rounds.
+Use this skill when the user asks to brainstorm behavioral stories, decode a behavioral question, build or pressure-test a story, practice behavioral questions, run a mock interview, or prepare for company/culture/leadership rounds.
 
 ## Directory Structure
 
@@ -19,8 +19,6 @@ Use this skill when the user asks to brainstorm behavioral stories, develop or p
   output/
     story_library.md           # Polished story catalog with short openings, CARL depth, and Quick Story Map
     brainstorm_notes.md        # Raw candidate story ideas by topic/signal
-    grill_notes.md             # Probing questions, answers, gaps, and follow-up TODOs
-    interview_scripts.md       # Short bullet scripts for quick interview reference
     mock_feedback.md           # Mock notes, rubric scores, verdict, and next drills
     strength_examples.md       # Optional quick Staff+ evidence bullets
 ```
@@ -51,7 +49,7 @@ Use these folders as the default source and destination when no round-local `inp
 - Story brainstorming or grounding: read `03_story_bank/`, especially `03_story_bank/BQ_Story_Mapping.md`, `03_story_bank/BQ_story_bank.md`, `03_story_bank/L7_stories_brainstorm.md`, `03_story_bank/self_intro.md`, and `03_story_bank/stories/`.
 - Script outputs: write to `04_interview_scripts/`.
 - Company-specific outputs: write under `05_company_prep/<company>/`.
-- Mock and grill outputs: write to `06_mock_feedback/`.
+- Mock outputs: write to `06_mock_feedback/`.
 
 Path resolution priority:
 
@@ -63,15 +61,9 @@ Path resolution priority:
 ## Modes
 
 - **Brainstorm mode:** Find candidate stories for a topic, signal area, company value, or interview type.
-- **Grill mode:** Pressure-test one story with deep questions to surface missing detail, Staff+ signal, and credibility risks.
+- **Decode & Select mode:** Decode what a question is really testing, recommend the best story from the vault index, and explain why it fits.
 - **Story Builder mode:** Julie gives a story starter → Claude grills for BQ-relevant detail one question at a time → groups the full story into a signal category → drafts a CARL story → links to matching BQ questions in the vault.
-- **Script mode:** Convert raw material into short, plain-language, interview-ready bullet scripts.
 - **Mock mode:** Run a realistic interview, ask probing follow-ups, take notes, and share calibrated feedback.
-
-Compatibility aliases:
-- Old **solve mode** maps to Decode -> Select -> Deliver.
-- Old **learn mode** maps to Grill + Script.
-- Old **mock mode** maps to Mock.
 
 ## Core Framework
 
@@ -80,64 +72,6 @@ Behavioral prep follows **Decode -> Select -> Deliver**:
 1. **Decode:** Identify what the question is really testing: signal area, company value, cultural expectation, and interview type.
 2. **Select:** Choose the strongest story using `Scope > Relevance > Uniqueness > Recency`.
 3. **Deliver:** Start with a short spoken opening, then keep deeper CARL detail, follow-ups, and evidence ready for probing.
-
-## Solve Mode
-
-Use solve mode when the user asks to prepare for a behavioral round end-to-end, build a story library, create answer scripts, or convert a company/role brief into interview-ready behavioral prep.
-
-Solve mode follows **Decode -> Select -> Deliver**:
-
-### 1. Decode
-
-1. Read `input/0_requirements.md` and any referenced resume, company notes, role descriptions, rubrics, question banks, prior stories, or BQ vault files.
-2. Identify:
-   - Company and role.
-   - Interview type and likely interviewer lens.
-   - Target level: Staff or Senior Staff.
-   - Likely signal areas and company values.
-   - Repeated or high-priority prompts.
-   - Any logistics or facts that should not dominate the answer.
-3. Write the decoded round context into `output/brainstorm_notes.md` or the appropriate BQ vault output file.
-
-### 2. Select
-
-1. Search Julie's existing story bank first:
-   - Round-local `input/` and `output/story_library.md` when available.
-   - BQ vault `03_story_bank/BQ_Story_Mapping.md`, `03_story_bank/BQ_story_bank.md`, `03_story_bank/L7_stories_brainstorm.md`, `03_story_bank/self_intro.md`, and `03_story_bank/stories/`.
-2. If there is a good match, select and adapt that story instead of inventing a new one.
-3. Rank matched stories using `Scope > Relevance > Uniqueness > Recency`.
-4. Prefer stories with Staff+ evidence across 3-4 dimensions, especially:
-   - Technical judgment.
-   - Scope and impact.
-   - Ambiguity / problem framing.
-   - Cross-functional influence.
-   - Multiplier behavior.
-   - Communication / writing.
-5. Mark each story as `flagship`, `support`, or `not ready`.
-6. If no existing story is a strong match, brainstorm a new story by asking Julie focused questions before drafting:
-   - "What project or situation is closest to this signal?"
-   - "What was your personal decision or action?"
-   - "Who disagreed, depended on it, or changed direction?"
-   - "What changed because of your work?"
-   - "What artifact, process, or judgment outlasted the project?"
-7. Save matched candidates, rejected options, gaps, and new-story probes to `output/brainstorm_notes.md`.
-8. Promote only selected, credible stories into `output/story_library.md`.
-
-### 3. Deliver
-
-1. Convert selected stories into a short opening plus concise CARL bullets.
-2. Write reusable scripts to `output/interview_scripts.md`.
-3. Keep scripts fast to scan:
-   - Tags.
-   - Best for.
-   - Short opening from question keywords to Julie's genuine experience.
-   - Complete CARL story in bullets.
-   - Additional details / evidence / examples.
-   - Potential follow-ups.
-   - Avoid red flags.
-   - Connection with other stories.
-4. Keep `output/story_library.md`, `output/brainstorm_notes.md`, and `output/interview_scripts.md` consistent.
-5. Flag weak facts, uncertain metrics, or scope claims that need verification instead of filling gaps with invented precision.
 
 ### MLE Staff+ Lens
 
@@ -281,49 +215,49 @@ Use when the user asks for stories for a topic, prompt, company value, signal ar
 - Next probe:
 ```
 
-## Grill Mode
+## Decode & Select Mode
 
-Use when the user has one story or topic and needs deep probing before writing the final script.
+Use when the user shares a behavioral question and wants to know what it tests and which story to use.
 
 ### Workflow
 
-1. State the story/topic being grilled and the primary signal being tested.
-2. Ask **one deep question at a time**. Do not rewrite too early.
-3. Probe for:
-   - Exact personal contribution: "What did you decide?"
-   - Decision framework: "How did you know this was the right problem?"
-   - Alternatives rejected: "What did you consider and why did you reject it?"
-   - Ambiguity: "What was unknown, and how did you create clarity?"
-   - Conflict: "Who disagreed, why, and how did you resolve it?"
-   - Stakeholder influence: "Who changed their mind because of your work?"
-   - Metrics: "What was the baseline, denominator, and definition?"
-   - Impact: "What changed after your work?"
-   - Learning: "What would you do differently now?"
-   - MLE judgment: "How did you decide between data quality, architecture/model changes, infra, or product changes?"
-   - Evaluation: "What eval framework did you define, and how did you know it matched product or research goals?"
-   - Mismatch detection: "Did you catch any training/eval, offline/online, or metric/user-outcome mismatch?"
-   - Resource constraints: "How did compute, data, latency, safety, or alignment constraints change your prioritization?"
-   - Writing/leverage: "What did you write down that others reused: design doc, eval memo, rollout criteria, model card, postmortem?"
-4. Apply the credibility guardrails continuously.
-5. Write chronological notes to `output/grill_notes.md`.
-6. When the story is solid, merge only durable facts and framing into `output/story_library.md`.
+1. **Decode the question:**
+   - Identify the primary signal area (from the eight: Scope, Ownership, Ambiguity, Perseverance, Conflict Resolution, Growth, Communication, Leadership).
+   - Identify secondary signals and likely company values being probed.
+   - Name the interview type (behavioral screen, leadership, cross-functional, culture fit, etc.).
+   - Note any hidden traps or common weak-answer patterns for this question type.
 
-### Grill Notes Shape
+2. **Select the best story:**
+   - Read `03_story_bank/BQ_Story_Mapping.md` and `03_story_bank/BQ_story_bank.md` to scan the index.
+   - Rank candidate stories using `Scope > Relevance > Uniqueness > Recency`.
+   - Pick one lead story and one backup.
+
+3. **Explain the recommendation:**
+   - Why this story fits the decoded signal.
+   - Which Staff+ dimensions it covers.
+   - What angle or framing to lead with.
+   - What to avoid or de-emphasize.
+
+### Output Shape
 
 ```markdown
-# Grill Notes
+## Question: "<question text>"
 
-## Story: <title>
-- Primary signal:
-- Current hypothesis:
+### Decode
+- Primary signal: <signal area>
+- Secondary signals: <signal area>, <signal area>
+- Interview type: <type>
+- What they're really asking: <one sentence>
+- Common weak-answer trap: <one sentence>
 
-### Probe Log
-- Question:
-- Answer:
-- New detail:
-- MLE Staff+ evidence:
-- Gap/TODO:
-- Revised framing:
+### Recommended Story
+- **Lead:** <story title> — <why it fits, which Staff+ dimensions it hits>
+- **Backup:** <story title> — <when to use instead>
+
+### Framing Notes
+- Lead with: <angle>
+- De-emphasize: <what to avoid>
+- Key Staff+ evidence to surface: <specifics>
 ```
 
 ## Story Builder Mode
@@ -415,13 +349,15 @@ Present them as a linked table:
 For "Strong" fits, note the specific angle the story answers well.
 For "Partial" fits, note what additional detail would make it stronger.
 
-#### Phase 6 — Save
+#### Phase 6 — Humanize
 
-Save the completed story to `03_story_bank/stories/<story-title-slug>.md` using the Story Library format.
+Run `/humanizer` on the drafted story to remove AI writing patterns. The short opening and CARL bullets should sound like Julie speaking — plain, direct, no inflated language or AI-tell phrases.
 
-Update `03_story_bank/BQ_Story_Mapping.md` to add the story under its category.
+#### Phase 7 — Save & Update Index
 
-If a script is needed, write it to `04_interview_scripts/` following the default script shape.
+1. Save the completed story to `03_story_bank/stories/<story-title-slug>.md` using the Story Library format.
+2. Update `03_story_bank/BQ_Story_Mapping.md` to add the story under its category.
+3. Update `output/story_library.md` if it exists — add the story to the Quick Story Map and the appropriate section (Flagship or Support).
 
 ### Story Builder Output Shape
 
@@ -490,102 +426,8 @@ If a script is needed, write it to `04_interview_scripts/` following the default
 - If the story is too weak for Staff+ after grilling, say so clearly and suggest what would strengthen it, rather than over-polishing weak material.
 - Always confirm the story grouping with Julie before drafting.
 - Flag all uncertain metrics with `VERIFY` rather than inventing precision.
+- Always run `/humanizer` on the draft before saving — no exceptions.
 - After saving, tell Julie which BQ question this story best anchors so she can update her story map mentally.
-
-## Script Mode
-
-Use when the user asks to convert raw material, brainstorm notes, grill notes, or a story from the library into interview-ready talking points.
-
-The user's preferred style is **bullet points with short, plain language**. Do not over-polish into paragraphs unless explicitly asked.
-
-Script mode optimizes for live interview pacing:
-
-- The spoken script should be the opener plus optional follow-up hooks, not a full monologue.
-- Keep the first answer short; expect the interviewer to interrupt, redirect, or ask for evidence.
-- Put detailed CARL bullets, metrics, and Staff+ evidence under prep-only follow-up sections or an appendix.
-- Preserve useful raw details, examples, artifacts, and metric definitions even when they are not spoken upfront.
-- Do not write long narrative paragraphs or exhaustive action lists in the answer script.
-
-### Workflow
-
-1. Read the relevant source material from `input/` or `output/`.
-2. Decode the target topic/prompt and choose the story angle.
-3. Convert the material to a concise short opening plus 2-4 potential follow-ups.
-4. Keep the spoken answer script separate from prep notes; the script should be ready for interviewer interruption after any bullet.
-5. Add deeper CARL detail and evidence/examples as prep material with short answer bullets.
-6. Preserve extra supporting details in `3. Additional Details / Evidence / Examples` when they are credible but too detailed for the main script.
-7. Write scripts to `output/interview_scripts.md`.
-8. Keep `output/interview_scripts.md` consistent with `output/story_library.md`.
-
-### Default Script Shape
-
-```markdown
-# Interview Scripts
-
-## <Topic or Prompt>
-
-### Story: <title>
-- Tags: [Conflict] [Leadership] ...
-- Best for: <prompts/signals>
-
-#### 1. Short Opening
-2-3 sentences that connect the question keywords to Julie's genuine experience.
-
-- Key / strongest point:
-
-#### 2. Complete CARL Story
-- Context:
-- Actions:
-- Results:
-- Learning:
-
-#### 3. Additional Details / Evidence / Examples
-- Decision/tradeoff:
-- Rejected alternatives:
-- Stakeholder/conflict evidence:
-- Metrics/eval evidence:
-- Artifact/leverage:
-- Staff+ signal:
-- Metric definitions:
-- Concrete examples:
-- Written artifacts:
-- Extra implementation/detail:
-- Verification needed:
-
-#### 4. Potential Follow-ups
-- Q: ...
-  - ...
-
-#### 5. Avoid Red Flags
-- Don't say:
-- Don't overstate:
-
-#### 6. Connection With Other Stories
-- Related stories:
-- Backup story:
-- Contrast story:
-```
-
-For MLE Staff+ scripts, include a short evidence map when the story is substantial:
-
-```markdown
-#### Evidence Map
-- Technical judgment:
-- Scope/impact:
-- Ambiguity/problem framing:
-- Multiplier:
-- Cross-functional:
-- Communication/writing:
-```
-
-### Big Three Scripts
-
-Always support special scripts for:
-
-- **Tell me about yourself:** short professional summary, 2-3 role-relevant accomplishments, forward-looking fit.
-- **Flagship / favorite / most impactful project:** front-load impact, then use a table-of-contents structure for complex actions.
-- **Conflict:** high stakes, direct involvement, empathy, data or evidence, clear resolution, relationship afterward.
-- **Culture / values / why company:** use `Story -> My take -> Company connection`, and include one honest non-cynical critique when the company commonly probes for it.
 
 ## Mock Mode
 
@@ -784,17 +626,16 @@ Evaluate against these dimensions:
 ## Tips for Best Results
 
 - Brainstorm mode finds options; it should not over-polish.
-- Grill mode asks hard questions; it should not rescue weak facts by inventing.
-- Script mode creates quick-reference bullets; it should not produce long essays. The bullets should still sound natural when spoken.
+- Decode & Select mode recommends a story; it should not draft the full answer.
+- Story Builder mode grills then drafts; it should not rescue weak facts by inventing.
 - Mock mode behaves like an interviewer; it should not coach unless the user asks to pause.
-- Between rounds, review `interview_scripts.md`, then run a mock on the weakest signal area.
 
 ## Local References
 
 Read whatever the candidate provides, usually from `input/0_requirements.md` or `input/`. In Julie's BQ vault, use `/Users/xue/Documents/work/3_BQ` and the folder map above.
 
 - Resume, self-intro, prior interview prep, company notes, role descriptions, rubric, and question files.
-- Existing `output/` artifacts from prior brainstorm, grill, script, or mock sessions.
+- Existing `output/` artifacts from prior brainstorm, story builder, or mock sessions.
 - Existing BQ vault artifacts from `01_preferences_rubrics/`, `02_questions/`, `03_story_bank/`, `04_interview_scripts/`, `05_company_prep/`, and `06_mock_feedback/`.
 
 Ground all stories in real materials. If a referenced file is missing, continue from general Staff+ behavioral interviewing knowledge and state what is missing.
