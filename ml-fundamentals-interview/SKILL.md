@@ -1,6 +1,6 @@
 ---
 name: ml-fundamentals-interview
-description: ML/LLM fundamentals interview prep for Julie. Use for daily tracked quizzes, "quiz me", spaced review, LLM fundamentals drills, Staff/Senior Staff MLE technical-depth practice, Databricks topic prep, collect-question mode, solve mode for mock_question_bank answers, mock-question-bank setup, "learn ml fundamental" learn mode, "practice ml fundamental" practice mode, "mock ml fundamental" interview mode, session wrap-up cleanup with $file-cleaner, or explicit $ml-fundamentals-interview / $daily-ml-concept requests.
+description: ML/LLM fundamentals interview prep for Julie. Use for LLM fundamentals drills, Staff/Senior Staff MLE technical-depth practice, Databricks topic prep, collect-question mode, solve mode for mock_question_bank answers, mock-question-bank setup, "learn ml fundamental" learn mode, "practice ml fundamental" practice mode, "mock ml fundamental" interview mode, session wrap-up cleanup with $file-cleaner, or explicit $ml-fundamentals-interview requests.
 ---
 
 # ML/LLM Fundamentals Quiz
@@ -9,7 +9,6 @@ description: ML/LLM fundamentals interview prep for Julie. Use for daily tracked
 
 Run Staff/Senior Staff MLE fundamentals drills with these modes:
 
-- **Daily Quiz**: tracked no-repeat quiz with notes and pass/fail grading.
 - **Learn Mode**: show one grounded question, model answer, and follow-up immediately.
 - **Practice Mode**: run guided topic practice with answer attempts, keyword-level
   feedback, and companion notes when a topic directory is active.
@@ -34,19 +33,6 @@ parallelism, ZeRO, PagedAttention internals, or infrastructure sharding unless
 Julie explicitly asks for systems/distributed-training drills.
 
 ## Source Files
-
-Daily Quiz uses the tracked question bank:
-
-```text
-/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/2_ml-llm-fundamentals-QUIZ.md
-```
-
-Progress is tracked in:
-
-```text
-/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/ml_llm_daily_quiz_progress.json
-/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/ml_llm_daily_quiz_notes.md
-```
 
 Mock Mode sessions are saved in the active vault problem or topic directory:
 
@@ -75,9 +61,6 @@ files in `/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/`. Do not
 fabricate questions or answers from general knowledge when a source doc is
 available.
 
-In `ml_llm_daily_quiz_notes.md`, use the question text as the Markdown heading
-for each note entry.
-
 ## Mode Routing
 
 - If Julie says "learn ml fundamental", use Learn Mode.
@@ -90,8 +73,6 @@ for each note entry.
 - If Julie asks to solve, answer, create solutions for, generate answer keys
   for, or update `solution.md` from a topic `mock_question_bank.md`, use Solve
   Mode.
-- If Julie says "quiz me", "daily", "today's", asks for spaced review, or gives
-  no explicit learn/mock wording, use Daily Quiz.
 - If Julie names a topic in any mode, select a question from that topic.
 
 This skill is Q&A only: no coding exercises, no whiteboard systems prompts, and
@@ -104,7 +85,9 @@ session, use `$file-cleaner` before the final completion message if the active
 topic directory contains both `learn_notes.md` and `deep_dive.md`.
 
 Wrap-up signals include: "wrap up", "done for now", "end session", "finish",
-"stop here", "summarize session", or an explicit request to clean notes.
+"stop here", "summarize session", "end learn", "conclude learn", "exit learn",
+"wrap learning", "finish learning", or an explicit request to clean or
+consolidate notes.
 
 Use this workflow:
 
@@ -122,15 +105,10 @@ Use this workflow:
 4. If either file is missing, skip cleanup and mention the missing file briefly.
 5. Report the mode wrap-up artifacts and the file-cleaner result together.
 
-Do not run `$file-cleaner` after Daily Quiz unless Julie explicitly asks. Daily
-Quiz notes stay in `ml_llm_daily_quiz_notes.md` for spaced review tracking.
-
 ## Note-Taking Preferences
 
-Persist quiz notes automatically in `ml_llm_daily_quiz_notes.md`.
-
-When saving any Daily Quiz, Practice Mode, or Mock Mode answer, preserve the raw
-conversation evidence:
+When saving any Practice Mode or Mock Mode answer, preserve the raw conversation
+evidence:
 
 - Save Julie's answer as a raw quoted transcript block whenever possible, not
   only as a paraphrase.
@@ -148,11 +126,7 @@ Use this format for each recorded question:
 ## <question text>
 
 - Recorded: <timestamp>
-- Status: `<pass|fail>`
 - Verdict: `<pass|fail>`
-- Question ID: `<id>`
-- Times seen: <ask_count including the current attempt>
-- Section: <section path>
 - Topic: <topic>
 - Raw answer:
   > <Julie's answer verbatim when available>
@@ -178,88 +152,67 @@ Do not use timestamp, section, or topic as the heading. Do not hide weak areas
 behind vague encouragement. Keep notes concise but explicit enough to support
 spaced review.
 
-## Daily Quiz Flow
-
-1. Pick the next shuffled no-repeat question with:
-
-   ```bash
-   python3 /Users/xue/.codex/skills/ml-fundamentals-interview/scripts/pick_question.py
-   ```
-
-   This records the selected parent question and attached follow-ups as asked.
-   Use the `Question ID` and `Times seen` values from the output for answer
-   tracking and notes.
-2. Ask only the selected top-level parent question first. Do not show `Question ID`,
-   `Times seen`, `Section`, `Topic`, or "A strong answer should" criteria in
-   the live quiz prompt. Keep those details internal for tracking and later
-   feedback.
-3. Wait for the user's answer. Do not grade yet. Ask the attached follow-up
-   questions one at a time, in order, without revealing IDs or rubric metadata.
-   If Julie answers "I don't know" or equivalent, switch to Learn Mode Handling
-   immediately instead of asking the next follow-up or grading.
-4. After Julie has answered the parent and all follow-ups, critically assess
-   every answer. Give `pass` or `fail` for each question, including follow-ups.
-   Do not provide pass/fail feedback before the follow-up set is complete.
-   - `pass`: technically correct enough to survive Staff/Senior Staff follow-ups;
-     definitions are precise, mechanisms are causal, math is correct when
-     relevant, assumptions are named, and key failure modes or tradeoffs are covered.
-   - `fail`: incorrect, shallow, missing the central mechanism/math/tradeoff, or
-     not structured enough for a Staff+ interview.
-5. Record each question result after grading the complete set. Put the ideal
-   answer, raw answer, verdict, misses, and direct feedback in saved notes for
-   the parent and each follow-up:
-
-   ```bash
-   python3 /Users/xue/.codex/skills/ml-fundamentals-interview/scripts/pick_question.py \
-     --record-result QUESTION_ID \
-     --status pass \
-     --notes "Raw answer: ... Verdict: pass|fail. Misses: ... Feedback: ... Ideal answer: ... Drill next: ..."
-   ```
-
-6. Give the model answer after recording all results, with:
-   - crisp definition or thesis,
-   - key math or mechanism,
-   - practical failure modes and tradeoffs,
-   - Staff-level interview framing,
-   - concise per-question feedback.
-
 ## Learn Mode
 
 Triggered by "learn ml fundamental".
 
-Before answering, read:
+1. **Read-Along Q&A Loop:**
+   - Wait for the user's question.
+   - Answer the immediate question directly and stop cleanly.
+   - Do not proactively explain, continue, advance topics, or end with prompts.
 
-```text
-/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/2_ml-llm-fundamentals.md
-/Users/xue/Documents/work/0_databricks/0_db_ml_fundamental/2_ml-llm-fundamentals-ANSWERS.md
-```
+2. **Grounding:**
+   - Ground answers in local notes first: `<problem_dir>/learn_notes.md`,
+     `<problem_dir>/deep_dive.md`, and relevant bundled references.
+   - If the user provides web search results, use those results as grounding
+     and distinguish sourced facts from inference.
+   - If the user explicitly asks to search the web, search and cite sources
+     before answering.
+   - If local notes and provided results are insufficient, say what is inferred
+     and what is missing.
 
-Show one question with its model answer and one staff-level follow-up
-immediately. Do not record quiz progress or notes in this conversational mode.
+3. **Explanations:**
+   - Use plain language first, then technical depth if needed.
+   - Keep answers brief with necessary context and details.
+   - Use one compact example at most.
+   - Tie design choices back to requirements and L6+ signals.
+   - Highlight Staff+ interview phrasing when useful.
+   - Emphasize staff-level habits: identify the crux, cut unnecessary
+     complexity, make decisions, and connect ML choices to production
+     constraints.
 
-Use this strict format:
+4. **Auto-Notes:**
+   - After every interview-relevant user question, assistant answer, useful
+     clarification, or insight, record it in `<problem_dir>/learn_notes.md`.
+   - Do not wait for a separate note-taking request.
+   - If a later turn corrects or refines the idea, append a short refinement
+     note instead of rewriting history.
+   - Include:
+     - **Q:** Concise question
+     - **A:** comprehensive answer and explanation
+   - Do not record workflow, environment, IDE, file-conversion, or tooling
+     questions unless explicitly asked.
+   - Keep notes chronological and slightly raw, grouped by parent topic.
 
-```markdown
-**Q:** <interview question from the source docs>
+5. **Defer Deep-Dive Updates:**
+   - During active learn mode, write only to `<problem_dir>/learn_notes.md`.
+   - Do not merge, rewrite, or polish `<problem_dir>/deep_dive.md` until Julie
+     explicitly exits or wraps up learn mode.
+   - Stay in learn mode until Julie says `end learn`, `conclude learn`,
+     `exit learn`, `wrap learning`, `finish learning`, or asks to consolidate
+     learning notes.
+   - Do not treat generic `summarize`, `done`, `next`, or a topic change as
+     permission to exit learn mode unless it clearly refers to the learning
+     session.
 
-**A:** <concise model answer grounded in the docs: key equations, mechanisms, failure modes, essential bullets>
-
-**Follow-up Q:** <harder or adjacent question, preferably from Staff-Level Follow-ups>
-
-**Follow-up A:** <concise grounded answer>
-
----
-Next? (or pick a topic: linear regression / word2vec / transformers)
-```
-
-Rules:
-
-- One question per turn. Never dump multiple at once.
-- Rotate topics unless Julie picks one.
-- If Julie answers before reading, grade against the docs, name gaps, then show
-  the model answer.
-- On wrap-up, follow **Session Wrap-Up Cleanup** and run `$file-cleaner` when
-  the active topic directory has both `learn_notes.md` and `deep_dive.md`.
+6. **Wrap-Up:**
+   - On wrap-up, invoke `$file-cleaner` to consolidate
+     `<problem_dir>/learn_notes.md` into `<problem_dir>/deep_dive.md`.
+   - `$file-cleaner` regroups content from basic to advanced, removes
+     duplicates, and leaves `learn_notes.md` as a lightweight companion
+     buffer.
+   - Follow the full **Session Wrap-Up Cleanup** workflow (persist pending
+     notes first, then run `$file-cleaner`).
 
 ## Practice Mode
 
@@ -365,8 +318,8 @@ Optional input:
 
 If any required input is missing and cannot be inferred from the current note,
 selected file, `@file` references, or nearby topic directory, ask one concise
-clarification question. Do not silently fall back to the central Daily Quiz bank
-unless Julie explicitly includes it as a source document.
+clarification question. Do not silently fall back to the central source bank unless Julie explicitly
+includes it as a source document.
 
 Use this workflow:
 
@@ -529,7 +482,7 @@ Before reporting completion:
 Triggered by "mock ml fundamental".
 
 Before asking, decide whether Julie is using a topic directory with
-`mock_question_bank.md` or the central Daily Quiz source docs.
+`mock_question_bank.md` or the central Databricks source docs.
 
 - If a topic directory exists, read `mock_question_bank.md` for question
   selection, and read `solution.md` only after Julie answers for feedback and
@@ -551,8 +504,8 @@ Resolve the active mock file before asking:
 Append a dated section for each mock session to the resolved `mock.md`.
 Maintain a sibling scheduler file named `mock_tracker.md` in the same directory
 as the resolved `mock.md`.
-Do not record Daily Quiz progress in Mock Mode, but do proactively save mock
-notes after each answer and before moving to another question.
+Proactively save mock notes after each answer and before moving to another
+question.
 
 Do not create dated mock directories.
 
@@ -796,27 +749,25 @@ Rules:
 ## Learn Mode Handling
 
 If Julie answers "I don't know", "not sure", "no idea", or an equivalent
-unknown/blank answer during an active Daily Quiz:
+unknown/blank answer during Practice Mode or Mock Mode:
 
 1. Do not grade the question yet and do not continue to the next follow-up.
 2. Enter `learn-buddy` mode for the current question's core concept.
 3. Produce a concise interview-ready one-pager following `learn-buddy` rules,
    including the required saved Markdown note in `/Users/xue/Documents/work/0_inbox/`.
-4. After teaching, re-ask the same quiz question or ask Julie to retry it. Keep
-   the original question IDs and `Times seen` metadata for later grading.
+4. After teaching, re-ask the same question or ask Julie to retry it.
 5. Only record `pass`/`fail` after Julie retries or explicitly chooses to skip
    or move on.
 
 ## Move-On Handling
 
 If Julie asks for the next question, another question, to move on, to skip
-ahead, or changes topic while there is a current quiz question with an
-unrecorded answer, first record notes for the current question before picking
-the next one.
+ahead, or changes topic while there is a current question with an unrecorded
+answer, first record notes for the current question before moving on.
 
 - If she gave answers for the current parent/follow-up set, grade the completed
-  portion with `pass`/`fail`, record each result with `--record-result`, and
-  then move to the requested next question.
+  portion with `pass`/`fail` and save to the active mode's notes, then move to
+  the requested next question.
 - If she explicitly says she does not know, wants to skip, or gives no usable
   answer while asking to move on, record `fail` with notes that name the missing
   mechanism and the next drill target, then move to the requested next question.
@@ -825,55 +776,6 @@ the next one.
 - Do not silently abandon a current question. Every asked question should have
   either a graded result or an explicit skipped/unknown `fail` result
   before another question is selected.
-
-## Modes
-
-- If the user asks for "daily", "today's", or gives no topic, use the next
-  question from the shuffled no-repeat queue.
-- If the user asks for a specific topic, pass it as `--topic`, for example:
-
-  ```bash
-  python3 /Users/xue/.codex/skills/ml-fundamentals-interview/scripts/pick_question.py --topic attention
-  ```
-
-- If the user asks for a random question, pass `--random`.
-- If the user asks for multiple questions, pass `--count N` and quiz one at a
-  time unless they explicitly ask for a list.
-- If testing the script without changing progress, pass `--peek`.
-- If the question bank is missing or cannot be parsed, state the issue and ask
-  for the correct file path.
-
-## Tracking Rules
-
-- Always record asked questions unless the user explicitly asks to preview or
-  test without changing progress.
-- Always record the graded answer status after the user answers the full
-  parent/follow-up set.
-- Before selecting a new question, check whether the current question has an
-  unrecorded answer or skip. If yes, record it first according to Move-On
-  Handling.
-- Follow the Note-Taking Preferences exactly for `ml_llm_daily_quiz_notes.md`.
-- Keep result notes useful for review: exact `pass`/`fail` verdict, raw answer
-  transcript when available, highlighted misses, ideal answer, how many times
-  the question has been seen, and the next concept to revisit.
-- Use `fail` for answers that miss the central mechanism, math, or tradeoff.
-- Do not mark an answer `pass` unless it would survive Staff/Senior Staff
-  follow-ups.
-- The picker reshuffles after every full pass through the available question
-  scope, so repeats happen only after the scope is exhausted.
-
-## Updating The Question Bank
-
-When adding new questions to `2_ml-llm-fundamentals-QUIZ.md`:
-
-1. First search the existing bank for a semantically matching parent question.
-2. If a parent exists, add the new question as an indented follow-up under that
-   parent, using the next available unique `QNNN` ID.
-3. If no parent exists, add the new question as a new top-level parent in the
-   most relevant existing section, using the next available unique `QNNN` ID.
-4. Do not create a new section unless Julie explicitly asks for it.
-5. After editing, verify all question IDs are unique and the picker can parse
-   the bank.
 
 ## Assessment Standard
 
@@ -893,7 +795,7 @@ is not interview-ready, document it as `fail`.
 
 ## Response Style
 
-Keep live quiz turns short and mechanism-first. Push for depth when needed:
+Keep live turns short and mechanism-first. Push for depth when needed:
 "derive it", "what assumption are you making", "when does this fail", and
 "how would you validate it in production?"
 
@@ -901,8 +803,4 @@ After the user answers the full parent/follow-up set, lead with the pass/fail
 grades and the main critique before giving the model answer. Avoid praise
 padding; mention strengths only when they are specific and technically meaningful.
 
-For the initial quiz prompt, output only the main question text.
-
-The tracking notes above are part of the quiz workflow. Do not create additional
-Daily Quiz session logs unless the user asks. Mock Mode is the exception: always
-create and maintain the active `mock.md` session rollup.
+For the initial question prompt, output only the main question text.
