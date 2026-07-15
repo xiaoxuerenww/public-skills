@@ -335,36 +335,35 @@ Ask Julie to confirm or correct before moving to Phase 4.
 
 #### Phase 4 — CARL Draft
 
-Draft a full story using the grilled answers. Every story must use the standard drafting structure: tags, best for, a short opening that connects question keywords to Julie's genuine experience, complete CARL bullets, evidence/examples, follow-ups, red-flag avoids, and connections to other stories.
+Draft using the three-section output structure. The output is optimized for interview-day use: tags and question fit first, the speakable 2-min story second, organized raw evidence last.
 
-- **Tags:** Question tags and signal areas.
-- **Best for:** The prompts, signals, values, or interview types this story should anchor.
-- **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to Julie's real experience. Include one key or strongest point of the story so the interviewer immediately hears the signal.
-- **Complete CARL story:** Each CARL component must be in bullet point format. Use 2-4 bullets for Context, 5-8 for Actions, 2-4 for Results, and 1-3 for Learnings. Actions should carry the most detail.
-- **Two-minute version (section 2b):** After the bullet CARL, write a condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, but trimmed to ~2 minutes of speaking time. Each bullet should be a short, speakable sentence. Self-contained — the interviewer gets the full story arc without needing to probe.
-- **Additional details / evidence / examples:** Preserve metrics, definitions, artifacts, rejected alternatives, conflict details, implementation examples, and Staff+ evidence that are useful for probing but too detailed for the opening.
-- **Potential follow-ups:** 2-4 likely follow-up questions with short answer bullets.
-- **Avoid red flags:** 1-3 things not to say, overstate, or frame poorly.
-- **Connection with other stories:** Note related stories, contrast stories, backup stories, or adjacent signals so Julie can switch cleanly in an interview.
+**Section 1 — Tags & Best-For Questions:**
+- **Tags:** Question tags and signal areas from Phase 3 grouping.
+- **Primary / secondary signals and scope level** from Phase 3.
+- **Best-for questions table:** Read `02_questions/bq_question_bank.md` and identify the **top 3-5 questions** this story best answers. Present as a table with Question, Signal, and Fit (Strong / Good / Partial). For "Strong" fits, note the specific angle. For "Partial" fits, note what would make it stronger.
+
+**Section 2 — Two-Minute CARL Story:**
+- **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to Julie's real experience. Include one key or strongest point so the interviewer immediately hears the signal.
+- **Context:** 1-2 speakable bullets (~15 seconds). Brief setup, stakes, role, constraints.
+- **Actions:** 3-5 speakable bullets (~60-75 seconds). Concrete "I" actions, decisions, tradeoffs, influence. This is the center of the answer.
+- **Results:** 1-2 speakable bullets with metrics (~15 seconds). Include baseline and denominator when possible.
+- **Learnings:** 1 speakable bullet (~10 seconds). Specific reflection, changed behavior.
+- Each bullet must be a short, speakable sentence. Self-contained — an interviewer hearing only this version gets the full story arc without probing.
+
+**Section 3 — Raw Evidence & Detail (grouped by topic):**
+Preserve all grilled material organized into topic groups for follow-up prep and story regeneration:
+- **Decisions & Tradeoffs:** decisions made, alternatives rejected, reasoning.
+- **Stakeholders & Conflict:** who disagreed, how influence happened, relationship after.
+- **Metrics & Outcomes:** metric definitions with baseline/denominator, quantitative and qualitative results. Mark uncertain metrics with `VERIFY`.
+- **Technical Detail:** implementation specifics, ML/system choices, research-production tradeoffs.
+- **Artifacts & Leverage:** written artifacts, reusable processes, durable impact.
+- **Staff+ Evidence:** problem framing, cross-functional influence, people multiplier, org-level leverage.
+- **Growth & Reflection:** what would do differently, changed behavior, real difficulty acknowledged.
+- **Potential Follow-ups:** 2-4 likely follow-up questions with short answer bullets.
+- **Avoid Red Flags:** 1-3 things not to say, overstate, or frame poorly.
+- **Connection With Other Stories:** related, backup, and contrast stories.
 
 Flag `VERIFY` on uncertain metrics or facts rather than inventing precision.
-
-#### Phase 5 — BQ Question Linking
-
-After drafting, read `02_questions/bq_question_bank.md` and identify the **top 3–5 questions** this story best answers.
-
-Present them as a linked table:
-
-```markdown
-**Matching BQ Questions:**
-| # | Question | Signal | Fit |
-|---|----------|--------|-----|
-| 1 | <question text> | [Tag] | Strong / Good / Partial |
-| 2 | ... | | |
-```
-
-For "Strong" fits, note the specific angle the story answers well.
-For "Partial" fits, note what additional detail would make it stronger.
 
 #### Phase 6 — Humanize
 
@@ -378,64 +377,95 @@ Run `/humanizer` on the drafted story to remove AI writing patterns. The short o
 
 ### Story Builder Output Shape
 
+The output is organized for interview-day utility: scan tags and question fit first, rehearse the 2-min story second, dig into evidence only when prepping or regenerating.
+
 ```markdown
 # Story: <Title>
 
+## 1. Tags & Best-For Questions
+
 **Tags:** [Tag1] [Tag2]
-**Best for:** <prompt/signal 1>; <prompt/signal 2>; <prompt/signal 3>
+**Primary signal:** <signal area>
+**Secondary signals:** <signal area>, <signal area>
+**Scope level:** Senior / Staff / Senior Staff
 
-## 1. Short Opening
-2-3 sentences that connect the question keywords to Julie's genuine experience.
+**Best for questions:**
+| # | Question | Signal | Fit |
+|---|----------|--------|-----|
+| 1 | <question text> | [Tag] | Strong / Good / Partial |
+| 2 | ... | | |
+| 3 | ... | | |
 
-- Key / strongest point:
+## 2. Two-Minute CARL Story
 
-## 2. Complete CARL Story
+### Short Opening
+2-3 sentences that connect the question keywords to Julie's genuine experience. Include one key / strongest point so the interviewer immediately hears the signal.
+
 ### Context
-- ...
+- ... (1-2 speakable bullets, ~15 seconds)
 
 ### Actions
-- I ...
-- I ...
+- I ... (3-5 speakable bullets, ~60-75 seconds — the center of the answer)
 
 ### Results
-- ...
+- ... (1-2 speakable bullets with metrics, ~15 seconds)
 
 ### Learnings
-- ...
+- ... (1 speakable bullet, ~10 seconds)
 
-## 2b. Two-Minute Version
-Condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, trimmed to ~2 minutes of speaking time. Each bullet is a short, speakable sentence. Self-contained — an interviewer hearing only this version gets the full story arc, key actions, outcome, and takeaway without probing.
+## 3. Raw Evidence & Detail (grouped by topic)
 
-## 3. Additional Details / Evidence / Examples
-- Decision/tradeoff:
-- Rejected alternatives:
-- Stakeholder/conflict evidence:
-- Metrics/eval evidence:
-- Artifact/leverage:
-- Staff+ signal:
-- Metric definitions:
-- Concrete examples:
-- Written artifacts:
-- Extra implementation/detail:
-- Verification needed:
+Reference material for follow-ups, probing, or regenerating the story with a different angle.
 
-## 4. Potential Follow-ups
+### Decisions & Tradeoffs
+- Decision made:
+- Alternatives considered and why rejected:
+- Key tradeoff reasoning:
+
+### Stakeholders & Conflict
+- Who disagreed and why:
+- How influence happened:
+- Relationship after:
+
+### Metrics & Outcomes
+- Metric definitions (baseline, denominator, definition):
+- Quantitative results:
+- Qualitative outcomes:
+- Verification needed (VERIFY):
+
+### Technical Detail
+- Implementation specifics:
+- ML/system design choices:
+- Research-production tradeoffs:
+
+### Artifacts & Leverage
+- Written artifacts (docs, memos, postmortems, design docs):
+- Reusable processes or standards created:
+- Durable impact after leaving the project:
+
+### Staff+ Evidence
+- Problem framing / autonomous direction:
+- Cross-functional influence:
+- People multiplier / mentoring:
+- Org-level leverage:
+
+### Growth & Reflection
+- What would do differently:
+- What changed in future behavior:
+- Real difficulty or uncertainty acknowledged:
+
+### Potential Follow-ups
 - Q: ...
   - ...
 
-## 5. Avoid Red Flags
+### Avoid Red Flags
 - Don't say:
 - Don't overstate:
 
-## 6. Connection With Other Stories
+### Connection With Other Stories
 - Related stories:
 - Backup story:
 - Contrast story:
-
-## Matching BQ Questions
-| # | Question | Signal | Fit |
-|---|----------|--------|-----|
-| 1 | ... | [Tag] | Strong |
 ```
 
 ### Story Builder Rules
@@ -523,60 +553,76 @@ Use `output/story_library.md` as the polished source of truth.
 
 ## Flagship Stories
 ### Story 1: <title>
-- Tags:
-- Best for:
 
-#### 1. Short Opening
-2-3 sentences that connect the question keywords to Julie's genuine experience.
+#### 1. Tags & Best-For Questions
+**Tags:** [Tag1] [Tag2]
+**Primary signal:** <signal area>
+**Secondary signals:** <signal area>, <signal area>
+**Scope level:** Senior / Staff / Senior Staff
 
-- Key / strongest point:
+**Best for questions:**
+| # | Question | Signal | Fit |
+|---|----------|--------|-----|
+| 1 | ... | [Tag] | Strong |
 
-#### Evidence Map
-- Technical judgment:
-- Scope/impact:
-- Ambiguity/problem framing:
-- Multiplier:
-- Cross-functional:
-- Communication/writing:
+#### 2. Two-Minute CARL Story
 
-#### 2. Complete CARL Story
+##### Short Opening
+2-3 sentences connecting question keywords to Julie's genuine experience. One key / strongest point.
+
 ##### Context
-- ...
+- ... (1-2 speakable bullets)
 
 ##### Actions
-- ...
+- I ... (3-5 speakable bullets — center of the answer)
 
 ##### Results
-- ...
+- ... (1-2 speakable bullets with metrics)
 
 ##### Learnings
-- ...
+- ... (1 speakable bullet)
 
-#### 2b. Two-Minute Version
-Condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, trimmed to ~2 minutes of speaking time. Each bullet is a short, speakable sentence. Self-contained — an interviewer hearing only this version gets the full story arc, key actions, outcome, and takeaway without probing.
+#### 3. Raw Evidence & Detail (grouped by topic)
 
-#### 3. Additional Details / Evidence / Examples
-- Decision/tradeoff:
-- Rejected alternatives:
-- Stakeholder/conflict evidence:
-- Metrics/eval evidence:
-- Artifact/leverage:
-- Staff+ signal:
+##### Decisions & Tradeoffs
+- Decision made:
+- Alternatives rejected:
+
+##### Stakeholders & Conflict
+- Who disagreed:
+- How influence happened:
+
+##### Metrics & Outcomes
 - Metric definitions:
-- Concrete examples:
-- Written artifacts:
-- Extra implementation/detail:
-- Verification needed:
+- Quantitative results:
 
-#### 4. Potential Follow-ups
+##### Technical Detail
+- Implementation specifics:
+- ML/system choices:
+
+##### Artifacts & Leverage
+- Written artifacts:
+- Reusable processes:
+
+##### Staff+ Evidence
+- Problem framing:
+- Cross-functional influence:
+- People multiplier:
+- Org-level leverage:
+
+##### Growth & Reflection
+- What would do differently:
+- Changed behavior:
+
+##### Potential Follow-ups
 - Q:
   - ...
 
-#### 5. Avoid Red Flags
+##### Avoid Red Flags
 - Don't say:
 - Don't overstate:
 
-#### 6. Connection With Other Stories
+##### Connection With Other Stories
 - Related stories:
 - Backup story:
 - Contrast story:
@@ -589,16 +635,15 @@ Condensed version with explicit **Context / Actions / Results / Learnings** head
 
 Run this when the library grows, when merging grill notes, or when asked:
 
-- One flowing CARL narrative per story.
-- Every story has a short opening that can stand alone before deeper probing.
-- Additional details / evidence / examples are separate from the opener so Julie can answer interruptions without overloading the first response.
-- Supporting details are preserved in the evidence/examples and potential-followup sections, not lost during script tightening.
+- Every story follows the three-section structure: (1) Tags & Best-For Questions, (2) Two-Minute CARL Story, (3) Raw Evidence & Detail grouped by topic.
+- The two-minute CARL story is self-contained and speakable — no detail that requires additional context to make sense.
+- Raw evidence is organized by topic group (Decisions, Stakeholders, Metrics, Technical, Artifacts, Staff+, Growth), not as a flat list.
+- Supporting details are preserved in the evidence section, not lost during script tightening.
+- Best-for questions table is populated and up to date with the question bank.
 - Role-lens framing integrated into the story, not bolted on afterward.
-- Spoken content separated from prep notes.
+- Spoken content (section 2) separated from reference material (section 3).
 - Near-duplicates merged or clearly differentiated.
 - Sequential numbering and synced Quick Story Map.
-- Short and deep-dive versions of flagship stories reconciled.
-- Every flagship story has a two-minute version (section 2b) that is consistent with the bullet CARL.
 - Stale TODOs removed after completion.
 
 ## Credibility & Calibration Guardrails
