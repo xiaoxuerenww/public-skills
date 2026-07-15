@@ -341,6 +341,7 @@ Draft a full story using the grilled answers. Every story must use the standard 
 - **Best for:** The prompts, signals, values, or interview types this story should anchor.
 - **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to Julie's real experience. Include one key or strongest point of the story so the interviewer immediately hears the signal.
 - **Complete CARL story:** Each CARL component must be in bullet point format. Use 2-4 bullets for Context, 5-8 for Actions, 2-4 for Results, and 1-3 for Learnings. Actions should carry the most detail.
+- **Two-minute version (section 2b):** After the bullet CARL, write a condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, but trimmed to ~2 minutes of speaking time. Each bullet should be a short, speakable sentence. Self-contained — the interviewer gets the full story arc without needing to probe.
 - **Additional details / evidence / examples:** Preserve metrics, definitions, artifacts, rejected alternatives, conflict details, implementation examples, and Staff+ evidence that are useful for probing but too detailed for the opening.
 - **Potential follow-ups:** 2-4 likely follow-up questions with short answer bullets.
 - **Avoid red flags:** 1-3 things not to say, overstate, or frame poorly.
@@ -401,6 +402,9 @@ Run `/humanizer` on the drafted story to remove AI writing patterns. The short o
 
 ### Learnings
 - ...
+
+## 2b. Two-Minute Version
+Condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, trimmed to ~2 minutes of speaking time. Each bullet is a short, speakable sentence. Self-contained — an interviewer hearing only this version gets the full story arc, key actions, outcome, and takeaway without probing.
 
 ## 3. Additional Details / Evidence / Examples
 - Decision/tradeoff:
@@ -548,6 +552,9 @@ Use `output/story_library.md` as the polished source of truth.
 ##### Learnings
 - ...
 
+#### 2b. Two-Minute Version
+Condensed version with explicit **Context / Actions / Results / Learnings** headers and bullet points under each. Same CARL structure as the full story, trimmed to ~2 minutes of speaking time. Each bullet is a short, speakable sentence. Self-contained — an interviewer hearing only this version gets the full story arc, key actions, outcome, and takeaway without probing.
+
 #### 3. Additional Details / Evidence / Examples
 - Decision/tradeoff:
 - Rejected alternatives:
@@ -591,6 +598,7 @@ Run this when the library grows, when merging grill notes, or when asked:
 - Near-duplicates merged or clearly differentiated.
 - Sequential numbering and synced Quick Story Map.
 - Short and deep-dive versions of flagship stories reconciled.
+- Every flagship story has a two-minute version (section 2b) that is consistent with the bullet CARL.
 - Stale TODOs removed after completion.
 
 ## Credibility & Calibration Guardrails
