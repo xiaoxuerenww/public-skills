@@ -248,6 +248,37 @@ Content rules:
 - Organize by topic, not by slide. Plan mode will later decide what goes on which slide.
 - Expand abbreviations on first use, for example `Gradient Boosted Decision Tree (GBDT)` and `Deep Neural Network (DNN)`.
 
+### 6. Consistency check
+
+After generating or substantially updating `_deep_dive.md`, run a consistency check before moving to plan mode. This catches contradictions and gaps while the material is fresh and the user is still available to clarify.
+
+**What to check:**
+
+| Dimension | What to verify | Example failure |
+|---|---|---|
+| **Factual correctness** | Numbers, dates, team sizes, launch timelines, and technology names are internally consistent across all sections. The same fact is not stated differently in two places. | "Main story" says 3-month timeline, "Results" says 6 months. |
+| **Statement consistency** | Ownership claims ("I" vs. "we"), role descriptions, and scope boundaries do not contradict each other across sections. The candidate's contribution is described the same way everywhere. | "Role and ownership" says "I designed the serving layer," but "Core technical decisions" says "the team designed the serving layer." |
+| **Philosophy alignment** | The storytelling philosophy (section at the top of this skill) is reflected in the collected material. All six questions are answerable from the material: why this project, your role, technical tradeoffs, challenges, how you measured success, and reusable patterns from retro. | Material has strong architecture content but no reusable-pattern story, leaving the "retro elevated to transferable principles" gap unfilled. |
+| **Metrics consistency** | Every metric cited in "Results and impact" traces back to a definition or context in an earlier section. Units, baselines, and comparison periods are consistent. ROI cost and return numbers are compatible. No metric appears without context for what it measures and why it matters. | "Results" claims "40% latency reduction" but no section defines the baseline latency or measurement method. |
+
+**How to run the check:**
+
+1. Re-read `_deep_dive.md` end to end after generation.
+2. For each dimension, list any inconsistencies or gaps found.
+3. If inconsistencies exist, fix the ones that have a clear correct answer from source material. For ambiguous ones, add them to the quiz question list and flag them as `consistency gap: needs user clarification`.
+4. Append a brief consistency check summary to the reference section of `_deep_dive.md`:
+
+```text
+## Consistency check
+- **Date:** <date>
+- **Factual correctness:** <pass | N issues found — list>
+- **Statement consistency:** <pass | N issues found — list>
+- **Philosophy alignment:** <pass | gaps: list missing philosophy questions>
+- **Metrics consistency:** <pass | N issues found — list>
+```
+
+5. If any gaps were added to the quiz question list, continue collection-mode quizzing to resolve them before proceeding.
+
 ## Plan mode
 
 Use plan mode after collection is complete (or when enough material exists) to define the presentation outline before drafting full slide content.
