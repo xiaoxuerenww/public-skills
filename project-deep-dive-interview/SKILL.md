@@ -1,6 +1,6 @@
 ---
 name: project-deep-dive-interview
-description: "Collect, plan, polish, and drill project deep-dive interview materials for Staff/Senior Staff MLE or SWE roles at frontier AI labs. Use when the user asks to prepare a project deep dive, turn project notes into a single _deep_dive.md doc, quiz them to confirm assumptions and fill gaps, design a presentation outline with storytelling flow and depth/breadth balance, iteratively polish each presentation slide/section, or pressure-test a technical/execution area through drill questions. Outputs are Markdown artifacts."
+description: "Collect, outline, polish, and drill project deep-dive interview materials for Staff/Senior Staff MLE or SWE roles at frontier AI labs. Use when the user asks to prepare a project deep dive, turn project notes into a single _deep_dive.md doc, quiz them to confirm assumptions and fill gaps, design a presentation outline with storytelling flow and key topics per page, iteratively polish each presentation slide/section, or pressure-test a technical/execution area through drill questions. Outputs are Markdown artifacts."
 ---
 
 # Project Deep Dive Interview
@@ -11,7 +11,22 @@ Use this skill for project-focused interviews where the interviewer tests depth,
 
 ### Storytelling philosophy
 
-The presentation must explain high-level business value and domain-specific concepts in plain, accessible language. An interviewer who is not in your sub-domain should follow the story. Every project deep dive must answer six questions clearly:
+The presentation must explain high-level business value and domain-specific concepts in plain, accessible language. An interviewer who is not in your sub-domain should follow the story.
+
+#### Narrative craft principles
+
+- Opening hook: lead with the tension, not the solution
+- Audience calibration: assume smart non-domain interviewer
+- One-sentence thesis as the backbone
+- Tension before resolution at every level (project, slide, sentence)
+- Concrete over abstract: specific numbers, names, dates anchor credibility
+- "So what" checkpoint: every section must answer why the audience should care
+- Pacing: front-load context fast, spend time on decisions and judgment
+- Transitions as connective tissue: each slide should logically follow the previous
+- The "I" thread: ownership woven throughout, not dumped in one place
+- Closing the loop: retro connects back to the opening tension
+
+Every project deep dive must answer six questions clearly:
 
 1. **Why this project.** What was the business problem, who was affected, and why did it matter enough to invest in. Start from user/business pain, not from the technology.
 2. **Your role and contribution.** Were you the TL, the architect, the hands-on coder, or all three? Be precise about what you personally drove vs. what the team did. "I designed the serving architecture and wrote the inference pipeline; the team built the training infra" is clear. "We built a system" is not.
@@ -23,7 +38,7 @@ The presentation must explain high-level business value and domain-specific conc
 All outputs must be Markdown. Do not create PPTX or Google Slides unless the user explicitly asks. Project deep-dive content uses two files per project:
 
 - `projects/<project_slug>/_deep_dive.md` — raw collected material (collection mode), then presentation slides + reference material (after polish). The content artifact.
-- `projects/<project_slug>/_outline.md` — presentation outline (plan mode). The planning artifact: narrative arc, slide structure, time budgets, depth allocation, flex plan, grading coverage, and Q&A prep.
+- `projects/<project_slug>/_outline.md` — presentation outline (outline mode). The planning artifact: narrative arc, storytelling flow, key points and topics per page.
 
 ## Workspace resolution
 
@@ -62,18 +77,18 @@ If the user asks for "chat only", do not write files. Otherwise, create or updat
 Only use these modes:
 
 - **Collection mode:** Gather raw project information. Scan existing materials, create a quiz question list, make reasonable assumptions, quiz the user one question per turn to confirm and fill gaps, then output all raw material into `_deep_dive.md` organized by topic (main story, follow-up/deep-dive material, evidence status). No slide structure or presentation layout.
-- **Plan mode:** Design the presentation outline from collected material. Define 10-20 slides with storytelling flow, time budgets, depth allocation, flex plan, and grading coverage. Outputs to `_outline.md`. Does not draft slide content.
+- **Outline mode:** Design the presentation outline from collected material. A lightweight doc with storytelling flow, key points, and topics per page. Outputs to `_outline.md`. Does not draft slide content.
 - **Polish mode:** Let the user review every slide/section in the presentation part of `_deep_dive.md`, suggest changes, repeat until the user is satisfied.
 - **Drill mode:** Pressure-test one part of the project, answer questions from source material, and save stabilized gaps or explanations into the reference sections of `projects/<project_slug>/_deep_dive.md`, with any compact speaking anchors reflected in the presentation slides section.
 
 Infer the mode from the request:
 
 - If the user says `collect`, `prepare`, `turn notes into a project deep dive`, or asks to gather project material, use collection mode.
-- If the user says `plan`, `design`, `outline`, `define the structure`, `storytelling flow`, or asks for a presentation outline, use plan mode.
+- If the user says `plan`, `outline`, `design`, `define the structure`, `storytelling flow`, or asks for a presentation outline, use outline mode.
 - If the user asks to `polish`, `review slide`, `improve slide`, or iterate on the presentation slides, use polish mode.
 - If the user says `drill`, `pressure test`, `go deeper`, or asks about one component or follow-up answer, use drill mode.
 
-Do not use separate slide, mock, review, evidence, or index modes. If the user asks for those older words, route the work into collection, plan, polish, or drill as appropriate.
+Do not use separate slide, mock, review, evidence, or index modes. If the user asks for those older words, route the work into collection, outline, polish, or drill as appropriate.
 
 ## Output pattern
 
@@ -82,9 +97,9 @@ Project output goes into two files per project:
 | File | Written by | Purpose |
 |---|---|---|
 | `projects/<project_slug>/_deep_dive.md` | Collection, polish, drill | Raw material (collection), then presentation slides + reference material (after polish) |
-| `projects/<project_slug>/_outline.md` | Plan | Presentation outline: narrative arc, slide structure, time budgets, grading coverage, flex plan, Q&A prep |
+| `projects/<project_slug>/_outline.md` | Outline | Presentation outline: narrative arc, storytelling flow, key points and topics per page |
 
-The workflow is: **collect** raw info into `_deep_dive.md`, **plan** the slide structure in `_outline.md`, then **polish** drafts slide content back into `_deep_dive.md` following the approved outline.
+The workflow is: **collect** raw info into `_deep_dive.md`, **outline** the storytelling flow in `_outline.md`, then **polish** drafts slide content back into `_deep_dive.md` following the approved outline.
 
 After polish mode populates slides, `_deep_dive.md` has two major parts:
 
@@ -198,7 +213,7 @@ Next question: <one question>
 
 ### 5. Output raw material into `_deep_dive.md`
 
-Create or update `projects/<project_slug>/_deep_dive.md` as the raw material repository. Collection mode does **not** create slide structure or presentation layout. That is plan mode's job.
+Create or update `projects/<project_slug>/_deep_dive.md` as the raw material repository. Collection mode does **not** create slide structure or presentation layout. That is outline mode's job.
 
 Use this structure:
 
@@ -245,12 +260,12 @@ Content rules:
 - Preserve raw technical details even if they are messy. Do not summarize away useful evidence.
 - Use `needs verification` markers for unresolved claims.
 - Keep full evidence, extended tradeoff analysis, backup answers to likely follow-ups, and verification notes.
-- Organize by topic, not by slide. Plan mode will later decide what goes on which slide.
+- Organize by topic, not by slide. Outline mode will later decide what goes on which slide.
 - Expand abbreviations on first use, for example `Gradient Boosted Decision Tree (GBDT)` and `Deep Neural Network (DNN)`.
 
 ### 6. Consistency check
 
-After generating or substantially updating `_deep_dive.md`, run a consistency check before moving to plan mode. This catches contradictions and gaps while the material is fresh and the user is still available to clarify.
+After generating or substantially updating `_deep_dive.md`, run a consistency check before moving to outline mode. This catches contradictions and gaps while the material is fresh and the user is still available to clarify.
 
 **What to check:**
 
@@ -279,141 +294,78 @@ After generating or substantially updating `_deep_dive.md`, run a consistency ch
 
 5. If any gaps were added to the quiz question list, continue collection-mode quizzing to resolve them before proceeding.
 
-## Plan mode
+## Outline mode
 
-Use plan mode after collection is complete (or when enough material exists) to define the presentation outline before drafting full slide content.
+Use outline mode after collection is complete (or when enough material exists) to define the presentation outline before drafting full slide content. The output is a lightweight doc: storytelling flow, key points, and topics per page. No dense content drafting.
 
-The presentation must fit a **20-25 minute candidate presentation** followed by **25-30 minutes of interviewer Q&A**. Design the outline to hit this time budget. Multiple candidates report this round as the highest-leverage on the loop.
+The presentation must fit a **20-25 minute candidate presentation** followed by **25-30 minutes of interviewer Q&A**.
 
-### Design philosophy
+### Storytelling flow
 
-Every outline decision — which slides exist, how deep each goes, where time is spent — must serve the grading axes interviewers evaluate on. These are not a checklist to verify at the end; they are the lens through which the outline is designed from the start.
+The outline is a narrative arc, not a content dump. Every page exists to advance the story.
 
-**Presentation structure principle:** Lead with breadth at Staff level, reserve depth for follow-up. The outline should demonstrate command of the full project landscape first, then go deep on 2-3 decision points. An outline that dives deep immediately without establishing breadth signals IC-level scope, not Staff.
+#### Narrative arc shape
 
-| Axis | What it means for the outline |
-|---|---|
-| **Problem clarity** | The audience must understand the stakes within the first 2 minutes. If the problem is not crisp and compelling early, the interviewer spends the rest of the talk wondering why this project matters. Lead with "why it mattered," not "what I built." Include why this project was important to the company or team, not just the technical challenge. |
-| **Architecture and alternatives** | The outline must dedicate its deepest slides to decisions, not descriptions. For every major choice, the outline allocates space for the road not taken and the reasoning. A slide that only describes what was built without why-not-X is incomplete. |
-| **Ownership precision** | Ownership is not a single slide; it is threaded throughout. Every slide should make clear what "I" drove vs. what the team did. The outline should mark where ownership claims land so they are distributed, not clustered in one place. |
-| **Incremental planning** | The outline must show how the candidate broke complex work into milestones, balanced short-term delivery with long-term goals, and navigated constraints (timelines, cross-functional dependencies, organizational challenges). This is where Staff-level execution judgment shows: not just what was built, but the sequencing strategy, how technical debt was managed, and how scalability and sustainability were weighed against shipping speed. |
-| **Quality and correctness** | At least one slide must address how the candidate ensured quality: testing strategy, correctness guarantees, performance validation, and any statistical analysis used. Interviewers probe whether rigor was real or performative. |
-| **Rollout and de-risking** | The outline allocates space for how the project was launched, what gates controlled risk, and how the candidate measured impact at scale. This is not an afterthought appendix slide; it demonstrates operational maturity. |
-| **Quantified impact** | Numbers must appear on impact slides and be echoed in the thesis. The outline should identify which specific metrics (success metrics, KPIs, before/after comparisons) the candidate will state and ensure they are supported by collected evidence. No slide should claim impact without a number. |
-| **Reflective depth** | The ending must go beyond "it worked." The outline allocates time for what surprised the candidate, what they would redesign, and what the next version looks like. Two concrete hindsight answers, not platitudes. Crucially, retro learnings must be **elevated to reusable patterns**: show how a lesson from this project became a principle or framework applied to subsequent work. This is the move that separates "I shipped a project" from "I extract transferable engineering judgment that compounds." This is where Staff+ judgment shows. |
+- Setup / rising action / climax / resolution structure
+- Where the "turn" happens (the moment the project got hard)
+- Emotional arc: curiosity, tension, resolution, reflection
+- Foreshadowing: plant constraints early that pay off in decision pages
+- The "villain": what force was working against you (latency, data sparsity, org friction)
+- Callback structure: retro page echoes the opening problem statement
 
-When designing slides, ask: "Which grading axis does this slide serve?" If the answer is none, the slide is filler — cut it or repurpose it.
+#### Sequencing principles
 
-### 1. Review collected material
+- Problem before solution
+- Constraint before decision
+- Decision before outcome
+- Outcome before retro
+- Lead with breadth at Staff level, reserve depth for follow-up
+- Front-load context fast, spend time on decisions and judgment
 
-Read `_deep_dive.md` reference material and source inventory. Identify the core narrative: the hard problem, the candidate's role, the key decisions, and the outcome.
+### Grading axes
 
-Pick a project that maps to the target team's domain when possible, but a sharp deep-dive on a tangentially-related project beats a shallow one on a perfectly-matched project.
+Every page must serve at least one grading axis. If it serves none, cut or repurpose it.
 
-### 2. Define the narrative arc
+- Problem clarity
+- Architecture and alternatives
+- Ownership precision
+- Incremental planning
+- Quality and correctness
+- Rollout and de-risking
+- Quantified impact
+- Reflective depth (retro elevated to reusable patterns)
 
-Design a 10-20 slide outline that tells a coherent story. Each slide entry specifies:
+### Steps
 
-- **Slide number and title.**
-- **Purpose:** One sentence on what this slide accomplishes in the narrative.
-- **Grading axis:** Which interviewer grading criteria this slide serves (may cover more than one).
-- **Time budget:** Estimated minutes for this slide. The total must sum to 20-25 minutes.
-- **Depth allocation:** Whether this slide gets shallow coverage (context-setting, 30-60 seconds) or deep coverage (technical meat, 2-3 minutes). The total should balance: roughly 30% context/framing, 50% technical depth, 20% impact/retro.
-- **Key content:** 2-3 bullet anchors of what goes here.
+1. **Review collected material.** Read `_deep_dive.md`. Identify the core narrative: the hard problem, the candidate's role, the key decisions, and the outcome.
+2. **Design the storytelling flow.** Write 10-20 pages. For each page: title, one-sentence purpose, which grading axes it serves, 2-3 topic bullets. Keep it lightweight.
+3. **Mark depth allocation.** Go deep on 2-3 pages (hardest decisions, core tradeoffs). Go broad on context pages. Roughly 30% context, 50% technical depth, 20% impact/retro.
+4. **Identify the 2-minute version.** Mark 3-5 pages that alone convey the core story if time is cut short.
+5. **Grading coverage check.** Verify every grading axis maps to at least one page. Flag gaps.
+6. **Output to `_outline.md`.** Write the outline as a standalone lightweight doc.
 
-### 3. Balance depth vs. breadth
+### Output format
 
-Apply these principles:
-
-- **Go deep on 2-3 slides** that cover the hardest technical decisions, the core tradeoffs, and the candidate's unique judgment. These are the slides the interviewer will drill into.
-- **Go broad on context slides** (problem framing, system overview, team structure). Keep them lean so the audience orients quickly without losing patience.
-- **Cut slides that repeat** the same point. Merge or drop rather than pad.
-- **Sequence for storytelling:** Problem before solution. Constraint before decision. Decision before outcome. Outcome before retro.
-- **Identify the "2-minute version":** Mark 3-5 slides that, alone, would convey the project's core story if time is cut short.
-- **Watch the time.** Candidates who get stuck on early slides and run short on Q&A send a negative signal. Front-load context slides at shallow depth so the presentation reaches impact and retro with time to spare.
-- **Ensure alternatives-considered coverage.** At least one slide must present architecture choices alongside alternatives not taken and why. Interviewers grade on this explicitly.
-
-### 4. Grading coverage check
-
-Before finalizing the outline, verify every grading axis maps to at least one slide. If any axis is missing, add or restructure slides to cover it.
-
-| Grading axis | What interviewers look for | Minimum coverage |
-|---|---|---|
-| Problem clarity | Clear problem statement, why it mattered to the company/team, stakes within 2 minutes. | 1 slide (setup) |
-| Architecture and alternatives | Architecture choices **and** alternatives considered. Not just what was built but what was not and why. | 1-2 slides (deep) |
-| Ownership precision | The candidate's specific contribution vs. the team's. "We" is fine if "I" is also surfaced. | Threaded across multiple slides, explicit in at least 1 |
-| Incremental planning | Milestone breakdown, short-term vs. long-term balance, technical debt and scalability reasoning, cross-functional navigation. | 1 slide (strategy/execution) |
-| Quality and correctness | Testing, correctness guarantees, performance validation, statistical analysis if relevant. | 1 slide or threaded into architecture/rollout |
-| Rollout and de-risking | Launch strategy, risk gates, how impact was measured at scale. | 1 slide (rollout) |
-| Quantified impact | Success metrics, KPIs, before/after numbers. The candidate can state these from memory. | 1 slide (impact) |
-| Reflective depth | What surprised the candidate, what they would redesign, what the next version looks like. Two concrete hindsight answers. Retro elevated to reusable patterns applied to later projects. | 1 slide (retro/learnings) |
-
-Output a coverage table in the outline showing which slides serve which axis. Flag any axis covered by zero slides as a gap.
-
-### 5. Build the flex plan
-
-Design three versions of the presentation from the same outline:
-
-- **15-minute cut:** Mark slides to skip or compress if the interviewer signals to move faster. Keep the 2-minute-version slides intact.
-- **25-minute target:** The default presentation.
-- **35-minute expand:** Mark 2-3 slides with optional deeper content if time allows or the interviewer asks to go deeper on a section.
-
-### 5. Design the Q&A prep section
-
-Include a Q&A preparation outline in the reference section of `_deep_dive.md`:
-
-- List 15 likely follow-up questions mapped to specific slides.
-- For each, note a 60-second answer anchor.
-- Flag the 4 common Q&A traps and ensure rehearsed answers exist:
-  - "Why didn't you use X?" — comparison for each major technology choice.
-  - "What would you change with hindsight?" — two concrete answers.
-  - "What was the hardest unanticipated challenge?" — specific first-hand story.
-  - "Was it worth it?" — ROI in dollars, both cost and return.
-- Note: include a one-page architecture diagram the candidate can sketch live if asked.
-
-### 6. Output the outline
-
-Write the outline to a separate file: `projects/<project_slug>/_outline.md`. This keeps the outline as a standalone planning artifact, separate from the content in `_deep_dive.md`. Use this format:
-
-```text
-## Slide N: <Title>
-**Purpose:** <one sentence>
-**Grading axis:** problem clarity | architecture & alternatives | ownership | incremental planning | quality & correctness | rollout & de-risking | quantified impact | reflective depth
-**Time:** <N minutes>
-**Depth:** shallow | medium | deep
-**Flex:** [cut] | [expand: ...] | —
-**Content anchors:**
-- ...
-- ...
-```
-
-Add a narrative summary and grading coverage table at the top of the presentation slides section:
+Write to `projects/<project_slug>/_outline.md`:
 
 ```text
 ## Narrative arc
-- **Setup (slides 1-3, ~5 min):** ...
-- **Core (slides 4-N, ~15 min):** ...
-- **Resolution (slides N-end, ~5 min):** ...
-- **2-minute version:** slides X, Y, Z
-- **15-min cut:** skip slides X, Y; compress Z
-- **35-min expand:** expand slides A, B with ...
+- **Setup (pages 1-3, ~5 min):** ...
+- **Core (pages 4-N, ~15 min):** ...
+- **Resolution (pages N-end, ~5 min):** ...
+- **2-minute version:** pages X, Y, Z
 
-## Grading coverage
-| Grading axis | Covered by slides | Depth |
-|---|---|---|
-| Problem clarity | 1, 2 | shallow |
-| Architecture & alternatives | 5, 6, 7 | deep |
-| Ownership precision | 2, 5, 8 | threaded |
-| Incremental planning | 4 | medium |
-| Quality & correctness | 6, 8 | threaded |
-| Rollout & de-risking | 9 | medium |
-| Quantified impact | 10 | medium |
-| Reflective depth | 11 | medium |
+## Page N: <Title>
+**Purpose:** <one sentence>
+**Grading axis:** <which axes>
+**Topics:**
+- ...
+- ...
 ```
 
-### 7. Get user approval before proceeding
+### Get user approval before proceeding
 
-Present the outline from `_outline.md` to the user. Use `AskUserQuestion` to confirm: "Approve this outline and move to polish/content drafting?" The user can accept, reorder slides, adjust depth allocation, change time budgets, or request changes. Iterate on `_outline.md` until approved. Do not draft full slide content in `_deep_dive.md` until the outline is approved.
+Present the outline to the user. Use `AskUserQuestion` to confirm: "Approve this outline and move to polish/content drafting?" Iterate on `_outline.md` until approved. Do not draft full slide content in `_deep_dive.md` until the outline is approved.
 
 ## Polish mode
 
@@ -432,6 +384,17 @@ Read `_deep_dive.md` end to end. Internally evaluate every slide/section against
 - Whether claims need verification.
 
 Build an internal priority list of improvements, but do not present the full list to the user.
+
+#### Storytelling lens
+
+Also evaluate each slide against these narrative criteria:
+
+- Does the slide open with tension or context, not a solution dump?
+- Is there a clear "before, after" or "problem, decision, outcome" arc within the slide?
+- Does the transition from the previous slide feel logical or abrupt?
+- Would a non-domain interviewer follow this slide without extra explanation?
+- Does the slide advance the narrative or just add information?
+- Is the candidate's voice present (not a generic architecture description)?
 
 ### 2. Suggest one improvement at a time
 
