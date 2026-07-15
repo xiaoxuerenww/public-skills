@@ -258,7 +258,23 @@ Use when the user shares a behavioral question and wants to know what it tests a
 - Lead with: <angle>
 - De-emphasize: <what to avoid>
 - Key Staff+ evidence to surface: <specifics>
+
+### Quick Memo
+> **[[<lead story file>]]**
+> - **C:** <context keywords — situation, role, stakes, ~5-10 words>
+> - **A:** <action keywords — key decision or move, ~5-10 words>
+> - **R:** <result keywords — outcome or metric, ~5-10 words>
+> - **L:** <learning keywords — takeaway or changed behavior, ~5-10 words>
+> - **Staff+:** <staff+ evidence keywords — dimension and concrete signal, ~5-10 words>
+> - **DB:** <databricks value hook keywords — which principle and how, ~5-10 words>
 ```
+
+The Quick Memo is a scannable cheat-sheet Julie can glance at right before the interview. Rules:
+
+- Always include a wikilink to the lead story file using the **relative path from the vault root** so the link resolves correctly (e.g., `[[1_db_xfn/BQ/01_stories/story_23_agentic_model_ownership_conflict]]`, not just `[[story_23_agentic_model_ownership_conflict]]`).
+- Use keyword-only bullets, not full sentences. Each bullet should be 5-10 words max.
+- One line per CARL component (Context, Actions, Results, Learnings), prefixed with **C:**, **A:**, **R:**, **L:**.
+- Focus on *what to say*, not analysis. No signal areas, no traps, no explanation — those belong in the Decode and Framing Notes sections above.
 
 ## Story Builder Mode
 
