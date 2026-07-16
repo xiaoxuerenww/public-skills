@@ -381,6 +381,7 @@ Read `_deep_dive.md` end to end. Internally evaluate every slide/section against
 - Whether technical depth is defensible.
 - Whether tradeoffs are stated in the same breath as the solution.
 - Whether the slide is too dense and should move material to the reference section.
+- Whether slides with embedded images or diagrams are image-centric, with the visual carrying the explanation.
 - Whether claims need verification.
 
 Build an internal priority list of improvements, but do not present the full list to the user.
@@ -395,20 +396,39 @@ Also evaluate each slide against these narrative criteria:
 - Would a non-domain interviewer follow this slide without extra explanation?
 - Does the slide advance the narrative or just add information?
 - Is the candidate's voice present (not a generic architecture description)?
+- If the slide has image embeds, does the wording point the interviewer through the image instead of competing with it?
+
+#### Image-centric slide rule
+
+If a slide contains one or more images, diagrams, or visual embeds:
+
+- Make the image the center of the slide. Do not add dense explanatory text around it.
+- Keep on-slide content to key points only: 2-4 short bullets, labels, callouts, or a compact takeaway table.
+- Move detailed explanation, evidence, caveats, and backup reasoning into speaker notes or the reference section.
+- If speaker notes do not exist in `_deep_dive.md`, add a `**Speaker notes:**` block under that slide.
+- Prefer deltas like "Reduce on-slide bullets to these three anchors and move the rest to speaker notes" or "Add two callouts to the diagram, move implementation details below `Speaker notes`."
 
 ### 2. Suggest one improvement at a time
 
 For each iteration:
 
 1. Pick the single highest-priority improvement from the internal list.
-2. Show only the proposed delta for that one slide or section. Do not quote the full current text and full replacement by default. Use a compact patch-style summary such as "Replace bullet X with...", "Add after the diagram...", "Move these details to backup...", or "Condense this table to these 3 rows...".
-3. Highlight the delta before asking for approval. Include a short **Delta** list that names the concrete change, such as clearer thesis, stronger tension, more explicit tradeoff, grounded metric, reduced density, better ownership, or moved detail to backup. Also include a one-line **Why it helps** that ties the edit to interview performance.
-4. Only show a full current-vs-replacement block when the user explicitly asks for the full diff, or when the edit is risky enough that the exact wording must be reviewed before patching.
-5. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with one option: "Accept" (apply the change as shown). The user can also select "Other" to type custom feedback. Do not patch files until the user accepts. If the user provides typed feedback instead, revise the proposal based on their input and show it again with the same prompt.
-6. Once approved, patch the presentation slides section of `_deep_dive.md`.
-7. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
-8. Verify numbering with `grep -n "^## Slide"`.
-9. Move to the next improvement and repeat until the user is satisfied or says to stop.
+2. Output only the proposed delta or change for that one slide or section. Do not restate the full slide, full section, full current text, or full replacement unless the user explicitly asks for the full diff.
+3. Use compact patch-style wording, for example "Replace bullet X with...", "Add after the diagram...", "Move these details to backup...", or "Condense this table to these 3 rows...".
+4. Keep the review response limited to:
+   - **Target:** slide or section name.
+   - **Delta:** the concrete edits only.
+   - **Why it helps:** one sentence tied to interview performance.
+   - The approval prompt from the quiz/approval tool.
+5. Only show a full current-vs-replacement block when the user explicitly asks for the full diff, or when the edit is risky enough that exact wording must be reviewed before patching.
+6. **Wait for explicit user approval before writing.** Use the available quiz/approval tool (`request_user_input`, `AskUserQuestion`, or the environment's equivalent clickable prompt) with two click choices:
+   - **Accept:** apply the delta exactly as shown.
+   - **Reject:** do not apply the delta and move to a revised proposal or the next improvement.
+   The user can also type custom feedback if the tool supports it. Do not patch files until the user accepts. If the user rejects or provides typed feedback, revise the proposal based on their input and show only the updated delta with the same clickable approval prompt.
+7. Once approved, patch the presentation slides section of `_deep_dive.md`.
+8. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
+9. Verify numbering with `grep -n "^## Slide"`.
+10. Move to the next improvement and repeat until the user is satisfied or says to stop.
 
 Support these edit operations:
 
