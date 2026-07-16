@@ -401,12 +401,14 @@ Also evaluate each slide against these narrative criteria:
 For each iteration:
 
 1. Pick the single highest-priority improvement from the internal list.
-2. Show the proposed edit for that one slide or section only. Quote the current text and show the replacement so the user can review the diff.
-3. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with one option: "Accept" (apply the change as shown). The user can also select "Other" to type custom feedback. Do not patch files until the user accepts. If the user provides typed feedback instead, revise the proposal based on their input and show it again with the same prompt.
-4. Once approved, patch the presentation slides section of `_deep_dive.md`.
-5. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
-6. Verify numbering with `grep -n "^## Slide"`.
-7. Move to the next improvement and repeat until the user is satisfied or says to stop.
+2. Show only the proposed delta for that one slide or section. Do not quote the full current text and full replacement by default. Use a compact patch-style summary such as "Replace bullet X with...", "Add after the diagram...", "Move these details to backup...", or "Condense this table to these 3 rows...".
+3. Highlight the delta before asking for approval. Include a short **Delta** list that names the concrete change, such as clearer thesis, stronger tension, more explicit tradeoff, grounded metric, reduced density, better ownership, or moved detail to backup. Also include a one-line **Why it helps** that ties the edit to interview performance.
+4. Only show a full current-vs-replacement block when the user explicitly asks for the full diff, or when the edit is risky enough that the exact wording must be reviewed before patching.
+5. **Wait for explicit user approval before writing.** Use `AskUserQuestion` to prompt the user with one option: "Accept" (apply the change as shown). The user can also select "Other" to type custom feedback. Do not patch files until the user accepts. If the user provides typed feedback instead, revise the proposal based on their input and show it again with the same prompt.
+6. Once approved, patch the presentation slides section of `_deep_dive.md`.
+7. Renumber `## Slide N:` headings if the change added, deleted, moved, merged, or split slides.
+8. Verify numbering with `grep -n "^## Slide"`.
+9. Move to the next improvement and repeat until the user is satisfied or says to stop.
 
 Support these edit operations:
 
