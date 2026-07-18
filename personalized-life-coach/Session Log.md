@@ -710,3 +710,79 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 **Action direction:**
 - Treat July 15 as the current sprint endpoint.
 - After the onsite, reassess the pipeline and choose the next 4-6 week cycle deliberately, with a lower-intensity default unless there is a specific onsite.
+
+---
+
+## 2026-07-18 — Databricks virtual onsite: prep leave and equity timing pressure
+
+**What Julie shared:**
+- Julie is in the virtual onsite process for Databricks and knows the hiring manager.
+- She is considering taking two weeks off to prepare for the remaining two rounds.
+- Databricks recently raised valuation; she expects equity value per share to move from roughly $190 to $250 in a few weeks, creating timing pressure around offer/equity economics.
+
+**Coaching read:**
+- This is a real tradeoff, not just anxiety: prep time may improve odds for the remaining rounds, and equity timing may materially affect offer economics.
+- Watch for two patterns at once: over-optimizing around compensation timing, and using the known hiring manager / high-stakes opportunity to turn the interview into a verdict on worth.
+- Relevant principles: Think Carefully, Act Thoughtfully; Be Brave; Money is a real priority, but it should be weighed after health/family capacity and real interview odds.
+
+**Action item:**
+- Clarify exact round dates and recruiter/offer timing mechanics before deciding how much PTO to spend; use PTO for focused prep only if it creates a concrete prep plan for the remaining two rounds.
+
+---
+
+## 2026-07-18 — Databricks remaining-round prep narrowed to ML fundamentals and ML system design
+
+**What Julie shared:**
+- Julie is preparing for the remaining Databricks virtual onsite rounds focused on ML fundamentals and ML system design.
+- She plans to spend most of the two-week prep window on these two surfaces and use online mock interviews for live practice.
+
+**Coaching read:**
+- This is a stronger PTO plan than broad review because it narrows the scope to two round types and includes mock interviews as external calibration.
+- The main watch-out is using the two weeks as anxiety-driven content consumption instead of repeated retrieval practice under interview conditions.
+- Relevant principles: Think Carefully, Act Thoughtfully; Be Brave; Work and Life as Exploration.
+
+**Action item:**
+- Structure the two weeks around mock-driven loops: prepare a topic, mock it, write misses, patch the highest-leverage gaps, repeat.
+
+---
+
+## 2026-07-18 — Databricks system design weak points: tradeoffs and bottleneck depth
+
+**What Julie clarified:**
+- For Databricks ML system design prep, the live-answer failure points are #4 and #5: naming the hardest tradeoffs and going deep on one bottleneck.
+
+**Coaching read:**
+- This is a Staff-level refinement issue, not a basic system design issue. Julie likely has enough architecture intuition; the prep should force explicit tradeoff language and one technically deep investigation per answer.
+- Watch-out: staying at broad component-level coverage because it feels safer than committing to one bottleneck and reasoning through costs.
+
+**Action item:**
+- In each mock, pre-commit to 2-3 tradeoffs and one bottleneck deep dive; after the mock, grade whether the answer included concrete constraints, intervention options, costs, risks, and metrics.
+
+---
+
+## 2026-07-18 — Strategy question: whether to rush Databricks interview because of valuation timing
+
+**What Julie clarified:**
+- Julie does not need prep tactics right now. The real question is strategic: whether to rush into the remaining Databricks interview rounds because equity per-share value may increase soon after the recent valuation change.
+
+**Coaching read:**
+- The core tension is Money vs. Thoughtful/Brave execution: the compensation timing is real, but rushing only makes sense if it does not materially reduce pass probability.
+- Watch-out: treating a possible equity-price change as the dominant variable before confirming offer mechanics and before estimating readiness impact.
+
+**Action item:**
+- Decide based on expected value: clarify equity pricing mechanics with recruiter, estimate readiness delta from 0/1/2 weeks of prep, and avoid rushing unless timing benefit is confirmed and pass probability remains strong.
+
+---
+
+## 2026-07-18 — Databricks valuation concern: paper equity risk after IPO
+
+**What Julie shared:**
+- Julie is concerned Databricks current valuation may be too high.
+- Her worry is that when Databricks goes public, the stock price could drop, making the equity less attractive than headline compensation suggests.
+
+**Coaching read:**
+- This is a real financial-risk concern, not just fear. The right frame is to haircut private-company equity and separate career-fit value from paper upside.
+- Watch-out: swinging between FOMO from a lower per-share grant price and distrust of the whole opportunity because the valuation may be high. Both can over-weight uncertain equity mechanics.
+
+**Action item:**
+- Evaluate Databricks using conservative equity scenarios: assume a meaningful IPO/down-round haircut, compare cash/base career value separately, and only treat upside as bonus unless liquidity and pricing terms are clear.

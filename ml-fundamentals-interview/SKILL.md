@@ -107,18 +107,20 @@ Use this workflow:
 
 ## Note-Taking Preferences
 
-When saving any Practice Mode or Mock Mode answer, preserve the raw conversation
-evidence:
+When saving any Practice Mode or Mock Mode answer, preserve the full chat
+response as the permanent record:
 
-- Save Julie's answer as a raw quoted transcript block whenever possible, not
-  only as a paraphrase.
+- Save Julie's answer as a raw quoted transcript block verbatim — never
+  summarize or paraphrase.
 - Save the grading verdict explicitly as `Verdict: pass` or `Verdict: fail`.
 - Add a `Misses` section that highlights exactly what Julie missed, got wrong,
   left vague, or failed to defend under follow-up.
 - Keep misses direct and concrete: missing equation, wrong assumption, weak
   mechanism, missing failure mode, missing tradeoff, or interview-structure gap.
-- Use a concise paraphrase only when the raw answer is unavailable or too long;
-  if paraphrasing, label it as `Paraphrased answer`.
+- Save the full feedback and model answer as given in chat — copy the entire
+  assistant response verbatim including equations, derivations, examples, and
+  mechanism breakdowns. Do not summarize, condense, or truncate to save space.
+  The saved note should be fully self-contained for later review.
 
 Use this format for each recorded question:
 
@@ -133,7 +135,7 @@ Use this format for each recorded question:
 - Misses:
   - <specific missing/wrong/vague point>
 - Feedback: <direct critique>
-- Ideal answer: <interview-ready answer>
+- Ideal answer: <full chat response verbatim — complete explanation, not a summary>
 - Drill next: <specific next target>
 ```
 
@@ -145,7 +147,8 @@ include:
 - `Verdict`: `pass` or `fail`.
 - `Misses`: explicit bullets for what was missing, wrong, or too vague.
 - `Critical feedback`: the main gap first, direct and specific.
-- `Stronger answer`: an interview-ready version.
+- `Stronger answer`: the full interview-ready explanation as given in chat,
+  verbatim — not a summary.
 - `Drill next`: the next focused practice target.
 
 Do not use timestamp, section, or topic as the heading. Do not hide weak areas
@@ -632,7 +635,7 @@ Use this `mock.md` structure:
 - Misses:
   - <specific missing/wrong/vague point>
 - Critical feedback: <main gap first>
-- Model answer: <interview-ready version grounded in docs>
+- Model answer: <full chat response verbatim — complete explanation with equations, derivations, examples, not a summary>
 - Drill next: <specific next target>
 
 #### Follow-up: <follow-up question text>
@@ -643,7 +646,7 @@ Use this `mock.md` structure:
 - Misses:
   - <specific missing/wrong/vague point>
 - Critical feedback: <main gap first>
-- Model answer: <grounded answer>
+- Model answer: <full chat response verbatim — complete explanation, not a summary>
 - Drill next: <specific next target>
 
 ## Running weakness tracker
