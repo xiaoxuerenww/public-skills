@@ -180,6 +180,16 @@ Triggered by "learn ml fundamental".
    - Emphasize staff-level habits: identify the crux, cut unnecessary
      complexity, make decisions, and connect ML choices to production
      constraints.
+   - Use LaTeX equations for any formula, loss function, gradient, or
+     mathematical relationship. Use `$...$` for inline math and `$$...$$`
+     for display equations. Prefer equations over prose whenever a concept
+     has a standard mathematical form (e.g. write
+     `$\text{Attention}(Q,K,V) = \text{softmax}\!\bigl(\frac{QK^T}{\sqrt{d_k}}\bigr)V$`
+     not "we divide the dot product by the square root of d_k").
+   - In persisted notes (`learn_notes.md`, `mock.md`, `solution.md`,
+     `deep_dive.md`), always use LaTeX for equations so they render in
+     Obsidian with MathJax. Never fall back to plain-text pseudo-math
+     (e.g. `softmax(QK^T / sqrt(d))`) when LaTeX is available.
 
 4. **Auto-Notes:**
    - After every interview-relevant user question, assistant answer, useful
@@ -189,7 +199,21 @@ Triggered by "learn ml fundamental".
      note instead of rewriting history.
    - Include:
      - **Q:** Concise question
-     - **A:** comprehensive answer and explanation
+     - **Raw chat:** Julie's actual message as a blockquote (`> ...`),
+       preserving her phrasing, partial understanding, and follow-up threads.
+       Capture the raw chat even when it is informal, fragmented, or contains
+       wrong assumptions — these are valuable evidence of mental-model gaps.
+     - **A:** Save the full chat response verbatim — copy the entire
+       assistant reply as-is, including equations, examples, mechanism
+       breakdowns, edge cases, tradeoffs, and formatting. Do not
+       summarize, condense, paraphrase, or omit any part. If the response
+       spanned multiple turns, concatenate all of them in order. The saved
+       note is the permanent record of the explanation; treat it as a
+       transcript, not a summary.
+   - When a multi-turn exchange builds on a single topic, capture each of
+     Julie's raw messages as sequential blockquotes under the same Q heading,
+     separated by the assistant's inline responses. This preserves the
+     conversational arc and shows how understanding evolved.
    - Do not record workflow, environment, IDE, file-conversion, or tooling
      questions unless explicitly asked.
    - Keep notes chronological and slightly raw, grouped by parent topic.
