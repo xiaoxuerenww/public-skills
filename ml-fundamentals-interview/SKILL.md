@@ -536,10 +536,8 @@ question.
 
 Do not create dated mock directories.
 
-Default each mock session to 5-10 total parent questions unless Julie requests a
-different count. Start with 5 questions when no duration or intensity is
-specified; extend toward 10 only if Julie asks for a longer mock, is moving
-quickly, or the session needs broader topic coverage.
+Default each mock session to exactly 5 parent questions unless Julie explicitly
+requests a different count.
 
 Before selecting questions, read `mock_tracker.md` first, then read the resolved
 `mock.md` if the tracker is missing, incomplete, or needs backfill. Build a
@@ -556,6 +554,21 @@ Use this `mock_tracker.md` structure:
 
 ```markdown
 # Mock Tracker
+
+## Cross-Session Progress
+
+- Total questions in bank: <count>
+- Questions attempted (unique): <count> / <total> (<percent>%)
+- Pass rate (all attempts): <pass count> / <total attempts> (<percent>%)
+- Sessions completed: <count>
+- Last session: <date>
+
+## Session Log
+
+| Session | Date | Questions asked | Pass | Fail | Topics covered |
+|---:|---|---:|---:|---:|---|
+| 1 | <date> | 5 | <n> | <n> | <topics> |
+| 2 | <date> | 5 | <n> | <n> | <topics> |
 
 ## Scheduler State
 
@@ -579,7 +592,7 @@ Use this `mock_tracker.md` structure:
 
 ## Next Session Plan
 
-- Target count: <5-10>
+- Target count: 5
 - Planned mix: <round-robin count> round-robin, <weakness count> weakness
 - Planned questions:
   1. <question or topic> - <selection reason>
@@ -588,6 +601,15 @@ Use this `mock_tracker.md` structure:
 If `mock_tracker.md` does not exist, create it before the first mock question by
 backfilling whatever can be inferred from `mock.md` and the available question
 bank. Keep the tracker concise; it is a scheduler, not a full transcript.
+
+At the end of every mock session, update `mock_tracker.md`:
+
+1. Increment `## Cross-Session Progress` counters (unique questions attempted,
+   pass rate, sessions completed, last session date).
+2. Append a row to `## Session Log` with the session number, date, question
+   count (always 5 unless Julie overrode), pass/fail counts, and topics.
+3. Update `## Question History` with each question asked this session.
+4. Refresh `## Weakness Queue` and `## Next Session Plan` for the next session.
 
 Use that history to shuffle the session queue:
 
