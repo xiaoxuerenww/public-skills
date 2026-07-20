@@ -1,8 +1,0 @@
-{
-  "name": "behavioral-interview-coach",
-  "version": "1.0.0",
-  "description": "End-to-end behavioral interview prep for Staff/Senior Staff MLE and frontier AI lab roles. Modes: (1) Story Builder — give a story starter, get grilled for BQ-relevant detail, story grouped by signal area, CARL draft produced, and matched to vault BQ questions; (2) Brainstorm — surface candidate stories for a topic or signal; (3) Grill — pressure-test one story for depth and credibility; (4) Script — convert raw material into interview-ready CARL bullets; (5) Mock — realistic behavioral interview with calibrated feedback. Use when asked to build a story, practice behavioral questions, run a mock interview, stress-test stories, calibrate against Staff+ rubrics, prepare for Anthropic/OpenAI/xAI/Google/Meta behavioral or culture screens, or get feedback on scope, impact, ambiguity, influence, leadership, communication, and role fit.",
-  "skills": [
-    "behavioral-interview-coach"
-  ]
-}

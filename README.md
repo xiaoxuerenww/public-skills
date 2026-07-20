@@ -1,81 +1,61 @@
-# Codex Skills
+# Private Skills
 
-Personal Codex skills for Julie's Staff/Senior Staff MLE interview prep, career planning, writing, job search, and local evidence-processing workflows.
+Personal collection of Claude Code skills for various workflows.
 
-**Status:** Active personal skill workspace  
-**Last Updated:** July 2026  
-**Index:** [SKILLS_INDEX.md](SKILLS_INDEX.md)
+## Available Skills
 
----
+### Productivity & Organization
+- **journal** — Daily journaling and sprint tracking
+- **tidy-doc** — Document cleanup and formatting
+- **sanitize-pii** — Remove personal information from directories
 
-## What Lives Here
+### Content & Writing
+- **write-article** — Article drafting and revision
+- **grilling** — Critical questioning and feedback
+- **grill-me** — Interactive grilling sessions
 
-This repository contains triggerable Codex skills installed under `/Users/xue/.codex/skills`.
+### Research & Information
+- **doc-grounded-qa** — Document-based Q&A
+- **frontier-lab-jobs** — Frontier AI lab job tracking
+- **frontier-lab-news-digest** — News aggregation for AI labs
+- **tech-interview-question-scraper** — Interview question collection
 
-The main interview-prep skills work directly in local prep folders and produce durable Markdown artifacts. The supporting skills cover document-grounded Q&A, job search, writing cleanup, coaching, scraping output cleanup, and skill authoring.
+### Development & Tools
+- **file-cleaner** — Clean up temporary and generated files
+- **writing-great-skills** — Guidelines for creating Claude Code skills
+- **handoff** — Project handoff documentation
 
-Use [SKILLS_INDEX.md](SKILLS_INDEX.md) as the current map of available skills, paths, and routing guidance.
+### Coaching & Personal
+- **personalized-life-coach** — Personal coaching and goal tracking
 
----
+## Interview Prep Skills
 
-## Core Interview Prep Skills
+Interview preparation skills have been moved to the public repository:
 
-| Skill | Use for |
-| --- | --- |
-| `interview-prep-multi-agent` | Coordinate prep across coding, ML/LLM fundamentals, ML system design, project deep dives, behavioral prep, readiness audits, and panel mocks. |
-| `coding-interview-companion` | Algorithms, data structures, practical coding rounds, solve/learn/practice/mock workflows, starter code, tests, and feedback. |
-| `ml-fundamentals-interview` | Daily ML/LLM fundamentals quizzes, spaced review, learn mode, mock mode, Databricks topic prep, and grounded question banks. |
-| `ml-system-design-interview` | ML system design prep for ranking, retrieval, serving, evaluation, experiment platforms, ML infra, and research infrastructure. |
-| `project-deep-dive-interview` | Staff/Senior Staff project deep-dive prep, project narrative shaping, pressure testing, and mock interviews. |
-| `behavioral-interview-coach` | Behavioral story brainstorming, grilling, CARL scripts, culture/HM prep, and Staff+ mock feedback. |
+**👉 [Public Skills Repository](https://github.com/xiaoxuerenww/public-skills)**
 
----
+Includes:
+- behavioral-interview-coach
+- interview-ML
+- interview-coding
+- interview-prep-multi-agent
+- interview-project-deep-dive
 
-## Supporting Skills
+## Installation
 
-| Skill | Use for |
-| --- | --- |
-| `doc-grounded-qa` | Answer questions from PDFs, docs, notes, resumes, job descriptions, company research, or pasted material with source-grounded notes. |
-| `teach` | Quick concept one-pagers or stateful course workspaces for ML, systems, coding, math, research, or product concepts. |
-| `system-design-material-finder` | Find and curate interview-ready learning resources for system design and ML system design prompts. |
-| `frontier-lab-jobs` | Find, shortlist, and apply to frontier AI lab roles using the local `Applied_Roles.md` tracker. |
-| `frontier-lab-news-digest` | Generate a daily mobile-friendly HTML digest of frontier AI lab news. |
-| `personalized-life-coach` | Work through career/life decisions, recurring blockers, principle tradeoffs, and next actions. |
-| `mle-swe-growth-goal` | Pick a focused MLE/SWE/AI-engineer growth direction over a 3 to 6 month horizon. |
-| `humanizer` | Edit writing to sound more natural and less AI-generated. |
-| `post-process-scraper-outputs` | Convert local scraper outputs into raw, linked evidence files by company and interview round. |
-| `grilling` / `grill-me` | Stress-test a plan or design through focused questioning. |
-| `handoff` | Compact the current conversation into a handoff document for another agent. |
-| `writing-great-skills` | Reference principles and vocabulary for creating predictable skills. |
-
----
-
-## Typical Workflow
-
-1. Work from the relevant prep folder, note, tracker, or project directory.
-2. Invoke the skill by name or describe the task naturally.
-3. Let the skill read the local source of truth before writing.
-4. Review the generated Markdown artifacts, tests, feedback docs, or tracker updates.
-
-For ML coding exercises in the interview vault, use:
+Clone this repository to your Claude Code skills directory:
 
 ```bash
-cd ~/Documents/interview/2026_interview/"3.2 ML Coding"
-python3 ex1_vectorization.py
-python3 -m pytest exN_*.py
+cd ~/.codex/skills
+git clone https://github.com/xiaoxuerenww/private-skills.git temp
+cp -r temp/<skill-name> .
+rm -rf temp
 ```
 
----
+## Customization
 
-## Repository Notes
+Many skills reference user-specific paths. Check each skill's documentation for customization requirements.
 
-- User skills live in top-level directories with a `SKILL.md`.
-- Bundled system skills live under `.system/`.
-- `scraper/` is a local utility project, not a triggerable skill because it has no `SKILL.md`.
-- Some skills include agents, scripts, examples, templates, or README files used by the skill.
-- Keep high-level routing in this README and [SKILLS_INDEX.md](SKILLS_INDEX.md); keep detailed behavior inside each `SKILL.md`.
+## License
 
----
-
-**Author:** Julie Xue Wang  
-**Repository:** https://github.com/xiaoxuerenww/skills
+Private use only. Not for public distribution.
