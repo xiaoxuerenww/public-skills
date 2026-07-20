@@ -163,33 +163,91 @@ git remote -v
 
 If not configured, the skill will guide you to add them.
 
-## Example Session
+## Example Sessions
+
+### Full Sync
 
 ```
 User: "sync skills"
 
 1. Status check
-   - origin/main: synced
-   - public/main: 2 commits ahead
+   - Uncommitted: 3 files modified
+   - origin/main: 0 behind, 0 ahead (synced)
+   - public/main: 0 behind, 2 ahead (local ahead)
 
-2. Pull from public
-   ✓ Merged latest changes from public-skills
+2. Commit local changes
+   Commit message: [Update skills]
+   ✓ Committed 3 files
 
-3. Push to private
-   ✓ Pushed main to private-skills
+3. Pull from private (origin)
+   ✓ Already up to date
 
-4. Push to public
-   ⚠️  Run /sanitize-pii first? (y/n)
-   y
-   [sanitization runs]
+4. Pull from public
+   ✓ Already up to date (local is ahead)
+
+5. Push to private
+   ✓ Pushed 3 commits to private-skills
+
+6. Push to public
+   
+   Running PII scan...
+   ⚠️  Found 2 PII instances:
+   - write-article/SKILL.md: email address "user@oldexample.com"
+   - frontier-lab-jobs/SKILL.md: path "/Users/olduser/"
+   
+   Sanitize automatically? (y/n): y
+   
+   ✓ Sanitized 2 files
+   ✓ Committed sanitization to main
    ✓ Rebuilt public-only branch
-   ✓ Removed private directories
-   ✓ Pushed to public-skills
-   ✓ Verified no private content in public repo
+   ✓ Removed private directories:
+     - private-journal/
+     - .claude/
+     - sync-git-skills/
+   ✓ Pushed to public-skills (force)
+   ✓ Verified: no private content leaked
 
 Summary:
-- private-skills: updated (3 commits)
-- public-skills: updated (2 commits)
+| Step | Status | Details |
+|------|--------|---------|
+| Uncommitted | committed | 3 files |
+| Pull private | up-to-date | - |
+| Pull public | up-to-date | - |
+| Push private | pushed | 4 commits |
+| Sanitize PII | sanitized | 2 findings |
+| Push public | pushed | public-only |
+| Verification | ✓ clean | no leaks |
+```
+
+### Push Public Only
+
+```
+User: "push to public"
+
+Running PII scan...
+✓ No PII found
+
+✓ Rebuilt public-only branch
+✓ Removed private content
+✓ Pushed to public-skills
+✓ Verified: no private content leaked
+
+Done.
+```
+
+### Status Only
+
+```
+User: "sync status"
+
+Uncommitted changes: 2 files modified, 1 untracked
+
+| Remote | Behind | Ahead | Status |
+|--------|--------|-------|--------|
+| origin (private) | 0 | 2 | local ahead |
+| public | 1 | 2 | diverged |
+
+Recommended action: commit changes, pull from public, then push both
 ```
 
 ## Error Handling
