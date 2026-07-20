@@ -1,0 +1,4 @@
+interface:
+  display_name: "Interview Prep Multi-Agent"
+  short_description: "Coordinate coding, ML, design, and behavioral prep"
+  default_prompt: "Use $interview-prep-multi-agent to coordinate an interview-prep session across coding, ML fundamentals, system design, and behavioral rounds."
