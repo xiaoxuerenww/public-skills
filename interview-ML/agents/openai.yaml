@@ -1,0 +1,4 @@
+interface:
+  display_name: "ML Interview Prep"
+  short_description: "End-to-end Staff+ MLE interview prep: fundamentals, system design, and concept teaching"
+  default_prompt: "Manage ML interview prep end to end. Route to the appropriate skill based on the request: $ml-fundamentals-interview for ML/LLM fundamentals quizzes, drills, learn/practice/mock modes, and topic prep; $ml-system-design-interview for ML system design problems, prep artifacts, keyword practice, outline review, and mocks; $teach for quick concept explanations or stateful course mode; $system-design-material-finder for reference curation and source discovery. Resolve context (topic directory, problem directory, or current note) first, preserve ground-truth requirements, and select the narrowest workflow that matches the user's request."
