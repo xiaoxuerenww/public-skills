@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784582535755-puge2i9k5",
+  "providerId": "claude",
+  "title": "Share tips for simple, concise storytelling",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784582535755,
+  "updatedAt": 1784583964759,
+  "lastResponseAt": 1784583964759,
+  "sessionId": "2e99ff87-fcd3-42b8-b2f1-fc9cd57bd6c9",
+  "selectedModel": "claude-code/claude-opus-4-6",
+  "providerState": {
+    "providerSessionId": "2e99ff87-fcd3-42b8-b2f1-fc9cd57bd6c9"
+  },
+  "usage": {
+    "model": "claude-opus-4-6",
+    "inputTokens": 1,
+    "cacheCreationInputTokens": 563,
+    "cacheReadInputTokens": 40558,
+    "contextWindow": 200000,
+    "contextTokens": 41122,
+    "percentage": 21,
+    "contextWindowIsAuthoritative": true
+  }
+}
