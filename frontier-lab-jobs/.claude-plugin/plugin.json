@@ -1,0 +1,8 @@
+{
+  "name": "frontier-lab-jobs",
+  "version": "1.0.0",
+  "description": "Use this skill when asked to \"find roles for [company]\", \"apply to [role/company]\", \"track [role]\", or variations. E.g., \"find roles for Anthropic\", \"apply to the Universes role\", \"track my applications\". Workflow: (1) Search careers pages for new roles; (2) Suggest new roles with fit assessment; (3) Apply to selected roles (with confirmation); (4) Track applications in Applied_Roles.md. Reads preferences and applied roles before searching. Never suggests roles you've already applied to.",
+  "skills": [
+    "frontier-lab-jobs"
+  ]
+}

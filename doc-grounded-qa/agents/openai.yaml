@@ -1,0 +1,4 @@
+interface:
+  display_name: "Doc-Grounded Q&A"
+  short_description: "Answer questions grounded in a document"
+  default_prompt: "Use $doc-grounded-qa to answer my questions from this document and search only when the answer is not present."

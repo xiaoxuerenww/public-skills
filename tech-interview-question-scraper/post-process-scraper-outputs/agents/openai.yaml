@@ -1,0 +1,4 @@
+interface:
+  display_name: "Post-process Scraper Outputs"
+  short_description: "Extract raw interview-round evidence"
+  default_prompt: "Use $post-process-scraper-outputs to extract raw comments for <company> <interview_round> from scraper outputs."
