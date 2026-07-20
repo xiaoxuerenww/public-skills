@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coding Interview"
+  short_description: "Manage coding interview setup, practice, learning, and mocks"
+  default_prompt: "Manage this coding interview prep end to end. Use $coding-interview-companion for algorithm, data structure, practical coding, solve, learn, practice, and mock workflows. Resolve the problem directory first, preserve raw context files, create or update durable input and solution artifacts when appropriate, and route to the narrowest workflow that matches my request."

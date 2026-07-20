@@ -1,0 +1,4 @@
+interface:
+  display_name: "Behavioral Interview Coach"
+  short_description: "Build, grill, script, and mock Staff+ MLE behavioral stories — including Story Builder mode"
+  default_prompt: "Use $behavioral-interview-coach with one of these modes: story builder (give a story starter → grilled → CARL draft → BQ question links), brainstorm (find stories for a topic), grill (pressure-test one story), script (make interview-ready bullets), or mock (practice interview with feedback)."
