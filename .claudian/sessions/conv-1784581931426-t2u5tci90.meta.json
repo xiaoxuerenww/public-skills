@@ -1,0 +1,24 @@
+{
+  "id": "conv-1784581931426-t2u5tci90",
+  "providerId": "claude",
+  "title": "Rename GitHub repo to private-skills",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784581931426,
+  "updatedAt": 1784583823813,
+  "lastResponseAt": 1784583823813,
+  "sessionId": "c1bdc0c6-b0f4-4752-b9bf-f72604fa4eeb",
+  "selectedModel": "claude-code/claude-sonnet-4-5",
+  "providerState": {
+    "providerSessionId": "c1bdc0c6-b0f4-4752-b9bf-f72604fa4eeb"
+  },
+  "usage": {
+    "model": "claude-sonnet-4-5",
+    "inputTokens": 5,
+    "cacheCreationInputTokens": 1644,
+    "cacheReadInputTokens": 90425,
+    "contextWindow": 200000,
+    "contextTokens": 92074,
+    "percentage": 46,
+    "contextWindowIsAuthoritative": true
+  }
+}
