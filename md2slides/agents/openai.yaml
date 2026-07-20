@@ -1,4 +1,0 @@
-interface:
-  display_name: "Markdown to Slides"
-  short_description: "Convert Markdown slide docs to PPTX"
-  default_prompt: "Use $md2slides to convert a Markdown slide document into a PowerPoint deck."

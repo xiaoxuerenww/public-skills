@@ -1,8 +1,0 @@
-{
-  "name": "coding-interview-companion",
-  "version": "1.0.0",
-  "description": "Solve or debug local coding-interview problem folders that contain description.md or similar problem statements, interface.py function/class skeletons, solution.py implementations, and rough test.py examples. Use when Codex is asked to implement solution.py, convert informal tests into executable Python, create a deep_dive.md explanation, run tests, or debug the user's implementation without editing code.",
-  "skills": [
-    "coding-interview-companion"
-  ]
-}

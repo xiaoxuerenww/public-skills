@@ -1,6 +1,6 @@
 ---
 name: interview-prep-multi-agent
-description: Coordinate Julie's interview-prep across coding, ML/LLM fundamentals, concept learning, ML system design, and behavioral prep. Routes to primary skills (coding-interview-companion, ml-system-design-interview, behavioral-interview-coach) and supports multi-round mocks, study plans, readiness audits, and panel interviews.
+description: Coordinate the user's interview-prep across coding, ML/LLM fundamentals, concept learning, ML system design, and behavioral prep. Routes to primary skills (coding-interview-companion, ml-system-design-interview, behavioral-interview-coach) and supports multi-round mocks, study plans, readiness audits, and panel interviews.
 ---
 
 # Interview Prep Multi-Agent Coordinator
@@ -178,7 +178,7 @@ Follow the specialized skill's persistence rules:
 - **System design:** Active workspace `output/interview_solutions.md`, `output/deep_dive.md`, `output/learn_notes.md`, `output/mock_feedback.md`
 - **Behavioral:** Active workspace `output/story_library.md`, `output/learn_notes.md`, `output/mock_feedback.md`
 - **Fundamentals:** Quiz tracker, `ml_llm_daily_quiz_notes.md`, and topic-level `mock.md` when using ML fundamentals mock mode
-- **Concepts:** `/Users/xue/Documents/work/0_inbox/<concept>.md`
+- **Concepts:** `~/Documents/work/0_inbox/<concept>.md`
 
 For cross-round artifacts, create `interview_readiness.md` in the active prep folder.
 

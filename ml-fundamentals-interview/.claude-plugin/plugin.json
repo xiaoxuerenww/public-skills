@@ -1,8 +1,0 @@
-{
-  "name": "ml-fundamentals-interview",
-  "version": "1.0.0",
-  "description": "ML/LLM fundamentals interview prep for Julie. Use for daily tracked quizzes, \"quiz me\", spaced review, LLM fundamentals drills, Staff/Senior Staff MLE technical-depth practice, Databricks topic prep, mock-question-bank setup, \"learn ml fundamental\" learn mode, \"mock ml fundamental\" interview mode, or explicit $ml-fundamentals-interview / $daily-ml-concept requests.",
-  "skills": [
-    "ml-fundamentals-interview"
-  ]
-}

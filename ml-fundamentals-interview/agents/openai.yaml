@@ -1,4 +1,0 @@
-interface:
-  display_name: "ML Fundamentals Interview"
-  short_description: "Manage Staff+ ML/LLM fundamentals quizzes, prep, learn, and mocks"
-  default_prompt: "Manage this Staff+ ML fundamentals interview prep end to end. Use this skill for tracked daily quizzes, spaced review, learn mode, Databricks topic prep, mock-question-bank setup, and grounded mock interviews. Create or update durable notes and mock artifacts according to the requested mode."

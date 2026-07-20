@@ -5,7 +5,7 @@ description: "End-to-end behavioral interview prep for Staff/Senior Staff MLE an
 
 # Behavioral Interview Coach
 
-**Purpose:** Help Julie prepare for Staff/Senior Staff behavioral interviews, especially frontier AI lab roles, by moving from raw career material to high-signal stories, concise interview scripts, and realistic mock feedback.
+**Purpose:** Help the user prepare for Staff/Senior Staff behavioral interviews, especially frontier AI lab roles, by moving from raw career material to high-signal stories, concise interview scripts, and realistic mock feedback.
 
 Use this skill when the user asks to brainstorm behavioral stories, decode a behavioral question, build or pressure-test a story, practice behavioral questions, run a mock interview, or prepare for company/culture/leadership rounds.
 
@@ -25,14 +25,14 @@ Use this skill when the user asks to brainstorm behavioral stories, decode a beh
 
 If the user explicitly says "chat only", do not write artifacts. Otherwise, update durable output files proactively when a mode produces reusable material.
 
-## Julie's BQ Vault
+## the user's BQ Vault
 
-When working in `/Users/xue/Documents/work/3_BQ`, use this folder structure:
+When working in `~/Documents/work/3_BQ`, use this folder structure:
 
 ```text
 3_BQ/
   00_framework/              # Behavioral interview method, signal areas, practice, pitfalls, interview types
-  01_preferences_rubrics/    # Julie's answer style preferences and Staff+ MLE rubrics
+  01_preferences_rubrics/    # the user's answer style preferences and Staff+ MLE rubrics
   02_questions/              # Behavioral question banks
   03_story_bank/             # Story maps, self-intro, brainstorms, and source stories
     stories/                 # Individual detailed story notes
@@ -53,7 +53,7 @@ Use these folders as the default source and destination when no round-local `inp
 
 Path resolution priority:
 
-1. If the current working directory or user-specified path is inside `/Users/xue/Documents/work/3_BQ`, treat the BQ vault as the active workspace.
+1. If the current working directory or user-specified path is inside `~/Documents/work/3_BQ`, treat the BQ vault as the active workspace.
 2. If a round-local `input/0_requirements.md` exists, read it first for company, role, interviewer, and rubric context.
 3. If no round-local `input/` or `output/` exists, use the BQ vault folders above directly for both source material and durable outputs.
 4. If the user names a company, prefer `05_company_prep/<company>/` for company-specific scripts, notes, and mocks, while still grounding in the shared rubric, question bank, and story bank.
@@ -62,7 +62,7 @@ Path resolution priority:
 
 - **Brainstorm mode:** Find candidate stories for a topic, signal area, company value, or interview type.
 - **Decode & Select mode:** Decode what a question is really testing, recommend the best story from the vault index, and explain why it fits.
-- **Story Builder mode:** Julie gives a story starter → Claude grills for BQ-relevant detail one question at a time → groups the full story into a signal category → drafts a CARL story → links to matching BQ questions in the vault.
+- **Story Builder mode:** the user gives a story starter → Claude grills for BQ-relevant detail one question at a time → groups the full story into a signal category → drafts a CARL story → links to matching BQ questions in the vault.
 - **Mock mode:** Run a realistic interview, ask probing follow-ups, take notes, and share calibrated feedback.
 
 ## Core Framework
@@ -108,7 +108,7 @@ Map questions and stories to these eight areas:
 
 Use CARL as the default format. STAR may appear in existing materials, but convert new work to CARL.
 
-- **Short opening:** Every polished story starts with 2-3 spoken sentences before CARL detail. It should bridge from the question keywords to Julie's genuine experience and name the key or strongest point of the story.
+- **Short opening:** Every polished story starts with 2-3 spoken sentences before CARL detail. It should bridge from the question keywords to the user's genuine experience and name the key or strongest point of the story.
 - **Context:** Brief setup, stakes, role, constraints. Keep it short.
 - **Actions:** The center of the answer. Use concrete "I" actions, decisions, tradeoffs, communication, influence, and implementation details.
 - **Results:** What changed. Include metrics with baseline, denominator, and definition when possible.
@@ -123,7 +123,7 @@ Use CARL as the default format. STAR may appear in existing materials, but conve
 - Keep the answer script itself concise and interruption-ready. Do not front-load all CARL detail; hold detailed actions, metrics, tradeoffs, and evidence for follow-up questions or an appendix.
 - Preserve supporting details and evidence. If they are too detailed for live delivery, move them to `3. Additional Details / Evidence / Examples` or `4. Potential Follow-ups` instead of deleting them.
 - Use "I" for personal decisions and contributions. Use "we" only for team context.
-- Do not use generic "you" statements in prepared answers; keep the answer in Julie's lived perspective.
+- Do not use generic "you" statements in prepared answers; keep the answer in the user's lived perspective.
 - For Staff+ stories, include decision frameworks, cross-functional influence, and durable impact.
 - For Staff+ MLE stories, show how the candidate defined the right ML problem, not just how they trained, tuned, or launched a model.
 - For Big Tech/frontier lab roles, frame stories around scale, mission, fast-but-careful judgment, data-driven decisions, constructive conflict, and leverage across teams.
@@ -149,14 +149,14 @@ Default prepared answers should be concise, scannable, and easy to say aloud.
 For culture-fit, values, "why company", and philosophy questions, use a 3-part shape:
 
 1. **Story:** One concrete personal example, usually 1-2 sentences.
-2. **Take:** The belief, lesson, or operating principle Julie derived, 1-2 sentences.
+2. **Take:** The belief, lesson, or operating principle the user derived, 1-2 sentences.
 3. **Company connection:** One sentence linking the lesson to the company's mission, values, or role.
 
 For reusable scripts, label these as `Story`, `My take`, and `Company connection`.
 
 ### Question Tags
 
-Tag scripts when useful so Julie can scan quickly:
+Tag scripts when useful so the user can scan quickly:
 
 - `[Teamwork]`
 - `[Conflict]`
@@ -269,7 +269,7 @@ Use when the user shares a behavioral question and wants to know what it tests a
 > - **DB:** <databricks value hook keywords — which principle and how, ~5-10 words>
 ```
 
-The Quick Memo is a scannable cheat-sheet Julie can glance at right before the interview. Rules:
+The Quick Memo is a scannable cheat-sheet the user can glance at right before the interview. Rules:
 
 - Always include a wikilink to the lead story file using the **relative path from the vault root** so the link resolves correctly (e.g., `[[1_db_xfn/BQ/01_stories/story_23_agentic_model_ownership_conflict]]`, not just `[[story_23_agentic_model_ownership_conflict]]`).
 - Use keyword-only bullets, not full sentences. Each bullet should be 5-10 words max.
@@ -278,7 +278,7 @@ The Quick Memo is a scannable cheat-sheet Julie can glance at right before the i
 
 ## Story Builder Mode
 
-Use when Julie has a raw story starter — a situation, project, or moment — and wants to turn it into a polished, vault-linked BQ story without already knowing which question it answers.
+Use when the user has a raw story starter — a situation, project, or moment — and wants to turn it into a polished, vault-linked BQ story without already knowing which question it answers.
 
 Trigger phrases: "story builder", "I have a story", "let me tell you about", "build a story from", "I want to develop this story".
 
@@ -286,13 +286,13 @@ Trigger phrases: "story builder", "I have a story", "let me tell you about", "bu
 
 #### Phase 1 — Story Intake
 
-1. Ask Julie to share her story starter. Accept any form: a few sentences, a project name, a situation, or a rough memory.
+1. Ask the user to share her story starter. Accept any form: a few sentences, a project name, a situation, or a rough memory.
 2. Immediately read `02_questions/bq_question_bank.md` and `03_story_bank/BQ_Story_Mapping.md` from the BQ vault to understand what categories and questions already exist. Do this silently; do not narrate it.
 3. Do not draft anything yet. Move to Phase 2.
 
 #### Phase 2 — Targeted Grilling
 
-Ask **one question at a time**. Wait for Julie's full answer before the next question. Target 6–10 questions total, covering:
+Ask **one question at a time**. Wait for the user's full answer before the next question. Target 6–10 questions total, covering:
 
 1. **Personal contribution:** "What specifically did *you* decide or do? What was yours vs. the team's?"
 2. **Stakes and scope:** "What would have happened if this hadn't been done, or if it had failed?"
@@ -307,7 +307,7 @@ Ask **one question at a time**. Wait for Julie's full answer before the next que
 
 Skip questions whose answers are already clear from the story starter or prior answers. Probe MLE-specific angles (eval mismatch, research-production tradeoff, data vs. model vs. infra judgment) if the story is ML-adjacent.
 
-Apply credibility guardrails continuously: flag vague claims, metric gaps, or "we" statements that obscure Julie's personal contribution.
+Apply credibility guardrails continuously: flag vague claims, metric gaps, or "we" statements that obscure the user's personal contribution.
 
 #### Phase 3 — Story Grouping
 
@@ -319,7 +319,7 @@ After grilling, map the story to:
 4. **Scope level:** Senior, Staff, or Senior Staff based on the Staff+ rubric.
 5. **Existing story category** in `03_story_bank/BQ_Story_Mapping.md` — place the story there if a category fits, or propose a new category if none fits well.
 
-Present the grouping to Julie as a short summary before drafting:
+Present the grouping to the user as a short summary before drafting:
 
 ```markdown
 **Story grouping:**
@@ -331,7 +331,7 @@ Present the grouping to Julie as a short summary before drafting:
 - Story status: <flagship / support / not ready>
 ```
 
-Ask Julie to confirm or correct before moving to Phase 4.
+Ask the user to confirm or correct before moving to Phase 4.
 
 #### Phase 4 — CARL Draft
 
@@ -343,7 +343,7 @@ Draft using the three-section output structure. The output is optimized for inte
 - **Best-for questions table:** Read `02_questions/bq_question_bank.md` and identify the **top 3-5 questions** this story best answers. Present as a table with Question, Signal, and Fit (Strong / Good / Partial). For "Strong" fits, note the specific angle. For "Partial" fits, note what would make it stronger.
 
 **Section 2 — Two-Minute CARL Story:**
-- **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to Julie's real experience. Include one key or strongest point so the interviewer immediately hears the signal.
+- **Short opening:** 2-3 sentences, not a long monologue. Start from the question keywords, then bridge to the user's real experience. Include one key or strongest point so the interviewer immediately hears the signal.
 - **Context:** 1-2 speakable bullets (~15 seconds). Brief setup, stakes, role, constraints.
 - **Actions:** 3-5 speakable bullets (~60-75 seconds). Concrete "I" actions, decisions, tradeoffs, influence. This is the center of the answer.
 - **Results:** 1-2 speakable bullets with metrics (~15 seconds). Include baseline and denominator when possible.
@@ -367,7 +367,7 @@ Flag `VERIFY` on uncertain metrics or facts rather than inventing precision.
 
 #### Phase 6 — Humanize
 
-Run `/humanizer` on the drafted story to remove AI writing patterns. The short opening and CARL bullets should sound like Julie speaking — plain, direct, no inflated language or AI-tell phrases.
+Run `/humanizer` on the drafted story to remove AI writing patterns. The short opening and CARL bullets should sound like the user speaking — plain, direct, no inflated language or AI-tell phrases.
 
 #### Phase 7 — Save & Update Index
 
@@ -399,7 +399,7 @@ The output is organized for interview-day utility: scan tags and question fit fi
 ## 2. Two-Minute CARL Story
 
 ### Short Opening
-2-3 sentences that connect the question keywords to Julie's genuine experience. Include one key / strongest point so the interviewer immediately hears the signal.
+2-3 sentences that connect the question keywords to the user's genuine experience. Include one key / strongest point so the interviewer immediately hears the signal.
 
 ### Context
 - ... (1-2 speakable bullets, ~15 seconds)
@@ -472,12 +472,12 @@ Reference material for follow-ups, probing, or regenerating the story with a dif
 
 - Never draft the CARL story before grilling is complete — premature drafting locks in weak facts.
 - Ask exactly one question per turn. Do not batch questions.
-- If Julie tries to jump to the draft before enough detail exists, tell her what is still missing and ask the next probe.
+- If the user tries to jump to the draft before enough detail exists, tell her what is still missing and ask the next probe.
 - If the story is too weak for Staff+ after grilling, say so clearly and suggest what would strengthen it, rather than over-polishing weak material.
-- Always confirm the story grouping with Julie before drafting.
+- Always confirm the story grouping with the user before drafting.
 - Flag all uncertain metrics with `VERIFY` rather than inventing precision.
 - Always run `/humanizer` on the draft before saving — no exceptions.
-- After saving, tell Julie which BQ question this story best anchors so she can update her story map mentally.
+- After saving, tell the user which BQ question this story best anchors so she can update her story map mentally.
 
 ## Mock Mode
 
@@ -568,7 +568,7 @@ Use `output/story_library.md` as the polished source of truth.
 #### 2. Two-Minute CARL Story
 
 ##### Short Opening
-2-3 sentences connecting question keywords to Julie's genuine experience. One key / strongest point.
+2-3 sentences connecting question keywords to the user's genuine experience. One key / strongest point.
 
 ##### Context
 - ... (1-2 speakable bullets)
@@ -701,7 +701,7 @@ Evaluate against these dimensions:
 
 ## Local References
 
-Read whatever the candidate provides, usually from `input/0_requirements.md` or `input/`. In Julie's BQ vault, use `/Users/xue/Documents/work/3_BQ` and the folder map above.
+Read whatever the candidate provides, usually from `input/0_requirements.md` or `input/`. In the user's BQ vault, use `~/Documents/work/3_BQ` and the folder map above.
 
 - Resume, self-intro, prior interview prep, company notes, role descriptions, rubric, and question files.
 - Existing `output/` artifacts from prior brainstorm, story builder, or mock sessions.
