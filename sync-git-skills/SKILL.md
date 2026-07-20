@@ -30,6 +30,54 @@ Sync the local skills vault with two GitHub remotes using a two-branch strategy:
 
 Detect from context. If the user just says "sync", run Full sync.
 
+## Trigger Detection
+
+Match user intent to the appropriate mode:
+
+**Status checks:**
+- "sync status"
+- "check sync"
+- "show sync state"
+→ Run Status mode
+
+**Pull operations:**
+- "pull private"
+- "pull from private"
+→ Pull private only
+
+- "pull public"
+- "pull from public"
+→ Pull public only
+
+- "pull skills"
+- "pull both"
+- "sync pull"
+→ Pull from both (private then public)
+
+**Push operations:**
+- "push private"
+- "push to private"
+→ Push private only (commit + push)
+
+- "push public"
+- "push to public"
+- "publish skills"
+→ Push public only (sanitize + rebuild + push)
+
+- "push skills"
+- "push both"
+- "sync push"
+→ Push to both (private then public)
+
+**Full sync:**
+- "sync"
+- "sync skills"
+- "sync everything"
+- "full sync"
+→ Complete sync workflow
+
+When in doubt, clarify with user which operation they want.
+
 ## PRIVATE_DIRS
 
 These paths must never appear in the public repo. Any directory prefixed with `private-` is private by convention.

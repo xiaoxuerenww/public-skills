@@ -17,34 +17,82 @@ Uses a two-branch approach:
 ## Modes
 
 ### Status
-Check sync state across both remotes:
+Check sync state across both remotes and uncommitted changes:
 ```
 /sync-git-skills status
 ```
 
-### Pull
-Pull latest updates from public-skills into local main:
+Shows:
+- Uncommitted changes (if any)
+- Behind/ahead count for origin (private-skills)
+- Behind/ahead count for public (public-skills)
+- Recommended actions
+
+### Pull Private
+Pull latest from origin (private-skills) into local main:
+```
+/sync-git-skills pull private
+```
+
+### Pull Public
+Pull latest from public (public-skills) into local main:
+```
+/sync-git-skills pull public
+```
+
+### Pull (Both)
+Pull from both remotes (private first, then public):
 ```
 /sync-git-skills pull
 ```
 
 ### Push Private
-Push main branch to private-skills:
+Commit local changes and push to private-skills:
 ```
 /sync-git-skills push private
 ```
 
+Automatically commits uncommitted changes before pushing.
+
 ### Push Public
-Rebuild public-only branch and push to public-skills:
+Sanitize PII, rebuild public-only branch, and push to public-skills:
 ```
 /sync-git-skills push public
 ```
 
+**IMPORTANT:** Always runs `/sanitize-pii` first to prevent personal information leaks.
+
+Steps:
+1. Run PII scan
+2. Show findings (if any)
+3. Ask user to approve sanitization
+4. Apply sanitization
+5. Commit sanitization to main
+6. Rebuild public-only branch
+7. Strip private content
+8. Push to public
+9. Verify no leaks
+
+### Push (Both)
+Push to both remotes (private first, then public):
+```
+/sync-git-skills push
+```
+
 ### Full Sync (Default)
-Run all operations in order:
+Complete sync workflow:
 ```
 /sync-git-skills
 ```
+
+Runs all operations in order:
+1. Status check
+2. Commit uncommitted changes
+3. Pull from private
+4. Pull from public
+5. Push to private
+6. Sanitize PII + push to public
+7. Final report
 
 ## Private Directories
 
@@ -77,10 +125,31 @@ These directories are automatically excluded from public-skills:
 
 ## Safety Features
 
-- **PII Sanitization**: Prompts to run `/sanitize-pii` before pushing to public
-- **Verification**: Checks public repo after push to ensure no private content leaked
-- **Force Push**: Uses `--force` on public to maintain clean history
-- **Conflict Handling**: Asks user to resolve merge conflicts manually
+- **Automatic PII Sanitization**: ALWAYS runs `/sanitize-pii` before pushing to public
+  - Scans for names, emails, paths, credentials
+  - Shows findings before applying changes
+  - Requires user approval for sanitization
+  - Commits sanitization to main before public push
+  
+- **Private Content Filtering**: Automatically strips private directories
+  - `private-*/` pattern
+  - `.claude/`, `.claudian/`
+  - `journal/`, `personalized-life-coach/`
+  - Sync tools and documentation
+  
+- **Post-Push Verification**: Checks public repo after push
+  - Verifies no private content leaked
+  - Lists any leaked files for review
+  
+- **Force Push Strategy**: Uses `--force` on public repo
+  - Maintains clean public history
+  - Public repo is always derived from private
+  - No merge conflicts in public
+  
+- **Conflict Handling**: Manual resolution for pulls
+  - Lists conflicted files
+  - Asks user how to resolve
+  - Never auto-resolves conflicts
 
 ## Remotes Setup
 
