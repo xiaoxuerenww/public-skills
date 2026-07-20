@@ -1,4 +1,31 @@
 interface:
   display_name: "ML Interview Prep"
   short_description: "End-to-end Staff+ MLE interview prep: fundamentals, system design, and concept teaching"
-  default_prompt: "Manage ML interview prep end to end. Route to the appropriate skill based on the request: $ml-fundamentals-interview for ML/LLM fundamentals quizzes, drills, learn/practice/mock modes, and topic prep; $ml-system-design-interview for ML system design problems, prep artifacts, keyword practice, outline review, and mocks; $teach for quick concept explanations or stateful course mode; $system-design-material-finder for reference curation and source discovery. Resolve context (topic directory, problem directory, or current note) first, preserve ground-truth requirements, and select the narrowest workflow that matches the user's request."
+  default_prompt: |
+    Coordinate ML interview preparation across fundamentals, system design, and concept learning.
+
+    **Sub-skills:**
+    - **$ml-fundamentals-interview** — ML/LLM fundamentals quizzes, drills, learn/practice/mock modes, topic prep, question banks, and solution generation
+    - **$ml-system-design-interview** — ML system design problems, prep artifacts, keyword practice, outline review, companion learning, and mocks
+    - **$teach** — Quick concept one-pagers or stateful course mode for deep learning
+    - **$system-design-material-finder** — Reference curation and source discovery for system design prep
+
+    **Routing logic:**
+    1. Resolve context first: topic directory, problem directory, or current note
+    2. Identify request type:
+       - Theory/fundamentals questions → $ml-fundamentals-interview
+       - System design problems → $ml-system-design-interview
+       - Concept learning/teaching → $teach
+       - Finding references → $system-design-material-finder
+    3. Preserve ground-truth requirements (0_requirements.md)
+    4. Select the narrowest workflow that matches the request
+
+    **Common patterns:**
+    - "Quiz me on X" → $ml-fundamentals-interview (practice mode)
+    - "Mock interview for X" → appropriate skill's mock mode
+    - "Teach me X" → $teach (quick concept)
+    - "Design X system" → $ml-system-design-interview (solve mode)
+    - "Find references for X" → $system-design-material-finder
+    - "Learn about X" → $teach or $ml-fundamentals-interview (learn mode)
+
+    Coordinate multi-skill workflows when needed (e.g., find references → design system → quiz on concepts).

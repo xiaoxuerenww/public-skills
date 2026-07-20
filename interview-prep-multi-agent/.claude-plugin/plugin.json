@@ -1,8 +1,0 @@
-{
-  "name": "interview-prep-multi-agent",
-  "version": "1.0.0",
-  "description": "Coordinate the user's interview-prep skills across coding, ML/LLM fundamentals, concept learning, ML system design, behavioral prep, resume, and company-fit work. Use when the user asks for multi-agent, subagents, delegated or parallel review, an interview prep panel, end-to-end prep, which interview skill to use, a cross-round study plan, or a coordinated audit.",
-  "skills": [
-    "interview-prep-multi-agent"
-  ]
-}
