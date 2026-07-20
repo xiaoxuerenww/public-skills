@@ -46,19 +46,42 @@ Update this list when the user adds new private-only skills.
 
 ## Status
 
+Check sync state and uncommitted changes:
+
 ```bash
+# Fetch latest from both remotes
 git fetch origin
 git fetch public
+
+# Check uncommitted changes
+git status --short
+
+# Compare local with remotes
+git rev-list --left-right --count origin/main...HEAD
+git rev-list --left-right --count public/main...HEAD
 ```
 
 Report:
 
-| Remote | Local Branch | Remote Branch | Status | Action |
-|--------|-------------|---------------|--------|--------|
-| origin (private) | main | origin/main | ahead N / behind N / synced | push / pull / none |
-| public | public-only | public/main | ahead N / behind N / synced | push / pull / none |
+| Remote | Local → Remote | Behind | Ahead | Status | Action Needed |
+|--------|----------------|--------|-------|--------|---------------|
+| origin (private) | main → origin/main | N | N | synced/ahead/behind | pull / push / both |
+| public | main → public/main | N | N | synced/ahead/behind | pull / push / both |
 
-Also report uncommitted changes if any.
+**Uncommitted changes:** N files modified, M untracked
+
+If there are uncommitted changes, ask user if they want to commit before syncing.
+
+## Pull Private
+
+Pull latest from origin (private-skills) into local main:
+
+```bash
+git fetch origin
+git merge origin/main --no-edit -m "Sync: pull latest from private-skills"
+```
+
+If merge conflicts, list them and ask the user how to resolve.
 
 ## Pull Public
 
@@ -71,61 +94,136 @@ git merge public/main --allow-unrelated-histories --no-edit -m "Sync: pull lates
 
 If merge conflicts, list them and ask the user how to resolve.
 
+## Pull (Both)
+
+Pull from both remotes in order:
+
+1. Pull from origin (private-skills) first
+2. Pull from public (public-skills) second
+
+This ensures private changes are integrated before public changes.
+
 ## Push Private
 
-```bash
-git push origin main
-```
+Commit local changes and push to origin (private-skills):
+
+1. **Check for uncommitted changes**:
+   ```bash
+   git status --short
+   ```
+
+2. **If there are changes, ask user for commit message**. Default: "Update skills"
+
+3. **Commit**:
+   ```bash
+   git add -A
+   git commit -m "Update skills
+   
+   Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
+   ```
+
+4. **Push**:
+   ```bash
+   git push origin main
+   ```
 
 ## Push Public
 
-Rebuild the public-only branch from main, sanitize PII, strip private content, then push.
+Sanitize PII, rebuild public-only branch, strip private content, then push.
 
-1. **Sanitize PII first.** Before branching, run `/sanitize-pii` on the vault root to scan all public-facing files for personal information (names, emails, paths, credentials). Fix any findings on main before proceeding. This prevents PII from ever reaching the public repo.
+1. **Sanitize PII first** (REQUIRED):
+   - Invoke `/sanitize-pii` skill in scan mode on the vault root
+   - If PII found, show findings and ask user to approve automatic sanitization
+   - If user approves, run `/sanitize-pii` in sanitize mode
+   - Commit sanitization changes to main before proceeding
+   - This prevents PII from ever reaching the public repo
 
-2. Start from main:
+2. **Start from main**:
    ```bash
    git checkout main
    git branch -D public-only 2>/dev/null
    git checkout -b public-only main
    ```
 
-3. Remove every path listed in PRIVATE_DIRS:
+3. **Remove private directories** (from PRIVATE_DIRS list):
    ```bash
-   git rm -r --ignore-unmatch private-journal/ private-life-coach/ .claude/ .claudian/ sync-public.sh
+   git rm -r --ignore-unmatch private-journal/ private-life-coach/ journal/ personalized-life-coach/ .claude/ .claudian/ sync-public.sh
    ```
 
-4. Also remove any directory matching `private-*/`:
+4. **Remove any `private-*` directories**:
    ```bash
    git ls-files 'private-*' | xargs -r git rm -r
    ```
 
-5. Commit and push:
+5. **Remove sync and repository management files**:
    ```bash
-   git commit -m "Sync: update public-skills"
+   git rm -r --ignore-unmatch sync-git-skills/ SYNC_SKILL_MERGE_SUMMARY.md FINAL_REPOSITORY_SPLIT.md REPOSITORY_SPLIT_SUMMARY.md PUBLIC_SKILLS_SETUP.md SANITIZATION_SUMMARY.md PUBLIC_SKILLS_SANITIZATION_REPORT.md
+   ```
+
+6. **Commit and push**:
+   ```bash
+   git commit -m "Sync: update public-skills
+   
+   Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
    git push public public-only:main --force
    ```
 
-6. Switch back:
+7. **Switch back**:
    ```bash
    git checkout main
    ```
 
-7. Verify no private content leaked:
+8. **Verify no private content leaked**:
    ```bash
-   gh api repos/xiaoxuerenww/public-skills/git/trees/main --jq '.tree[] | select(.path | test("private|.claude|.claudian")) | .path'
+   gh api repos/xiaoxuerenww/public-skills/git/trees/main --jq '.tree[] | select(.path | test("private|.claude|.claudian|sync-git-skills")) | .path'
    ```
-   If output is empty, push is clean.
+   
+   If output is empty, push is clean. Otherwise, list leaked files and ask user to review.
+
+## Push (Both)
+
+Push to both remotes in order:
+
+1. **Push to private** (origin) first — includes all local changes
+2. **Push to public** — sanitizes PII and strips private content
+
+This ensures private repo has everything before public gets sanitized subset.
 
 ## Full Sync
 
-Run in order:
+Complete end-to-end sync workflow. Run in order:
 
-1. **Status** — show current state.
-2. **Pull public** — merge latest public changes into main.
-3. **Push private** — push main to origin.
-4. **Push public** — rebuild public-only, push to public.
-5. **Report** — summary table of what happened.
+1. **Status** — show current state (uncommitted changes, behind/ahead for both remotes).
+
+2. **Commit local changes** (if any):
+   - If uncommitted changes exist, ask user for commit message
+   - Commit with message + co-author
+
+3. **Pull private** — pull latest from origin (private-skills) into main.
+
+4. **Pull public** — pull latest from public (public-skills) into main.
+
+5. **Push private** — push main to origin (private-skills).
+
+6. **Push public**:
+   - Run `/sanitize-pii` scan
+   - If PII found, ask user to approve sanitization
+   - Apply sanitization if approved
+   - Rebuild public-only branch
+   - Strip private content
+   - Push to public (public-skills)
+
+7. **Report** — summary table:
+   
+   | Step | Status | Details |
+   |------|--------|---------|
+   | Uncommitted changes | committed / none | N files |
+   | Pull private | merged / up-to-date / conflicts | N commits |
+   | Pull public | merged / up-to-date / conflicts | N commits |
+   | Push private | pushed / up-to-date | N commits |
+   | Sanitize PII | clean / sanitized | N findings fixed |
+   | Push public | pushed / up-to-date | public-only branch |
+   | Verification | ✓ clean / ✗ leaked | private content check |
 
 ## Error Handling
 
