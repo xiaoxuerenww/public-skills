@@ -8,9 +8,9 @@ Single repo synced to two remotes:
 ## Sync
 
 ```bash
-/sync-skills           # full sync: pull public, push both
-/sync-skills status    # check sync state
-/sync-skills pull      # pull public updates only
+/sync-git-skills           # full sync: pull public, push both
+/sync-git-skills status    # check sync state
+/sync-git-skills pull      # pull public updates only
 ```
 
 ## Skills
@@ -39,7 +39,7 @@ Single repo synced to two remotes:
 - **[sanitize-pii](./sanitize-pii/)** — Remove PII for public sharing
 - **[humanizer](./humanizer/)** — Humanize AI content
 - **[handoff](./handoff/)** — Project handoff docs
-- **[sync-skills](./sync-skills/)** — Vault sync between remotes
+- **[sync-git-skills](./sync-git-skills/)** — Vault sync between remotes
 - **[writing-great-skills](./writing-great-skills/)** — Skill authoring reference
 
 ### Private (not pushed to public)

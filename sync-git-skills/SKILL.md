@@ -1,9 +1,9 @@
 ---
-name: sync-skills
+name: sync-git-skills
 description: "Sync skills vault between private and public repos. Use when the user says sync, push, pull, or update skills, or asks to check sync status."
 ---
 
-# Sync Skills
+# Sync Git Skills
 
 Sync the local skills vault with two GitHub remotes using a two-branch strategy:
 
@@ -17,13 +17,16 @@ Sync the local skills vault with two GitHub remotes using a two-branch strategy:
 | origin | private-skills (private) | main | everything |
 | public | public-skills (public) | public-only → main | public content only |
 
-## Branches
+## Modes
 
-- **Status** — show sync state across both remotes.
-- **Pull** — pull latest from public into local main.
-- **Push private** — push main to origin.
-- **Push public** — rebuild public-only branch and push to public.
-- **Full sync** (default) — all of the above in order.
+- **Status** — show sync state across both remotes and uncommitted changes.
+- **Pull private** — pull latest from origin (private-skills) into local main.
+- **Pull public** — pull latest from public (public-skills) into local main.
+- **Pull** (no arg) — pull from both remotes in order: origin first, then public.
+- **Push private** — commit and push main to origin.
+- **Push public** — sanitize PII, rebuild public-only branch, push to public.
+- **Push** (no arg) — push to both remotes in order: private first, then public.
+- **Full sync** (default) — all operations: status → pull both → push both → report.
 
 Detect from context. If the user just says "sync", run Full sync.
 
@@ -76,37 +79,39 @@ git push origin main
 
 ## Push Public
 
-Rebuild the public-only branch from main, stripping private content:
+Rebuild the public-only branch from main, sanitize PII, strip private content, then push.
 
-1. Start from main:
+1. **Sanitize PII first.** Before branching, run `/sanitize-pii` on the vault root to scan all public-facing files for personal information (names, emails, paths, credentials). Fix any findings on main before proceeding. This prevents PII from ever reaching the public repo.
+
+2. Start from main:
    ```bash
    git checkout main
    git branch -D public-only 2>/dev/null
    git checkout -b public-only main
    ```
 
-2. Remove every path listed in PRIVATE_DIRS:
+3. Remove every path listed in PRIVATE_DIRS:
    ```bash
    git rm -r --ignore-unmatch private-journal/ private-life-coach/ .claude/ .claudian/ sync-public.sh
    ```
 
-3. Also remove any directory matching `private-*/`:
+4. Also remove any directory matching `private-*/`:
    ```bash
    git ls-files 'private-*' | xargs -r git rm -r
    ```
 
-4. Commit and push:
+5. Commit and push:
    ```bash
    git commit -m "Sync: update public-skills"
    git push public public-only:main --force
    ```
 
-5. Switch back:
+6. Switch back:
    ```bash
    git checkout main
    ```
 
-6. Verify no private content leaked:
+7. Verify no private content leaked:
    ```bash
    gh api repos/xiaoxuerenww/public-skills/git/trees/main --jq '.tree[] | select(.path | test("private|.claude|.claudian")) | .path'
    ```
