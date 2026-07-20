@@ -774,7 +774,7 @@ Source: https://www.1point3acres.com/home/pins/1176227
 
 题目是worker management 在hack2hire上有这道题，三四问有点小变化，整体上比hack2hire上的变简单了，比如promo 是从下一次进office开始生效，没有start time了，grant cover 整个work session的时候才eligible 计算salary不需要分段算了，并且不需要grant 有overlap需要merge的情况。。最后满分提交了，希望有下一步面试吧。。看地里很多满分提交的后面也被拒了，感觉可能还有进一步简历筛选或者是position fill了就拒了。。
 补充内容 (2026-05-12 05:13 +08:00):
-recruiter今天来约电话了 有没有人最近在面sde的可以交流下互通有无 我target应该是senior。。有同样在准备sde的可邮箱联系我 anthinterview0@gmail.com
+recruiter今天来约电话了 有没有人最近在面sde的可以交流下互通有无 我target应该是senior。。有同样在准备sde的可邮箱联系我 user@example.com
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: frontier-lab-news-digest
 description: |
-  Generate daily HTML digest of tech and financial news from frontier AI labs, optimized for mobile email. Compiles curated updates about Anthropic, OpenAI, xAI, Google DeepMind, Meta, and other leading AI organizations from the last 24 hours. Covers product launches, model releases, funding announcements, regulatory news, hiring updates, market movements, and cross-lab patterns. Output is responsive HTML formatted for email clients and mobile phones. Send via scheduled routine daily at 7am PST to heheni723@gmail.com.
+  Generate daily HTML digest of tech and financial news from frontier AI labs, optimized for mobile email. Compiles curated updates about Anthropic, OpenAI, xAI, Google DeepMind, Meta, and other leading AI organizations from the last 24 hours. Covers product launches, model releases, funding announcements, regulatory news, hiring updates, market movements, and cross-lab patterns. Output is responsive HTML formatted for email clients and mobile phones. Send via scheduled routine daily at 7am PST to user@example.com.
 compatibility: Requires web search capability and email delivery integration
 ---
 
@@ -366,7 +366,7 @@ Before finalizing:
 - **Subject line:** "Frontier Lab Updates — [Date]" (e.g., "Frontier Lab Updates — May 27, 2026")
   - If custom subscriptions included, optionally append: "Frontier Lab Updates (+ Custom) — May 27, 2026"
 - **Send time:** 7:00 AM PST daily
-- **Recipient:** heheni723@gmail.com
+- **Recipient:** user@example.com
 - **Format:** HTML (multipart email with plain text fallback optional)
 - **Headers:** Include timezone info in send time
 

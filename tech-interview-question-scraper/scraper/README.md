@@ -176,7 +176,7 @@ Use the `post-process-scraper-outputs` Codex skill to turn scraped raw posts int
 a round-specific raw evidence file:
 
 ```text
-/Users/xue/.codex/skills/post-process-scraper-outputs/SKILL.md
+~/.codex/skills/post-process-scraper-outputs/SKILL.md
 ```
 
 The output file is:

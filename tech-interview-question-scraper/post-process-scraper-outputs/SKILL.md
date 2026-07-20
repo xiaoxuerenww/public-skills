@@ -49,8 +49,8 @@ The output contract is strict:
 Use the helper from the scraper repo root:
 
 ```bash
-python3 /Users/xue/.codex/skills/post-process-scraper-outputs/scripts/extract_round_candidates.py \
-  --scraper-root /Users/xue/.codex/skills/scraper \
+python3 ~/.codex/skills/post-process-scraper-outputs/scripts/extract_round_candidates.py \
+  --scraper-root ~/.codex/skills/scraper \
   --company <company> \
   --round "<interview_round>"
 ```

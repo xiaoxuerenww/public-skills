@@ -26,7 +26,7 @@ description: Consolidate scratch Markdown notes into durable canonical notes and
    - Merge source content into the most relevant durable section.
    - Deduplicate repeated explanations instead of appending raw notes at the end.
    - Prefer concise synthesis over preserving Q&A format unless Q&A is the destination style.
-   - Keep Julie's Obsidian style: Markdown-native, wikilinks, concise tables, callouts when useful.
+   - Keep the user's Obsidian style: Markdown-native, wikilinks, concise tables, callouts when useful.
    - Expand abbreviations on first use, then use the abbreviation.
    - Avoid em dashes.
 

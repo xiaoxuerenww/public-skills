@@ -8,7 +8,7 @@ compatibility: WebFetch, WebSearch, Browser/Chrome computer use
 
 ## Tracking File
 
-**File**: `Applied_Roles.md` in the active company-research workspace, usually `/Users/xue/Documents/work/Company research/Applied_Roles.md`
+**File**: `Applied_Roles.md` in the active company-research workspace, usually `~/Documents/work/Company research/Applied_Roles.md`
 
 This file has three sections the skill reads before doing anything:
 
@@ -118,9 +118,9 @@ Always ask the user which resume version to use before starting the application 
 
 Resume discovery order:
 1. Search likely resume folders in the active vault and company-research workspace, especially:
-   - `/Users/xue/Documents/interview/2026_interview/5_resume/`
-   - `/Users/xue/Documents/work/Company research/`
-   - `/Users/xue/Documents/work/interview/Company research/`
+   - `~/Documents/interview/2026_interview/5_resume/`
+   - `~/Documents/work/Company research/`
+   - `~/Documents/work/interview/Company research/`
 2. Prefer a recent PDF resume when an application requires upload.
 3. If both Markdown and PDF exist for the same resume, use the PDF for upload and the Markdown only for extracting text.
 4. Match resume version to role domain when filenames or folder names indicate specialization:

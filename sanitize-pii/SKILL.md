@@ -177,7 +177,7 @@ Apply systematic PII replacements.
    ```bash
    # Example: Replace name
    find <dir> -type f \( -name "*.md" -o -name "*.py" ... \) \
-     -exec sed -i '' -e "s/Julie's/the user's/g" -e "s/Julie/the user/g" {} +
+     -exec sed -i '' -e "s/the user's/the user's/g" -e "s/the user/the user/g" {} +
    
    # Example: Replace paths
    find <dir> -type f \( -name "*.md" -o -name "*.py" ... \) \
@@ -208,7 +208,7 @@ Apply systematic PII replacements.
    ## Replacements Applied
    
    ### Names
-   - "Julie" → "the user" (<count> files changed)
+   - "the user" → "the user" (<count> files changed)
    
    ### Email Addresses  
    - "real@email.com" → "user@example.com" (<count> files)

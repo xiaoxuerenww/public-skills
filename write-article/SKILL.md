@@ -165,7 +165,7 @@ Publish a completed article to GitHub Pages.
 User says: "publish the attention mechanisms article"
 
 1. Read `articles/attention-mechanisms.md` (status: `completed`)
-2. Read `publish-config.json` → repo: `/Users/xue/dev/xue-wang.github.io`
+2. Read `publish-config.json` → repo: `~/dev/user.github.io`
 3. Convert to Jekyll post:
    - File: `2026-07-20-attention-mechanisms.md`
    - Frontmatter:
@@ -177,11 +177,11 @@ User says: "publish the attention mechanisms article"
      categories: [ml, transformers]
      ---
      ```
-4. Write to `/Users/xue/dev/xue-wang.github.io/_posts/2026-07-20-attention-mechanisms.md`
+4. Write to `~/dev/user.github.io/_posts/2026-07-20-attention-mechanisms.md`
 5. Update INDEX.md:
    - Status: `published`
    - Published: `2026-07-20`
-   - URL: `https://xue-wang.github.io/attention-mechanisms/`
+   - URL: `https://user.github.io/attention-mechanisms/`
 6. Ask: "Article written to GitHub Pages repo. Commit and push now?"
 7. If yes, run git commands and confirm publication
 
