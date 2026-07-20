@@ -34,15 +34,35 @@ Detect from context. If the user just says "sync", run Full sync.
 
 These paths must never appear in the public repo. Any directory prefixed with `private-` is private by convention.
 
+**Private skills and personal content:**
 ```
 private-journal/
 private-life-coach/
-.claude/
-.claudian/
-sync-public.sh
+journal/                    # Legacy, also private
+personalized-life-coach/    # Legacy, also private
 ```
 
-Update this list when the user adds new private-only skills.
+**Configuration and sync tools:**
+```
+.claude/
+.claudian/
+sync-git-skills/            # Sync tool itself (not needed in public)
+sync-public.sh             # Legacy sync script
+```
+
+**Documentation (private-only context):**
+```
+SYNC_SKILL_MERGE_SUMMARY.md
+FINAL_REPOSITORY_SPLIT.md
+REPOSITORY_SPLIT_SUMMARY.md
+PUBLIC_SKILLS_SETUP.md
+SANITIZATION_SUMMARY.md
+PUBLIC_SKILLS_SANITIZATION_REPORT.md
+```
+
+**Convention:** Any directory matching `private-*/` is automatically excluded.
+
+Update this list when the user adds new private-only content.
 
 ## Status
 
