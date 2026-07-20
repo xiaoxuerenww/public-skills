@@ -1,4 +1,0 @@
-interface:
-  display_name: "File Cleaner"
-  short_description: "Consolidate and clean paired notes"
-  default_prompt: "Use $file-cleaner to migrate a topic learn_notes.md into deep_dive.md."

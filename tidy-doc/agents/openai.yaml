@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tidy Doc"
-  short_description: "Regroup and dedupe docs without rewriting"
-  default_prompt: "Use $tidy-doc to regroup this document by topic, remove duplicate topics, and order material from basic to advanced while preserving content."
