@@ -6,6 +6,35 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-07-21 — "Maybe I should stay at Google" traced back to interview fear, not career judgment
+
+**What we surfaced:**
+- Julie came in with a recurring thought: "staying at Google might be the better choice." The trigger was finding interview prep difficult.
+- We traced the causal chain: prep is hard → I might not pass → maybe I should stay. The "stay at Google" thought was not a new career judgment; it was a fear response to interview difficulty.
+- Julie identified two distinct gaps: (1) ML theory for interviews (estimated 2 weeks to 1 month to close), and (2) a deeper imposter feeling about not being a "real ML person" because she lacks a formal ML degree and deep theoretical training.
+- Her first instinct was to consider abandoning ML entirely and pivoting to general SWE/backend roles — a large leap from a closeable skill gap to an identity-level retreat.
+- When tested, Julie recognized that her "not enough ML theory" standard comes from an old, increasingly outdated definition of ML work. In the AI-native era, the value is shifting toward product/business insight, rapid experimentation, and system-level execution — exactly her strengths.
+- Julie stated clearly: "I have no doubt about my ability to do ML work in the AI-native era." The gap is only about a legacy interview format, not about the actual work.
+- She also recognized that Google offers limited career growth even with a team switch, while external companies are willing to offer her larger scope, responsibility, and growth trajectory.
+- Final clarity: "Staying at Google is mostly because I'm afraid I can't pass interviews — I'm looking for a fallback." This is the Hedging Pattern, driven by fear, not evidence.
+
+**Key insights:**
+- The "stay at Google" thought is a reliable signal that fear is active, not that the career strategy needs revision. Julie can now use it as a self-diagnostic: when this thought appears, ask "is this evidence or fear?"
+- The ML theory gap is a bounded execution problem (2-4 weeks), not a direction problem. It should be treated as a short-term project, not an identity question.
+- Julie's imposter syndrome around ML is anchored to an outdated standard. Her actual profile — large-scale systems, product sense, end-to-end execution, rapid experimentation — aligns with where ML work is heading.
+- External opportunities offer meaningfully more growth than Google internal options. This assessment has not changed across multiple sessions.
+
+**Principles at play:**
+- Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling: imposter syndrome was converting a closeable gap into a career-direction retreat.
+- Principle 3 — Be Brave — Act Before You Feel Ready: the pull to stay at Google is the hedging pattern, not a reasoned strategic choice.
+- Principle 8 — Built for Challenge: interview difficulty is not evidence of incapability; it is the expected cost of a frontier transition.
+- Principle 1 — Follow Curiosity: Julie's curiosity and growth pull is toward external frontier opportunities, not toward staying.
+
+**Action item:**
+- When "maybe I should stay at Google" resurfaces, use it as a diagnostic trigger: ask "is this evidence or fear?" Today's session confirmed it is fear.
+- Treat the ML theory interview gap as a 2-4 week execution sprint, separate from identity or direction.
+- Do not conflate interview format difficulty with career-direction doubt.
+
 ## 2026-06-23 - Job-search channel learning: cold apply is low-yield; Staff+ search needs network-first strategy
 
 **What we surfaced:**
