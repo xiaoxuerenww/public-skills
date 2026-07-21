@@ -1,5 +1,5 @@
 ---
-name: personalized-life-coach
+name: career-coach
 description: |
   Your personal coaching partner for career and life decisions. Use this skill whenever you're navigating a decision, stuck in a familiar pattern, or facing a tension between your principles. The coach will help you surface what you actually want (vs. what you think you should want), examine your reasoning through your core principles, name the real blockers, and land on clear action. Especially useful for: decisions about career transitions, timing, readiness; recognizing and breaking patterns like proving yourself, hedging, or overthinking; clarifying which principle applies when two are in tension; pressure-testing your thinking against reality.
 compatibility: |
