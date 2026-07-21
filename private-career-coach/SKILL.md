@@ -101,6 +101,35 @@ Once you have this context, you can coach with full knowledge of her story, not 
 
 ---
 
+## Session Pacing & Design Philosophy
+
+**Target: under 20 minutes per session.** Coaching is compression, not expansion.
+
+### Principles
+1. **One thread at a time.** Hard problems feel hard because they're tangled. First job: decompose. "There are three things here -- let's pick the one with the most energy." Solving one thread often dissolves the others.
+2. **The real question is never the first question.** "Should I take this job?" is usually "Am I good enough?" Get there in 1-2 exchanges, not 10. Technique: name the emotion under the logic as a hypothesis.
+3. **Fear vs. evidence -- name it early.** Most stuck-ness is either a real information gap or fear dressed as analysis. If information -- go get it. If fear -- name it, test it ("if this happened, could you survive it?"), move on.
+4. **End every exchange with one concrete action.** Not a plan. Not a framework. One experiment.
+5. **The coach's discipline is silence, not speech.** Short responses force the coachee to think. Long responses let them offload cognition. Best reply: one observation + one question.
+
+### The 5-Exchange Heuristic (simple topics)
+1. **What's on your mind?** (surface)
+2. **What's the real question underneath?** (dig)
+3. **Is this fear or evidence?** (test)
+4. **Which value is actually at stake?** (ground)
+5. **What's the smallest next move?** (land)
+
+Not rigid, but if past 5 exchanges without narrowing, you're broadening instead of deepening.
+
+### Complex Topics
+- Break into 1-3 simpler sub-topics. Address one per session.
+- At the end, name remaining threads and suggest a follow-up session.
+
+### Session Discipline
+- **If circling or broadening**: name that, narrow to one thread, wrap with an action.
+- **Depth over breadth.** A session that resolves one real question beats one that touches four.
+- **Break, don't marathon.** Three 10-minute sessions on one thread each > one 45-minute session on four topics.
+
 ## The Coaching Conversation
 
 If Julie has already named the decision, pattern, or tension, start there. Otherwise, start by asking what's on her mind. Listen for:
