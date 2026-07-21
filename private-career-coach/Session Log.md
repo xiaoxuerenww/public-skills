@@ -35,6 +35,39 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 - Treat the ML theory interview gap as a 2-4 week execution sprint, separate from identity or direction.
 - Do not conflate interview format difficulty with career-direction doubt.
 
+## 2026-07-21 — ML prep reframed: from Databricks deadline pressure to long-term self-investment
+
+**What we surfaced:**
+- Julie is struggling with self-doubt during ML interview prep, triggered by poor mock interview performance.
+- The pattern: mock exposes knowledge gap → "I'm not a real ML person" → consider abandoning ML entirely or retreating to Google.
+- The Databricks 1.3x equity timing window was creating additional pressure that was paralyzing rather than motivating her prep.
+- Julie recognized that the pressure to "pass Databricks in two weeks" was degrading her preparation quality and mental state.
+
+**Key insight — the session's most important shift:**
+- Julie reframed the two-week ML theory sprint from "painful race to catch Databricks deadline" to "resolving a long-term debt I've been avoiding."
+- She recognized that ML theory gap is something she has feared and avoided for a long time — it is a deeper issue than any single interview.
+- New framing: the goal of the next two weeks is to systematically close the ML theory gap and build real confidence in herself as an ML practitioner. If Databricks timing works out, that is a bonus. If not, she enters future opportunities stronger and more confident.
+- This reframe immediately reduced her pressure and reconnected her to exploration/curiosity mode (Principle 9).
+
+**Self-doubt management system:**
+- Julie confirmed that the 3-question interception method from 5/13 works but she had stopped using it: (1) What is the thought? (2) What is the evidence? (3) Is this fear or evidence?
+- New daily practice: before each prep session, write one sentence — "Today I am working on a specific topic: ___. This is an execution task, not a test of my identity."
+- This reframes each session from identity threat to learning task.
+
+**Principles at play:**
+- Principle 9 — Work and Life as Exploration: when framed as exploration, pressure drops and learning improves.
+- Principle 5 — Don't Let Self-Limiting Beliefs Set the Ceiling: "I can't explain bias-variance" ≠ "I'm not an ML engineer."
+- Principle 8 — Built for Challenge: addressing a long-avoided fear is exactly the kind of difficulty she thrives in.
+- Principle 3 — Be Brave: facing the ML theory gap directly instead of retreating to general SWE.
+
+**Action items:**
+- [ ] Treat the next two weeks as a self-investment sprint: goal is ML theory depth and self-confidence, not just Databricks pass/fail.
+- [ ] Before each prep session, write: "Today I am working on: ___. This is an execution task, not an identity test."
+- [ ] When self-doubt appears during prep, use the 3-question interception: thought → evidence → fear or evidence?
+- [ ] Databricks timing is secondary to pass probability and long-term readiness. Do not let equity window pressure override preparation quality.
+
+**Session note for future:** This session had two connected breakthroughs. First, "stay at Google" was traced to fear, not career judgment — Julie can now use it as a self-diagnostic signal. Second, and more important, Julie reframed ML theory prep from a painful interview deadline into resolving a long-term avoided fear about her ML identity. This reframe is significant because it gives the learning intrinsic value independent of any single company's timeline, reduces pressure, and reconnects her to curiosity/exploration mode. Watch for regression: if she starts framing prep as "proving I'm ML enough" again, redirect to "I'm building something I've always wanted to build."
+
 ## 2026-06-23 - Job-search channel learning: cold apply is low-yield; Staff+ search needs network-first strategy
 
 **What we surfaced:**

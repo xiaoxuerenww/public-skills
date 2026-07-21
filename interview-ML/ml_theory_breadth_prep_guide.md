@@ -99,16 +99,41 @@ Four areas are tested: **data handling, model selection & optimization, evaluati
 
 ---
 
-## Suggested Study Plan (4-week breadth sprint)
+## Suggested Study Plan (1-week sprint)
 
-| Week | Focus | Daily Time |
-|------|-------|-----------|
-| 1 | Classical ML + Statistics (Chip Huyen Ch 5-8, alirezadir classical section) | 1.5-2 hr |
-| 2 | Deep Learning + Transformers (attention, architectures, training) | 1.5-2 hr |
-| 3 | LLMs & GenAI (RLHF, inference optimization, RAG, evaluation) | 1.5-2 hr |
-| 4 | Mixed mocks + weak-spot drilling, multimodal topics | 1.5-2 hr |
+Assumes Staff MLE background: classical ML and DL are refresh, not learn-from-scratch. LLM-era topics get the most time since they dominate 2026 breadth rounds at frontier labs.
 
-Each week: 2-3 study sessions + 1-2 quiz/mock sessions. Use `/interview-ML` for quizzes throughout.
+**Daily commitment: 3 hours** (2 hr study + 1 hr quiz/mock). Use `/interview-ML` quiz mode throughout.
+
+| Day | Morning block (2 hr study) | Evening block (1 hr quiz) |
+|-----|---------------------------|--------------------------|
+| D1 | **Classical ML speed refresh**: bias-variance, regularization (L1/L2/elastic net), ensemble methods (RF vs XGBoost -- when each wins), loss functions, evaluation (precision/recall/F1/AUC), class imbalance, distribution shift | Self-quiz: explain 10 concepts aloud in 60s each, no notes. Log weak spots |
+| D2 | **Optimization + DL foundations**: SGD variants (momentum, Adam, AdamW), learning rate schedules, batch norm vs layer norm vs RMSNorm, activation functions, vanishing gradients | `/interview-ML` quiz on classical ML + DL |
+| D3 | **Transformer internals**: scaled dot-product attention math, multi-head attention, positional encoding (RoPE, ALiBi), KV cache mechanics, MQA/GQA/MLA, FlashAttention, MoE routing, tokenization (BPE) | Draw the transformer block from memory. `/interview-ML` quiz on transformers |
+| D4 | **LLM training pipeline + alignment**: pretraining objectives, scaling laws (Chinchilla), SFT, RLHF (reward model + PPO), DPO (why it skips reward model), GRPO, KTO, reasoning RL. When to use which | Compare alignment methods in a table from memory |
+| D5 | **Inference optimization + RAG**: quantization (INT8/4, FP8, GPTQ, AWQ), speculative decoding, continuous batching, paged attention, parallelism (tensor/pipeline/sequence). RAG architecture, chunking, RAG vs fine-tuning vs long context | Explain RAG end-to-end, then critique failure modes. `/interview-ML` quiz |
+| D6 | **Multimodal, safety, evaluation**: CLIP/SigLIP, vision-language models (LLaVA), diffusion basics. LLM-as-judge, arena evals, benchmarks. Safety: red-teaming, jailbreaks, constitutional AI, fairness | `/interview-ML` mixed-topic mock: 25 questions, 45 min |
+| D7 | **Weak-spot blitz** (morning): drill the 5-8 weakest topics from D1-D6 logs | **Final mock**: 25-30 questions, 45 min, all areas. Aim for zero hesitations. Rest before interview |
+
+### Daily Routine Template
+
+```
+Morning (2 hr block):
+  - 10 min: recall yesterday's topics from memory (no notes)
+  - 110 min: study today's block (notes, alirezadir repo, resources)
+
+Evening (1 hr block):
+  - 45 min: quiz / mock (use /interview-ML or self-quiz)
+  - 15 min: log weak spots in a running list
+```
+
+### If You Miss a Day
+
+Non-negotiable core (do these 4 days minimum):
+1. **D3** -- transformer internals (the new baseline)
+2. **D4** -- training pipeline + alignment
+3. **D5** -- inference optimization + RAG
+4. **D7** -- final mock
 
 ---
 
