@@ -82,19 +82,20 @@ scope: <directory name>
 
 ### <Cluster Name>
 
-- [[path/to/file-1]] — one-line summary
-- [[path/to/file-2]] — one-line summary
+- [ ] [[path/to/file-1]] — one-line summary
+- [ ] [[path/to/file-2]] — one-line summary
 
 ### <Cluster Name>
 
-- [[path/to/file-3]] — one-line summary
+- [ ] [[path/to/file-3]] — one-line summary
 
 ## Uncategorized
 
-- [[path/to/misc-file]] — one-line summary
+- [ ] [[path/to/misc-file]] — one-line summary
 ```
 
 Rules:
+- Use checkboxes (`- [ ]`) for linked materials so the user can track reading progress.
 - Use wikilinks for every file reference.
 - Group files by the topic clusters from the plan.
 - One-line summary per file: what it covers, not what it is ("attention mechanisms and self-attention variants", not "a document about attention").
