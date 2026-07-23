@@ -82,7 +82,12 @@ Turn accumulated notes into a polished article.
    - **Approach** — what was tried, including dead ends.
    - **Solution** — what worked and why.
    - **Result** — measurable outcome or takeaway.
-4. Draft following the style rules below. Preserve the user's original insights and voice.
+4. Draft following the style rules below and `$tech-article-format` conventions:
+   - Use **tables** for comparisons, alternatives, and tradeoffs (not bullet lists)
+   - Add **TL;DR** summaries at major sections
+   - Use **bold** for key terms and decisions
+   - Structure **tension/tradeoffs** as comparison tables
+   - Preserve the user's original insights and voice.
 5. Write the polished article to the same file (keep raw notes in a collapsed section at the bottom).
 6. Update INDEX.md status to `completed`.
 

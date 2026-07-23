@@ -36,8 +36,11 @@ technical claims unless a small connective heading or label is needed.
 - Do not add new technical content unless the user asks.
 - Do not change facts, equations, code, examples, or citations.
 - Do not flatten useful hierarchy. Prefer topic -> basic -> follow-up.
-- Do not over-format. Use the document's existing heading depth, bullets, and
-  style.
+- **Formatting improvements (when applicable):** Apply `$tech-article-format` conventions to improve scannability:
+  - Convert bullet-list comparisons to comparison tables
+  - Convert bullet-list tradeoffs to tables with clear columns
+  - Use **bold** for key terms and decisions
+  - Keep the document's existing heading depth and style otherwise
 - Keep links, wikilinks, images, code blocks, tables, and citations attached to
   the relevant topic.
 - If duplicate content conflicts, keep both claims and mark the conflict with a

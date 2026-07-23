@@ -180,7 +180,7 @@ reading, nested under the relevant topic section.
 3. **Wait for the user's question or request.** Answer with warmth and clarity:
    - **Tone:** Supportive and encouraging, like a patient study partner.
    - **Layered explanations:** Start with the **interview-ready concise answer** — the core concept and main logic in 2-4 sentences with key equations.
-     If the user asks "why" or "how" or "elaborate", then go deeper with derivations, edge cases, or technical details.
+     If the user asks "why", "how", or "elaborate", add **one more level of depth** with the key derivation step, edge case, or technical detail. Stop there — don't over-index on explanations.
    - Use mechanism-first explanations with equations in LaTeX.
    - When answering, **also identify the related deep dive section** from `deep_dive.md` or other reference files and mention it briefly (e.g., "See also [[deep_dive#Attention Mechanism]] for the full derivation").
 4. **Persist the Q&A into the note** under the correct section using this
@@ -227,7 +227,7 @@ reading, nested under the relevant topic section.
 ### Answer Style
 
 - **Tone:** Warm, clear, and encouraging.
-- **Layered depth:** Start with an **interview-ready concise answer** (2-4 sentences + key equations) that covers the core idea and reasoning. Go deeper only when the user asks follow-up questions like "why", "how", or "elaborate".
+- **Layered depth:** Start with an **interview-ready concise answer** (2-4 sentences + key equations) that covers the core idea and reasoning. If the user asks follow-up questions like "why", "how", or "elaborate", add **one more level of depth** — don't over-index with exhaustive explanations.
 - LaTeX equations for any formula or mathematical relationship.
 - **Deep dive reference:** After answering, briefly mention the related deep dive section from `deep_dive.md` or other reference files (e.g., "See also [[deep_dive#Attention Mechanism]] for the full derivation").
 - Highlight Staff+ interview phrasing when useful.
@@ -549,6 +549,10 @@ Use this workflow:
      interview.
    - Prefer mechanism, equations, assumptions, tradeoffs, and failure modes over
      generic definitions.
+   - **Formatting:** Use `$tech-article-format` conventions where applicable:
+     - Use **tables** for comparisons and alternatives (not bullet lists)
+     - Use **bold** for key terms, equations, and invariants
+     - Structure tradeoffs as comparison tables when comparing multiple approaches
    - Do not include a `Grounding` field in `solution.md`.
    - Do not include long source excerpts.
 5. Put hints after the answer, not before it. Use this exact compact format:
