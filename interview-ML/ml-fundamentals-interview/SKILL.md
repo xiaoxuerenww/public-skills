@@ -63,6 +63,7 @@ available.
 
 ## Mode Routing
 
+- If the user says "companion" or "companion my review/reading/learning", use Companion Mode.
 - If the user says "learn ml fundamental", use Learn Mode.
 - If the user says "practice ml fundamental", use Practice Mode.
 - If the user says "mock ml fundamental", use Mock Mode.
@@ -154,6 +155,67 @@ include:
 Do not use timestamp, section, or topic as the heading. Do not hide weak areas
 behind vague encouragement. Keep notes concise but explicit enough to support
 spaced review.
+
+## Companion Mode
+
+Triggered by "companion", "companion my review", "companion my reading", or
+"companion my learning".
+
+The user is actively reading a note (provided via `<linked_note>` or
+`<editor_selection>`) and asking questions or requesting additions as she goes.
+This mode documents her questions and the answers directly in the note she is
+reading, nested under the relevant topic section.
+
+### Workflow
+
+1. **Identify the active note** from `<linked_note>` or `<editor_selection>`.
+   Read the full note to understand its heading structure.
+2. **Wait for the user's question or request.** Answer it directly — concise,
+   mechanism-first, with equations in LaTeX.
+3. **Persist the Q&A into the note** under the correct section using this
+   heading hierarchy:
+
+   ```
+   ### <existing topic heading>        ← the topic the question falls under
+   #### Followup                       ← one per topic, created on first followup
+   ##### <followup question>           ← concise question as heading
+   <answer content>                    ← directly below, no extra wrapper
+   ```
+
+   Rules for heading placement:
+   - Find the `###` topic heading that the question belongs to.
+   - **If the question is a detailed elaboration** on an existing section
+     (e.g., "elaborate on X", "explain why X", "what does X mean"), expand
+     that section in place — do NOT create a new followup heading. Add the
+     elaboration content directly into the existing section with appropriate
+     subheadings if needed.
+   - **If the question is a new standalone Q&A** (not directly elaborating an
+     existing sentence), use the Followup structure:
+     - If a `#### Followup` sub-heading already exists under that topic,
+       append a new `##### <question>` entry under it.
+     - If no `#### Followup` exists yet, create one just before the next `###`
+       heading (or at the end of that topic section) and add the `#####` entry.
+   - The `#### Followup` heading level is always one level below the topic
+     heading. If the topic uses `##`, followup is `###` and questions are
+     `####`. Mirror the note's existing hierarchy.
+   - Keep the followup question heading short and descriptive (e.g.,
+     "Choose decision boundary", "Why convex loss matters").
+
+4. **If the user asks to add content** (e.g., "add equations for X"), add the
+   content directly into the relevant section of the note — not under Followup.
+   Only use the Followup structure for new standalone Q&A pairs, not for
+   elaborations.
+5. **Do not proactively advance topics.** Wait for the user's next question.
+6. **Do not create separate files** (`learn_notes.md`, `mock.md`, etc.). All
+   companion notes go directly into the note being read.
+
+### Answer Style
+
+- Concise, interview-ready depth.
+- LaTeX equations for any formula or mathematical relationship.
+- Highlight Staff+ interview phrasing when useful.
+- One compact example at most.
+- Match the style and conventions of the existing note.
 
 ## Learn Mode
 

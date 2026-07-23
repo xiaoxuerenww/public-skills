@@ -6,6 +6,41 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 <!-- New entries go at the top, most recent first -->
 
+## 2026-07-21 — Interview progress review, coaching skill recalibration, and prep strategy validation
+
+**What we surfaced:**
+- Julie asked for a review of her 2026 interview progress. Three months, three companies contacted, one full loop (Anthropic — failed on ML coding round), one in progress (Databricks — 3 of 5 rounds done, 2 remaining unscheduled), one waiting (Harvey.ai).
+- All behavioral, culture, and HM rounds have been passed across both companies. The gap is technical: ML concepts and ML system design for Databricks.
+- Julie's mock interview on July 19 showed approximately 15-20% readiness on ML concepts. She has a clear, evidence-based plan: prep using high-yield concept list with 3-layer spoken answers, measure readiness via mock pass rate, target 80%, schedule interviews when ready (can schedule just days ahead).
+- Coach was too pushy early in the session — pattern-matched Julie's evidence-based prep plan to the hedging pattern without asking for evidence first, then pushed the same point across multiple turns. Julie corrected this and provided feedback to improve the coaching skill.
+- Julie recognized her pipeline is too thin (one company at a time, serial sprints) and committed to maintaining 2-3 companies in parallel after the Databricks sprint, compounding prep across companies.
+- Julie celebrated her own progress: every interview round so far has been a first-time-ever format, prepared from zero after 10 years without interviewing. This is genuinely significant.
+
+**Coaching skill updates made this session:**
+- Added "Compassion First, Challenge Second" as a core principle
+- Added mode detection (Reflect / Tactical / Coach / Support) before defaulting to challenge
+- Added "Listen Before Labeling" — ask one factual question before naming any pattern
+- Added escalation brake — one challenge per topic maximum; stop pushing if Julie corrects with evidence
+- Adjusted tone to warm and steady, not overly cheerful or stern
+- Challenges offered once then let go; coach plants seeds, Julie decides which to grow
+
+**Key insights:**
+- Julie's prep plan is sound and evidence-based. The ML concepts gap is real (mock data), bounded (10-15 high-yield concepts), and has a clear measurement system (mock pass rate).
+- The behavioral/leadership signal is a confirmed strength — consistent passes across two companies.
+- Pipeline thinness is the main strategic risk. After Databricks, Julie plans to compound prep across 2-3 parallel companies.
+- Progress measurement methods identified: daily one-sentence log, same-question retesting, mock-to-mock comparison, count of concepts she can explain without notes.
+
+**Principles at play:**
+- Principle 4 — Think Carefully, Act Thoughtfully: evidence-based prep plan with measurable readiness criteria.
+- Principle 8 — Built for Challenge: every round completed so far was a zero-to-one effort after 10 years without interviewing.
+- Principle 9 — Work and Life as Exploration: reframing prep as building long-term capability, not just passing one interview.
+
+**Action items:**
+- [ ] Databricks sprint: prep ML concepts and system design, measure via mocks, schedule when 80% mock pass rate is achieved.
+- [ ] Track daily progress: one sentence per day on what was learned.
+- [ ] After Databricks: pipeline 2-3 companies in parallel, compound prep across them.
+- [ ] Use same-question retesting on July 19 weak spots (bias-variance, regularization, normalization) to measure concept depth growth.
+
 ## 2026-07-21 — "Maybe I should stay at Google" traced back to interview fear, not career judgment
 
 **What we surfaced:**

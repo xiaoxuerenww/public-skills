@@ -12,6 +12,7 @@ Route the user's request to the narrowest matching sub-skill. Read the user's me
 
 | Request pattern | Invoke skill | Examples |
 |----------------|-------------|----------|
+| Companion reading/review/learning, annotate a note with Q&A | `$ml-fundamentals-interview` | "Companion my review", "Companion my reading of this note" |
 | Theory, fundamentals, quiz, drill, learn/practice/mock on ML concepts | `$ml-fundamentals-interview` | "Quiz me on attention", "Practice LLM fundamentals", "Mock ML interview" |
 | System design, architecture, ranking, recommendation, serving, infra | `$ml-system-design-interview` | "Design a recommendation system", "System design mock", "Practice keyword outline" |
 | Explain, teach, learn a concept, one-pager, course | `$teach` | "Teach me RLHF", "Explain KV cache", "Start a course on diffusion" |
