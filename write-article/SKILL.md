@@ -82,7 +82,7 @@ Turn accumulated notes into a polished article.
    - **Approach** — what was tried, including dead ends.
    - **Solution** — what worked and why.
    - **Result** — measurable outcome or takeaway.
-4. Draft following the style rules below and `$tech-article-format` conventions:
+4. Draft following the style rules below and `$doc-formatter` conventions:
    - Use **tables** for comparisons, alternatives, and tradeoffs (not bullet lists)
    - Add **TL;DR** summaries at major sections
    - Use **bold** for key terms and decisions

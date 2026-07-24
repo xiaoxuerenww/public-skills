@@ -215,7 +215,7 @@ Next question: <one question>
 
 Create or update `projects/<project_slug>/_deep_dive.md` as the raw material repository. Collection mode does **not** create slide structure or presentation layout. That is outline mode's job.
 
-**Formatting:** When documenting tradeoffs, alternatives, and comparisons, use `$tech-article-format` conventions:
+**Formatting:** When documenting tradeoffs, alternatives, and comparisons, use `$doc-formatter` conventions:
 - Use **tables** for alternatives and tradeoffs (not bullet lists)
 - Use **bold** for key decisions and technical terms
 - Structure comparisons as tables with clear columns
@@ -420,7 +420,7 @@ For each iteration:
 1. Pick the single highest-priority improvement from the internal list.
 2. Output only the proposed delta or change for that one slide or section. Do not restate the full slide, full section, full current text, or full replacement unless the user explicitly asks for the full diff.
 3. Use compact patch-style wording, for example "Replace bullet X with...", "Add after the diagram...", "Move these details to backup...", or "Condense this table to these 3 rows...".
-4. **Apply `$tech-article-format` conventions** when suggesting improvements:
+4. **Apply `$doc-formatter` conventions** when suggesting improvements:
    - Replace bullet-list comparisons with comparison tables
    - Replace bullet-list tradeoffs with tension tables
    - Add TL;DR summaries to major sections

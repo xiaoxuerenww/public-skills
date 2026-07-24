@@ -99,7 +99,7 @@ Take the skeleton (which the user may have edited) as the outline. Read it back 
 
 - **One-pager:** follow the template in [one-pager-format.md](one-pager-format.md).
 - **Deep dive:** follow the template in [deep-dive-format.md](deep-dive-format.md).
-- **Formatting:** Apply `$tech-article-format` conventions for scannable, visually structured documents:
+- **Formatting:** Apply `$doc-formatter` conventions for scannable, visually structured documents:
   - Use **tables** for comparisons, alternatives, and tradeoffs (not bullet lists)
   - Add **TL;DR** summaries at major sections
   - Use **bold** for key terms and important distinctions

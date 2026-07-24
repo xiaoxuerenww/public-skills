@@ -1,8 +1,11 @@
-# Tech Article Format
-
-Use this skill when formatting technical documents, system design docs, interview prep notes, or deep-dive articles. Apply these formatting conventions to make documents scannable, visually readable, and interview-friendly.
-
 ---
+name: doc-formatter
+description: Format technical documents with scannable structure, comparison tables, and interview-friendly layouts. Use when the user asks to format, structure, or improve readability of technical docs, system design docs, interview prep notes, or deep-dive articles.
+---
+
+# Doc Formatter
+
+Apply professional formatting conventions to make technical documents scannable, visually readable, and interview-friendly.
 
 ## Core Principles
 
@@ -11,9 +14,16 @@ Use this skill when formatting technical documents, system design docs, intervie
 3. **Visual hierarchy** — Bold, italic, and structure guide the eye
 4. **Shorter is better** — One idea per bullet, not multi-sentence paragraphs
 
----
+## When to Use
 
-## Section Structure
+Use this skill when the user asks to:
+- Format a technical document
+- Make a document more scannable or readable
+- Apply professional structure to interview prep notes
+- Convert prose-heavy content to tables and structured format
+- Improve visual hierarchy in system design docs
+
+## Section Structure Template
 
 Each major section should follow this pattern:
 
@@ -56,8 +66,6 @@ Each major section should follow this pattern:
 **Related:** Links to related concepts or patterns
 ```
 
----
-
 ## Formatting Rules
 
 ### Text Emphasis
@@ -93,8 +101,6 @@ Use blockquotes for section summaries:
 ```markdown
 > **TL;DR:** Hybrid orchestrator — deterministic harness controls flow; LLM handles intent/SQL within bounded steps.
 ```
-
----
 
 ## Common Table Patterns
 
@@ -136,8 +142,6 @@ Use blockquotes for section summaries:
 | Team B | Responsibility 2 |
 ```
 
----
-
 ## Data Model Formatting
 
 For schema/data model sections, use **definition-style lists**:
@@ -149,24 +153,39 @@ For schema/data model sections, use **definition-style lists**:
 - `field_5`, `field_6`
 ```
 
----
-
 ## Appendix Conventions
 
 - Mark appendices as *"Not for spoken delivery"* if they're reference-only
 - Use horizontal rules (`---`) to separate major sections
 - Keep appendices at the end, clearly labeled
 
----
+## Workflow
 
-## Quick Checklist
+When formatting a document:
 
-Before finalizing a document:
+1. **Read the document** to understand its structure and content
+2. **Identify sections** that need formatting improvement:
+   - Prose-heavy comparisons → convert to tables
+   - Multi-sentence bullets → break into single-idea bullets
+   - Missing TL;DRs → add section summaries
+   - Weak visual hierarchy → add bold/italic emphasis
+3. **Apply formatting patterns** from the templates above
+4. **Preserve all content** — reformat structure, don't rewrite substance
+5. **Verify improvements**:
+   - Tables for all alternatives/tradeoffs
+   - Single-idea bullets throughout
+   - Bold key terms and invariants
+   - TL;DR blockquotes for major sections
 
-- [ ] Every section has a **TL;DR** blockquote
+## Quality Checklist
+
+Before completing:
+
+- [ ] Every section has a **TL;DR** blockquote (when appropriate)
 - [ ] All alternatives/tradeoffs use **tables**, not bullet lists
 - [ ] **Bold** marks key terms and decisions
 - [ ] Bullets are **single ideas**, not paragraphs
 - [ ] "Why hard" sections show **tension as a table**
 - [ ] Invariants are **bolded and bulleted**
 - [ ] No multi-sentence bullets
+- [ ] Code/technical terms use `inline code` formatting

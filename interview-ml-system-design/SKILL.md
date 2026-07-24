@@ -158,7 +158,7 @@ generic "next", a topic change, or a short follow-up as a wrap-up request.
 
 **Writing conventions for all documents:**
 
-- **Formatting:** Follow `$tech-article-format` conventions for scannable, visually readable documents:
+- **Formatting:** Follow `$doc-formatter` conventions for scannable, visually readable documents:
   - Use **tables** for comparisons, alternatives, and tradeoffs (not bullet lists)
   - Add **TL;DR** summaries at major sections
   - Use **bold** for key terms, decisions, and invariants
@@ -344,7 +344,7 @@ Avoid:
 
 **Purpose:** Interview-ready spoken answer — what you'd actually say in a 30-45 minute interview. Optimized for delivery, not learning depth.
 
-**Formatting:** Use `$tech-article-format` conventions for scannable structure: tables for comparisons/alternatives, bold for key terms, TL;DR summaries, clear visual hierarchy.
+**Formatting:** Use `$doc-formatter` conventions for scannable structure: tables for comparisons/alternatives, bold for key terms, TL;DR summaries, clear visual hierarchy.
 
 Write this after key topics. It is the spoken answer key and should stay lighter than `5_deep_dive.md`. Include:
 
@@ -367,7 +367,7 @@ After `5_deep_dive.md` exists, make a final pass over `4_interview_ready_solutio
 
 **Purpose:** Staff/Principal-level learning depth — durable reasoning document for understanding *why* decisions matter, not for interview delivery. Go deeper than what you'd say in an interview.
 
-**Formatting:** Use `$tech-article-format` conventions extensively: tables for tradeoffs/alternatives, tension tables, TL;DR summaries per section, invariants/failure modes as structured lists, visual hierarchy with bold/italic.
+**Formatting:** Use `$doc-formatter` conventions extensively: tables for tradeoffs/alternatives, tension tables, TL;DR summaries per section, invariants/failure modes as structured lists, visual hierarchy with bold/italic.
 
 Write this after the interview-ready solution. It is the durable reasoning document. Include:
 
@@ -448,7 +448,7 @@ For each problem, structure the answer around:
 ### Phase 3: Create Solution Documents
 
 1. Write `solution/interview_solutions.md` as the **interview-ready answer** (what you'd say in 30-45 min):
-   - **Formatting:** Use `$tech-article-format` conventions: tables for comparisons/alternatives, bold for key terms, TL;DR summaries, clear visual hierarchy.
+   - **Formatting:** Use `$doc-formatter` conventions: tables for comparisons/alternatives, bold for key terms, TL;DR summaries, clear visual hierarchy.
    - Opener
    - Understanding the Problem
    - Problem Framing
@@ -467,7 +467,7 @@ For each problem, structure the answer around:
    - **Abbreviation handling:** Expand abbreviations on first use (e.g., "Machine Learning (ML)", "Natural Language Processing (NLP)"), then use short form consistently.
 
 2. Write `solution/deep_dive.md` as the **Staff/Principal-level learning depth document** (for understanding *why*, not for interview delivery):
-   - **Formatting:** Use `$tech-article-format` conventions extensively: tables for tradeoffs/alternatives, tension tables, TL;DR per section, invariants/failure modes as structured lists.
+   - **Formatting:** Use `$doc-formatter` conventions extensively: tables for tradeoffs/alternatives, tension tables, TL;DR per section, invariants/failure modes as structured lists.
    - One section per major component or design decision.
    - For each section: problem, why hard (use tension table), alternatives (use comparison table), chosen solution, why it works, invariants, pragmatic notes, and related concepts.
    - Include L6+ thinking: ambiguity ownership, cross-team contracts, migration strategy, ML correctness, operational maturity.
@@ -477,7 +477,7 @@ For each problem, structure the answer around:
 3. Run a rubric pass before finalizing:
    - **For interview_solutions.md:** Strengthen crux identification, complexity control, decision-making, ML correctness, metrics, failure modes, L6+ signal, and communication. Optimize for delivery clarity.
    - **For deep_dive.md:** Add Staff/Principal-level depth on why decisions matter, production patterns, failure modes, and evolution paths. Optimize for learning depth.
-   - **Formatting validation:** Ensure both documents follow `$tech-article-format` conventions:
+   - **Formatting validation:** Ensure both documents follow `$doc-formatter` conventions:
      - Use tables for all comparisons and alternatives (not bullet lists)
      - Add TL;DR summaries at major sections
      - Use bold for key terms and decisions

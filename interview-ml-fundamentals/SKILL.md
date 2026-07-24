@@ -226,14 +226,48 @@ reading, nested under the relevant topic section.
 
 ### Answer Style
 
+**Concise Answer Format (Default):**
+
+Use this structure for initial answers:
+1. **Key distinction** (what makes X different from Y, or the core mechanism)
+2. **Concrete comparison** (X does A, Y does B, or how the mechanism works)
+3. **One equation** (if relevant, show the math in LaTeX)
+4. **Quantitative bottom line** (impact: "N× slower", "reduces from X to Y", concrete tradeoff)
+
+**Length:** 2-4 sentences max for the initial answer.
+
+**Example (from user):**
+> "Modern CPU has dedicated circuits for basic arithmetic but no dedicated log circuit. Squaring is one multiplication, but log uses iterative approximation like Taylor expansion: $\log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - ...$. That's why log is 10-20× slower."
+
+**What to avoid in initial answers:**
+- ❌ "In practice, modern libraries..." (save for follow-ups)
+- ❌ Benchmarks, multiple edge cases, historical context
+- ❌ Multiple examples or lengthy elaborations
+- ❌ Apologetic hedging ("relatively", "can be", "somewhat")
+
+**Style guidelines:**
 - **Tone:** Warm, clear, and encouraging.
-- **Layered depth:** Start with an **interview-ready concise answer** (2-4 sentences + key equations) that covers the core idea and reasoning. If the user asks follow-up questions like "why", "how", or "elaborate", add **one more level of depth** — don't over-index with exhaustive explanations.
-- LaTeX equations for any formula or mathematical relationship.
+- **Layered depth:** **Always start concise**, even for "why/how/elaborate" requests. Add **one level of depth per ask**:
+  - **Initial answer**: 2-4 sentences using the 4-part format above
+  - **First "why/how/elaborate"**: Add **one concise layer** (e.g., key mechanism detail, 3-5 sentences)
+  - **Second "elaborate"**: Add **one more layer** (e.g., derivation step or edge case)
+  - **Continue incrementally** — never jump to exhaustive explanations on the first elaboration request
+- **LaTeX equations:** Use for any formula or mathematical relationship. Prefer equations over prose when a standard form exists.
 - **Deep dive reference:** After answering, briefly mention the related deep dive section from `deep_dive.md` or other reference files (e.g., "See also [[deep_dive#Attention Mechanism]] for the full derivation").
-- Highlight Staff+ interview phrasing when useful.
-- One compact example at most in the initial response.
-- Match the style and conventions of the existing note.
-- **Preserve details and reasoning process** when taking notes — don't oversimplify or paraphrase away the derivation steps or mechanism explanations.
+- **Staff+ interview phrasing:** Highlight when useful.
+- **Examples:** At most one compact example in the initial response.
+- **Match existing style:** Follow the conventions of the note being read.
+- **Note-taking structure:** When saving Q&A to notes, use this format:
+  ```markdown
+  ## Q: [Question]
+
+  **Answer:** [4-part concise answer using the format above]
+
+  **Key takeaway:** [One punchy sentence - the core insight for quick review]
+
+  **Details:** [Only if elaborated further in subsequent turns]
+  ```
+  The **Key takeaway** captures the concise summary/insight you give in chat (e.g., "Log term amplifies minority class contribution - 6× difference"). This makes notes scannable while preserving full explanations.
 
 ## Learn Mode
 
@@ -286,19 +320,29 @@ Triggered by "learn ml fundamental".
    - Do not wait for a separate note-taking request.
    - If a later turn corrects or refines the idea, append a short refinement
      note instead of rewriting history.
-   - Include:
-     - **Q:** Concise question
-     - **Raw chat:** the user's actual message as a blockquote (`> ...`),
-       preserving her phrasing, partial understanding, and follow-up threads.
-       Capture the raw chat even when it is informal, fragmented, or contains
-       wrong assumptions — these are valuable evidence of mental-model gaps.
-     - **A:** Save the full chat response verbatim — copy the entire
-       assistant reply as-is, including equations, examples, mechanism
-       breakdowns, edge cases, tradeoffs, and formatting. Do not
-       summarize, condense, paraphrase, or omit any part. If the response
-       spanned multiple turns, concatenate all of them in order. The saved
-       note is the permanent record of the explanation; treat it as a
-       transcript, not a summary.
+   - Use this structure for all saved Q&A:
+     ```markdown
+     ## Q: [Concise question]
+
+     **Raw question:**
+     > [User's actual message verbatim, preserving phrasing and mental model]
+
+     **Answer:** [4-part concise answer using Companion Mode format]
+
+     **Key takeaway:** [One punchy sentence - the core insight for quick review]
+
+     **Details:** [Only if elaborated further in subsequent turns]
+     ```
+   - **Raw question:** The user's actual message as a blockquote, preserving
+     her phrasing, partial understanding, and follow-up threads. Capture even
+     informal, fragmented, or wrong assumptions — these show mental-model gaps.
+   - **Answer:** The initial concise response using the 4-part format (key
+     distinction, concrete comparison, equation, quantitative bottom line).
+   - **Key takeaway:** The punchy one-liner summary you give in chat (e.g.,
+     "Log term amplifies minority class contribution - 6× difference"). This
+     makes notes scannable.
+   - **Details:** Full elaborations from subsequent turns if the user asks
+     "why/how/elaborate". Save verbatim — don't summarize.
    - When a multi-turn exchange builds on a single topic, capture each of
      the user's raw messages as sequential blockquotes under the same Q heading,
      separated by the assistant's inline responses. This preserves the
@@ -549,7 +593,7 @@ Use this workflow:
      interview.
    - Prefer mechanism, equations, assumptions, tradeoffs, and failure modes over
      generic definitions.
-   - **Formatting:** Use `$tech-article-format` conventions where applicable:
+   - **Formatting:** Use `$doc-formatter` conventions where applicable:
      - Use **tables** for comparisons and alternatives (not bullet lists)
      - Use **bold** for key terms, equations, and invariants
      - Structure tradeoffs as comparison tables when comparing multiple approaches
