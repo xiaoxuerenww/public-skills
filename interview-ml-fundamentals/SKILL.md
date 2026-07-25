@@ -81,18 +81,19 @@ no system design unless the user explicitly changes scope.
 
 ## Session Wrap-Up Cleanup
 
-When the user wraps up or ends a **Practice Mode**, **Learn Mode**, or **Mock Mode**
-session, use `$file-cleaner` before the final completion message if the active
+When the user wraps up or ends a **Companion Mode**, **Practice Mode**, **Learn Mode**, or **Mock Mode**
+session, use `/tidy-doc` before the final completion message if the active
 topic directory contains both `learn_notes.md` and `deep_dive.md`.
 
 Wrap-up signals include: "wrap up", "done for now", "end session", "finish",
 "stop here", "summarize session", "end learn", "conclude learn", "exit learn",
-"wrap learning", "finish learning", or an explicit request to clean or
+"wrap learning", "finish learning", "end companion", "exit companion", or an explicit request to clean or
 consolidate notes.
 
 Use this workflow:
 
 1. Finish required mode-specific persistence first.
+   - Companion Mode: save all pending Q&A to `learn_notes.md`.
    - Practice Mode: save the latest practice feedback or weakness notes.
    - Learn Mode: append any useful Q&A explanation to `learn_notes.md` when a
      topic directory is active.
@@ -100,28 +101,34 @@ Use this workflow:
 2. Resolve the active `topic_dir` using the same path rules as Topic Prep and
    Mock Mode.
 3. If both `<topic_dir>/learn_notes.md` and `<topic_dir>/deep_dive.md` exist,
-   invoke `$file-cleaner` to consolidate `learn_notes.md` into `deep_dive.md`,
-   regroup from basic to advanced, remove duplicates, and leave `learn_notes.md`
-   as a lightweight companion buffer.
+   invoke `/tidy-doc` to consolidate `learn_notes.md` into `deep_dive.md`:
+   - `/tidy-doc` will regroup content from basic to advanced
+   - Remove duplicates
+   - Leave `learn_notes.md` as a lightweight companion buffer
 4. If either file is missing, skip cleanup and mention the missing file briefly.
-5. Report the mode wrap-up artifacts and the file-cleaner result together.
+5. Report the mode wrap-up artifacts and the `/tidy-doc` result together.
 
 ## Note-Taking Preferences
 
-When saving any Practice Mode or Mock Mode answer, preserve the full chat
-response as the permanent record:
+**Use "Nerd Notes" format for all learning sessions** — preserve the full raw conversation as the permanent record.
 
-- Save the user's answer as a raw quoted transcript block verbatim — never
-  summarize or paraphrase.
-- Save the grading verdict explicitly as `Verdict: pass` or `Verdict: fail`.
+**Nerd Notes principles:**
+- **Preserve raw conversation verbatim** — capture every user question and assistant response exactly as spoken
+- **Never summarize or paraphrase** — the conversation itself is the learning artifact
+- **Multi-turn exchanges stay together** — when a topic evolves across turns, keep all exchanges under the same Q heading
+- **Show mental model evolution** — raw questions reveal misunderstandings and learning progression
+
+**For Practice Mode and Mock Mode:**
+- Save the user's answer as a raw quoted transcript block verbatim
+- Save the grading verdict explicitly as `Verdict: pass` or `Verdict: fail`
 - Add a `Misses` section that highlights exactly what the user missed, got wrong,
-  left vague, or failed to defend under follow-up.
+  left vague, or failed to defend under follow-up
 - Keep misses direct and concrete: missing equation, wrong assumption, weak
-  mechanism, missing failure mode, missing tradeoff, or interview-structure gap.
+  mechanism, missing failure mode, missing tradeoff, or interview-structure gap
 - Save the full feedback and model answer as given in chat — copy the entire
   assistant response verbatim including equations, derivations, examples, and
-  mechanism breakdowns. Do not summarize, condense, or truncate to save space.
-  The saved note should be fully self-contained for later review.
+  mechanism breakdowns
+- The saved note should be fully self-contained for later review
 
 Use this format for each recorded question:
 
@@ -163,66 +170,65 @@ Triggered by "companion", "companion my review", "companion my reading", or
 
 The user is actively reading a note (provided via `<linked_note>` or
 `<editor_selection>`) and asking questions or requesting additions as she goes.
-This mode documents her questions and the answers directly in the note she is
-reading, nested under the relevant topic section.
+This mode documents her questions and the full conversation in `learn_notes.md`,
+then calls `/tidy-doc` to migrate content into `deep_dive.md` when the session wraps up.
 
 **Key behaviors:**
 - **Don't proactively explain** the material. Let the user initiate questions.
 - Provide **interview-ready concise solutions** unless she asks for more clarification.
 - Meanwhile, **find the corresponding deep dive sections** related to her questions from `deep_dive.md` or related files.
-- Take notes with **details preserved and the reasoning process preserved** in the note being read.
+- Take notes with **full conversation preserved** in `learn_notes.md`.
 
 ### Workflow
 
 1. **Identify the active note** from `<linked_note>` or `<editor_selection>`.
    Read the full note to understand its heading structure.
-2. **Identify the problem/topic directory** to locate the corresponding `deep_dive.md` or other reference files.
+2. **Identify the problem/topic directory** to locate the corresponding `deep_dive.md`, `learn_notes.md`, or other reference files.
 3. **Wait for the user's question or request.** Answer with warmth and clarity:
    - **Tone:** Supportive and encouraging, like a patient study partner.
    - **Layered explanations:** Start with the **interview-ready concise answer** — the core concept and main logic in 2-4 sentences with key equations.
      If the user asks "why", "how", or "elaborate", add **one more level of depth** with the key derivation step, edge case, or technical detail. Stop there — don't over-index on explanations.
    - Use mechanism-first explanations with equations in LaTeX.
    - When answering, **also identify the related deep dive section** from `deep_dive.md` or other reference files and mention it briefly (e.g., "See also [[deep_dive#Attention Mechanism]] for the full derivation").
-4. **Persist the Q&A into the note** under the correct section using this
-   heading hierarchy:
+4. **Persist the full Q&A conversation to `learn_notes.md`** using **Nerd Notes format**:
 
+   ```markdown
+   ## Q: [Concise question - the user's first question on this topic]
+
+   > [User's first raw question verbatim]
+
+   [Assistant's full response verbatim - including equations, examples, explanations]
+
+   > [User's follow-up question verbatim, if any]
+
+   [Assistant's full elaboration verbatim]
+
+   > [User's next follow-up verbatim, if any]
+
+   [Assistant's response verbatim]
+
+   **Key takeaway:** [One punchy sentence - the core insight for quick review]
    ```
-   ### <existing topic heading>        ← the topic the question falls under
-   #### Followup                       ← one per topic, created on first followup
-   ##### <followup question>           ← concise question as heading
-   <answer content>                    ← directly below, no extra wrapper
-   ```
 
-   Rules for heading placement:
-   - Find the `###` topic heading that the question belongs to.
-   - **If the question is a detailed elaboration** on an existing section
-     (e.g., "elaborate on X", "explain why X", "what does X mean"), expand
-     that section in place — do NOT create a new followup heading. Add the
-     elaboration content directly into the existing section with appropriate
-     subheadings if needed.
-   - **If the question is a new standalone Q&A** (not directly elaborating an
-     existing sentence), use the Followup structure:
-     - If a `#### Followup` sub-heading already exists under that topic,
-       append a new `##### <question>` entry under it.
-     - If no `#### Followup` exists yet, create one just before the next `###`
-       heading (or at the end of that topic section) and add the `#####` entry.
-   - The `#### Followup` heading level is always one level below the topic
-     heading. If the topic uses `##`, followup is `###` and questions are
-     `####`. Mirror the note's existing hierarchy.
-   - Keep the followup question heading short and descriptive (e.g.,
-     "Choose decision boundary", "Why convex loss matters").
+   **Nerd Notes rules:**
+   - **Preserve complete conversation flow** — every user message and assistant response verbatim
+   - **User questions as blockquotes** (`>`) — preserve her exact phrasing, mental model gaps, wrong assumptions
+   - **Assistant responses unquoted** — full explanations with equations, derivations, examples exactly as given in chat
+   - **Multi-turn exchanges stay together** — if the user asks "why", "how", "elaborate" on the same topic, append under the same `## Q:` heading
+   - **Key takeaway at the end** — one punchy sentence summarizing the core insight for quick scanning
+   - **Never summarize** — the raw conversation is the learning artifact; condensing loses mental model evolution
 
-4. **If the user asks to add content** (e.g., "add equations for X"), add the
-   content directly into the relevant section of the note — not under Followup.
-   Only use the Followup structure for new standalone Q&A pairs, not for
-   elaborations.
 5. **Do not proactively advance topics.** Wait for the user's next question.
 6. **Stay in companion mode** until the user explicitly asks to wrap up, end the session, exit companion mode, or close the current session.
    - Do not exit companion mode on generic "done", "next", "thanks", or topic changes.
    - Do not treat a switch to a different section of the same note as ending the session.
    - Continue taking notes and answering questions across multiple turns until explicitly asked to stop.
-7. **Do not create separate files** (`learn_notes.md`, `mock.md`, etc.). All
-   companion notes go directly into the note being read.
+7. **On wrap-up:**
+   - Save all pending notes to `learn_notes.md`.
+   - Call `/tidy-doc` to migrate `learn_notes.md` content into `deep_dive.md`.
+   - `/tidy-doc` will regroup content from basic to advanced, remove duplicates,
+     and leave `learn_notes.md` as a lightweight companion buffer.
+   - Report what was migrated and the final state of both files.
 
 ### Answer Style
 
@@ -314,42 +320,33 @@ Triggered by "learn ml fundamental".
      Obsidian with MathJax. Never fall back to plain-text pseudo-math
      (e.g. `softmax(QK^T / sqrt(d))`) when LaTeX is available.
 
-4. **Auto-Notes:**
+4. **Auto-Notes (Nerd Notes format):**
    - After every interview-relevant user question, assistant answer, useful
-     clarification, or insight, record it in `<problem_dir>/learn_notes.md`.
-   - Do not wait for a separate note-taking request.
-   - If a later turn corrects or refines the idea, append a short refinement
-     note instead of rewriting history.
-   - Use this structure for all saved Q&A:
+     clarification, or insight, record it in `<problem_dir>/learn_notes.md`
+   - Do not wait for a separate note-taking request
+   - **Preserve the full raw conversation verbatim** — this is the core principle of Nerd Notes
+   - Use this structure:
      ```markdown
-     ## Q: [Concise question]
+     ## Q: [Concise question - the user's first question on this topic]
 
-     **Raw question:**
-     > [User's actual message verbatim, preserving phrasing and mental model]
+     > [User's first raw question verbatim]
 
-     **Answer:** [4-part concise answer using Companion Mode format]
+     [Assistant's full response verbatim - including equations, examples, explanations]
 
-     **Key takeaway:** [One punchy sentence - the core insight for quick review]
+     > [User's follow-up question verbatim, if any]
 
-     **Details:** [Only if elaborated further in subsequent turns]
+     [Assistant's full elaboration verbatim]
+
+     **Key takeaway:** [One punchy sentence for quick scanning]
      ```
-   - **Raw question:** The user's actual message as a blockquote, preserving
-     her phrasing, partial understanding, and follow-up threads. Capture even
-     informal, fragmented, or wrong assumptions — these show mental-model gaps.
-   - **Answer:** The initial concise response using the 4-part format (key
-     distinction, concrete comparison, equation, quantitative bottom line).
-   - **Key takeaway:** The punchy one-liner summary you give in chat (e.g.,
-     "Log term amplifies minority class contribution - 6× difference"). This
-     makes notes scannable.
-   - **Details:** Full elaborations from subsequent turns if the user asks
-     "why/how/elaborate". Save verbatim — don't summarize.
-   - When a multi-turn exchange builds on a single topic, capture each of
-     the user's raw messages as sequential blockquotes under the same Q heading,
-     separated by the assistant's inline responses. This preserves the
-     conversational arc and shows how understanding evolved.
+   - **Multi-turn exchanges stay together** — if the user asks "why", "how", "elaborate" on the same topic, append under the same `## Q:` heading as alternating blockquoted user messages and unquoted assistant responses
+   - **Never summarize or condense** — the raw conversation flow shows mental model evolution
+   - **Capture informal phrasing and wrong assumptions** — these reveal learning gaps
+   - **User messages as blockquotes** (`> text`) — assistant responses unquoted
+   - **Key takeaway at the end** — one punchy sentence for quick review
    - Do not record workflow, environment, IDE, file-conversion, or tooling
-     questions unless explicitly asked.
-   - Keep notes chronological and slightly raw, grouped by parent topic.
+     questions unless explicitly asked
+   - Keep notes chronological and grouped by parent topic
 
 5. **Defer Deep-Dive Updates:**
    - During active learn mode, write only to `<problem_dir>/learn_notes.md`.

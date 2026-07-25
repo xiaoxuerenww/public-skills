@@ -39,45 +39,66 @@ Wait for the user to confirm, adjust, or add/remove subtopics before proceeding 
 
 ## Step 2: Research
 
-Delegate research to `/deep-research`. Construct a research prompt from the confirmed scope and invoke it.
+Conduct comprehensive research using web search. If `/deep-research` skill is available, delegate to it; otherwise conduct research directly using WebSearch and WebFetch tools.
 
-### Building the research prompt
+### Building the research query
 
-Compose a prompt for `/deep-research` that includes:
+Target these content types in order of priority:
 
-1. The confirmed **subject**, **angle**, and **slice** from Step 1.
-2. The specific questions to answer, derived from the format template sections:
+1. **Text sources** covering:
    - What is this and why does it matter? (TL;DR)
    - What are the key concepts, players, and approaches? (Landscape)
    - How does it work mechanically? (How It Works)
    - What are the alternatives and how do they compare? (Comparisons)
    - What are the tradeoffs, failure modes, and limitations? (Tradeoffs)
    - What is the current state and recent developments? (Current State)
-3. **For deep dive:** include the confirmed subtopics and ask for coverage of each.
-4. Ask for sources with URLs and dates when available.
+   - **Common pitfalls and mistakes**: Search for "[topic] pitfalls", "[topic] mistakes", "[topic] gotchas"
+   - **Best practices**: Search for "[topic] best practices", "[topic] workflow", "[topic] checklist"
 
-Example research prompt:
+2. **Visual content** — diagrams, charts, infographics that explain the concept:
+   - Search for: "[topic] diagram", "[topic] visualization", "[topic] infographic"
+   - Prioritize sources: official docs (TensorFlow, PyTorch, scikit-learn), educational platforms (Google ML, Fast.ai, Coursera, DataCamp), research papers with clear figures
+   - Download relevant images to `media/images/` using curl
+   - Read images to verify quality and relevance
+   - Name files descriptively: `{topic-concept}.png` (e.g., `roc-perfect-model.png`, `transformer-architecture.png`)
+
+3. **Concrete examples and case studies**:
+   - Search for: "[topic] example", "[topic] case study", "[topic] real-world", "when to use [topic]"
+   - Look for scenarios showing when the concept succeeds vs fails
+   - Find concrete numbers, datasets, or production deployments
+   - **Critical**: Identify ONE recurring example to use as a thread throughout the document (e.g., "spam classifier", "fraud detection with 1% fraud rate"). This example should:
+     - Be mentioned in sources (not invented)
+     - Be specific enough to illustrate multiple concepts
+     - Be realistic and relatable to the target audience
+
+Example research sequence:
 ```
-Research RLHF (Reinforcement Learning from Human Feedback) for a Staff MLE
-interview prep angle. Cover: what it is and why it matters, the training
-pipeline (reward model, PPO), how it compares to DPO and RLAIF, known failure
-modes (reward hacking, mode collapse), and the current state of the art as of
-2026. Provide sources with URLs.
+1. WebSearch: "ROC curve precision recall AUC evaluation metrics"
+2. WebSearch: "ROC curve diagram visualization tutorial"
+3. WebFetch: official docs URLs from search results
+4. Download images: curl key diagrams to media/images/
+5. WebSearch: "ROC AUC example when misleading imbalanced data"
+6. Read downloaded images to verify content
 ```
 
-### After /deep-research completes
+### After research completes
 
-Review the research output. Extract and organize:
+Review and organize the research output:
 
-- **Key findings** per section of the output template.
-- **Source URLs** with short annotations (what each covers, why trustworthy).
-- **Conflicts or gaps** — areas where sources disagree or coverage is thin.
+- **Key findings** per section of the output template
+- **Source URLs** with short annotations (what each covers, why trustworthy)
+- **Visual assets** — which images were downloaded, what they show, where they'll be placed
+- **Recurring example** — identify the ONE concrete scenario that will thread through the document
+- **Conflicts or gaps** — areas where sources disagree or coverage is thin
+- **Concrete examples** — real scenarios, datasets, production cases (beyond the main recurring one)
+- **Progressive complexity path** — identify simple cases, general cases, and edge cases to present in order
 
 Apply these source quality filters:
 
-- Prefer primary sources (papers, official docs, author blogs) over summaries and aggregators.
-- Prefer sources with dates; flag undated claims about fast-moving fields.
-- When sources conflict, surface the conflict — don't silently pick a side.
+- Prefer primary sources (papers, official docs, author blogs) over summaries and aggregators
+- Prefer sources with dates; flag undated claims about fast-moving fields
+- When sources conflict, surface the conflict — don't silently pick a side
+- Verify downloaded images are clear, relevant, and from reputable sources
 
 ### Checkpoint: write skeleton and wait for review
 
@@ -86,8 +107,10 @@ After research is complete, write a **skeleton draft** to the output file(s) bef
 1. **Section headings** — the full heading structure from the format template.
 2. **Key terms and keywords** — important concepts, names, and jargon discovered during research, placed under the relevant heading as bullet points.
 3. **Key points** — 1-3 bullet points per section summarizing the main findings. Short phrases or single sentences, not full prose.
-4. **Source links** — every source found during research, listed under the section(s) where it's relevant, in `[short label](url) — one-line annotation` format. Also collected in the Sources section at the bottom.
-5. **Open gaps** — mark any section where research was thin or sources conflicted with `<!-- GAP: description -->`.
+4. **Visual embeds** — all downloaded images embedded using `![[media/images/filename.png]]` syntax with captions explaining what they show. Place images in relevant sections.
+5. **Source links** — every source found during research, listed under the section(s) where it's relevant, in `[short label](url) — one-line annotation` format. Also collected in the Sources section at the bottom.
+6. **Concrete examples** — real-world scenarios, datasets, or production cases that illustrate key concepts. Mark with "Example:" prefix.
+7. **Open gaps** — mark any section where research was thin, sources conflicted, or concrete examples are missing with `<!-- GAP: description -->`.
 
 The skeleton is a real file the user can open in Obsidian, review, reorder sections, delete irrelevant points, add their own notes, or flag areas to expand. Save it to the output location (per Step 4 rules) and report the path using wikilinks.
 
@@ -108,13 +131,33 @@ Take the skeleton (which the user may have edited) as the outline. Read it back 
 
 ### Synthesis principles
 
+**Structure & Flow (inspired by Google ML pedagogy)**:
 - **Breadth first, then selective depth.** Cover the landscape before zooming in. The reader should understand what exists and how pieces relate before getting details on any one piece.
-- **Concrete before abstract.** Lead with examples, systems, or use cases. Follow with principles and theory.
+- **Progressive complexity.** Always follow this sequence: simple cases → general cases → edge cases. Binary scenarios before nuanced ones.
+- **Explanation → Visualization → Application** pattern for each major concept. Don't explain without showing; don't show without applying.
+- **Short paragraphs.** Rarely exceed 2-3 sentences before a visual, list, table, or section break.
+
+**Examples & Concreteness**:
+- **Recurring example thread.** Use the same real-world scenario across 3+ sections to build familiarity (e.g., spam classifier, fraud detection). Reference it by name consistently.
+- **Concrete before abstract.** Lead with examples, systems, or use cases. Follow with principles and theory. Every abstract concept should have at least one concrete example.
+- **Real scenarios over toy examples.** "Fraud detection with 0.1% fraud rate" beats "imbalanced dataset." Use actual numbers, datasets, systems.
+
+**Visuals**:
+- **Show, then explain.** Use embedded images to show concepts visually before explaining them in text. Target 60% visual content, 40% text.
+- **Reference visuals in prose.** "As shown in Figure 1 above...", "The diagram illustrates..."
+- **Visual for every major concept.** If explaining ROC curve, threshold selection, and failure modes, have visuals for all three.
+
+**Clarity & Depth**:
+- **Minimal math formalism.** Use display math `$$` only for key formulas. Always follow with intuitive explanation: *"In words: this measures how many..."*
 - **Tradeoffs over descriptions.** "X is good at A but bad at B" beats "X does A and B." Name the tensions. **Use tables** for tradeoff comparisons.
 - **Cite inline.** Every factual claim from a source gets a linked citation. Use `[short label](url)` format.
 - **Distinguish known from recent.** Separate established knowledge from recent developments or speculation.
 - **No filler.** Every sentence should teach something. Cut throat-clearing, hedging, and broad surveys that don't inform decisions.
-- **Obsidian-native.** Use callouts (`[!tip]`, `[!warning]`, `[!info]`), display math `$$`, comparison tables, and wikilinks where they improve scannability.
+
+**Obsidian-native formatting**:
+- Use callouts (`[!tip]`, `[!warning]`, `[!info]`) sparingly for high-signal content
+- Embed images with `![[path]]` and descriptive captions
+- Use comparison tables, wikilinks, and display math where they improve scannability
 
 ## Step 4: Save
 
