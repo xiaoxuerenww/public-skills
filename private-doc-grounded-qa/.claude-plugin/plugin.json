@@ -1,8 +1,0 @@
-{
-  "name": "doc-grounded-qa",
-  "version": "1.0.0",
-  "description": "Read a document, answer questions grounded in that document, and maintain section-organized notes from the user's questions and insights. Use when the user asks to read, analyze, summarize, review, annotate, take notes on, or answer questions from a PDF, DOCX, Markdown, text file, pasted document, paper, report, resume, job description, company note, or search-result packet, especially when answers must distinguish what is in the document from what requires fallback search.",
-  "skills": [
-    "doc-grounded-qa"
-  ]
-}
