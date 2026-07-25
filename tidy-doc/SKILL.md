@@ -67,6 +67,12 @@ When the user asks to consolidate `source.md` into `target.md`:
   - Convert bullet-list tradeoffs to tables with clear columns
   - Use **bold** for key terms and decisions
   - Keep the document's existing heading depth and style otherwise
+- **Equation annotations:** When an equation appears for the first time in the document:
+  - Add inline annotations explaining variables and terms if not already present
+  - Use format: `where X = explanation, Y = explanation`
+  - Only annotate on first occurrence (skip subsequent uses of the same equation)
+  - Keep annotations concise and in the user's voice
+  - Example: `Loss = -log(p(correct))` becomes `Loss = -log(p(correct))` where `p(correct)` is the probability of the correct token
 - Keep links, wikilinks, images, code blocks, tables, and citations attached to
   the relevant topic.
 - If duplicate content conflicts, keep both claims and mark the conflict with a
