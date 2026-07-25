@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Drafter"
+  short_description: "Tailor resumes from project evidence."
+  default_prompt: "Use $resume-drafter to draft resume for <target company> <target role>."
