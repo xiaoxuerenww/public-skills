@@ -1,8 +1,18 @@
-# Public Skills
+# Skills Vault (Private)
 
-Open-source Claude Code skills for interview prep, content creation, and productivity.
+Single repo synced to two remotes:
 
-**Source:** [github.com/xiaoxuerenww/public-skills](https://github.com/xiaoxuerenww/public-skills)
+- **origin** → [private-skills](https://github.com/xiaoxuerenww/private-skills) (private) — everything
+- **public** → [public-skills](https://github.com/xiaoxuerenww/public-skills) (public) — public skills only
+
+## Sync
+
+```bash
+/sync-git-skills           # full sync: pull both, push both
+/sync-git-skills status    # check sync state
+/sync-git-skills pull      # pull from both remotes
+/sync-git-skills push      # push to both remotes
+```
 
 ## Skills
 
@@ -29,8 +39,14 @@ Open-source Claude Code skills for interview prep, content creation, and product
 - **[sanitize-pii](./sanitize-pii/)** — Remove PII for public sharing
 - **[humanizer](./humanizer/)** — Humanize AI content
 - **[handoff](./handoff/)** — Project handoff docs
+- **[sync-git-skills](./sync-git-skills/)** — Vault sync between remotes
 - **[writing-great-skills](./writing-great-skills/)** — Skill authoring reference
+
+### Private (not pushed to public)
+- **[private-journal](./private-journal/)** — Daily journaling and sprint tracking
+- **[private-career-coach](./private-career-coach/)** — Personal career coaching
+- **[private-frontier-lab-jobs](./private-frontier-lab-jobs/)** — AI lab job tracking
 
 ## License
 
-MIT
+Public skills: MIT. Private skills: personal use only.

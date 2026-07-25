@@ -106,9 +106,12 @@ REPOSITORY_SPLIT_SUMMARY.md
 PUBLIC_SKILLS_SETUP.md
 SANITIZATION_SUMMARY.md
 PUBLIC_SKILLS_SANITIZATION_REPORT.md
+README.private.md              # Private README with sync instructions
 ```
 
 **Convention:** Any directory matching `private-*/` is automatically excluded.
+
+**README handling:** The main `README.md` contains only public skills. `README.private.md` contains the full private vault README with sync instructions and private skills list. When pushing to public, `README.md` is already sanitized and goes as-is.
 
 Update this list when the user adds new private-only content.
 
@@ -228,7 +231,14 @@ Sanitize PII, rebuild public-only branch, strip private content, then push.
    git rm -r --ignore-unmatch sync-git-skills/ SYNC_SKILL_MERGE_SUMMARY.md FINAL_REPOSITORY_SPLIT.md REPOSITORY_SPLIT_SUMMARY.md PUBLIC_SKILLS_SETUP.md SANITIZATION_SUMMARY.md PUBLIC_SKILLS_SANITIZATION_REPORT.md
    ```
 
-6. **Commit and push**:
+6. **Replace README with public version**:
+   ```bash
+   git mv README.private.md README.private.md.bak
+   # README.md is already the public version, just verify
+   git add README.md
+   ```
+
+7. **Commit and push**:
    ```bash
    git commit -m "Sync: update public-skills
    
@@ -236,12 +246,12 @@ Sanitize PII, rebuild public-only branch, strip private content, then push.
    git push public public-only:main --force
    ```
 
-7. **Switch back**:
+8. **Switch back**:
    ```bash
    git checkout main
    ```
 
-8. **Verify no private content leaked**:
+9. **Verify no private content leaked**:
    ```bash
    gh api repos/xiaoxuerenww/public-skills/git/trees/main --jq '.tree[] | select(.path | test("private|.claude|.claudian|sync-git-skills")) | .path'
    ```
