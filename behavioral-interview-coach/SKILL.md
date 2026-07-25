@@ -367,7 +367,7 @@ Flag `VERIFY` on uncertain metrics or facts rather than inventing precision.
 
 #### Phase 6 — Humanize
 
-Run `/humanizer` on the drafted story to remove AI writing patterns. The short opening and CARL bullets should sound like the user speaking — plain, direct, no inflated language or AI-tell phrases.
+Run `/private-humanizer` on the drafted story to remove AI writing patterns. The short opening and CARL bullets should sound like the user speaking — plain, direct, no inflated language or AI-tell phrases.
 
 #### Phase 7 — Save & Update Index
 
@@ -476,7 +476,7 @@ Reference material for follow-ups, probing, or regenerating the story with a dif
 - If the story is too weak for Staff+ after grilling, say so clearly and suggest what would strengthen it, rather than over-polishing weak material.
 - Always confirm the story grouping with the user before drafting.
 - Flag all uncertain metrics with `VERIFY` rather than inventing precision.
-- Always run `/humanizer` on the draft before saving — no exceptions.
+- Always run `/private-humanizer` on the draft before saving — no exceptions.
 - After saving, tell the user which BQ question this story best anchors so she can update her story map mentally.
 
 ## Mock Mode

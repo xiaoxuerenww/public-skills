@@ -82,12 +82,25 @@ When in doubt, clarify with user which operation they want.
 
 These paths must never appear in the public repo. Any directory prefixed with `private-` is private by convention.
 
-**Private skills and personal content:**
+**Convention:** Any directory matching `private-*/` is automatically excluded. This includes:
+
+**Private skills (current):**
 ```
 private-journal/
-private-life-coach/
-journal/                    # Legacy, also private
-personalized-life-coach/    # Legacy, also private
+private-career-coach/
+private-frontier-lab-jobs/
+private-grilling/
+private-grill-me/
+private-humanizer/
+private-handoff/
+private-doc-grounded-qa/
+private-writing-great-skills/
+```
+
+**Legacy private skills:**
+```
+journal/                    # Renamed to private-journal
+personalized-life-coach/    # Renamed to private-career-coach
 ```
 
 **Configuration and sync tools:**
@@ -107,11 +120,12 @@ PUBLIC_SKILLS_SETUP.md
 SANITIZATION_SUMMARY.md
 PUBLIC_SKILLS_SANITIZATION_REPORT.md
 README.private.md              # Private README with sync instructions
+PUBLIC_PRIVATE_TRACKING.md     # Tracking doc (in sync-git-skills/)
 ```
 
-**Convention:** Any directory matching `private-*/` is automatically excluded.
-
 **README handling:** The main `README.md` contains only public skills. `README.private.md` contains the full private vault README with sync instructions and private skills list. When pushing to public, `README.md` is already sanitized and goes as-is.
+
+**Tracking:** See `sync-git-skills/PUBLIC_PRIVATE_TRACKING.md` for the current list of public vs private skills. Update after each move.
 
 Update this list when the user adds new private-only content.
 

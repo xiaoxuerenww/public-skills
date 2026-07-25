@@ -16,20 +16,14 @@ Open-source Claude Code skills for interview prep, content creation, and product
 
 ### Content & Writing
 - **[write-article](./write-article/)** — Thought capture and article drafting
-- **[grilling](./grilling/)** — Critical questioning
-- **[grill-me](./grill-me/)** — Interactive grilling sessions
 - **[tidy-doc](./tidy-doc/)** — Document cleanup
 
 ### Research
-- **[doc-grounded-qa](./doc-grounded-qa/)** — Document-based Q&A
 - **[frontier-lab-news-digest](./frontier-lab-news-digest/)** — AI lab news
 
 ### Tools
 - **[file-cleaner](./file-cleaner/)** — Clean temp files
 - **[sanitize-pii](./sanitize-pii/)** — Remove PII for public sharing
-- **[humanizer](./humanizer/)** — Humanize AI content
-- **[handoff](./handoff/)** — Project handoff docs
-- **[writing-great-skills](./writing-great-skills/)** — Skill authoring reference
 
 ## License
 

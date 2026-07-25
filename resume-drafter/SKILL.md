@@ -132,7 +132,7 @@ Completion criterion: the new resume file exists, is grounded in the approved ou
 
 ### Step 7 - Polish with Humanizer
 
-Call `$humanizer` on the generated resume before final verification.
+Call `$private-humanizer` on the generated resume before final verification.
 
 Humanizer constraints:
 - Use **Professional-Formal** tone for resume content.
@@ -171,7 +171,7 @@ Before final response:
 - Confirm both main themes appear.
 - Confirm the file does not contain placeholder text.
 - Confirm no unapproved metrics or facts were introduced.
-- Confirm the `$humanizer` polish did not change verified facts, metrics, project scope, titles, dates, or credentials.
+- Confirm the `$private-humanizer` polish did not change verified facts, metrics, project scope, titles, dates, or credentials.
 - Confirm line count ≤ template line count.
 - Compare against the template and report the major changes: reordered projects, rewritten bullets, compressed sections, and removed content.
 - Report the output path and any unresolved evidence gaps.

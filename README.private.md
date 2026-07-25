@@ -24,25 +24,31 @@ Single repo synced to two remotes:
 - **[interview-prep-multi-agent](./interview-prep-multi-agent/)** — Multi-agent coordinator
 - **[tech-interview-question-scraper](./tech-interview-question-scraper/)** — Scrape interview questions
 
-### Content & Writing
+### Content & Writing (Public)
 - **[write-article](./write-article/)** — Thought capture and article drafting
-- **[grilling](./grilling/)** — Critical questioning
-- **[grill-me](./grill-me/)** — Interactive grilling sessions
 - **[tidy-doc](./tidy-doc/)** — Document cleanup
 
-### Research
-- **[doc-grounded-qa](./doc-grounded-qa/)** — Document-based Q&A
+### Content & Writing (Private)
+- **[private-grilling](./private-grilling/)** — Critical questioning
+- **[private-grill-me](./private-grill-me/)** — Interactive grilling sessions
+- **[private-humanizer](./private-humanizer/)** — Humanize AI content
+
+### Research (Public)
 - **[frontier-lab-news-digest](./frontier-lab-news-digest/)** — AI lab news
 
-### Tools
+### Research (Private)
+- **[private-doc-grounded-qa](./private-doc-grounded-qa/)** — Document-based Q&A
+
+### Tools (Public)
 - **[file-cleaner](./file-cleaner/)** — Clean temp files
 - **[sanitize-pii](./sanitize-pii/)** — Remove PII for public sharing
-- **[humanizer](./humanizer/)** — Humanize AI content
-- **[handoff](./handoff/)** — Project handoff docs
-- **[sync-git-skills](./sync-git-skills/)** — Vault sync between remotes
-- **[writing-great-skills](./writing-great-skills/)** — Skill authoring reference
 
-### Private (not pushed to public)
+### Tools (Private)
+- **[private-handoff](./private-handoff/)** — Project handoff docs
+- **[sync-git-skills](./sync-git-skills/)** — Vault sync between remotes
+- **[private-writing-great-skills](./private-writing-great-skills/)** — Skill authoring reference
+
+### Personal (Private Only)
 - **[private-journal](./private-journal/)** — Daily journaling and sprint tracking
 - **[private-career-coach](./private-career-coach/)** — Personal career coaching
 - **[private-frontier-lab-jobs](./private-frontier-lab-jobs/)** — AI lab job tracking

@@ -94,17 +94,34 @@ Runs all operations in order:
 6. Sanitize PII + push to public
 7. Final report
 
-## Private Directories
+## Private Content
 
-These directories are automatically excluded from public-skills:
+### Automatically Excluded Directories
 
-- `private-journal/`
-- `private-life-coach/`
-- `journal/` (legacy)
-- `personalized-life-coach/` (legacy)
-- `.claude/`
-- `.claudian/`
-- Any directory matching `private-*/`
+Any directory matching `private-*/` is automatically excluded from public-skills.
+
+**Current private skills:**
+- private-journal
+- private-career-coach
+- private-frontier-lab-jobs
+- private-grilling
+- private-grill-me
+- private-humanizer
+- private-handoff
+- private-doc-grounded-qa
+- private-writing-great-skills
+
+**Config and legacy:**
+- .claude/
+- .claudian/
+- journal/ (legacy)
+- personalized-life-coach/ (legacy)
+
+**Sync tools:**
+- sync-git-skills/
+- README.private.md
+
+See [[sync-git-skills/PUBLIC_PRIVATE_TRACKING.md]] for full public/private breakdown.
 
 ## Workflow
 
