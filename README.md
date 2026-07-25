@@ -18,16 +18,15 @@ Open-source Claude Code skills for interview prep, content creation, and product
 
 ### Content & Writing
 - **[write-article](./write-article/)** — Thought capture and article drafting
-- **[tidy-doc](./tidy-doc/)** — Document cleanup and reorganization
 
 ### Research
 - **[frontier-lab-news-digest](./frontier-lab-news-digest/)** — AI lab news
 - **[research-topic](./research-topic/)** — Research and synthesize learning artifacts
 
 ### Tools
-- **[file-cleaner](./file-cleaner/)** — Migrate scratch notes to canonical files
 - **[sanitize-pii](./sanitize-pii/)** — Remove PII for public sharing
 - **[tidy-dir](./tidy-dir/)** — Reorganize files and folders
+- **[tidy-doc](./tidy-doc/)** — Document cleanup, reorganization, and migration (includes scratch → canonical note migration)
 - **[update-todo](./update-todo/)** — Task tracking and todo management
 
 ## License
