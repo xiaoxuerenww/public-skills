@@ -143,7 +143,28 @@ Humanizer constraints:
 
 Completion criterion: the resume is polished in place and remains fact-equivalent to the approved draft.
 
-### Step 8 - Verify
+### Step 8 - Length Check and Compression
+
+Before final verification, check resume length:
+
+```bash
+wc -l resume/xuew_resume_template.md resume/xue_resume_<company>_<role>.md
+```
+
+**Constraint:** The generated resume must NOT be longer than the template (in line count). This ensures it fits within 2 PDF pages after export.
+
+If the generated resume exceeds the template length:
+1. Compress verbose bullets while preserving all key metrics and facts
+2. Merge related sub-bullets into single bullets
+3. Shorten transitional phrases and remove redundant context
+4. Convert multi-line sections to single-line format (e.g., EDUCATION)
+5. Abbreviate where clear (e.g., "University of Pittsburgh" → "U. Pittsburgh", "Electrical & Computer Engineering" → "ECE")
+
+Repeat compression until line count ≤ template line count.
+
+Completion criterion: `wc -l` confirms generated resume ≤ template length.
+
+### Step 9 - Verify
 
 Before final response:
 - Re-read the generated resume.
@@ -151,6 +172,7 @@ Before final response:
 - Confirm the file does not contain placeholder text.
 - Confirm no unapproved metrics or facts were introduced.
 - Confirm the `$humanizer` polish did not change verified facts, metrics, project scope, titles, dates, or credentials.
+- Confirm line count ≤ template line count.
 - Compare against the template and report the major changes: reordered projects, rewritten bullets, compressed sections, and removed content.
 - Report the output path and any unresolved evidence gaps.
 

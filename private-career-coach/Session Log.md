@@ -1189,3 +1189,56 @@ A running record of topics discussed, insights surfaced, and decisions made. Upd
 
 **Action item:**
 - Build a high-yield concept list of 10 to 15 topics. For each topic, write: one-sentence definition, why it matters, common failure mode, connection to Julie’s work, and one tradeoff/follow-up. Practice by speaking, not just reading.
+
+---
+
+## 2026-07-24 — Boundary with B: disengage from a one-sided, draining connection
+
+**What Julie surfaced:**
+- B is a former coworker who criticizes Julie's former team's technology and projects as outdated while presenting their own work as more advanced.
+- B repeatedly asks Julie for interview information but does not reciprocate when Julie asks about their interview process or results.
+- Julie does not trust B with personal, interview, or shared-colleague information, and the conversations leave her feeling diminished and emotionally drained.
+
+**Coaching read:**
+- The available evidence supports a communication boundary; Julie does not need to determine B's intent to decide that the relationship is not safe or useful for career disclosure.
+- B's assessment of the team is not a reliable assessment of Julie's ceiling: the same environment also included colleagues who moved to strong opportunities.
+
+**Action item:**
+- Do not initiate communication with B.
+- If B initiates, wait at least 12 hours before responding.
+- Share nothing about Julie, her interviews, career plans, or mutual contacts.
+- Keep replies brief and non-substantive, such as acknowledgement-only responses, and do not build a personal connection.
+
+---
+
+## 2026-07-24 — V comparison and ML prep: protect values, replace stuckness with iteration
+
+**What Julie surfaced:**
+- V's departure intensified Julie's fear that she is slower or less technically capable, especially while she is still preparing for interviews.
+- Julie does not view V as a trusted friend and does not see maintaining the relationship as a loss.
+- Julie sees V as more aggressively focused on visibility and advancement, sometimes in ways Julie would not choose; Julie wants to retain her own values rather than emulate V.
+- Julie has a real time constraint as a parent and noticed that comparison by raw preparation pace ignores different life circumstances.
+- She identified a separate, actionable pattern: spending multiple days stuck on one ML fundamentals note drains momentum and prevents coverage of other topics.
+
+**Coaching read:**
+- V's path is not a useful whole-person benchmark. The relevant question is whether Julie's own operating habits support her goals without abandoning integrity or sustainability.
+- Julie learns well through short, repeated, progressively deeper passes. Waiting for mastery before moving on is counterproductive for the current interview-prep sprint.
+
+**Action item:**
+- Use the file tool's suggested 30-minute reading time as the first-pass time box for each ML chapter.
+- At the end of the time box, capture one unresolved question and move to the next chapter.
+- Return through later shallow iterations, letting each pass deepen understanding without getting stuck.
+
+---
+
+## 2026-07-24 — Feedback filter: weight credible observers, not competitive peers
+
+**What Julie surfaced:**
+- A senior leader who had worked directly with Julie recognized her work ethic, intelligence, technical foundation, and prior collaboration, and invited her to reconnect after their new team stabilizes.
+- This gave Julie credible encouragement during a stressful interview-preparation period.
+- Julie recognized that B and V were peers at the same level despite Julie's greater seniority, with a history of competition and limited incentive to give neutral assessments of her work.
+
+**Reminder:**
+- Treat comments from competitive or emotionally draining peers as low-confidence data, not verdicts about Julie's capability, value, or potential.
+- Do not assume their intentions; focus on the observed impact and whether their feedback is specific, direct, reciprocal, and useful.
+- Give greater weight to feedback from senior people who have directly observed Julie's work and can name concrete strengths and development areas.
