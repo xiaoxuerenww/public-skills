@@ -193,7 +193,7 @@ User: "sync skills"
    Running PII scan...
    ⚠️  Found 2 PII instances:
    - write-article/SKILL.md: email address "user@oldexample.com"
-   - frontier-lab-jobs/SKILL.md: path "/Users/olduser/"
+   - private-frontier-lab-jobs/SKILL.md: path "/Users/olduser/"
    
    Sanitize automatically? (y/n): y
    

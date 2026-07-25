@@ -24,7 +24,7 @@ Identify the target company, role title, and role evidence.
 Use the user's prompt first:
 - If the prompt includes a job URL, role description, or enough role detail, use it as the role source.
 - If the prompt only names a company or ambiguous role, read the application tracker and look for matching role links or role rows.
-- If no existing role link or role information exists, invoke `$frontier-lab-jobs` to find the top 5 relevant roles using the resume template as background, then ask the user to choose one before continuing.
+- If no existing role link or role information exists, invoke `$private-frontier-lab-jobs` to find the top 5 relevant roles using the resume template as background, then ask the user to choose one before continuing.
 
 Do not draft an outline or resume until one exact role is selected.
 

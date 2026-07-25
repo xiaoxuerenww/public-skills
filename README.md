@@ -31,7 +31,6 @@ Single repo synced to two remotes:
 
 ### Research
 - **[doc-grounded-qa](./doc-grounded-qa/)** — Document-based Q&A
-- **[frontier-lab-jobs](./frontier-lab-jobs/)** — AI lab job tracking
 - **[frontier-lab-news-digest](./frontier-lab-news-digest/)** — AI lab news
 
 ### Tools
@@ -44,7 +43,8 @@ Single repo synced to two remotes:
 
 ### Private (not pushed to public)
 - **[private-journal](./private-journal/)** — Daily journaling and sprint tracking
-- **[private-life-coach](./private-life-coach/)** — Personal coaching
+- **[private-career-coach](./private-career-coach/)** — Personal career coaching
+- **[private-frontier-lab-jobs](./private-frontier-lab-jobs/)** — AI lab job tracking
 
 ## License
 
